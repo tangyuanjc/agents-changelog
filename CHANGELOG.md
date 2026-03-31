@@ -2,6 +2,13 @@
 
 ## 2026-04-01
 
+### [Codex] 优化Feishu-Claude桥接器稳定性与交互
+- 时间：01:55
+- 文件：/Users/tangyuanjc/opus-tasks/feishu_claude_bridge.py, /Users/tangyuanjc/opus-tasks/install-feishu-claude-bridge-agent.sh, /Users/tangyuanjc/opus-tasks/README.md, /Users/tangyuanjc/opus-tasks/bridge.env.example, /Users/tangyuanjc/opus-tasks/docs/plans/2026-03-31-feishu-bridge-ux-stability-design.md
+- 改动：新增延迟ACK机制（快回复不再先发“处理中”）、补充 /ping /model /cwd /logs 命令、增强 /status、修复 LaunchAgent reload 时 bootstrap failed: 5、补充状态字段回填与说明文档
+- 影响：Feishu ↔ Claude CLI 双向桥接、后台常驻稳定性、桥接器运维可观测性
+- 原因：降低聊天噪音，修复 LaunchAgent 重载不稳定问题，并让后续排查更容易
+
 ### [Opus] 在AGENTS.md中增加改动日志铁律
 - 时间：18:00
 - 文件：~/.openclaw/workspace/AGENTS.md
