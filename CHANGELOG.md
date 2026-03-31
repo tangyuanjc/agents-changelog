@@ -2,6 +2,13 @@
 
 ## 2026-04-01
 
+### [Codex] 明确README中的规则源与记录源分工
+- 时间：02:17
+- 文件：/Users/tangyuanjc/agents-changelog/README.md
+- 改动：补充“AGENTS.md 是唯一权威规则源，CHANGELOG.md 是唯一改动记录源”的说明，明确规则与记录分层
+- 影响：所有agents查看 agents-changelog README 时都能快速理解职责边界
+- 原因：避免把 README 误当规则源，统一以 AGENTS.md 为准
+
 ### [Codex] 优化Feishu-Claude桥接器稳定性与交互
 - 时间：01:55
 - 文件：/Users/tangyuanjc/opus-tasks/feishu_claude_bridge.py, /Users/tangyuanjc/opus-tasks/install-feishu-claude-bridge-agent.sh, /Users/tangyuanjc/opus-tasks/README.md, /Users/tangyuanjc/opus-tasks/bridge.env.example, /Users/tangyuanjc/opus-tasks/docs/plans/2026-03-31-feishu-bridge-ux-stability-design.md

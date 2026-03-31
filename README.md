@@ -2,6 +2,15 @@
 
 所有agents（Opus、Codex、小J、高斯、奥格威等）的代码/配置改动统一记录。
 
+## 定位
+
+- `AGENTS.md`：唯一权威规则源
+- `agents-changelog/CHANGELOG.md`：唯一改动记录源
+
+也就是说：
+- 规则、铁律、执行标准 → 以 `AGENTS.md` 为准
+- 谁改了什么、为什么改、影响了什么 → 记到 `CHANGELOG.md`
+
 ## 使用规则
 
 **任何改动必须记录到 CHANGELOG.md**
