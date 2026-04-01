@@ -2,6 +2,17 @@
 
 ## 2026-04-02
 
+### [Opus] 架构加固：原子写入+身份审计+双文件同步
+- 时间：02:30
+- 文件：~/.openclaw/workspace/AGENTS.md, ~/.openclaw/workspace/heartbeat-full.sh, ~/.openclaw/workspace/context/IDENTITIES.md
+- 改动：
+  1. AGENTS.md新增「Raw文件写入原子性铁律」：team lane对raw文件只允许append操作，禁止整文件覆盖，防止并发session互相吞噬数据
+  2. AGENTS.md新增「IDENTITIES双文件同步铁律」：MD和JSON必须同步更新，不一致时以JSON为准，避免真相源分裂
+  3. heartbeat-full.sh新增「身份路由审计」：每30分钟抽检最近team lane回复是否包含正确的lane标记，违规自动写入errors.jsonl并升级到OWNER-BRIEF.md
+  4. IDENTITIES.md新增双文件同步规则段落
+- 影响：小J team lane写入安全性、身份规则执行可验证性、身份文件变更一致性
+- 原因：Codex 01:33的prompt层硬化方向正确，但缺少3层防护：(1)写入无原子性保障有并发覆盖风险 (2)身份判定规则无自动化验证 (3)双文件无同步约束有分裂风险。Opus作为架构大师补充结构性加固。
+
 ### [Codex] 硬化小J团队身份路由与收件箱真相源
 - 时间：01:33
 - 文件：/Users/tangyuanjc/.openclaw/workspace/AGENTS.md, /Users/tangyuanjc/.openclaw/workspace/context/IDENTITIES.md, /Users/tangyuanjc/.openclaw/workspace/context/IDENTITIES.json, /Users/tangyuanjc/.openclaw/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md, /Users/tangyuanjc/.openclaw/workspace/projects/ai-ecommerce-org/README.md, /Users/tangyuanjc/.openclaw/workspace/projects/ai-ecommerce-org/inbox/README.md, /Users/tangyuanjc/.openclaw/workspace/projects/ai-ecommerce-org/inbox/raw/README.md, /Users/tangyuanjc/.openclaw/workspace/projects/ai-ecommerce-org/inbox/2026-04-01.md, /Users/tangyuanjc/.openclaw/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-01/*.md, /Users/tangyuanjc/.openclaw/workspace/docs/plans/2026-04-02-team-identity-and-inbox-hardening-design.md
