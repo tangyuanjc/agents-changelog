@@ -1,5 +1,14 @@
 # Agent改动日志
 
+## 2026-04-02
+
+### [Codex] 硬化小J团队身份路由与收件箱真相源
+- 时间：01:33
+- 文件：/Users/tangyuanjc/.openclaw/workspace/AGENTS.md, /Users/tangyuanjc/.openclaw/workspace/context/IDENTITIES.md, /Users/tangyuanjc/.openclaw/workspace/context/IDENTITIES.json, /Users/tangyuanjc/.openclaw/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md, /Users/tangyuanjc/.openclaw/workspace/projects/ai-ecommerce-org/README.md, /Users/tangyuanjc/.openclaw/workspace/projects/ai-ecommerce-org/inbox/README.md, /Users/tangyuanjc/.openclaw/workspace/projects/ai-ecommerce-org/inbox/raw/README.md, /Users/tangyuanjc/.openclaw/workspace/projects/ai-ecommerce-org/inbox/2026-04-01.md, /Users/tangyuanjc/.openclaw/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-01/*.md, /Users/tangyuanjc/.openclaw/workspace/docs/plans/2026-04-02-team-identity-and-inbox-hardening-design.md
+- 改动：恢复 human-facing `Current lane: ...` 强制标识；将人员映射收敛到 `context/IDENTITIES.md/json` 单一真相源并补录欣欣 `ou_ad30272f15dfc74a7fb905ae7856a005`；校正 `AGENTS.md` 与 `IDENTITIES.md` 对本地 WebUI / `main` 人类主会话的 lane 口径一致；新增 `TEAM-STATUS.md` 作为团队提交/L1/路由状态权威；将 team inbox 重构为 `inbox/raw/YYYY-MM-DD/<sender_id>.md` 的按人原始层 + owner 浏览汇总层；恢复 2026-04-01 曾被共享覆盖污染的 inbox 记录，并拆分回各发送者 raw 文件。
+- 影响：小J 在 team lane 的身份识别、员工隔离、日报收件、L1 状态查询与 owner 汇总链路。
+- 原因：4/1-4/2 已出现员工身份混淆、共享 inbox 被整文件覆盖、团队状态查询依赖临时推论等高风险问题，需要把“身份判定”和“收件落点”同时硬化。
+
 ## 2026-04-01
 
 ### [Codex] 切换官方Claude Code默认权限为bypass
