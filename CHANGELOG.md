@@ -111,3 +111,10 @@
 - 改动：移除业务待办提醒（每天13:00）
 - 影响：减少与PRIORITY.md唯一真相源的冲突
 - 原因：3月28日建立PRIORITY.md后，业务待办提醒机制已过时，小J heartbeat已监控P0任务
+
+### [Codex] 小J主模型切回 GPT-5.4
+- 时间：04:25
+- 文件：~/.openclaw/openclaw.json；~/.openclaw/workspace/STATE.md
+- 改动：将 main/default/Feishu channel 的主模型从 `juncc/claude-opus-4-6` 切回 `juncc-openai/gpt-5.4`；同步下调 Opus 到 fallback；更新 STATE.md 当前模型链。
+- 影响：小J 新建会话与重启后的主通道默认走 GPT-5.4，Opus 改为备援，不影响其它已单独指定 GPT-5.4 的数字员工。
+- 原因：owner 怀疑当前 juncc 的 Opus 4.6 质量退化，先回切到更稳的 GPT-5.4 作为主力。
