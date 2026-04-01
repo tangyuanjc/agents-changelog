@@ -2,6 +2,13 @@
 
 ## 2026-04-01
 
+### [Codex] 切换官方Claude Code默认权限为bypass
+- 时间：20:46
+- 文件：/Users/tangyuanjc/.claude/settings.json
+- 改动：将 permissions.defaultMode 从 acceptEdits 改为 bypassPermissions，保留 /Users/tangyuanjc 目录访问与 skipDangerousModePermissionPrompt 配置
+- 影响：新启动的官方 Claude Code 会默认进入 bypassPermissions 模式
+- 原因：用户切回官方版本后，希望恢复 bypass 模式，减少手动切换
+
 ### [Codex] 将剩余Kimi cron切换到MiniMax M2.7
 - 时间：10:55
 - 文件：/Users/tangyuanjc/.openclaw/cron/jobs.json
