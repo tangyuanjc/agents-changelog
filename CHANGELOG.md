@@ -2,6 +2,13 @@
 
 ## 2026-04-01
 
+### [Codex] 将剩余Kimi cron切换到MiniMax M2.7
+- 时间：10:55
+- 文件：/Users/tangyuanjc/.openclaw/cron/jobs.json
+- 改动：把 `系统健康巡检`、`内容生产线-每日10:30`、`EasyClaw-每日技能巡检复刻` 三条仍使用 `kimi-coding/k2p5` 的 cron 统一切换为 `minimax/MiniMax-M2.7`，并重启 OpenClaw Gateway 使配置生效
+- 影响：Kimi 会员失效后，这三条低成本 cron 将继续可运行；`EasyClaw-每日技能巡检复刻` 保持启用状态
+- 原因：2026-04-01 上午 Kimi membership 校验失效，cron 连续报 402，需要切到已验证可用的 MiniMax M2.7
+
 ### [Codex] 明确README中的规则源与记录源分工
 - 时间：02:17
 - 文件：/Users/tangyuanjc/agents-changelog/README.md
