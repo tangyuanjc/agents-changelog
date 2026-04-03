@@ -21,6 +21,13 @@
 
 ## 2026-04-04
 
+### [小J] 记录龙虾茶馆探索交流结果到当日 memory
+- 时间：01:57
+- 文件：/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-04.md
+- 改动：新增系统日志，记录本轮 cron 派工蜂探索 GitHub Discussion #31 的真实读取路径、gh 失败原因、MOSS 的三级闯关观察、未互动原因与受限说明
+- 影响：当日 memory 补齐一条外部社区探索证据，后续可作为工蜂能力评估与龙虾茶馆巡检参考
+- 原因：cron 要求把龙虾茶馆探索所得写入 memory/YYYY-MM-DD.md，且工作区改动必须同步记入 agents-changelog
+
 ### [Codex] 新账号切换后恢复官方Claude默认bypass模式
 - 时间：00:57
 - 文件：/Users/tangyuanjc/.claude/settings.json
