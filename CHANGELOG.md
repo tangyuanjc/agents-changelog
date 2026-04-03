@@ -1,3 +1,26 @@
+### [小J] 复刻 EasyClaw 社区 file-search 技能
+- 时间：05:03
+- 文件：/Users/tangyuanjc/.openclaw/workspace/skills/file-search/SKILL.md
+- 改动：新增 `file-search` 技能目录与 SKILL.md，参考社区同名技能思路落地为本机可用版本；将文件名搜索主路径改为 `rg --files | rg`，并保留 `fd` 为可选增强
+- 影响：workspace 新增一个可直接用于本地文件名/内容检索的轻量技能，不依赖未安装的 `fd`
+- 原因：执行 EasyClaw 每日技能巡检时，社区同名技能有复刻价值，但原版依赖 `fd`；为保证本机真实可用，改成优先 `rg` 的兼容版
+- 验证：`read` 已确认 `/Users/tangyuanjc/.openclaw/workspace/skills/file-search/SKILL.md` 落盘；`rg --files /Users/tangyuanjc/.openclaw/workspace | rg 'SKILL\.md$' | head -n 3` 返回实际结果；`fd --version` 实测不存在
+
+### [Codex] Hermes 自动识别 655147 GPT-5.4 上下文为 1.05M
+- 时间：04:48
+- 文件：/Users/tangyuanjc/.hermes/hermes-agent/agent/model_metadata.py、/Users/tangyuanjc/.hermes/hermes-agent/agent/models_dev.py、/Users/tangyuanjc/.hermes/hermes-agent/tests/agent/test_model_metadata.py、/Users/tangyuanjc/.hermes/hermes-agent/tests/agent/test_models_dev.py
+- 改动：给 `api.655147.xyz` 与 `bao-api.655147.xyz` 增加 OpenAI provider URL 映射；为 models.dev 增加 `openai -> openai` provider 映射；修正 `provider: auto` 也会进入 URL 推断分支；补充 655147 路由推断与 context lookup 单测
+- 影响：后续 Hermes 在未手填 `model.context_length` 的情况下，也能对 655147 的 OpenAI 兼容 GPT-5.4 通道自动识别出 `1050000` 上下文，不再退回 128K probe-down 默认值；新 profile/新配置复制时更稳
+- 原因：前面已确认爱马仕当前 128K 是探测失败默认值，不是模型真实上限；owner 同意继续把自动识别链路补齐，避免未来重复手工覆盖
+- 验证：`get_model_context_length('gpt-5.4', base_url='https://api.655147.xyz/v1', provider='auto') == 1050000`；`bao-api.655147.xyz` 同样返回 `1050000`；相关测试 `97 passed`
+
+### [Codex] 爱马仕 GPT-5.4 上下文显式覆盖为 1.05M
+- 时间：04:41
+- 文件：/Users/tangyuanjc/.hermes/config.yaml
+- 改动：在 Hermes `model` 配置下新增 `context_length: 1050000`，显式覆盖 `api.655147.xyz/v1` 未返回上下文元数据时的 128K probe-down 默认值；保留现有 `provider: auto` 和 fallback_providers 链路不变
+- 影响：爱马仕后续在飞书/CLI 状态面板中将按配置显示 1.05M 上下文，不再误判为 128K 默认窗口；上下文压缩阈值也会随之按 1.05M 重新计算，更接近小J当前 GPT-5.4 主链配置
+- 原因：排查确认 Hermes 当前 128K 并非模型真实上限，而是上下文长度探测失败后的保守回退；OpenClaw 侧同通道 `api655-openai/gpt-5.4` 已登记为 `contextWindow: 1050000`，因此需要显式对齐
+
 ### [Opus] AGENTS.md 补充爱马仕为 Team Agent + 双生CEO架构说明
 - 时间：04:05
 - 文件：/Users/tangyuanjc/.openclaw/workspace/AGENTS.md
