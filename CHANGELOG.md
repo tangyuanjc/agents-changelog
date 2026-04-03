@@ -18,3 +18,13 @@
 - 改动：先按规则复核 AGENTS.md；新增 delivery_queue_guard.py，识别并归档已知无效 Feishu 目标（旧群 chat、heartbeat 伪目标、旧 open_id、gauss cross-app open_id、旧 Dino 报时探针）；一次性归档 744 条 failed 残留；新增 gateway preflight 包装脚本，在每次 launchd 启动前先跑 guard；把 ai.openclaw.gateway.plist 改为经 preflight 启动；把历史 feishu-time-report.sh 改成停用 stub，避免旧目标再次写脏队列；已重启 gateway 验证生效。
 - 影响：历史 400 invalid open_id / out-of-chat / heartbeat delivery-recovery 噪音已清空；后续 gateway 重启前会先隔离已知脏队列，避免旧 pending 再次在启动时重放报错；旧报时脚本不再向失效目标持续投递。
 - 原因：owner 确认按 A+B 一起做——既清理历史失败垃圾，又加本地有效性 guard，防止 stale invalid target 再进入恢复链路。
+
+## 2026-04-04
+
+### [Codex] 新账号切换后恢复官方Claude默认bypass模式
+- 时间：00:57
+- 文件：/Users/tangyuanjc/.claude/settings.json
+- 改动：将 permissions.defaultMode 从 acceptEdits 改回 bypassPermissions，保留 model=opus、additionalDirectories=/Users/tangyuanjc 与 skipDangerousModePermissionPrompt 配置
+- 影响：重新启动后的官方 Claude Code 将默认以 bypassPermissions 模式运行
+- 原因：用户切换新账号后发现权限模式回退到 acceptEdits，需要恢复默认 bypass 体验
+
