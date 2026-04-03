@@ -1,3 +1,10 @@
+### [Opus] 配置爱马仕双层 Fallback 链路
+- 时间：03:45
+- 文件：/Users/tangyuanjc/.hermes/config.yaml、/Users/tangyuanjc/.hermes/.env
+- 改动：将 config.yaml 的 fallback_model（单一 opencode-zen/gpt-5.4）升级为 fallback_providers 列表（opencode-zen/gpt-5.4 → minimax/MiniMax-M2.7-highspeed）；在 .env 中新增 MINIMAX_API_KEY（月度4500次/5hr套餐，04/27到期）和 OPENCODE_ZEN 备用通道凭证；重启 gateway 验证飞书已重连
+- 影响：爱马仕主链路 api.655147.xyz/gpt-5.4 故障时，自动切换到 bao-api.655147.xyz/gpt-5.4（同模型不同通道）；若仍失败则降级到 MiniMax M2.7 极速版兜底。三层保障确保飞书会话不中断
+- 原因：owner 提供 bao-api 和 MiniMax 备用 key，要求配置可靠 fallback 链
+
 ### [Opus] 初始化爱马仕（Hermes Agent）双生CEO体系
 - 时间：04:30
 - 文件：/Users/tangyuanjc/.hermes/SOUL.md、/Users/tangyuanjc/.hermes/memories/USER.md
