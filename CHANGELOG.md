@@ -77,3 +77,10 @@
 - 改动：新增 `bao655-openai` 提供商（`https://bao-api.655147.xyz/v1`），把 `main / gauss / ogilvy / brand-agent` 主模型统一切到 `bao655-openai/gpt-5.4`；清出主链中已失效的 `juncc/JUNCC`、`codexkey`、`kimi-coding` 路径；主 fallback 重排为 `api655-openai/gpt-5.4 -> souimagery/gpt-5.4 -> api655/claude-opus-4-6 -> api655/claude-sonnet-4-6 -> bao655-openai/gpt-5.3-codex -> bao655-openai/gpt-5.2-codex -> minimax/MiniMax-M2.7-highspeed -> minimax/MiniMax-M2.7`；把 `easyclaw-heartbeat`、`light-cron` 与 `brand-agent` heartbeat 模型升级到 `minimax/MiniMax-M2.7-highspeed`；同步把 Feishu 默认模型切到 `bao655-openai/gpt-5.4`，然后重启 gateway 并做 smoke test。
 - 影响：小J当前默认主链恢复到可用的 GPT-5.4 / 1.05M 上下文；轻量 cron 改走已验证可用的 MiniMax M2.7 highspeed；其余活跃数字员工不再继续踩 `juncc/JUNCC` 失效链路。
 - 原因：owner 要求直接切到当前可用的 655 GPT 链路，并把 MiniMax 作为轻量兜底，优先保证小J和 cron 的稳定可用性。
+
+### [Codex] 将小J与活跃数字员工切到 B 档免审批 exec 策略
+- 时间：04:22
+- 文件：/Users/tangyuanjc/.openclaw/openclaw.json
+- 改动：把 `main / easyclaw-heartbeat / light-cron / gauss / ogilvy / brand-agent` 的 `tools.exec` 统一改为 `security=full`、`ask=off`、`strictInlineEval=true`；保留 inline eval 最后一层护栏，不再使用主会话原来的 `allowlist + on-miss` 中间态；重启 gateway，并用 `system_health_check.py` 做 main 与 easyclaw-heartbeat 的 exec 烟测，确认已直接执行且不再触发 approval-pending。
+- 影响：小J和活跃 cron/数字员工的常规 shell / python / gh / tail / ls 等 exec 调用不再频繁要求 `/approve ...`；但最危险的 inline eval 仍保留拦截，避免完全裸奔。
+- 原因：owner 明确要求按 B 方案处理——尽量消灭权限打断，同时保留最后一道安全护栏，不再让小J总被审批流程卡住。
