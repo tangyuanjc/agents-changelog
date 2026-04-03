@@ -56,3 +56,10 @@
 - 改动：先复核 AGENTS.md；备份 openclaw.json / launchd / preflight / guard / 报时脚本；通过 npm 将 OpenClaw 从 2026.3.31 升级到 2026.4.2；检查升级后关键自定义链路未被覆盖；把 ai.openclaw.gateway.plist 中的版本标记同步更新到 2026.4.2；重启 gateway 并验证仍经由 openclaw-gateway-preflight.sh 启动，delivery queue guard 启动时正常执行 0 匹配归档。
 - 影响：OpenClaw 已升级到最新版 2026.4.2，同时保留我们自定义的 gateway preflight、delivery queue guard、停用旧 feishu-time-report 脚本等定制；openclaw.json 未被升级过程改写，主模型仍保持原配置，gateway 重启后正常拉起。
 - 原因：owner 要求升级到最新版，并确认升级不会冲掉小J现有配置；若有被版本升级影响的地方需同步修复并留档。
+
+### [Codex] 重排小J与轻量链模型路由到可用提供商
+- 时间：03:37
+- 文件：/Users/tangyuanjc/.openclaw/openclaw.json
+- 改动：新增 `bao655-openai` 提供商（`https://bao-api.655147.xyz/v1`），把 `main / gauss / ogilvy / brand-agent` 主模型统一切到 `bao655-openai/gpt-5.4`；清出主链中已失效的 `juncc/JUNCC`、`codexkey`、`kimi-coding` 路径；主 fallback 重排为 `api655-openai/gpt-5.4 -> souimagery/gpt-5.4 -> api655/claude-opus-4-6 -> api655/claude-sonnet-4-6 -> bao655-openai/gpt-5.3-codex -> bao655-openai/gpt-5.2-codex -> minimax/MiniMax-M2.7-highspeed -> minimax/MiniMax-M2.7`；把 `easyclaw-heartbeat`、`light-cron` 与 `brand-agent` heartbeat 模型升级到 `minimax/MiniMax-M2.7-highspeed`；同步把 Feishu 默认模型切到 `bao655-openai/gpt-5.4`，然后重启 gateway 并做 smoke test。
+- 影响：小J当前默认主链恢复到可用的 GPT-5.4 / 1.05M 上下文；轻量 cron 改走已验证可用的 MiniMax M2.7 highspeed；其余活跃数字员工不再继续踩 `juncc/JUNCC` 失效链路。
+- 原因：owner 要求直接切到当前可用的 655 GPT 链路，并把 MiniMax 作为轻量兜底，优先保证小J和 cron 的稳定可用性。
