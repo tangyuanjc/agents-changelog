@@ -28,3 +28,10 @@
 - 影响：重新启动后的官方 Claude Code 将默认以 bypassPermissions 模式运行
 - 原因：用户切换新账号后发现权限模式回退到 acceptEdits，需要恢复默认 bypass 体验
 
+
+### [Codex] 升级 OpenClaw 到 2026.4.2 并复核自定义配置
+- 时间：01:22
+- 文件：/Users/tangyuanjc/.openclaw/workspace/AGENTS.md（已复核未改）、/Users/tangyuanjc/.openclaw/backups/upgrade-20260404-011654/、/Users/tangyuanjc/Library/LaunchAgents/ai.openclaw.gateway.plist、/Users/tangyuanjc/.openclaw/bin/openclaw-gateway-preflight.sh、/Users/tangyuanjc/.openclaw/bin/feishu-time-report.sh、/Users/tangyuanjc/.openclaw/workspace/tools/delivery_queue_guard.py
+- 改动：先复核 AGENTS.md；备份 openclaw.json / launchd / preflight / guard / 报时脚本；通过 npm 将 OpenClaw 从 2026.3.31 升级到 2026.4.2；检查升级后关键自定义链路未被覆盖；把 ai.openclaw.gateway.plist 中的版本标记同步更新到 2026.4.2；重启 gateway 并验证仍经由 openclaw-gateway-preflight.sh 启动，delivery queue guard 启动时正常执行 0 匹配归档。
+- 影响：OpenClaw 已升级到最新版 2026.4.2，同时保留我们自定义的 gateway preflight、delivery queue guard、停用旧 feishu-time-report 脚本等定制；openclaw.json 未被升级过程改写，主模型仍保持原配置，gateway 重启后正常拉起。
+- 原因：owner 要求升级到最新版，并确认升级不会冲掉小J现有配置；若有被版本升级影响的地方需同步修复并留档。
