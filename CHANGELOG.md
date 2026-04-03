@@ -1,3 +1,10 @@
+### [Opus] AGENTS.md 补充爱马仕为 Team Agent + 双生CEO架构说明
+- 时间：04:05
+- 文件：/Users/tangyuanjc/.openclaw/workspace/AGENTS.md
+- 改动：Team Agent 表新增爱马仕行（进化CEO / ~/.hermes/ / 自进化任务+AI信息监控+技能创建+小J备份）；新增"双生CEO架构"段落说明小J与爱马仕的平级共治关系；将小J角色描述从"总调度"更新为"稳态CEO + 总调度"
+- 影响：小J在每次 session 启动读取 AGENTS.md 时，能看到爱马仕的存在和双方分工定位，避免职责冲突或重复派单；Codex复核AGENTS.md时也能看到完整团队拓扑
+- 原因：爱马仕双生CEO体系已初始化完成（SOUL.md/USER.md/config/fallback），但小J的workspace规则文件尚未反映这一架构变更
+
 ### [Opus] 配置爱马仕双层 Fallback 链路
 - 时间：03:45
 - 文件：/Users/tangyuanjc/.hermes/config.yaml、/Users/tangyuanjc/.hermes/.env
