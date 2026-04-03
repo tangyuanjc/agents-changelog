@@ -84,3 +84,10 @@
 - 改动：把 `main / easyclaw-heartbeat / light-cron / gauss / ogilvy / brand-agent` 的 `tools.exec` 统一改为 `security=full`、`ask=off`、`strictInlineEval=true`；保留 inline eval 最后一层护栏，不再使用主会话原来的 `allowlist + on-miss` 中间态；重启 gateway，并用 `system_health_check.py` 做 main 与 easyclaw-heartbeat 的 exec 烟测，确认已直接执行且不再触发 approval-pending。
 - 影响：小J和活跃 cron/数字员工的常规 shell / python / gh / tail / ls 等 exec 调用不再频繁要求 `/approve ...`；但最危险的 inline eval 仍保留拦截，避免完全裸奔。
 - 原因：owner 明确要求按 B 方案处理——尽量消灭权限打断，同时保留最后一道安全护栏，不再让小J总被审批流程卡住。
+
+### [Codex] 清理 OpenClaw 历史审批残留与旧 allowlist 垃圾
+- 时间：04:33
+- 文件：/Users/tangyuanjc/.openclaw/exec-approvals.json、/Users/tangyuanjc/.openclaw/workspace/approvals/pending.jsonl
+- 改动：备份旧 `exec-approvals.json` 后，清空其中历史遗留的 `main` allowlist（ls/git/python3/gh/rg/tail 等 12 条旧白名单），将 approvals 状态重置为 `defaults={}`、`agents={}`；同时把 `workspace/approvals/pending.jsonl` 归零为空文件；随后重启 gateway 并再次用 `system_health_check.py` 做 exec 烟测，确认新 B 档策略下不依赖旧 allowlist 也能直接执行且无 `approval-pending`。
+- 影响：审批系统回到干净基线，不会再被旧白名单/旧 pending 状态误导；当前真正生效的只剩 `openclaw.json` 里的 B 档 exec 策略（security=full, ask=off, strictInlineEval=true）。
+- 原因：owner 同意继续做权限收尾，希望把历史 approval 残留和旧 allowlist 垃圾扫平，但不改动刚刚定下来的新权限策略。
