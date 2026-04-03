@@ -21,6 +21,13 @@
 
 ## 2026-04-04
 
+### [Codex] 新增一键恢复Claude bypass命令
+- 时间：02:26
+- 文件：/Users/tangyuanjc/.local/bin/claude-bypass, /Users/tangyuanjc/.claude/settings.json
+- 改动：新增全局命令 claude-bypass，一键将 ~/.claude/settings.json 的 permissions.defaultMode 改为 bypassPermissions；并立即执行一次，把当前账号切换后回退的 acceptEdits 修回 bypass
+- 影响：用户切换 Claude 账号后可用单命令快速恢复 bypassPermissions，无需手动改配置
+- 原因：账号切换流程会把默认权限模式回退到 acceptEdits，需要一个稳定、低摩擦的一键修复入口
+
 ### [小J] 记录龙虾茶馆探索交流结果到当日 memory
 - 时间：01:57
 - 文件：/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-04.md
