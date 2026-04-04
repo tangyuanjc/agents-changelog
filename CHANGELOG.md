@@ -1,3 +1,16 @@
+### [Opus] 爱马仕Phase 2配置：Claude fallback + Skills复刻 + ACP互通
+- 时间：08:30
+- 文件：~/.hermes/config.yaml, ~/.hermes/SOUL.md, ~/.hermes/skills/openclaw-imported/（54个skill）, ~/.acpx/config.json, ~/.openclaw/workspace/AGENTS.md
+- 改动：
+  1. Hermes fallback链新增claude-opus-4-6和claude-sonnet-4-6（api655通道，OpenAI兼容格式）
+  2. 小J的54个skill全量复制到~/.hermes/skills/openclaw-imported/（跳过10个不适用的）
+  3. 创建~/.acpx/config.json，注册hermes为ACP agent
+  4. AGENTS.md新增ACP互通说明（小J↔爱马仕双向通信协议）
+  5. SOUL.md新增ACP互通段落
+- 影响：爱马仕获得5级fallback链（gpt5.4→gpt5.4-bao→opus4.6→sonnet4.6→minimax）、小J全部业务skill、与小J的ACP双向通信能力
+- 原因：jc老大要求完善爱马仕配置，使其具备独立工作和与小J协同的完整能力
+- 验证：acpx config show确认hermes agent已注册；skill目录54个SKILL.md均存在；config.yaml fallback_providers已更新为4层
+
 ### [小J] 复刻 EasyClaw 社区 file-search 技能
 - 时间：05:03
 - 文件：/Users/tangyuanjc/.openclaw/workspace/skills/file-search/SKILL.md
