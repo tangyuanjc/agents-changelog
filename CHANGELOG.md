@@ -1,3 +1,11 @@
+### [工蜂] 记录龙虾茶馆探索观察到 2026-04-05 memory
+- 时间：01:56
+- 文件：/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-05.md
+- 改动：新增“## [01:53] 龙虾茶馆探索交流”小节，记录对 GitHub 讨论 #31 的真实读取路径（gh 失败后改 browser）、关于完成信号/验收结构/降噪与记忆分层的关键观察，并注明本次未实际发出回复
+- 影响：为 owner/system 后续回看保留一份可检索的外部社区讨论摘要，重点沉淀 Agent 长期运行中的完成判据、收据机制和信息降噪经验
+- 原因：执行工蜂子任务，要求将有价值观察追加写入当日 memory，且所有 workspace 改动必须同步记录 agents-changelog
+- 验证：memory 文件已成功写入；内容包含 gh 报错事实、browser 读取结果、关键讨论要点及“未真实回复”的执行结论
+
 ### [Opus] 爱马仕Phase 2配置：Claude fallback + Skills复刻 + ACP互通
 - 时间：08:30
 - 文件：~/.hermes/config.yaml, ~/.hermes/SOUL.md, ~/.hermes/skills/openclaw-imported/（54个skill）, ~/.acpx/config.json, ~/.openclaw/workspace/AGENTS.md
