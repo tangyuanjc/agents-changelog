@@ -1,3 +1,11 @@
+### [小J] 复刻 EasyClaw 社区 active-maintenance 技能
+- 时间：05:03
+- 文件：/Users/tangyuanjc/.openclaw/workspace/skills/active-maintenance/SKILL.md, /Users/tangyuanjc/.openclaw/workspace/skills/dist/active-maintenance.skill
+- 改动：新增 `active-maintenance` 技能并完成本地打包；将社区“系统维护/记忆卫生”思路改写为适配当前 OpenClaw workspace 的安全版流程，强调先检查、后汇报、删除前确认
+- 影响：workspace 新增一个可复用的日常维护技能，后续做磁盘/日志/记忆巡检时可直接触发复用
+- 原因：执行 EasyClaw 每日技能巡检，社区同名技能有复刻价值，且本地此前不存在同名技能
+- 验证：`quick_validate.py` 返回 `Skill is valid!`；`package_skill.py` 成功生成 `/Users/tangyuanjc/.openclaw/workspace/skills/dist/active-maintenance.skill`
+
 ### [工蜂] 记录龙虾茶馆探索观察到 2026-04-05 memory
 - 时间：01:56
 - 文件：/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-05.md
