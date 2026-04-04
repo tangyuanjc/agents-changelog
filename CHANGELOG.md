@@ -127,3 +127,38 @@
 - 改动：备份旧 `exec-approvals.json` 后，清空其中历史遗留的 `main` allowlist（ls/git/python3/gh/rg/tail 等 12 条旧白名单），将 approvals 状态重置为 `defaults={}`、`agents={}`；同时把 `workspace/approvals/pending.jsonl` 归零为空文件；随后重启 gateway 并再次用 `system_health_check.py` 做 exec 烟测，确认新 B 档策略下不依赖旧 allowlist 也能直接执行且无 `approval-pending`。
 - 影响：审批系统回到干净基线，不会再被旧白名单/旧 pending 状态误导；当前真正生效的只剩 `openclaw.json` 里的 B 档 exec 策略（security=full, ask=off, strictInlineEval=true）。
 - 原因：owner 同意继续做权限收尾，希望把历史 approval 残留和旧 allowlist 垃圾扫平，但不改动刚刚定下来的新权限策略。
+
+### [Codex] 修复爱马仕 croniter 环境并补建 X 书签信号同步 cron
+- 时间：10:00
+- 文件：/Users/tangyuanjc/.hermes/hermes-agent/venv/、/Users/tangyuanjc/.hermes/cron/jobs.json、/Users/tangyuanjc/Library/LaunchAgents/ai.hermes.gateway.plist（重启验证，文件未改）
+- 改动：确认爱马仕最初把 `croniter` 装进了用户 Python 3.9，未进入 Hermes 自己的 venv，导致 `cronjob` 仍报缺依赖；随后为 `/Users/tangyuanjc/.hermes/hermes-agent/venv` 补装 `pip` 与 `croniter`，创建定时任务 `x-bookmark-signal-sync`（`30 10,15,22 * * *`，附带 `opencli` skill，投递回 Feishu DM `oc_c04e90dcf8068127e816cdaabc742d30`），并重启 gateway 让运行中的 Hermes 进程重新加载依赖。
+- 影响：爱马仕现在可正常解析 cron 表达式；X 书签/时间线高权重信号同步任务已入表，下一次计划触发时间为 2026-04-04 10:30 CST；`hermes cron status` 现只剩单一 gateway PID 64236，避免旧手动 gateway 造成状态混乱。
+- 原因：owner 让 Codex 复核”爱马仕说 cron 设置有问题”这段对话并直接修复；需要把真实根因（装错 Python 环境）和最终落地结果留档。
+
+### [Opus] 修复小J四个脚本的 easyclaw→openclaw 命令名
+- 时间：17:10
+- 文件：~/.openclaw/workspace/heartbeat-light.sh、heartbeat-full.sh、daydream.sh、meditation.sh
+- 改动：将4个脚本中的 `easyclaw agent --agent main` 全部替换为 `openclaw agent --agent main`。`easyclaw` 从未作为CLI命令存在，正确命令是 `openclaw agent`
+- 影响：heartbeat-light（每2分钟）、heartbeat-full（每30分钟）、daydream（每天10:00+15:00）、meditation（凌晨02:30）恢复可执行状态。此前这4个脚本因命令名错误一直报 `command not found`
+- 原因：Opus架构审查发现小J heartbeat-light已瘫痪3天（错误日志显示 `easyclaw: command not found`），溯源确认是脚本创建时命令名写错，非故意关闭
+- 验证：`openclaw agent --help` 确认语法兼容；`grep easyclaw ~/.openclaw/workspace/*.sh` 返回0匹配
+
+### [Opus] ACP双向通信基础设施落地 + 验证
+- 时间：17:15
+- 文件：~/.hermes/hermes-agent/venv/（ACP依赖）、/opt/homebrew/bin/acpx（symlink）、~/.acpx/config.json（新增openclaw agent）
+- 改动：
+  1. 在 hermes venv 安装 `agent-client-protocol==0.8.1`（之前错装到全局python3.11）
+  2. 全局安装 `acpx` v0.4.0（npm），创建 symlink `/opt/homebrew/bin/acpx`
+  3. `~/.acpx/config.json` 新增 openclaw agent 定义（`”openclaw”: {“command”: “openclaw acp”}`）
+  4. 验证 Opus→爱马仕 ACP：爱马仕秒回身份确认（”爱马仕🐎 当前状态：在线，可执行”）
+  5. 验证 爱马仕→小J ACP：爱马仕通过terminal调用 `acpx openclaw exec`，openclaw-acp进程启动成功
+- 影响：ACP双向通信从纸面配置变为已验证可用。爱马仕可通过 `acpx openclaw exec “<task>”` 向小J发指令，小J可通过 `acpx hermes exec “<task>”` 向爱马仕请求
+- 原因：Opus架构分析建议ACP作为CEO→调度器指挥链的通信基础，需要先验证链路再设计业务场景
+- 验证：`acpx hermes exec “ping”` 返回爱马仕身份确认；`ps aux | grep openclaw-acp` 确认进程正常启动
+
+### [Opus] 小J vs 爱马仕架构深度分析（记录，未执行）
+- 时间：17:00
+- 文件：Opus memory（project_hermes_architecture_reframe_0404.md）
+- 改动：完成小J 3/27-4/4事故时间线分析（8天8个不同类型事故），对比爱马仕首session交付量，得出架构结论：小J的问题是结构性的（冷启动+无持久记忆+脚本中转+被动触发），建议从「双生CEO」重新定义为「CEO（爱马仕）+ 调度器（小J）」模型
+- 影响：架构分析已记录到Opus memory，**尚未修改AGENTS.md或任何运行规则**。等JC正式确认后再执行转型
+- 原因：JC要求Opus做深度分析，评估小J和爱马仕的真实分工定位
