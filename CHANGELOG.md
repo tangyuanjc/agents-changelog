@@ -1,3 +1,32 @@
+### [Codex] 同步 Paperclip 升级记录到公共 changelog
+- 时间：01:32
+- 文件：/Users/tangyuanjc/.paperclip/CHANGELOG.md、/Users/tangyuanjc/.openclaw/workspace/AGENTS.md（已复核未改）、/Users/tangyuanjc/agents-changelog/CHANGELOG.md
+- 改动：
+  1. 复核本机 Paperclip 升级后状态，确认 CLI 与服务健康检查均已恢复正常
+  2. 将官方 release `v2026.403.0` 的本地升级记录写入 `/Users/tangyuanjc/.paperclip/CHANGELOG.md`
+  3. 按 `AGENTS.md` 的“改动日志铁律”要求，把这次升级同步追加到公共 `agents-changelog/CHANGELOG.md`
+  4. 记录升级过程中的 Apple Silicon 兼容修复：补装 `@embedded-postgres/darwin-arm64@18.1.0-beta.15` 以恢复 embedded PostgreSQL 启动
+- 影响：后续 Opus / 小J / Codex 查公共 changelog 时，都能看到这次 Paperclip 升级、兼容修复和“当前已可用”的核验结果；避免信息只留在 `~/.paperclip` 私有路径
+- 原因：用户要求确认“更新之后能不能用”以及“是否同步到常用 changelog”，而 `AGENTS.md` 已明确规定任何相关改动必须记录到 `~/agents-changelog/CHANGELOG.md`
+- 验证：`/opt/homebrew/bin/paperclipai --version` 返回 `2026.403.0`；`curl -sf http://127.0.0.1:3100/api/health` 返回 `{\"status\":\"ok\",\"version\":\"2026.403.0\"...}`
+
+### [Opus] M2战略落地：Paperclip大清洗 + 五条业务主线建立 + E线skill化拆解
+- 时间：2026-04-06
+- 改动：
+  1. **Paperclip大清洗**：59个issue→9个活跃issue
+     - Cancelled 54个：重复日报issue(11)+奥格威任务(4)+艾伦品牌协作(1)+done归档(30)+旧任务(6)+原cancelled(2)
+     - 保留并重定义5个旧issue，挂到新业务主线
+  2. **新建5条业务主线issue**：
+     - AI-63 C线：AI短视频→投流ROI（CRITICAL，爱马仕，JC亲自跟）
+     - AI-60 A线：抓数稳定化工程（HIGH，Codex）
+     - AI-62 B线：财务报表自动化（HIGH，爱马仕代CFO）
+     - AI-64 D线：自动化有效率监控（HIGH，爱马仕）
+     - AI-61 E线：全员Agent协作（HIGH，小J COO）
+  3. **E线拆解为5个子任务**：AI-65~69（日志升级→影子观察→工作拆解→Skill构建→验证切换）
+  4. **Worker agents暂停**：奥格威/艾伦任务全部暂停，高斯暂保留但执行靠Codex重建。三个agent均属不成熟放养性质，可能未来转为Hermes基座agent team
+- 影响：Paperclip看板从混乱转为清晰的五线并行结构。Worker agents不再接收新任务。所有业务推进转向C-level（爱马仕/Codex/小J）驱动
+- 原因：M1→M2战略转型——从"搭骨架证明可行性"转为"出业绩产生tokens ROI"。一个月实践证明OpenClaw底座worker agents产出≈0，harness限制太大
+
 ### [Opus] 爱马仕SOUL.md + 全agent AGENTS.md同步C-level架构
 - 时间：17:45
 - 文件：~/.hermes/SOUL.md、~/.openclaw/workspace-gauss/AGENTS.md、~/.openclaw/workspace-ogilvy/AGENTS.md、~/.openclaw/workspace-brand-agent/AGENTS.md、~/.openclaw/workspace/HEARTBEAT.md
