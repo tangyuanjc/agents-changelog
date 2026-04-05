@@ -1,3 +1,16 @@
+### [Opus] 小J MD修复 + 7名人类员工注册 Paperclip
+- 时间：2026-04-06
+- 改动：
+  1. **小J HEARTBEAT.md**：角色定位从"AI CEO"修正为"COO首席运营官"，团队Agent表更新为C-level架构（含爱马仕CEO、Opus CSO、奥格威/艾伦标注暂停）
+  2. **小J SOUL.md**：主责铁律从"AI CEO"修正为"COO首席运营官"，调整主责链为连接器+健康检查+cron执行
+  3. **Paperclip注册7名人类员工**（adapterType=process, metadata.type=human）：
+     - 奶思(189b377f) 达播商务 14k | 泡泡(cf476f48) 天猫运营 11k | 皮皮(29b571da) 投流运营 25k
+     - 黄宁(dbcda5fc) 设计师 10k | 小龙(787f6e0a) KOC媒介 5k | 欣欣(40068e40) KOC媒介 5k
+     - 芳芳(dceedc7b) 客服仓库分销 5.5k
+     - 全部reportsTo=爱马仕(CEO)，metadata含薪资+飞书open_id+AI采用水平
+- 影响：Paperclip org chart现在包含完整的人+agent组织结构（7 agents + 7 humans），各agent可通过API查看人类员工信息实现同频
+- 原因：M2 E线全员协作启动前置准备；小J MD残留的CEO字样会导致身份信号矛盾
+
 ### [Codex] 同步 Paperclip 升级记录到公共 changelog
 - 时间：01:32
 - 文件：/Users/tangyuanjc/.paperclip/CHANGELOG.md、/Users/tangyuanjc/.openclaw/workspace/AGENTS.md（已复核未改）、/Users/tangyuanjc/agents-changelog/CHANGELOG.md
