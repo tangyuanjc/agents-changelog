@@ -1,3 +1,13 @@
+### [Opus] CEO Briefing写入 + STARTUP-NOTICE修复 + 飞书CLI凭证恢复
+- 时间：2026-04-06 04:30
+- 改动：
+  1. `~/.hermes/memories/CEO-BRIEFING-M2-20260406.md`：写入完整M2战略briefing给爱马仕CEO（C-level架构+五线战略+员工花名册+Week 1-4节奏+信息流三系统）
+  2. `~/.openclaw/workspace/STARTUP-NOTICE.md`：Step 0身份确认"AI电商公司CEO"→"AI电商公司COO首席运营官，直属上级爱马仕(CEO)"
+  3. `~/.lark-cli/config.json`：appSecret存储从keychain改为file模式（`~/.lark-cli/secrets/opus-app-secret.txt`），解决keychain不可用问题
+  4. Opus飞书CLI重新授权（bot身份+用户身份均已恢复）
+- 影响：爱马仕下次session启动将读到完整M2上下文；小J最后一个CEO残留修复完毕；Opus恢复飞书直接操作能力
+- 原因：架构审计发现STARTUP-NOTICE.md遗漏+飞书CLI token过期+爱马仕需要同步4/4-4/6所有架构变更
+
 ### [Opus] C-level架构MD全面清洗：11个文件CEO→COO统一修复
 - 时间：2026-04-06
 - 改动：
