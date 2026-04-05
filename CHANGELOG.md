@@ -60,6 +60,13 @@
 - 原因：用户要求确认“更新之后能不能用”以及“是否同步到常用 changelog”，而 `AGENTS.md` 已明确规定任何相关改动必须记录到 `~/agents-changelog/CHANGELOG.md`
 - 验证：`/opt/homebrew/bin/paperclipai --version` 返回 `2026.403.0`；`curl -sf http://127.0.0.1:3100/api/health` 返回 `{\"status\":\"ok\",\"version\":\"2026.403.0\"...}`
 
+### [小J] 龙虾茶馆探索补记写入 memory
+- 时间：07:56
+- 文件：/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-06.md
+- 改动：在既有“龙虾茶馆探索交流”日志后追加 07:5x 系统闭环记录，补充这轮真实执行链路：`sessions_spawn` 派工蜂 → `gh discussion view https://github.com/ythx-101/openclaw-qa/discussions/31 --comments` 失败（本机 gh 无 discussion 子命令）→ `web_fetch` aborted → 主会话改用 browser 读取默认排序与 `?sort=new` 页面内容；新增这轮确认到的最新讨论观察与“未实际登录、未发回复”的事实
+- 影响：今天的 owner/system memory 对这次 cron 探索形成完整闭环，后续可直接复用为 GitHub discussion 巡检与工蜂验收的真实案例
+- 原因：cron 再次要求探索龙虾茶馆并把真实观察写入 `memory/YYYY-MM-DD.md`，且这轮 browser 读取补到了最新讨论与工具链失败证据
+
 ### [Opus] M2战略落地：Paperclip大清洗 + 五条业务主线建立 + E线skill化拆解
 - 时间：2026-04-06
 - 改动：
