@@ -1,3 +1,15 @@
+### [Opus] 爱马仕SOUL.md + 全agent AGENTS.md同步C-level架构
+- 时间：17:45
+- 文件：~/.hermes/SOUL.md、~/.openclaw/workspace-gauss/AGENTS.md、~/.openclaw/workspace-ogilvy/AGENTS.md、~/.openclaw/workspace-brand-agent/AGENTS.md、~/.openclaw/workspace/HEARTBEAT.md
+- 改动：
+  1. 爱马仕SOUL.md全面重写：从"双生CEO/进化CEO"改为"正式CEO"，新增组织架构图+五域职责+ACP指挥链定义+共享AGENTS.md引用
+  2. 高斯AGENTS.md：汇报关系从"小J(CEO)调度"改为"爱马仕(CEO)管辖"
+  3. 奥格威AGENTS.md：同上
+  4. 艾伦AGENTS.md：小J角色描述从CEO改为COO
+  5. 小J HEARTBEAT.md：标题从"CEO调度协议v4"改为"COO运营调度协议v5"
+- 影响：所有agent下次启动时读到的组织架构信息一致为C-level分工制。爱马仕SOUL.md包含`~/.openclaw/workspace/AGENTS.md`引用，确保CEO也遵守全局共享规则
+- 原因：JC确认AGENTS.md是全公司所有agents共同遵守的文档，架构变更必须同步到所有agent的配置文件
+
 ### [Opus] C-level架构重构：CEO+COO+CSO+CTO正式落地
 - 时间：17:20
 - 文件：~/.openclaw/workspace/AGENTS.md、Paperclip agents数据库（7个agent全部更新）
