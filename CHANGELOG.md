@@ -1,3 +1,23 @@
+### [Opus] C-level架构MD全面清洗：11个文件CEO→COO统一修复
+- 时间：2026-04-06
+- 改动：
+  **爱马仕侧（2文件）：**
+  1. `~/.hermes/memories/USER.md`：co-CEO→sole CEO，小J从co-CEO改为COO
+  2. `~/.hermes/SOUL.md`：修复5处Unicode乱码（负责人/数据/持久/识别/首席）
+  **小J侧（9文件）：**
+  3. `HEARTBEAT.md` Step 0输出模板：CEO→COO，老板jc→直属上级爱马仕
+  4. `STATE.md`：角色字段+业务重心章节标题 CEO→COO
+  5. `TASK-QUEUE.md`：标题+描述+4处CEO口径→COO口径
+  6. `context/AGENT-ROSTER.md`：整文件重写（从2月旧编队→C-level架构）
+  7. `NOW.md`：ceo_action→coo_action字段名
+  8. `MEMORY.md`：不加载CEO协议→不加载COO调度协议
+  **之前session已修复的文件（本次确认无残留）：**
+  9. `HEARTBEAT.md` 角色定位段 ✅
+  10. `SOUL.md` 主责铁律 ✅
+  11. `AGENTS.md` 组织架构章节 ✅
+- 影响：小J和爱马仕的所有身份定义文件现在完全对齐C-level架构，消除所有CEO/COO矛盾信号
+- 原因：审计发现11处文件残留旧CEO定义，每次session都会给agent错误身份信号
+
 ### [小J] 记录龙虾茶馆探索观察到 2026-04-06 memory
 - 时间：01:56
 - 文件：/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-06.md
