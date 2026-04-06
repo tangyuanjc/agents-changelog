@@ -358,3 +358,13 @@
 - 影响：Claude Opus 与 Codex 现在可作为两个独立飞书 bot 并行运行，互不共用 app 配置
 - 原因：用户希望把 Codex 与 Claude Opus 分成两个独立机器人
 
+
+
+## 2026-04-07
+
+### [Codex] 安装并切换 cc-connect Feishu Codex 测试实例
+- 时间：04:15
+- 文件：/Users/tangyuanjc/.cc-connect/config.toml, /Users/tangyuanjc/Library/LaunchAgents/com.cc-connect.service.plist, /opt/homebrew/bin/cc-connect
+- 改动：安装 cc-connect v1.2.1；创建全局配置，新增 playground-codex 项目（Codex + Feishu）；通过 launchd 安装 cc-connect 后台服务；暂停旧的 ai.openclaw.feishu-codex-bridge 以避免同一飞书 App 双重回复；补充可执行 symlink 到 /opt/homebrew/bin
+- 影响：用户现在可以用 cc-connect 在飞书中测试 Codex bot，且不会与旧 Codex 自定义桥连器冲突；Claude 原桥保持不变
+- 原因：按用户要求试装并验证 cc-connect，便于对比现有自定义桥连方案
