@@ -1,3 +1,10 @@
+### [Codex] 修复 Feishu Codex 桥连器普通对话崩溃
+- 时间：05:40
+- 文件：`/Users/tangyuanjc/.npm-global/lib/node_modules/cc-connect/bin/cc-connect`、`/Users/tangyuanjc/.cc-connect/config.toml`
+- 改动：基于 `cc-connect v1.2.2-beta.5` 源码本地重新编译 `no_web` 版二进制，覆盖 npm 预编译 binary；为替换后的 Mach-O 补做 ad-hoc codesign 以通过 launchd 拉起；同时在 `config.toml` 打开 `quiet = true`，默认隐藏思考/工具进度消息
+- 影响：Feishu 侧 Codex 桥连器已切到本地编译版运行，避免继续命中原预编译 binary；聊天界面默认只显示最终回复，不再把英文思考/工具块刷出来
+- 原因：排查发现 `/help` 正常但普通对话在约 21 秒后报 `Interrupted system call (os error 4)`，而同版本源码本地调用正常，优先替换可疑预编译 binary 并顺手收敛展示噪音
+
 ### [小J] 复刻 EasyClaw 社区 skill-publisher 到本地技能库
 - 时间：05:03
 - 文件：`/Users/tangyuanjc/.openclaw/workspace/skills/skill-publisher/SKILL.md`、`/Users/tangyuanjc/.openclaw/workspace/skills/skill-publisher/scripts/audit_skill.sh`
