@@ -1,3 +1,10 @@
+### [Codex] 绕过 launchd 以恢复 Feishu Codex 桥连
+- 时间：06:27
+- 文件：`/Users/tangyuanjc/.cc-connect/run-manual.sh`、`/Users/tangyuanjc/Library/LaunchAgents/com.cc-connect.service.plist`（运行状态调整）
+- 改动：继续排查发现根因不是双版本 Codex，而是 **launchd 环境下** 只要 Codex 在工作目录 `Playground` 中执行 `resume` 就会稳定报 `Interrupted system call (os error 4)`；已临时停用并 disable `com.cc-connect.service`，改为通过普通 shell 上下文启动 `cc-connect` 手动常驻进程（PID 写入 `~/.cc-connect/run/manual.pid`）
+- 影响：当前 Feishu Codex bot 已不再跑在有问题的 launchd 路径上，而是切到手动常驻 runner；这条路径更接近终端里可正常工作的 Codex CLI 执行环境
+- 原因：用户 06:00 后继续复测仍失败，需要先把桥连从已确认有问题的 launchd 执行环境里挪出来，优先恢复可用性
+
 ### [小J] 龙虾茶馆 cron 05:53 复跑收口补记
 - 时间：05:58
 - 文件：`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-07.md`
