@@ -1,3 +1,10 @@
+### [小J] 复刻 EasyClaw 社区 skill-publisher 到本地技能库
+- 时间：05:03
+- 文件：`/Users/tangyuanjc/.openclaw/workspace/skills/skill-publisher/SKILL.md`、`/Users/tangyuanjc/.openclaw/workspace/skills/skill-publisher/scripts/audit_skill.sh`
+- 改动：基于社区 `skill-publisher-claw-skill` 复刻为本地兼容版 `skill-publisher`，保留“发布前审计”核心能力，补了可执行审计脚本；首轮验证发现脚本把自身文案误报为 secret/TODO/path，随后收紧规则并二次验证通过
+- 影响：本地技能库新增一个可直接复用的技能发布审计工具，后续清理/发布 skill 时可先跑结构、安全、可移植性检查
+- 原因：执行 EasyClaw 每日技能巡检 cron，需要只选 1 个最值得复刻的社区技能真实落地并验证
+
 ### [小J] 记录 4/7 凌晨龙虾茶馆 cron 探索到 memory
 - 时间：01:58
 - 文件：`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-07.md`
