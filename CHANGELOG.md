@@ -323,3 +323,10 @@
 - 影响：降低桥接器在后台进程里因缺少代理环境导致的 Claude/飞书访问失败
 - 原因：LaunchAgent 默认环境过干净，后台 bridge 无法继承终端里的代理配置
 
+### [Codex] Bridge 从 Keychain 读取 Claude OAuth token
+- 时间：19:11
+- 文件：/Users/tangyuanjc/opus-tasks/launch-feishu-claude-bridge.sh
+- 改动：启动脚本在拉起 bridge 前从 macOS Keychain 读取 claude-code-oauth-token 并导出给 Claude CLI
+- 影响：后台 LaunchAgent 可以复用单独保存的长期 OAuth token，不再依赖前台终端登录态
+- 原因：为 Feishu-Claude bridge 提供更稳定的后台认证基础
+
