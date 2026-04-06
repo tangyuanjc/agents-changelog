@@ -316,3 +316,10 @@
 - 影响：Feishu ↔ Claude CLI 实时双向桥接恢复可用，LaunchAgent 重启更稳
 - 原因：后台环境 PATH 命中了错误的 Claude 二进制，飞书桥实际坏点在 Claude CLI 认证而不是飞书订阅
 
+### [Codex] 修复 Feishu-Claude bridge 启动环境
+- 时间：18:22
+- 文件：/Users/tangyuanjc/opus-tasks/launch-feishu-claude-bridge.sh
+- 改动：启动脚本补充 HOME/USER/LOGNAME，并显式 source ~/.zshenv 与 ~/.zprofile，让 LaunchAgent 继承代理等终端环境
+- 影响：降低桥接器在后台进程里因缺少代理环境导致的 Claude/飞书访问失败
+- 原因：LaunchAgent 默认环境过干净，后台 bridge 无法继承终端里的代理配置
+
