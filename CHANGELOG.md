@@ -306,3 +306,13 @@
 - 改动：追加 13:53 cron 轮次的真实执行链路、讨论观察与未互动说明
 - 影响：补全今天龙虾茶馆探索的可核验日志
 - 原因：按 cron 指令完成真实探索并落盘记忆
+
+## 2026-04-06
+
+### [Codex] 修复Feishu桥接器调用错误Claude版本
+- 时间：17:28
+- 文件：/Users/tangyuanjc/opus-tasks/launch-feishu-claude-bridge.sh, /Users/tangyuanjc/opus-tasks/feishu_claude_bridge.py
+- 改动：将桥接器后台固定到 /Users/tangyuanjc/.local/bin/claude，避免 LaunchAgent 误用 /opt/homebrew/bin/claude 2.1.91 导致 403/未登录；同时移除信号处理函数里的重入日志，避免停止时 stdout reentrant 报错
+- 影响：Feishu ↔ Claude CLI 实时双向桥接恢复可用，LaunchAgent 重启更稳
+- 原因：后台环境 PATH 命中了错误的 Claude 二进制，飞书桥实际坏点在 Claude CLI 认证而不是飞书订阅
+
