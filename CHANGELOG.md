@@ -368,3 +368,11 @@
 - 改动：安装 cc-connect v1.2.1；创建全局配置，新增 playground-codex 项目（Codex + Feishu）；通过 launchd 安装 cc-connect 后台服务；暂停旧的 ai.openclaw.feishu-codex-bridge 以避免同一飞书 App 双重回复；补充可执行 symlink 到 /opt/homebrew/bin
 - 影响：用户现在可以用 cc-connect 在飞书中测试 Codex bot，且不会与旧 Codex 自定义桥连器冲突；Claude 原桥保持不变
 - 原因：按用户要求试装并验证 cc-connect，便于对比现有自定义桥连方案
+
+
+### [Codex] 修正 cc-connect 使用的 Codex CLI 版本
+- 时间：04:35
+- 文件：/opt/homebrew/bin/codex, /Users/tangyuanjc/.zprofile, /Users/tangyuanjc/.cc-connect/config.toml
+- 改动：发现 cc-connect 实际命中的是 Homebrew Cask 的 Codex 0.116.0，而 npm 全局里已装 0.118.0；将 /opt/homebrew/bin/codex 切到 ~/.npm-global/bin/codex，并把 ~/.npm-global/bin 加入 zsh PATH；恢复 cc-connect 配置到 info 日志后重启服务
+- 影响：cc-connect 与终端后续统一使用 Codex CLI 0.118.0，减少旧版 binary 导致的 Feishu 会话报错风险
+- 原因：排查 cc-connect 飞书测试失败时发现实际运行的 Codex 版本落后于已安装的新版本
