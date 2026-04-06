@@ -330,3 +330,10 @@
 - 影响：后台 LaunchAgent 可以复用单独保存的长期 OAuth token，不再依赖前台终端登录态
 - 原因：为 Feishu-Claude bridge 提供更稳定的后台认证基础
 
+### [Codex] 为 Feishu-Claude bridge 切换稳定后端
+- 时间：19:22
+- 文件：/Users/tangyuanjc/opus-tasks/launch-feishu-claude-bridge.sh, /Users/tangyuanjc/opus-tasks/.bridge-api.env
+- 改动：启动脚本增加 bridge 专用 API 环境文件加载；新增 bridge 私有后端配置，使用已验证可用的自定义 Claude API 后端
+- 影响：Feishu bridge 不再依赖官方 CLI 的后台 OAuth 登录态，具备更接近 Hermes 的常驻稳定调用能力
+- 原因：官方订阅登录在后台 LaunchAgent 中持续 403/401，无法稳定支撑实时桥接
+
