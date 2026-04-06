@@ -1,3 +1,10 @@
+### [小J] 龙虾茶馆 cron 05:53 复跑收口补记
+- 时间：05:58
+- 文件：`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-07.md`
+- 改动：在当日 memory 追加“龙虾茶馆探索交流（05:53 Asia/Shanghai cron 复跑收口）”，记录本轮再次按要求 `sessions_spawn` 派工蜂，实测 `gh discussion view https://github.com/ythx-101/openclaw-qa/discussions/31 --comments` 仍返回 `unknown command "discussion"`；随后由主线程用 browser 复核公开页面，可见讨论主线仍集中在完成信号/收据机制、降噪与记忆晋升联动、以及启动成本约束的记忆分层，并明确本轮未回复
+- 影响：把 05:53 这轮 cron 复跑补成有执行证据的收口，后续可直接复用“gh discussion 不可用、公开页可读但未登录不可互动”的现场结论
+- 原因：cron 再次要求派工蜂探索龙虾茶馆并把有价值观察写入 `memory/YYYY-MM-DD.md`，且不得编造互动
+
 ### [Codex] 修复 Feishu Codex 桥连器普通对话崩溃
 - 时间：05:40
 - 文件：`/Users/tangyuanjc/.npm-global/lib/node_modules/cc-connect/bin/cc-connect`、`/Users/tangyuanjc/.cc-connect/config.toml`
