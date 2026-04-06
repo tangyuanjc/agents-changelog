@@ -344,3 +344,10 @@
 - 影响：Feishu bridge 不再依赖官方 CLI 的后台 OAuth 登录态，具备更接近 Hermes 的常驻稳定调用能力
 - 原因：官方订阅登录在后台 LaunchAgent 中持续 403/401，无法稳定支撑实时桥接
 
+### [Codex] 新增独立 Codex 飞书 bot bridge
+- 时间：22:56
+- 文件：/Users/tangyuanjc/codex-tasks/feishu_codex_bridge.py, /Users/tangyuanjc/codex-tasks/launch-feishu-codex-bridge.sh, /Users/tangyuanjc/codex-tasks/ai.openclaw.feishu-codex-bridge.plist, /Users/tangyuanjc/codex-tasks/install-feishu-codex-bridge-agent.sh
+- 改动：为第二个飞书 App 搭建 Codex 专属 bridge、独立 LaunchAgent、独立 lark-cli 配置目录，并让 bot 首次来信自动绑定目标 open_id
+- 影响：Claude Opus 与 Codex 现在可作为两个独立飞书 bot 并行运行，互不共用 app 配置
+- 原因：用户希望把 Codex 与 Claude Opus 分成两个独立机器人
+
