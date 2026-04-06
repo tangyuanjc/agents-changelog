@@ -383,3 +383,10 @@
 - 改动：发现 cc-connect 实际命中的是 Homebrew Cask 的 Codex 0.116.0，而 npm 全局里已装 0.118.0；将 /opt/homebrew/bin/codex 切到 ~/.npm-global/bin/codex，并把 ~/.npm-global/bin 加入 zsh PATH；恢复 cc-connect 配置到 info 日志后重启服务
 - 影响：cc-connect 与终端后续统一使用 Codex CLI 0.118.0，减少旧版 binary 导致的 Feishu 会话报错风险
 - 原因：排查 cc-connect 飞书测试失败时发现实际运行的 Codex 版本落后于已安装的新版本
+
+### [Codex] Upgrade cc-connect to 1.2.2 beta for Feishu Codex bridge
+- 时间：05:08
+- 文件：/Users/tangyuanjc/.npm-global/lib/node_modules/cc-connect, /Users/tangyuanjc/Library/LaunchAgents/com.cc-connect.service.plist
+- 改动：将 cc-connect 从 v1.2.1 升级到 v1.2.2-beta.5，并重启 LaunchAgent 服务
+- 影响：飞书桥连器改为使用新版 Codex/Feishu 实现，便于排除旧版 cc-connect 导致的对话失败
+- 原因：用户反馈飞书里 /help 可用但普通对话失败，旧版桥连器与当前 Codex CLI 兼容性可疑
