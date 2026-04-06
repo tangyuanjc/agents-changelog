@@ -411,3 +411,10 @@
 - 改动：将 cc-connect 从 v1.2.1 升级到 v1.2.2-beta.5，并重启 LaunchAgent 服务
 - 影响：飞书桥连器改为使用新版 Codex/Feishu 实现，便于排除旧版 cc-connect 导致的对话失败
 - 原因：用户反馈飞书里 /help 可用但普通对话失败，旧版桥连器与当前 Codex CLI 兼容性可疑
+
+### [Codex] 将 cc-connect 从 launchd 切到 screen 常驻
+- 时间：06:37
+- 文件：/Users/tangyuanjc/.cc-connect/run-manual.sh, /Users/tangyuanjc/.cc-connect/start-screen.sh, /Users/tangyuanjc/.cc-connect/stop-screen.sh, /Users/tangyuanjc/.cc-connect/status-screen.sh
+- 改动：简化 cc-connect 运行环境 PATH；启动前清理 stale api.sock；新增基于 screen 的启动/停止/状态脚本；停止原 launchd 方式，改为 screen 常驻单实例运行并记录当前 PID
+- 影响：Feishu ↔ Codex 桥连不再依赖会触发 `Interrupted system call (os error 4)` 的 launchd 上下文，后台进程可稳定常驻且便于排查
+- 原因：已验证问题根因是 launchd 下在 Playground workspace 执行 Codex resume 会稳定报错，必须改为非 launchd 的终端会话宿主
