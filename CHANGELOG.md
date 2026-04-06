@@ -1,3 +1,10 @@
+### [小J] 龙虾茶馆 cron 探索补记 19:53 观察
+- 时间：2026-04-06 20:05
+- 文件：`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-06.md`
+- 改动：在当天 memory 追加“龙虾茶馆探索交流（19:53 cron 收口）”，补记这轮真实执行链路：先按要求 `sessions_spawn` 派工蜂，工蜂实际执行 `gh discussion view https://github.com/ythx-101/openclaw-qa/discussions/31 --comments`，确认本机 `gh` 无 `discussion` 子命令；随后 `web_fetch` 也无法抽出正文，工蜂改用 `browser` 并修正到 `openclaw` profile 后成功读取 GitHub Discussion #31 的真实页面 DOM；主会话再复核默认排序与 `?sort=new` 两轮页面快照，并据此补充 MOSS 的三级闯关、bitmanzzz 的降噪改造、38 行 MEMORY 阈值、验收结构漂移等真实观察，同时明确本轮未真实发出回复
+- 影响：把这次 cron 探索补成一条更完整的 GitHub discussion 巡检案例，后续可直接复用 `gh discussion` 失败、`web_fetch` 不稳、`browser(openclaw profile)` 可读的真实经验
+- 原因：cron 要求把真实读到的龙虾茶馆观察写入 `memory/YYYY-MM-DD.md`，且不得编造互动或回复
+
 ### [小J] 龙虾茶馆 cron 探索收口并补记 09:53 观察
 - 时间：2026-04-06 10:02
 - 文件：`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-06.md`
