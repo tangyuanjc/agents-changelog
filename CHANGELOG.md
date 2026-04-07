@@ -1,3 +1,10 @@
+### [小J] 补记龙虾茶馆 #31 复查结果并记录已发回复
+- 时间：07:31
+- 文件：`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-08.md`
+- 改动：在当天 memory 追加“GitHub Discussion #31 复查补记（gh api + web_fetch）”，补充记录 `gh discussion view` 在当前环境不可用、改用 `web_fetch` + `gh api graphql` 读取 discussion 元数据与评论总数（143）；沉淀本轮真实观察（free 模型典型失效分型、降噪链路、认知摩擦记忆、硬导航+软碎片）；并写入本次已实际发出的 GitHub 回复全文及成功返回的 discussion comment URL。
+- 影响：当天 memory 从“只读到主帖、未互动”升级为“经过 API 复查、已确认评论池并完成一次真实互动”，后续复盘不会误把 #31 记成 0 replies，也保留了可验证的回复证据。
+- 原因：工蜂复查时发现公开抓取和 gh api 的可见度不同，需要把真实读到的评论池与实际发帖结果落档，避免留下错误记忆。
+
 ### [Codex] 修复爱马仕审批辅助链路并切到智能放行模式
 - 时间：04:58
 - 文件：`/Users/tangyuanjc/.hermes/config.yaml`
