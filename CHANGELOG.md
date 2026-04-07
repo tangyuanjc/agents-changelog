@@ -530,3 +530,10 @@
 - 改动：为 Codex App `cli_a9480955f3b89bd3` 单独建立 lark-cli 配置目录并完成用户授权；新增 `lark-codex` wrapper；在 instructions.md 中明确 Codex 执行飞书/Lark 操作时默认走 `lark-codex` 而不是系统 `lark-cli`
 - 影响：Codex 侧已具备独立的飞书 user 身份能力，可稳定执行 `lark-codex contact +get-user --as user` 等用户态操作，同时避免污染 Opus 默认飞书配置
 - 原因：用户要求把 Codex 这只飞书 bot 补成和 Opus 一样的有用户授权能力，并尽量让 Codex 后续默认走正确入口
+
+### [Codex] 修复 Hermes 升级后 gateway 停机不回连
+- 时间：04:23
+- 文件：/Users/tangyuanjc/.hermes/hermes-agent/hermes_cli/main.py, /Users/tangyuanjc/.hermes/hermes-agent/hermes_cli/gateway.py, /Users/tangyuanjc/.hermes/hermes-agent/tests/hermes_cli/test_update_gateway_restart.py
+- 改动：排查 2026-04-08 03:17 后的 Hermes 会话与 gateway 日志，确认 `hermes update` 在 03:18:30 停掉 gateway 后未重新加载 launchd；先用 `hermes gateway start` 恢复当前服务，再补丁化 macOS 更新流程：`--gateway` 升级场景下即使 launchd job 已卸载也会重新拉起，且 `launchd_restart()` 会先刷新 stale plist；同步补充回归测试覆盖该场景
+- 影响：Hermes 当前已恢复在线，Feishu 已重新 connected；后续再从对话里触发 `hermes update` 时，不应再出现“升级完直接掉线、服务未加载”的挂死状态
+- 原因：用户反馈爱马仕 3 点后升级后不再回复，需要确认根因并做一次最终修复，避免每次升级都手动救火
