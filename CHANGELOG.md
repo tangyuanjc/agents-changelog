@@ -537,3 +537,10 @@
 - 改动：排查 2026-04-08 03:17 后的 Hermes 会话与 gateway 日志，确认 `hermes update` 在 03:18:30 停掉 gateway 后未重新加载 launchd；先用 `hermes gateway start` 恢复当前服务，再补丁化 macOS 更新流程：`--gateway` 升级场景下即使 launchd job 已卸载也会重新拉起，且 `launchd_restart()` 会先刷新 stale plist；同步补充回归测试覆盖该场景
 - 影响：Hermes 当前已恢复在线，Feishu 已重新 connected；后续再从对话里触发 `hermes update` 时，不应再出现“升级完直接掉线、服务未加载”的挂死状态
 - 原因：用户反馈爱马仕 3 点后升级后不再回复，需要确认根因并做一次最终修复，避免每次升级都手动救火
+
+### [Codex] 修复 Hermes 会话摘要打到不支持模型导致在线不回复
+- 时间：04:29
+- 文件：/Users/tangyuanjc/.hermes/config.yaml
+- 改动：继续追查重启后 `04:18` 的最新飞书消息，确认 gateway 已在线但 `session_search` 摘要链路仍报 `model_not_supported`；将 `compression.summary_provider/model` 与 `auxiliary.session_search.provider/model` 固定到 `opencode-zen + gpt-5.4`，并用 Hermes 自身的 `call_llm(task=\"session_search\")` / `call_llm(task=\"compression\")` 做实测，确认均可正常返回 `OK`
+- 影响：Hermes 不再因为 session search / compression 落到当前 655 通道不支持的默认模型而卡住；“在线但不回复”的隐性故障一并收口
+- 原因：用户反馈升级后看起来像挂了，实际除了 launchd 断链外，还叠加了辅助摘要模型路由错误，必须一起修掉才算真正恢复
