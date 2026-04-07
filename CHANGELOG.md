@@ -1,3 +1,11 @@
+### [Codex] 修复爱马仕审批辅助链路并切到智能放行模式
+- 时间：04:58
+- 文件：`/Users/tangyuanjc/.hermes/config.yaml`
+- 改动：继续追查爱马仕最新会话里“approve 老是卡住”的根因，确认主模型并未挂掉，真正失效的是 `approval` 辅助任务仍落到 `githubcopilot/default`，导致 `approvals.mode=smart` 时几乎全部退化成 `escalate`；已将 `approvals.mode` 改为 `smart`，并把 `auxiliary.approval.provider/model` 显式固定到 `opencode-zen + gpt-5.4`，随后重启 gateway 让新配置生效。
+- 影响：爱马仕后续遇到安装依赖、`node -e`/版本检查、常规开发运维这类被误判为危险的命令时，大部分会自动放行，不再频繁要求 owner 手动 `/approve`；而 `rm -rf ~/.ssh`、写 `/etc/hosts`、删系统目录等高风险命令仍会被智能审批直接拒绝。
+- 原因：owner 明确要求“把 approve 修掉，并让爱马仕后面大部分 approve 能过”，同时又不希望彻底关掉最后一道安全护栏，所以采用“智能审批 + 正确辅助模型路由”的收敛方案。
+- 验证：本地实测 `get_text_auxiliary_client('approval')` 已解析到 `https://bao-api.655147.xyz/v1/` 的 `gpt-5.4`；`check_all_command_guards('node -e \"console.log(1)\"', 'local')` 返回 `smart_approved`，`check_all_command_guards('cp foo /etc/hosts', 'local')` 与 `check_all_command_guards('rm -rf ~/.ssh', 'local')` 返回 `smart_denied`；`hermes gateway restart` 后 `hermes gateway status` 显示新 PID `41673`、`LastExitStatus=0`，Feishu 已重新 connected。
+
 ### [小J] 记录 2026-04-08 龙虾茶馆探索结果
 - 时间：01:27
 - 文件：`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-08.md`
