@@ -502,3 +502,10 @@
 - 改动：新增泡泡关于京东清货、面霜SKU、淘宝/抖音巡检触发问题、cc switch排查的飞书私聊原始记录
 - 影响：团队原始收件箱更新，便于后续owner侧汇总
 - 原因：team lane员工实质性进展必须先落raw inbox
+
+### [Codex] 将 OpenClaw 核心业务 Agent 主模型统一切到 api.655147 GPT-5.4
+- 时间：23:36
+- 文件：/Users/tangyuanjc/.openclaw/openclaw.json
+- 改动：按 owner 确认的 B 方案，将 OpenClaw `agents.defaults.model.primary`、`agents.defaults.imageModel.primary`、`channels.feishu.model` 以及 `main / gauss / ogilvy / brand-agent` 的主模型统一切为 `api655-openai/gpt-5.4`；同步把 `api655-openai` provider 的 `baseUrl` 与 `apiKey` 对齐到 `https://api.655147.xyz/v1` + `sk-SoonjCeK3FqmmTl4g`；为避免主/fallback 重复，将这些核心 agent 的首个 fallback 改为 `bao655-openai/gpt-5.4`，保留其余 Claude/Codex/MiniMax 兜底链不变；保留 `easyclaw-heartbeat` 与 `light-cron` 继续使用 MiniMax 主链。
+- 影响：小J、艾伦、奥格威、高斯以及 Feishu 默认入口现在都以 `api.655147.xyz/v1` 的 `gpt-5.4` 作为主模型；轻量 cron 仍保留低成本链路；Hermes 无需改动，因为其 `~/.hermes/.env` 已经在使用同一条 `api.655147.xyz/v1` 主链。
+- 原因：owner 要求核查本机所有 OpenClaw / Hermes agent 是否使用指定的 655 API，并将未使用者统一切到该 API 作为主模型，最终按 B 方案执行（核心业务 agent 统一，轻量 cron 不动）。
