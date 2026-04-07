@@ -460,3 +460,10 @@
 - 改动：新增一份给 Codex CLI 使用的入口索引，压缩说明架构、阅读顺序、关键目录、老坑与排障优先级，作为记忆库的第一入口页
 - 影响：CLI 端接到新任务时不必先分散阅读多份记忆文件，可先用一页快速建立上下文，再按链接下钻
 - 原因：用户确认该入口页对 CLI 端有用，希望进一步降低桌面端与 CLI 端记忆断裂带来的启动成本
+
+### [Codex] 加固 CLI 端记忆启动路径
+- 时间：15:28
+- 文件：/Users/tangyuanjc/.codex/instructions.md, /Users/tangyuanjc/.codex/memories/README.md
+- 改动：在 instructions.md 中新增“CLI启动必读流程”，强制将 `CLI-START-HERE.md` 作为新任务启动入口；同时新增 memories/README.md 作为记忆索引页，双重提示 CLI 端优先阅读顺序
+- 影响：CLI 端无论先读 instructions 还是先翻 memories，都更容易进入正确上下文，降低继续漏读记忆文件的概率
+- 原因：用户要求不用理解中间细节，只要确保 Codex CLI 端能尽可能读到桌面端导出的核心认知
