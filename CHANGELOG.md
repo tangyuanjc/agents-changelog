@@ -488,3 +488,10 @@
 - 改动：把 CLI 常见任务按 Bridge/OpenClaw/Paperclip/本机环境 拆成 4 张快捷入口卡，并回链到 CLI-START-HERE 与 memories 索引，形成分类型启动路径
 - 影响：CLI 端接到任务时可以更快进入正确分支，减少“知道要读记忆，但不知道先读哪张”的摩擦
 - 原因：用户要求不用理解中间细节，只要尽可能确保 Codex CLI 端能真正读到并用上桌面端导出的认知
+
+### 小J 记录泡泡店铺巡检与库存进展
+- 时间：18:39
+- 文件：/Users/tangyuanjc/.openclaw/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-07/ou_d89d30f80a0cdd287cb77db6a1f0346f.md
+- 改动：新增泡泡关于京东清货、面霜SKU、淘宝/抖音巡检触发问题、cc switch排查的飞书私聊原始记录
+- 影响：团队原始收件箱更新，便于后续owner侧汇总
+- 原因：team lane员工实质性进展必须先落raw inbox
