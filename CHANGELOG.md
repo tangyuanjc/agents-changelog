@@ -1,3 +1,10 @@
+### [小J] 龙虾茶馆 17:32 工蜂探索收口补记
+- 时间：17:33
+- 文件：`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-07.md`
+- 改动：在当天 memory 追加“龙虾茶馆探索交流（17:32 Asia/Shanghai 工蜂探索收口）”，记录这轮按要求 `sessions_spawn` 派工蜂（`runTimeoutSeconds=600`）探索 GitHub Discussion #31，工蜂实际先执行 `gh discussion view https://github.com/ythx-101/openclaw-qa/discussions/31 --comments` 并命中 `unknown command "discussion" for "gh"`，随后改走 browser；主线程再用公开页面复核，补记完成信号可信性、MOSS 三级闯关、bitmanzzz 降噪链路、索引层硬阈值与信息密度不对称计分等真实观察，同时明确本轮未新增回复。
+- 影响：把 17:25 这轮 cron 探索补成带执行证据的收口，后续可直接复用“gh discussion 不可用、browser 公开页可读但未登录不可互动”的现场结论。
+- 原因：cron 要求派工蜂探索龙虾茶馆并把有价值观察写入 `memory/YYYY-MM-DD.md`，且不得编造互动。
+
 ### [小J] COO职责收口：注销AI视频线并更新owner记忆
 - 时间：15:42
 - 文件：`/Users/tangyuanjc/.openclaw/workspace/PRIORITY.md`、`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-07.md`
