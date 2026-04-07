@@ -425,3 +425,17 @@
 - 改动：简化 cc-connect 运行环境 PATH；启动前清理 stale api.sock；新增基于 screen 的启动/停止/状态脚本；停止原 launchd 方式，改为 screen 常驻单实例运行并记录当前 PID
 - 影响：Feishu ↔ Codex 桥连不再依赖会触发 `Interrupted system call (os error 4)` 的 launchd 上下文，后台进程可稳定常驻且便于排查
 - 原因：已验证问题根因是 launchd 下在 Playground workspace 执行 Codex resume 会稳定报错，必须改为非 launchd 的终端会话宿主
+
+### [Codex] 将 Claude Feishu bot 迁到 cc-connect
+- 时间：13:30
+- 文件：/Users/tangyuanjc/.cc-connect/config.toml, /Users/tangyuanjc/.cc-connect/run-manual.sh, /Users/tangyuanjc/.cc-connect/claude-provider.env
+- 改动：在 cc-connect 中新增 playground-claude 项目（claudecode + Feishu）；将原 Claude 专用 provider 环境复制到 ~/.cc-connect；让 cc-connect 启动时自动加载 Claude provider；保留现有 playground-codex 项目不变
+- 影响：Codex bot 与 Claude bot 现在都由同一个 cc-connect screen 常驻进程托管，原 Claude bot 不再依赖自建 Python bridge
+- 原因：用户要求保留两个独立 bot，并把原 Claude 飞书 bot 从自建桥连器切换到 cc-connect 统一管理
+
+### [Codex] 停用旧 Claude 自建桥连器并切到 cc-connect 常驻
+- 时间：13:30
+- 文件：/Users/tangyuanjc/Library/LaunchAgents/ai.openclaw.feishu-claude-bridge.plist, /Users/tangyuanjc/.cc-connect/logs/cc-connect.log
+- 改动：停用 ai.openclaw.feishu-claude-bridge LaunchAgent；重启 cc-connect screen 常驻服务，使其同时加载 playground-codex 与 playground-claude 两个项目；本地 smoke test 验证 Claude CLI 在新 provider 环境下可正常返回
+- 影响：Feishu 上的 Claude bot 与 Codex bot 均走 cc-connect；避免同一飞书 app 被旧桥连器和 cc-connect 同时订阅造成冲突
+- 原因：完成用户指定的 A 方案迁移，并降低后续维护复杂度
