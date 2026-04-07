@@ -474,3 +474,10 @@
 - 改动：在 instructions.md 中新增“CLI启动必读流程”，强制将 `CLI-START-HERE.md` 作为新任务启动入口；同时新增 memories/README.md 作为记忆索引页，双重提示 CLI 端优先阅读顺序
 - 影响：CLI 端无论先读 instructions 还是先翻 memories，都更容易进入正确上下文，降低继续漏读记忆文件的概率
 - 原因：用户要求不用理解中间细节，只要确保 Codex CLI 端能尽可能读到桌面端导出的核心认知
+
+### [Codex] 新增 CLI 任务类型快捷入口卡
+- 时间：15:29
+- 文件：/Users/tangyuanjc/.codex/memories/快捷入口-Bridge排障.md, /Users/tangyuanjc/.codex/memories/快捷入口-OpenClaw任务.md, /Users/tangyuanjc/.codex/memories/快捷入口-Paperclip派单.md, /Users/tangyuanjc/.codex/memories/快捷入口-本机CLI环境.md, /Users/tangyuanjc/.codex/memories/CLI-START-HERE.md, /Users/tangyuanjc/.codex/memories/README.md
+- 改动：把 CLI 常见任务按 Bridge/OpenClaw/Paperclip/本机环境 拆成 4 张快捷入口卡，并回链到 CLI-START-HERE 与 memories 索引，形成分类型启动路径
+- 影响：CLI 端接到任务时可以更快进入正确分支，减少“知道要读记忆，但不知道先读哪张”的摩擦
+- 原因：用户要求不用理解中间细节，只要尽可能确保 Codex CLI 端能真正读到并用上桌面端导出的认知
