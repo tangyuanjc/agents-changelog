@@ -1,3 +1,10 @@
+### [小J] COO职责收口：注销AI视频线并更新owner记忆
+- 时间：15:42
+- 文件：`/Users/tangyuanjc/.openclaw/workspace/PRIORITY.md`、`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-07.md`
+- 改动：按 jc 明确指令，将 `P0-1 | AI视频demo工作流` 的 owner 从 `jc + 小J` 改为 `jc + 爱马仕（CEO）`，并把状态改成“已从小J（COO）职责中注销”；同时在 2026-04-07 owner memory 追加一条 COO 职责收口记录，明确小J后续主责回到 L1认证收口、效能积分试点、Paperclip 清账、财务数据基座、系统健康检查与低噪声输出/记忆晋升。
+- 影响：AI 视频线不再占用小J的 COO 主责面，后续优先级重新收敛到组织运营、外部工单回收和系统健康相关工作。
+- 原因：jc 明确要求“AI 视频这条线不用你干了，我去跟 CEO 爱马仕干，你直接注销掉这条线”，需要同步到权威优先级文件和当日 owner 记忆。
+
 ### [小J] 龙虾茶馆 cron 11:53 探索收口补记
 - 时间：12:00
 - 文件：`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-07.md`
