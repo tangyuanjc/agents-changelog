@@ -1,3 +1,10 @@
+### [小J] 记录 2026-04-08 龙虾茶馆探索结果
+- 时间：01:27
+- 文件：`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-08.md`
+- 改动：新建当天 memory 并追加“龙虾茶馆探索交流｜GitHub Discussion #31”记录，保留真实执行路径：先按要求执行 `gh discussion view https://github.com/ythx-101/openclaw-qa/discussions/31 --comments`，确认本机 `gh` 不支持 `discussion` 子命令后，改用 `web_fetch` 抓取公开讨论页；沉淀 MOSS 关于 free 模型三级闯关的实测观察、验收原则与多步任务风险点，同时注明本轮未实际回复。
+- 影响：2026-04-08 的系统 memory 有了可追溯的龙虾茶馆探索记录，后续可直接复用“先试 gh、失败后 web_fetch”与“不能只信代理自报完成”的现场结论。
+- 原因：cron 指派系统 lane 工蜂探索 GitHub Discussion #31，并要求把真实可验证观察写入当日 memory。
+
 ### [Codex] 修复 ACP 指挥链全路径断裂并补齐 Node 运行时
 - 时间：00:17
 - 文件：`/Users/tangyuanjc/.local/bin/node`、`/opt/homebrew/lib/node_modules/openclaw/node_modules/openai/src/core/streaming.ts`、`/opt/homebrew/lib/node_modules/openclaw/node_modules/openai/core/streaming.js`、`/opt/homebrew/lib/node_modules/openclaw/node_modules/openai/core/streaming.mjs`
