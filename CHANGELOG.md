@@ -516,3 +516,10 @@
 - 改动：按 owner 确认的 B 方案，将 OpenClaw `agents.defaults.model.primary`、`agents.defaults.imageModel.primary`、`channels.feishu.model` 以及 `main / gauss / ogilvy / brand-agent` 的主模型统一切为 `api655-openai/gpt-5.4`；同步把 `api655-openai` provider 的 `baseUrl` 与 `apiKey` 对齐到 `https://api.655147.xyz/v1` + `sk-SoonjCeK3FqmmTl4g`；为避免主/fallback 重复，将这些核心 agent 的首个 fallback 改为 `bao655-openai/gpt-5.4`，保留其余 Claude/Codex/MiniMax 兜底链不变；保留 `easyclaw-heartbeat` 与 `light-cron` 继续使用 MiniMax 主链。
 - 影响：小J、艾伦、奥格威、高斯以及 Feishu 默认入口现在都以 `api.655147.xyz/v1` 的 `gpt-5.4` 作为主模型；轻量 cron 仍保留低成本链路；Hermes 无需改动，因为其 `~/.hermes/.env` 已经在使用同一条 `api.655147.xyz/v1` 主链。
 - 原因：owner 要求核查本机所有 OpenClaw / Hermes agent 是否使用指定的 655 API，并将未使用者统一切到该 API 作为主模型，最终按 B 方案执行（核心业务 agent 统一，轻量 cron 不动）。
+
+### [Codex] 补齐 Codex 飞书 user-auth 并固化默认入口
+- 时间：01:16
+- 文件：/Users/tangyuanjc/.codex/lark-codex-config/config.json, /Users/tangyuanjc/.codex/lark-codex-config/secrets/codex-app-secret.txt, /Users/tangyuanjc/.local/bin/lark-codex, /Users/tangyuanjc/.codex/instructions.md
+- 改动：为 Codex App `cli_a9480955f3b89bd3` 单独建立 lark-cli 配置目录并完成用户授权；新增 `lark-codex` wrapper；在 instructions.md 中明确 Codex 执行飞书/Lark 操作时默认走 `lark-codex` 而不是系统 `lark-cli`
+- 影响：Codex 侧已具备独立的飞书 user 身份能力，可稳定执行 `lark-codex contact +get-user --as user` 等用户态操作，同时避免污染 Opus 默认飞书配置
+- 原因：用户要求把 Codex 这只飞书 bot 补成和 Opus 一样的有用户授权能力，并尽量让 Codex 后续默认走正确入口
