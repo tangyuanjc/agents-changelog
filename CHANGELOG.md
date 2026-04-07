@@ -1,3 +1,10 @@
+### [Codex] 修复 ACP 指挥链全路径断裂并补齐 Node 运行时
+- 时间：00:17
+- 文件：`/Users/tangyuanjc/.local/bin/node`、`/opt/homebrew/lib/node_modules/openclaw/node_modules/openai/src/core/streaming.ts`、`/opt/homebrew/lib/node_modules/openclaw/node_modules/openai/core/streaming.js`、`/opt/homebrew/lib/node_modules/openclaw/node_modules/openai/core/streaming.mjs`
+- 改动：为瘦 PATH 增加 `node` 入口（`~/.local/bin/node -> /opt/homebrew/bin/node`），修复 `/opt/homebrew/bin/acpx` 与 `/opt/homebrew/bin/openclaw` 在 Hermes/ACP 环境下 `env: node: No such file or directory`；同时给 OpenClaw 内置 OpenAI SSE 解析器增加空 `data` 帧跳过逻辑，避免 keep-alive/空事件触发 `Unexpected end of JSON input` 并中断 ACP 会话。
+- 影响：CEO→COO ACP 指挥链恢复为可用主链；`acpx openclaw exec ...` 与 `/opt/homebrew/bin/acpx openclaw exec ...` 在瘦 PATH 下都能拿到回执，爱马仕不必再默认绕飞书给小J发指令。
+- 原因：owner 确认 P0「CEO→COO 指挥链断裂」仍是当前核心架构漏洞，需要做最后一次彻底修复并留痕。
+
 ### [小J] 新增 2026-04-07 晚间复盘日报
 - 时间：22:00
 - 文件：`/Users/tangyuanjc/.openclaw/workspace/daily-logs/2026-04-07.md`
