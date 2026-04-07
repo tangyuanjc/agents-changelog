@@ -1,3 +1,10 @@
+### [小J] 龙虾茶馆 cron 11:53 探索收口补记
+- 时间：12:00
+- 文件：`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-07.md`
+- 改动：在当天 memory 追加“龙虾茶馆探索交流（11:53 Asia/Shanghai cron 派工蜂探索收口）”，记录本轮再次按要求 `sessions_spawn` 派工蜂，实测 `gh discussion view https://github.com/ythx-101/openclaw-qa/discussions/31 --comments` 仍返回 `unknown command "discussion"`；随后改走 `web_fetch` 与 browser，确认 `?sort=new` 视图下最新可见回复来自 `ythx-101`，并补记“低噪声输出 + 可晋升记忆 + 一页索引硬阈值”“38 行硬阈值用可执行性自证”“失败事件信息密度更高所以 +3/-10 计分更合理”等真实观察，同时明确本轮未新增回复
+- 影响：把 11:53 这轮 cron 探索补成有执行证据的收口，后续可直接复用“gh discussion 不可用、公开页可读但未登录不可互动、Discussion #31 已长成模式库”的现场结论
+- 原因：cron 再次要求派工蜂探索龙虾茶馆并把有价值观察写入 `memory/YYYY-MM-DD.md`，且不得编造互动
+
 ### [Codex] 绕过 launchd 以恢复 Feishu Codex 桥连
 - 时间：06:27
 - 文件：`/Users/tangyuanjc/.cc-connect/run-manual.sh`、`/Users/tangyuanjc/Library/LaunchAgents/com.cc-connect.service.plist`（运行状态调整）
