@@ -439,3 +439,17 @@
 - 改动：停用 ai.openclaw.feishu-claude-bridge LaunchAgent；重启 cc-connect screen 常驻服务，使其同时加载 playground-codex 与 playground-claude 两个项目；本地 smoke test 验证 Claude CLI 在新 provider 环境下可正常返回
 - 影响：Feishu 上的 Claude bot 与 Codex bot 均走 cc-connect；避免同一飞书 app 被旧桥连器和 cc-connect 同时订阅造成冲突
 - 原因：完成用户指定的 A 方案迁移，并降低后续维护复杂度
+
+### [Codex] 导出桌面端核心认知到 CLI 记忆目录
+- 时间：15:00
+- 文件：/Users/tangyuanjc/.codex/memories/技术决策汇总.md, /Users/tangyuanjc/.codex/memories/项目状态-2026-04.md, /Users/tangyuanjc/.codex/memories/代码库地图.md, /Users/tangyuanjc/.codex/memories/协作惯例.md, /Users/tangyuanjc/.codex/memories/关键Blocker解决记录.md
+- 改动：把桌面端 Codex 对 OpenClaw、cc-connect、旧 Claude bridge、协作偏好与关键 blocker 处理经验整理成 5 份 markdown，写入 ~/.codex/memories/
+- 影响：CLI 端后续可直接读取这些记忆文件，减少 Paperclip/飞书派单时的上下文缺失与重复排障
+- 原因：根据 Opus-CSO 架构通知，补齐桌面端与 CLI 端不共享记忆导致的架构债
+
+### [Codex] 追加桌面端到CLI端同步规则
+- 时间：15:00
+- 文件：/Users/tangyuanjc/.codex/instructions.md
+- 改动：在 instructions.md 末尾追加“桌面端→CLI端同步规则（2026-04-07 Opus-CSO制定）”，明确重大技术认知要写入 ~/.codex/memories/ 并在写入前先告知 JC
+- 影响：把桌面端→CLI端的知识同步要求固化为 Codex 自身工作规则，减少未来再次失忆式 blocker
+- 原因：用户要求按架构通知补齐长期同步机制
