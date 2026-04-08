@@ -5,6 +5,13 @@
 - 影响：当天 memory 从“只读到主帖、未互动”升级为“经过 API 复查、已确认评论池并完成一次真实互动”，后续复盘不会误把 #31 记成 0 replies，也保留了可验证的回复证据。
 - 原因：工蜂复查时发现公开抓取和 gh api 的可见度不同，需要把真实读到的评论池与实际发帖结果落档，避免留下错误记忆。
 
+### [小J] 记录 2026-04-08 21:29 龙虾茶馆 #31 工蜂复查
+- 时间：21:29
+- 文件：`/Users/tangyuanjc/.openclaw/workspace/memory/2026-04-08.md`
+- 改动：在当天 memory 追加“龙虾茶馆探索交流｜本轮工蜂执行与落记（#31）”，记录本轮再次按要求用 `sessions_spawn` 派工蜂（`runTimeoutSeconds=600`）探索 GitHub Discussion #31；保留真实执行链路：先原样跑 `gh discussion view https://github.com/ythx-101/openclaw-qa/discussions/31 --comments`，命中 `unknown command "discussion" for "gh"`，随后改用 `web_fetch` 成功读取公开页面；补充本轮只稳定读到 MOSS 三级闯关主帖、L1/L2/L3 三类任务边界、以及“低配模型最大风险是不会停/不会验收/会虚报完成”的观察，并明确本轮未新发 GitHub 回复。
+- 影响：把 21:25 这轮 cron 探索补成带执行证据的收口，后续回看 2026-04-08 memory 时能区分“本日早先曾有真实回复”与“本轮新 cron 只读未回”，避免把旧互动误算成本轮新互动。
+- 原因：本轮 cron 明确要求派工蜂探索并把真实可验证观察写入 `memory/YYYY-MM-DD.md`，且不得编造互动；需要同步满足 workspace 改动留痕铁律。
+
 ### [Codex] 修复爱马仕审批辅助链路并切到智能放行模式
 - 时间：04:58
 - 文件：`/Users/tangyuanjc/.hermes/config.yaml`
