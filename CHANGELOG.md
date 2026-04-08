@@ -19,6 +19,14 @@
 - 影响：把 21:25 这轮 cron 探索补成带执行证据的收口，后续回看 2026-04-08 memory 时能区分“本日早先曾有真实回复”与“本轮新 cron 只读未回”，避免把旧互动误算成本轮新互动。
 - 原因：本轮 cron 明确要求派工蜂探索并把真实可验证观察写入 `memory/YYYY-MM-DD.md`，且不得编造互动；需要同步满足 workspace 改动留痕铁律。
 
+### [Codex] 固定爱马仕主模型到 655 主链，消除 auto→openrouter 误路由
+- 时间：02:25
+- 文件：`/Users/tangyuanjc/.hermes/config.yaml`
+- 改动：继续排查爱马仕最近 12 小时里反复出现的 `Non-retryable error (HTTP 401) — trying fallback...`，确认根因不是 `gpt-5.4` 挂掉，而是 `model.provider: auto` 在当前 Hermes 版本里会把带 `OPENAI_API_KEY` 的主链错误解析成 `openrouter`，同时又不采纳 `OPENAI_BASE_URL` 作为主请求地址，最终持续打到 `https://openrouter.ai/api/v1` 并报 `Missing Authentication header`；已将主模型改为显式 `provider: custom`，并把 `base_url/api_key` 固定到 `https://api.655147.xyz/v1` 这条 655 主链，避免再被 auto 路由偏到 OpenRouter。
+- 影响：爱马仕后续主模型将优先直连 655 主接口，不再默认先撞上 `openrouter` 再 fallback 到 `opencode-zen`；这会显著减少 owner 在飞书里反复看到的 401/fallback 提示，并让 cron 与 DM 对话都回到同一条明确主链上。
+- 原因：owner 提供了确认过的 655 主链地址与 key，并明确要求“是的话你就改吧”；需要把主链从不稳定的 auto 推断改成显式固定，做一次彻底收口。
+- 验证：本地 `resolve_runtime_provider()` 已解析为 `provider=custom`、`base_url=https://api.655147.xyz/v1`；在完全移除 `OPENAI_API_KEY/OPENAI_BASE_URL/OPENROUTER_*` 环境变量后，同样仍解析到 655 主链并保持 `api_key_present=True`；用 Hermes venv 直接请求 `gpt-5.4` 返回 `MAIN_OK`；`hermes gateway start` 后服务重新加载，当前 PID 为 `63170`、`LastExitStatus=0`。
+
 ### [Codex] 修复爱马仕审批辅助链路并切到智能放行模式
 - 时间：04:58
 - 文件：`/Users/tangyuanjc/.hermes/config.yaml`
