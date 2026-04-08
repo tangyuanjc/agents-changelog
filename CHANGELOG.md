@@ -1,3 +1,11 @@
+### [Codex] 补齐 cron provider 继承补丁的空值边界并更正验证说明
+- 时间：02:52
+- 文件：`/Users/tangyuanjc/.hermes/hermes-agent/cron/scheduler.py`
+- 改动：在继续用 Hermes 实际运行环境回归 `tests/cron/test_scheduler.py` 时，发现上一版 cron provider 继承补丁还漏了一个空值边界：当 `job.provider`、`config.model.provider` 与 `HERMES_INFERENCE_PROVIDER` 同时为空时，`requested_provider.lower()` 会触发 `NoneType` 异常；现已补上默认空字符串兜底。同时更正先前说明：并不是“本机 Hermes venv 缺 pytest 所以整套 pytest 跑不通”，而是我最初误用了仓库里的 `.venv`；真正被 `hermes` 命令使用的是 `/Users/tangyuanjc/.hermes/hermes-agent/venv`，其中 `pytest`、`PyYAML`、`pip` 都齐全。
+- 影响：cron 修复现在既覆盖 owner 当前的 655 主链问题，也不会在无 provider 的历史/极简 job 上引入新的空值崩溃；后续排查 Hermes 时，运行环境应以 `venv` 为准，而不是缺依赖的 `.venv`。
+- 原因：owner 追问“验证边界”含义，需要把真实运行环境与我刚才误用的测试环境区分清楚，并把补丁边界收紧。
+- 验证：`/Users/tangyuanjc/.hermes/hermes-agent/venv/bin/python3 -m pytest tests/cron/test_scheduler.py -q -k 'inherits_config_runtime_over_env_override or job_level_model_provider_and_base_url_overrides_are_used'` 已通过（2 passed）；整份 `tests/cron/test_scheduler.py` 当前为 `44 passed, 1 failed`，剩余失败项是与本次改动无关的既有用例 `TestSilentDelivery.test_output_saved_even_when_delivery_suppressed`。
+
 ### [Codex] 修复爱马仕 cron 夜间继续误打 OpenRouter 的遗留分叉
 - 时间：02:41
 - 文件：`/Users/tangyuanjc/.hermes/hermes-agent/cron/scheduler.py`、`/Users/tangyuanjc/.hermes/hermes-agent/tests/cron/test_scheduler.py`、`/Users/tangyuanjc/.hermes/cron/jobs.json`
