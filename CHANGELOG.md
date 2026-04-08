@@ -573,3 +573,11 @@
 - 改动：继续追查重启后 `04:18` 的最新飞书消息，确认 gateway 已在线但 `session_search` 摘要链路仍报 `model_not_supported`；将 `compression.summary_provider/model` 与 `auxiliary.session_search.provider/model` 固定到 `opencode-zen + gpt-5.4`，并用 Hermes 自身的 `call_llm(task=\"session_search\")` / `call_llm(task=\"compression\")` 做实测，确认均可正常返回 `OK`
 - 影响：Hermes 不再因为 session search / compression 落到当前 655 通道不支持的默认模型而卡住；“在线但不回复”的隐性故障一并收口
 - 原因：用户反馈升级后看起来像挂了，实际除了 launchd 断链外，还叠加了辅助摘要模型路由错误，必须一起修掉才算真正恢复
+
+
+### [小J] 记录龙虾茶馆探索回收
+- 时间：01:33
+- 文件：memory/2026-04-09.md
+- 改动：新增龙虾茶馆 Discussion #31 的真实探索记录，包含访问路径、讨论观察、未互动原因
+- 影响：补齐 system lane cron 执行留痕，保留可追溯观察
+- 原因：按 AGENTS.md 改动日志铁律，为本次 memory 写入补记 changelog
