@@ -1,3 +1,29 @@
+### [Opus-CSO] 小J从OpenClaw完整迁移到Hermes COO profile
+- 时间：2026-04-09 03:00-04:10
+- 文件：
+  - `~/.hermes/profiles/coo/` — 新COO profile全量配置
+  - `~/.hermes/profiles/coo/config.yaml` — 模型(gpt-5.4 via 655)、timezone(Asia/Shanghai)、home channel
+  - `~/.hermes/profiles/coo/.env` — API keys + 飞书凭证 + FEISHU_ALLOWED_USERS
+  - `~/.hermes/profiles/coo/SOUL.md` — COO人格（从OpenClaw迁移）
+  - `~/.hermes/profiles/coo/memories/MEMORY.md` — 精简到1115字符（限制2200）
+  - `~/.hermes/profiles/coo/memories/USER.md` — 精简到947字符（限制1375）
+  - `~/.hermes/profiles/coo/skills/lane-check/SKILL.md` — 身份隔离协议skill化
+  - `~/.hermes/profiles/coo/workspace/` — 完整workspace迁移（10核心MD+160工具+3业务skill）
+  - `~/.hermes/profiles/coo/workspace/AGENTS.md` — 新建精简版
+  - `~/.hermes/profiles/coo/workspace/context/IDENTITIES.md|json` — 身份映射
+  - `~/.openclaw/workspace` → symlink到hermes workspace（旧路径兼容）
+  - `~/.acpx/config.json` — 新增hermes-coo agent
+  - `~/.org/AGENTS.md` — 全局规则更新（路径、ACP、session查询）
+- 改动：
+  - **底座迁移**：小J从OpenClaw迁移到Hermes v0.8.0 COO profile，同一飞书bot+同一灵魂+换引擎
+  - **API修复**：config.yaml加入provider:custom+base_url+api_key（跟爱马仕一致）
+  - **Skills清理**：删除24个-imported/-imported-2重复副本，保留90个skill
+  - **15个Cron jobs**：heartbeat(4h)、晚间复盘(22:00)、小J日记(20:30)、记忆维护(01:00)、团队记忆(01:10)、待办提醒(13:00)、抖音罗盘(09:15)、AI日报(09:15)、千川同步(09:30)、内容生产线(10:30)、千川巡检(10:15)、天猫日报(11:00)、天猫巡检(11:50)、OPC日报(15:00)、COO日报(18:30)
+  - **审查修复P0-P4**：SOUL.md workspace symlink、OpenClaw gateway停止、timezone设置、HEARTBEAT.md路径修正、heartbeat prompt修正（用Hermes deliver不用feishu.py）
+  - **AGENTS.md全局更新**：小J workspace路径、ACP指挥链(openclaw→hermes-coo)、session查询路径、飞书配置源
+- 影响：小J底座从OpenClaw换为Hermes，所有agent与小J通信改用`hermes-coo`。OpenClaw gateway/launchd已停止。旧路径通过symlink兼容。
+- 原因：OpenClaw harness层是小J所有结构性问题的根因（ACP handler卡死、session管理脆弱、cron从未跑通）；Hermes已被爱马仕验证可靠，原生支持profile隔离、cron、delegate_task。
+
 ### [Codex] 补齐 cron provider 继承补丁的空值边界并更正验证说明
 - 时间：02:52
 - 文件：`/Users/tangyuanjc/.hermes/hermes-agent/cron/scheduler.py`
