@@ -1,3 +1,11 @@
+### [Codex] 修复爱马仕 cron 夜间继续误打 OpenRouter 的遗留分叉
+- 时间：02:41
+- 文件：`/Users/tangyuanjc/.hermes/hermes-agent/cron/scheduler.py`、`/Users/tangyuanjc/.hermes/hermes-agent/tests/cron/test_scheduler.py`、`/Users/tangyuanjc/.hermes/cron/jobs.json`
+- 改动：继续排查 owner 指出的“今天 0 点之后 cron 还在出问题”，确认夜里真正没收口的是 cron 运行时分叉，而不是 `gpt-5.4` 本身不可用：`monster-code-libtv-supervisor-v2` 仍被旧 job 配置单独钉在 `openrouter`，另外 cron 调度器在 job 未显式指定 provider 时也没有把 `config.yaml` 的主模型运行时显式前传。已将仍在跑的 4 条关键任务（3 条 X 信号同步 + `monster-code-libtv-supervisor-v2`）统一固定到 `provider: custom` 与 `https://api.655147.xyz/v1`，并补丁 `scheduler.py` 让 cron 优先继承 `config.yaml` 的 `model.provider/base_url`，不再被陈旧环境覆盖；同时补了一条回归测试，锁住“config=custom 时 cron 不应退回 env/openrouter”的行为。
+- 影响：爱马仕从现在起跑 cron 时，主链会稳定落到 655，而不是白天聊天走 655、夜里定时任务却偷偷掉回 OpenRouter；这次修复后，夜间监督型任务不再在第一个模型调用就因 `Missing Authentication header` 秒挂，后续分析步骤可以继续正常推进。
+- 原因：owner 明确指出“今天 0 点之后它到现在的 cron 都还出问题”，需要把这条夜间运行链路做一次彻底收口，而不是只修主会话。
+- 验证：`/Users/tangyuanjc/.hermes/cron/jobs.json` 中 4 条关键 cron 已全部改为 `provider=custom`、`base_url=https://api.655147.xyz/v1`；重启 gateway 后手动重触发 `900a60408e5d`，最新 session `/Users/tangyuanjc/.hermes/sessions/session_cron_900a60408e5d_20260409_023857.json` 的 `base_url` 已从 `https://openrouter.ai/api/v1` 切到 `https://api.655147.xyz/v1`，且 gateway 日志显示该任务已继续执行文件读取与数据分析步骤，不再在首个请求处报 401。
+
 ### [小J] 新增 2026-04-08 晚间复盘日报
 - 时间：22:05
 - 文件：`/Users/tangyuanjc/.openclaw/workspace/daily-logs/2026-04-08.md`
