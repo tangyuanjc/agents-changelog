@@ -677,3 +677,40 @@
 - 改动：新增 3 个独立 Chrome user-data-dir 启动器和 3 个 Claude `auth login` wrapper；每个登录入口都强制绑定到固定浏览器容器，避免 CC Switch 切多个 Claude Pro 账号时混用同一个 Google/Claude 浏览器会话
 - 影响：后续某个 Claude 账号需要重新浏览器授权时，可以稳定走对应的 A/B/C 浏览器身份，显著减少反复二次验证和登录串号
 - 原因：用户在本机通过 CC Switch 切 3 个官方 Claude Pro 账号时，频繁因为浏览器会话混用而重复授权，需要一套低风险、可直接落地的固定授权通道
+
+## 2026-04-10
+
+### [Opus-CSO] 修复 Hermes 迁移后全员飞书配对丢失
+- 时间：18:30
+- 文件：~/.hermes/profiles/coo/platforms/pairing/feishu-approved.json
+- 改动：直接编辑approved JSON，补全7个员工配对（奶思/泡泡/皮皮/黄宁/小龙/欣欣 + 芳芳后续自动配对）
+- 影响：所有人类员工重新能与小J正常对话
+- 原因：黄宁反馈小J不认识她，排查发现Hermes迁移后配对数据需重建
+
+### [Opus-CSO] gateway命令权限控制：owner-only guard
+- 时间：18:35
+- 文件：~/.hermes/hermes-agent/gateway/run.py
+- 改动：在命令分发处增加owner-only检查，10个敏感命令(sethome/model/provider/personality/yolo/update/rollback/approve/deny/reload-mcp)限制为仅owner可执行，读取IDENTITIES.json的owner.open_id做比对
+- 影响：普通员工无法修改小J的系统配置；CEO gateway不受影响（无IDENTITIES文件时不拦截）
+- 原因：泡泡截图显示小J提示她可以执行/sethome，存在安全风险
+
+### [Opus-CSO] 员工对话采集重构：日报→全量对话情报
+- 时间：19:00
+- 文件：~/.hermes/profiles/coo/workspace/tools/daily_report_generator.py, ~/.hermes/profiles/coo/cron/jobs.json (daily-wrap prompt)
+- 改动：1) 脚本从关键词匹配日报改为拉全天对话原文输出JSON，分析交LLM；2) 补全6员工新chat_ids（迁移后变更）；3) gateway日志路径从openclaw改为hermes；4) daily-wrap prompt改为分析全量对话提炼情报
+- 影响：小J每天21:00自动采集+分析全员对话发给JC；同时为E线影子观察积累数据
+- 原因：迁移后chat_ids变更导致日报全部显示"未收到"；JC指出日报不是终态，全量对话才是信息源
+
+### [Opus-CSO] IDENTITIES.json补全所有员工chat_ids + 新增芳芳
+- 时间：19:00
+- 文件：~/.hermes/profiles/coo/workspace/context/IDENTITIES.json
+- 改动：补全皮皮/黄宁/小龙/欣欣的chat_ids，更新奶思/泡泡的新chat_id（Hermes迁移后变更），补JC home channel，新增芳芳条目
+- 影响：lane-check和日报采集都能正确识别和覆盖全员
+- 原因：迁移后新bot创建了新的p2p会话
+
+### [Opus-CSO] 数据管道从小J剥离到系统crontab
+- 时间：04:00
+- 文件：~/data-pipelines/run_qianchuan.sh, ~/data-pipelines/run_douyin_compass.sh, ~/data-pipelines/run_tmall.sh, ~/data-pipelines/env/.env, ~/.hermes/profiles/coo/cron/jobs.json (codex-output-review)
+- 改动：1) 创建3个独立wrapper脚本，统一凭证(.env用小J飞书App)，输出到数据群+飞书多维表；2) codex-output-review从17:00改到11:30，巡检失败时Paperclip派Codex修复；3) 系统crontab条目已准备（/tmp/current_crontab.txt），需JC手动安装
+- 影响：数据管道不再经过agent的LLM，纯脚本定时执行；小J只做验收和故障路由
+- 原因：JC确认数据管道应该是机械执行→小J巡检→Codex修复的闭环
