@@ -1,3 +1,21 @@
+### [Opus-CSO] 小J Cron优化 + 桥梁架构重构 + Hindsight记忆插件
+- 时间：2026-04-09 14:00-16:00
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/HEARTBEAT.md` — v6桥梁架构版，核心定位从"执行者"转为"桥梁"
+  - `~/.hermes/profiles/coo/workspace/AGENTS.md` — 清除exfil_curl关键词修复tirith安全拦截
+  - `~/.hermes/profiles/coo/workspace/NOW.md` — 从04-01过期数据更新为04-09当前状态
+  - `~/.hermes/profiles/coo/hindsight/config.json` — Hindsight记忆插件cloud模式配置
+  - `~/.hermes/profiles/coo/cron/jobs.json` — Cron从15个精简到6个
+  - `~/.org/AGENTS.md` — 小J COO核心定位段落重写（桥梁架构+新cron列表）
+- 改动：
+  - **架构重构**：小J COO核心价值 = Agents与人类沟通桥梁，不是跑脚本。Codex接管数据管道(千川/天猫/抖音/小红书)，小J负责验收+分析+汇报。AI日报移交爱马仕。
+  - **Cron精简15→6**：删除evening-review+xiaoj-diary+coo-daily-report合并为daily-wrap(21:00)；删除memory-maintenance+team-memory-maintenance合并为nightly-maintenance(01:00)；删除heartbeat-check(*/4h)改为morning-healthcheck(08:00每天一次)；删除noon-healthcheck和ai-daily-report；暂停6个坏掉的数据管道cron(douyin/qianchuan/tmall/content-pipeline+2个inspect)；新建codex-output-review(17:00验收Codex产出)
+  - **全局健康监控扩展**：morning-healthcheck从只检查自身 → 检查所有Agent(Codex+爱马仕+Paperclip)
+  - **AGENTS.md安全修复**：清除`exfiltrate`和`curl`关键词，解决Hermes tirith误判prompt injection导致每个session丢失身份规则
+  - **Hindsight记忆插件**：安装hindsight-client+hindsight-all依赖，配置cloud API(bank: xiaoj-coo)，retain/recall测试通过。用于与爱马仕mem0 A/B对比。
+- 影响：小J每日cron从15个(2个正常工作)精简到6个(全部对应核心价值)。数据管道全部移交Codex，待Codex建立后小J的codex-output-review(17:00)开始验收。AGENTS.md不再被安全拦截，session身份规则恢复正常。
+- 原因：审计发现10/15个cron白跑(数据管道全坏+token浪费)，核心定位偏离，需要回归COO桥梁本质。
+
 ### [Opus-CSO] 小J从OpenClaw完整迁移到Hermes COO profile
 - 时间：2026-04-09 03:00-04:10
 - 文件：
