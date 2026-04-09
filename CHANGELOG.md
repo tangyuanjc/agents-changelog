@@ -1,3 +1,31 @@
+### [Opus-CSO] Monster Code LibTV 数据预处理修复
+- 时间：2026-04-10 04:00
+- 文件：
+  - `~/.hermes/autonomy/monster_code_libtv_preprocess.py` — 修复千川三表数值列解析
+  - `~/.hermes/autonomy/monster_code_libtv_data_summary.json` — 重新生成127KB摘要
+- 改动：千川素材视频/商品/计划三个数据源的`整体消耗`列为字符串类型（含逗号），`pd.nlargest()`报错dtype object。已在Excel解析处增加`pd.to_numeric(errors='coerce')`转换。修复后7源中6源正常（原爆款素材文件不存在标记missing），摘要JSON正确生成。
+- 影响：adversarial-v3的subagent可以正确读取千川数据做交叉分析，不再因数据源error跳过关键消耗/ROI指标。
+- 原因：Monster Code LibTV adversarial-v3跑到iteration 11仍卡在mechanical_failed，部分原因是数据源解析失败导致subagent产出缺数据引用。
+
+### [Opus-CSO] 小J迁移后四项修复
+- 时间：2026-04-10 00:30-03:00
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/context/feishu-approved.json` — 补全7人飞书配对
+  - `~/.hermes/profiles/coo/gateway/run.py` — 新增owner-only命令权限检查
+  - `~/.hermes/profiles/coo/workspace/tools/daily_report_generator.py` — 重写为全量对话采集
+  - `~/.hermes/profiles/coo/cron/jobs.json` — daily-wrap prompt更新+codex-output-review改11:30
+  - `~/data-pipelines/run_qianchuan.sh` — 新建，09:15千川数据管道
+  - `~/data-pipelines/run_douyin_compass.sh` — 新建，09:30抖音罗盘
+  - `~/data-pipelines/run_tmall.sh` — 新建，11:00天猫
+- 改动：
+  - **飞书配对修复**：迁移后所有员工配对丢失，直接编辑feishu-approved.json补全JC+7名员工
+  - **命令权限控制**：员工可执行/sethome等管理命令，在gateway/run.py加owner-only检查（读IDENTITIES.json比对sender open_id）
+  - **对话采集重构**：daily_report_generator.py从关键词匹配"日报"改为拉全天对话原文输出JSON+全员新chat_ids（Hermes迁移后ID变更）
+  - **数据管道剥离**：三个shell脚本直接跑数据采集→飞书多维表，不经过agent。小J只做11:30巡检验收，失败时Paperclip派Codex修
+- 影响：小J Hermes迁移后的功能完整性恢复。数据管道从agent职责中正式剥离为系统级crontab任务。
+- 原因：Hermes迁移后发现配对丢失/权限漏洞/日报采集断裂/数据管道需要独立运行四个问题，逐一修复。
+- 待完成：系统crontab需JC手动安装（sandbox拦截）
+
 ### [Opus-CSO] Monster Code LibTV 对抗性监督系统 — 三层免疫架构
 - 时间：2026-04-09 16:00-17:40
 - 文件：
