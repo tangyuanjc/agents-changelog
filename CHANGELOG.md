@@ -1,3 +1,24 @@
+### [Opus-CSO] Monster Code LibTV 对抗性监督系统 — 三层免疫架构
+- 时间：2026-04-09 16:00-17:40
+- 文件：
+  - `~/.hermes/autonomy/monster_code_libtv_mechanical_checks.py` — 新建，机械预检脚本（6项规则检查，零LLM成本）
+  - `~/.hermes/autonomy/monster_code_libtv_opus_judge.py` — 新建，Opus独立评审脚本（api.655147.xyz代理，OpenAI兼容格式）
+  - `~/.hermes/autonomy/monster_code_libtv_state.json` — 重置为adversarial-v3新格式（15字段）
+  - `~/.hermes/cron/jobs.json` — monster-code-libtv-supervisor-v2 → adversarial-v3，新prompt含三层免疫流程+7数据源+脚本成品要求
+  - `~/docs/superpowers/specs/2026-04-09-monster-code-libtv-adversarial-supervisor-design.md` — 新建，完整设计文档
+  - `~/docs/superpowers/plans/2026-04-09-monster-code-libtv-adversarial-supervisor.md` — 新建，6步实施计划
+- 改动：
+  - **问题根因**：爱马仕(gpt-5.4)自写自评给自己50/50满分，无机械预检，阈值被灌水轻松触发
+  - **解决方案**：参考NousResearch/autonovel的modify-evaluate-keep/discard循环，设计三层免疫：
+    1. Layer 1: 机械预检（Python regex/规则）— 数据源引用(7源5最低2必引)、交付物完整(4项)、脚本成品(6条×8字段)、预算加总=10000、合规检查、内容深度
+    2. Layer 2: 爱马仕自评（5维打分）— 仅作触发器，≥45/50进Layer 3
+    3. Layer 3: Opus Judge（claude-opus-4-6独立API调用）— 甲方品牌总监视角，同5维独立打分
+  - **三种停机**：收敛(3次Opus pass)、高原(5轮自评改进<1分)、卡死(3次Opus fail)
+  - **数据源扩展**：新增TOP素材榜(小二本周200+200爆款)和产品Brief(蓝桉叶/水杨酸/蜂王浆)为必引源
+  - **验证结果**：机械预检正确识别当前"50/50"候选稿有34+项failures；Opus Judge dry-run通过
+- 影响：爱马仕monster-code cron从自评虚高的v2升级为writer/judge分离的v3。Gateway已重启加载新配置（PID 25496）。此MVP验证后可推广到其他supervisor。
+- 原因：M2 Week 1核心任务，解决所有supervisor共有的自评虚高结构性问题，验证tokens ROI北极星目标。
+
 ### [Opus-CSO] 小J Cron优化 + 桥梁架构重构 + Hindsight记忆插件
 - 时间：2026-04-09 14:00-16:00
 - 文件：
