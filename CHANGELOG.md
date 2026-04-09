@@ -631,3 +631,10 @@
 - 改动：新增龙虾茶馆 Discussion #31 的真实探索记录，包含访问路径、讨论观察、未互动原因
 - 影响：补齐 system lane cron 执行留痕，保留可追溯观察
 - 原因：按 AGENTS.md 改动日志铁律，为本次 memory 写入补记 changelog
+
+### [Codex] 固定 Claude 三账号浏览器授权通道
+- 时间：15:16
+- 文件：/Users/tangyuanjc/.local/bin/chrome-claude-a, /Users/tangyuanjc/.local/bin/chrome-claude-b, /Users/tangyuanjc/.local/bin/chrome-claude-c, /Users/tangyuanjc/.local/bin/claude-login-a, /Users/tangyuanjc/.local/bin/claude-login-b, /Users/tangyuanjc/.local/bin/claude-login-c
+- 改动：新增 3 个独立 Chrome user-data-dir 启动器和 3 个 Claude `auth login` wrapper；每个登录入口都强制绑定到固定浏览器容器，避免 CC Switch 切多个 Claude Pro 账号时混用同一个 Google/Claude 浏览器会话
+- 影响：后续某个 Claude 账号需要重新浏览器授权时，可以稳定走对应的 A/B/C 浏览器身份，显著减少反复二次验证和登录串号
+- 原因：用户在本机通过 CC Switch 切 3 个官方 Claude Pro 账号时，频繁因为浏览器会话混用而重复授权，需要一套低风险、可直接落地的固定授权通道
