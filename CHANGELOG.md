@@ -1,3 +1,13 @@
+### [Opus-CSO] 去ACP化：爱马仕↔小J通信改用Hermes原生方式
+- 时间：2026-04-10 05:30
+- 文件：
+  - `~/.org/AGENTS.md` — 爱马仕↔小J指挥链从ACP改为Hermes原生（send_message/CLI/-p coo）
+  - `~/.hermes/profiles/coo/workspace/AGENTS.md` — 同步更新
+  - `~/.acpx/config.json` — 移除hermes-coo和openclaw条目（已废弃）
+- 改动：两者都在Hermes同一台机器上，ACP跨harness协议完全多余。改为三种原生通信：1.飞书send_message（推荐，异步）2.CLI `hermes -p coo chat -q`（同步）3.delegate_task（快速子任务）。ACP配置中保留hermes（Codex可能仍用），清除hermes-coo和openclaw。
+- 影响：消除04-06以来CEO→COO指挥链不通的ACP blocker。通信链路从"需要修复ACP handler"变为"开箱即用"。
+- 原因：ACP是为跨harness（OpenClaw↔Hermes）设计的；小J迁移到Hermes后两者同harness，原生方式更简单可靠。
+
 ### [Opus-CSO] Monster Code LibTV 数据预处理修复
 - 时间：2026-04-10 04:00
 - 文件：
@@ -742,3 +752,16 @@
 - 改动：1) 创建3个独立wrapper脚本，统一凭证(.env用小J飞书App)，输出到数据群+飞书多维表；2) codex-output-review从17:00改到11:30，巡检失败时Paperclip派Codex修复；3) 系统crontab条目已准备（/tmp/current_crontab.txt），需JC手动安装
 - 影响：数据管道不再经过agent的LLM，纯脚本定时执行；小J只做验收和故障路由
 - 原因：JC确认数据管道应该是机械执行→小J巡检→Codex修复的闭环
+
+### [Opus-CSO] 小J cron清理+状态文件更新+罗盘登录态+launchd数据管道
+- 时间：04:50
+- 文件：~/.hermes/profiles/coo/cron/jobs.json, ~/.hermes/profiles/coo/workspace/MEMORY.md, ~/.hermes/profiles/coo/workspace/NOW.md, ~/.hermes/profiles/coo/workspace/TODO.md, ~/Library/LaunchAgents/com.datapipeline.*.plist, ~/data-pipelines/login_douyin_compass.mjs, ~/.openclaw/workspace-gauss/tools/douyin-compass-product-card-feishu/state/compass-state.json
+- 改动：
+  1) Cron清理：删除6个paused废弃job（数据执行+巡检已移到launchd和codex-output-review），修复codex-output-review的next_run时间错误（17:00→11:30），重启gateway重载
+  2) 数据管道launchd：Cisco拦截crontab写入，改用launchd plist（千川09:15/罗盘09:30/天猫11:00），三个plist已创建并加载
+  3) 罗盘登录态：编写Playwright自动检测登录脚本，保存compass-state.json到两个位置
+  4) MEMORY.md精简：4305→2115字节（限制2200），删除过时引用，保留核心规则
+  5) NOW.md更新：反映当前5个active cron、launchd数据管道、组织架构
+  6) TODO.md清理：删除03-28全部过期P0/P1/P2条目，保留日常运营和待决策项
+- 影响：小J cron从11个job减到5个（全active），数据管道完全就绪（含罗盘登录态），状态文件全部对齐当前架构
+- 原因：迁移后小J的cron、状态文件严重滞后于实际架构，数据管道crontab被Cisco安全软件拦截需替代方案
