@@ -1,3 +1,12 @@
+### [小J] 新增 2026-04-11 每日收工复盘与日记
+- 时间：21:10
+- 文件：
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/daily-logs/2026-04-11.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-04-11.md`
+- 改动：执行每日收工 cron，基于 daily_report_generator + TEAM-STATUS/inbox/raw/session 审计写出完整版复盘，并补写 300-500 字第一人称日记。
+- 影响：形成 2026-04-11 的可审计收工落档，便于明日接续与管理回看。
+- 原因：例行晚间复盘与日记写入。
+
 ### [Opus-CSO] adversarial-v3空转停机 + AGENTS.md安全拦截修复
 - 时间：2026-04-11 00:00
 - 文件：
