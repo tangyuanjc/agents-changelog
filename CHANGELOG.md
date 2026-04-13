@@ -37,6 +37,15 @@
 - 影响：欣欣今日提交已进入 raw 权威层、owner 汇总视图与团队状态权威，后续 CEO/系统查询可直接核对。
 - 原因：收到欣欣 4.13 今日时报，需要完成标准落库与状态登记。
 
+### [小J] 固化芳芳 Feishu DM 会话映射
+- 时间：23:12
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/context/IDENTITIES.json`
+  - `~/.hermes/profiles/coo/workspace/context/IDENTITIES.md`
+- 改动：将芳芳 open_id `ou_9ea09e0d7b7f0f6397624e0fdd5873c5` 的已验证 DM 会话 `oc_fe3c4064b18ae6da4780c93154c9d506` 写入身份权威文件，并标记 `dm_verified_2026-04-13`。
+- 影响：后续 COO 可直接复用该 chat_id 给芳芳发私信，不再受错 app 上下文导致的 `open_id cross app` 干扰。
+- 原因：本次催日报已通过 Hermes 当前 Feishu app 原生接口成功送达，需要把真实可用会话沉淀为权威映射。
+
 ### [小J] 新增 2026-04-11 每日收工复盘与日记
 - 时间：21:10
 - 文件：
