@@ -1,3 +1,13 @@
+### [小J] 收录皮皮 2026-04-13 今日时报
+- 时间：19:01
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-13/ou_3a1e620f3a86ac4bd8f5908e9c972eda.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-13.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：按 team lane 日报入库流程新增皮皮 4.13 今日时报 raw 文件，补写当日共享汇总 section，并在 TEAM-STATUS 的 2026-04-13 团队输入快照登记 received_daily_report 状态。
+- 影响：皮皮今日提交已进入 raw 权威层、owner 汇总视图与团队状态权威，后续 CEO/系统查询可直接核对。
+- 原因：收到皮皮 4.13 今日时报，需要完成标准落库与状态登记。
+
 ### [小J] 收录欣欣 2026-04-13 今日时报
 - 时间：18:32
 - 文件：
