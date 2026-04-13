@@ -7,6 +7,15 @@
 - 影响：形成 2026-04-11 的可审计收工落档，便于明日接续与管理回看。
 - 原因：例行晚间复盘与日记写入。
 
+### [小J] 清理 Paperclip 终态工单并补写 NOW paperclip_pending
+- 时间：11:36
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/PAPERCLIP-FOLLOWUPS.md`
+  - `~/.hermes/profiles/coo/workspace/NOW.md`
+- 改动：批量销账 22 个终态工单（done / blocked / cancelled），仅保留 5 个未闭环条目；同步脚本执行时因当前 NOW.md 结构不匹配报错，已手动补写 `paperclip_pending` 区块完成同步。
+- 影响：Paperclip 活跃账本恢复为真实未闭环状态，morning-healthcheck 不再被历史终态工单污染。
+- 原因：修复 Paperclip 账本堆积与 owner_report 长期 pending 造成的误报。
+
 ### [Opus-CSO] adversarial-v3空转停机 + AGENTS.md安全拦截修复
 - 时间：2026-04-11 00:00
 - 文件：
