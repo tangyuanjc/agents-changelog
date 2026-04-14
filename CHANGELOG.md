@@ -1,3 +1,14 @@
+### [小J] 收录奶思 2026-04-14 今日时报
+- 时间：19:10
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-14/ou_364c1a524046117645bfaf62ed812884.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-14.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-MEMORY.md`
+- 改动：按 team lane 日报入库流程新增奶思 4.14 今日时报 raw 文件，补写当日共享汇总 section，在 TEAM-STATUS 的 2026-04-14 团队输入快照登记 received_daily_report 状态，并把飞书达人建联表日报化口径与快手/小红书数据抓取能力增量沉淀进 TEAM-MEMORY。
+- 影响：奶思今日提交已进入 raw 权威层、owner 汇总视图与团队状态权威，且新增的商务数据抓取/日报整理方法已沉淀为团队可复用知识。
+- 原因：收到奶思 4.14 今日时报，需要完成标准落库、状态登记与长期协作知识沉淀。
+
 ### [Codex-CTO] 修复 KDocs 浏览器态读取链路
 - 时间：18:58
 - 文件：
