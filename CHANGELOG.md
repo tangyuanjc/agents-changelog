@@ -1,3 +1,13 @@
+### [小J] 收录黄宁 2026-04-14 今日时报
+- 时间：19:49
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-14/ou_c5bb2da837826b19ea9c7b6747861237.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-14.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：按 team lane 日报入库流程新增黄宁 4.14 今日时报 raw 文件，补写当日共享汇总 section，并在 TEAM-STATUS 的 2026-04-14 团队输入快照登记 received_daily_report 状态。
+- 影响：黄宁今日提交已进入 raw 权威层、owner 汇总视图与团队状态权威，后续 CEO/系统查询可直接核对。
+- 原因：收到黄宁 4.14 今日时报，需要完成标准落库与状态登记。
+
 ### [Opus-CSO] 引入 Paseo 统一Agent操控面板
 - 时间：20:00
 - 文件：全局安装 `@getpaseo/cli` v0.1.54
