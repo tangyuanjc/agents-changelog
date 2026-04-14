@@ -1,3 +1,12 @@
+### [小J] 新增 2026-04-14 每日收工复盘与日记
+- 时间：21:03
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/daily-logs/2026-04-14.md`
+  - `~/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-04-14.md`
+- 改动：执行每日收工 cron，运行 `daily_report_generator.py`，交叉核验 `context/IDENTITIES.md`、`context/IDENTITIES.json`、`TEAM-STATUS.md`、共享 inbox 与 raw 目录，写出 2026-04-14 完整收工复盘和第一人称日记。
+- 影响：形成覆盖 8 名注册成员的当日收工记录，明确脚本对话捕获与权威入库之间的差异，便于次日继续补齐权威层。
+- 原因：例行晚间复盘与日记写入。
+
 ### [小J] 收录黄宁 2026-04-14 今日时报
 - 时间：19:49
 - 文件：
