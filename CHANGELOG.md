@@ -1,3 +1,13 @@
+### [Codex-CTO] 修复 KDocs 浏览器态读取链路
+- 时间：18:58
+- 文件：
+  - `~/.hermes/profiles/coo/skills/productivity/kdocs-to-feishu-handoff/SKILL.md`
+  - `~/.hermes/profiles/coo/skills/productivity/kdocs-to-feishu-handoff/scripts/kdocs_extract_via_cdp.py`
+  - `~/.hermes/profiles/coo/workspace/AGENTS.md`
+- 改动：为金山文档 handoff 增加基于本机 Chrome CDP 的正文提取脚本；SKILL 新增“匿名 HTTP 被 302 登录页后继续走浏览器态”的执行规则；AGENTS.md 补充 KDocs/WPS 外部文档默认处理路径。
+- 影响：小J后续遇到 `kdocs.cn` 链接时，不会再把“匿名 requests 被跳登录页”误判为“整体不可读”；如果本机浏览器已登录，可直接提取正文并迁移到飞书。
+- 原因：2026-04-14 18 点后 owner 提供 KDocs 链接时，小J只走了匿名 HTTP 路径；实测同机 Chrome 登录态可以正常读取正文，属于明确的工具链缺口。
+
 ### [小J] 收录欣欣 2026-04-14 今日时报
 - 时间：18:36
 - 文件：
