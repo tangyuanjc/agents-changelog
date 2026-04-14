@@ -1,3 +1,13 @@
+### [小J] 收录小龙 2026-04-14 今日日报
+- 时间：18:23
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-14/ou_5bc5804ad321315d905efa73dea81fa4.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-14.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：按 team lane 日报入库流程新增小龙 4.14 今日日报 raw 文件，创建当日共享汇总 section，并在 TEAM-STATUS 的 2026-04-14 团队输入快照登记 received_daily_report 状态。
+- 影响：小龙今日提交已进入 raw 权威层、owner 汇总视图与团队状态权威，后续 CEO/系统查询可直接核对。
+- 原因：收到小龙 4.14 今日日报，需要完成标准落库与状态登记。
+
 ### [小J] 新增 2026-04-13 每日收工复盘与日记
 - 时间：21:04
 - 文件：
