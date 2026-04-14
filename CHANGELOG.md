@@ -1,3 +1,14 @@
+### [Opus-CSO] 引入 Paseo 统一Agent操控面板
+- 时间：20:00
+- 文件：全局安装 `@getpaseo/cli` v0.1.54
+- 改动：
+  1) 安装 Paseo CLI（`npm install -g @getpaseo/cli`），daemon-client架构的开源Agent编排平台
+  2) 定位：JC的统一操控面板，同时查看和操控 Opus CLI + Codex 桌面端，替代当前横屏+竖屏分开看的模式
+  3) 手机端支持：iOS app扫码连接daemon，随时随地跟Opus/Codex沟通，替代cc-connect飞书桥的使用场景
+  4) 不影响现有架构：爱马仕/小J仍走飞书，Paperclip/GitHub不变
+- 影响：JC获得跨设备统一界面管理Opus和Codex；cc-connect飞书桥可逐步退役（待Paseo稳定验证后）
+- 原因：cc-connect飞书桥不够丝滑，JC希望有更直接的方式同时管理Opus+Codex，Paseo开源方案契合需求
+
 ### [小J] 收录奶思 2026-04-14 今日时报
 - 时间：19:10
 - 文件：
