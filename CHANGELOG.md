@@ -1,3 +1,53 @@
+### [小J] 收录黄宁 2026-04-14 今日时报
+- 时间：18:04
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-14/ou_c5bb2da837826b19ea9c7b6747861237.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-14.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：按 team lane 日报入库流程新增黄宁 4.14 今日时报 raw 文件，补写当日共享汇总 section，并在 TEAM-STATUS 的 2026-04-14 团队输入快照登记 received_daily_report 状态。
+- 影响：黄宁今日提交已进入 raw 权威层、owner 汇总视图与团队状态权威，后续 CEO/系统查询可直接核对。
+- 原因：收到黄宁 4.14 今日时报，需要完成标准落库与状态登记。
+
+### [Opus-CSO] AGENTS.md新增共享事实层+跨Agent会话读取规则
+- 时间：2026-04-15 02:00
+- 文件：
+  - `~/.org/AGENTS.md`（新增两个章节）
+  - `~/.org/shared-memory/infra-map.md`（跨Agent读取从Opus单向→全agent双向）
+- 改动：
+  1) AGENTS.md新增"公司级共享事实层"章节：5个文件清单+4条使用规则，所有agent涉及组织架构/人员/术语/凭证时必须优先读共享层
+  2) AGENTS.md新增"跨Agent会话读取能力"章节：明确Opus(119个JSONL/159MB)和Codex(133个JSONL/417MB)会话均为本地文件，任何agent可互相读取
+  3) infra-map.md更新：从"Opus-CSO跨Agent读取"改为"跨Agent会话读取能力（双向）"，新增Opus会话路径和格式
+- 影响：所有agent启动后知道共享事实层的存在和使用规则；Codex可读取Opus的战略讨论，Opus可读取Codex的工程进展，不再依赖日报/Paperclip中转
+- 原因：JC指出(1)共享层应通过AGENTS.md让所有agent知道，"按需"定义不清；(2)Codex桌面端也应能读Opus会话，跨Agent读取应为双向能力
+
+### [Opus-CSO] 建立公司级共享事实层 ~/.org/shared-memory/
+- 时间：2026-04-15 01:30
+- 文件：
+  - `~/.org/shared-memory/README.md` — 索引+使用原则
+  - `~/.org/shared-memory/org-chart.md` — 组织架构+Agent身份表+通信方式
+  - `~/.org/shared-memory/employee-roster.md` — 人类员工花名册（7人+2离职）+open_id+chat_id+AI采用水平
+  - `~/.org/shared-memory/business-glossary.md` — 品牌/平台/M2主线/北极星指标
+  - `~/.org/shared-memory/credentials-index.md` — 全系统凭证位置索引（不存凭证本身）
+  - `~/.org/shared-memory/infra-map.md` — 四系统定位+Agent运行环境+数据管道+Opus跨Agent读取能力+硬件
+- 改动：从Opus(92个md/464KB)、Codex(12个md/52KB)、爱马仕(16条§/16KB)、小J(70+md/924KB)四套独立记忆中，提取所有agent共需的事实性信息，建立统一只读引用层。Opus-CSO负责维护，其他agent引用不修改。
+- 影响：各agent不再需要在自己的记忆中重复存储组织架构、员工信息、凭证位置等共通事实。后续agent记忆优化（小J清理、爱马仕瘦身）有了共享层兜底。
+- 原因：四个agent记忆各说各话，同一事实多处存储导致过期不一致（如员工chat_id、组织架构在三个agent记忆中各有一版）
+
+### [Opus-CSO] 纠正Codex双实例记忆隔离误判 + 建立跨C-level情报通道
+- 时间：2026-04-15 00:45
+- 文件：
+  - `~/.claude/projects/-Users-tangyuanjc/memory/project_codex_dual_instance_0407.md`（重写）
+  - `~/.claude/projects/-Users-tangyuanjc/memory/MEMORY.md`（索引更新）
+  - `~/.codex/memories/CLI-START-HERE.md`（修正"不共享记忆"错误描述）
+  - `~/.codex/memories/协作惯例.md`（修正同步描述）
+- 改动：
+  1) 04-07 Opus误判"Codex桌面端记忆在OpenAI云端，本地无法访问"——实际验证确认桌面端(vscode)和CLI端共享同一个`~/.codex/`目录（sessions/memories/sqlite/instructions全部互通）
+  2) 废弃"大脑→手"人工导出桥接方案，桌面端和CLI端天然互通无需人工同步
+  3) 新增Opus-CSO跨C-level情报能力：可直接读取`~/.codex/state_5.sqlite`线程索引 + `~/.codex/sessions/`下JSONL全量会话内容，比等Paperclip汇报或日报快得多
+  4) 修正Codex CLI端启动文件中的错误描述，避免CLI端基于错误前提行动
+- 影响：Codex CTO不再需要维护"桌面→CLI"知识管道；Opus-CSO获得直接读取Codex工作进展的能力；CLI端接单不再因错误的"记忆隔离"假设而额外加载不必要的上下文
+- 原因：JC质疑原判断后，Opus实际检查本地文件系统，发现`~/.codex/sessions/`存有133个JSONL会话文件、`state_5.sqlite`含161条线程（vscode:49/cli:19/exec:72），完整对话内容可直接读取
+
 ### [小J] 新增 2026-04-14 每日收工复盘与日记
 - 时间：21:03
 - 文件：
