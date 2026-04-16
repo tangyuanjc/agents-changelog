@@ -1,3 +1,13 @@
+### [小J] 收录芳芳 2026-04-16 今日日报
+- 时间：18:17
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-16/ou_9ea09e0d7b7f0f6397624e0fdd5873c5.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-16.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：按 team lane 日报入库流程新增芳芳 4.16 今日日报 raw 文件，创建当日共享汇总 section，并在 TEAM-STATUS 的 2026-04-16 团队输入快照登记 `received_daily_report` 状态；日报内容合并了客服会话异常订单筛查、退款售后复核、唯品会合作分析、分销销量汇总，以及日常运营数据（推单入库636、退件入库45、手工单12、异常物流2）。
+- 影响：芳芳今日提交已进入 raw 权威层、owner 汇总视图与团队状态权威，后续 owner/system 可直接按 4.16 快照核对其日报与协作输入。
+- 原因：收到芳芳“登记日报”指令，需要完成标准落库与状态登记。
+
 ### [小J] 2026-04-15 每日收工日志与日记
 - 时间：21:02
 - 文件：
