@@ -1089,3 +1089,11 @@
 - 改动：将 COO profile 的 `display.tool_progress` 设为 `off`，关闭群聊中的 skill/terminal 过程外显；同时把 `pdf-extract` 的 OCR 临时目录流程改为 `mktemp -d`，明确禁止 `rm -rf /tmp/...` 固定目录清理写法，避免在 gateway / 飞书群聊中触发 Command Approval Required。
 - 影响：Hermes 小J 在群里处理 PDF/brief 时，不再把内部工具轨迹直接发到群里；后续同类 OCR 流程默认走安全临时目录，减少审批卡打断。
 - 原因：2026-04-17 群聊 `oc_af9c1a6ccb4844b673e8c824165e965c` 处理 brief PDF 时，工具轨迹和危险命令审批卡被直接外发到飞书群，影响对外观感与执行连续性。
+
+### [Codex] 为 Hermes PDF 提取补充 macOS Vision OCR 备胎
+- 时间：03:26
+- 文件：
+  - `~/.hermes/profiles/coo/skills/openclaw-imports/pdf-extract/SKILL.md`
+- 改动：将 `pdf-extract` 的优先 OCR 路径改为 macOS `ocrmac`（Vision OCR），顺序调整为 `pdftotext/PyPDF2 -> ocrmac -> tesseract -> vision_analyze`，并记录当前这台 Mac 上 `tesseract` 读取 PNG 可能异常的经验。
+- 影响：Hermes 小J 后续处理 WPS/PPT 导出的 PDF 时，不再只依赖 `tesseract`；在这台机器上会优先走已实测可用的原生 OCR，抽字稳定性更高。
+- 原因：2026-04-17 群聊 PDF brief 分析中，最终可用链路实际转向了图片渲染 + vision；同时本机 `tesseract` 对生成 PNG 存在异常，需要补一个真正可执行的 OCR 备胎。
