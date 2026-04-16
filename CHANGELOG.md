@@ -1097,3 +1097,13 @@
 - 改动：将 `pdf-extract` 的优先 OCR 路径改为 macOS `ocrmac`（Vision OCR），顺序调整为 `pdftotext/PyPDF2 -> ocrmac -> tesseract -> vision_analyze`，并记录当前这台 Mac 上 `tesseract` 读取 PNG 可能异常的经验。
 - 影响：Hermes 小J 后续处理 WPS/PPT 导出的 PDF 时，不再只依赖 `tesseract`；在这台机器上会优先走已实测可用的原生 OCR，抽字稳定性更高。
 - 原因：2026-04-17 群聊 PDF brief 分析中，最终可用链路实际转向了图片渲染 + vision；同时本机 `tesseract` 对生成 PNG 存在异常，需要补一个真正可执行的 OCR 备胎。
+
+### [Codex] 修复小J hindsight鉴权与主会话进度外显回归
+- 时间：04:22
+- 文件：
+  - `~/.hermes/hermes-agent/plugins/memory/hindsight/__init__.py`
+  - `~/.hermes/hermes-agent/gateway/run.py`
+  - `~/.hermes/profiles/coo/config.yaml`
+- 改动：1) 给 hindsight memory plugin 增加 snake_case/camelCase 配置归一化，兼容 `api_key`/`bank_id` 这类 profile 写法，避免明明有 key 却读成空值；2) gateway 在替换 cached agent 时，先关闭旧 agent 的 memory provider，减少 `Unclosed client session` 残留；3) 恢复 COO profile 的 `display.tool_progress: all`，同时把 Feishu 群聊的 tool/status 外显继续限制在非群聊路径，保留 owner 主会话进度外显。
+- 影响：小J 的 hindsight 不再因配置键名不匹配而持续 401；主会话重新能看到 `skill_view/terminal/session_search` 等过程外显；群聊不会再因为这个回滚而重新刷出常规工具轨迹。
+- 原因：JC 明确要求保留主会话进度外显；同时 2026-04-17 凌晨日志显示 hindsight 持续 401，且 gateway 在缓存 agent 替换时没有清理旧 memory provider，存在 client session 泄漏风险。
