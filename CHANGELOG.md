@@ -1080,3 +1080,12 @@
 - 改动：写入每日收工完整日志与小J日记，按脚本结果 + TEAM-STATUS + 共享 inbox + raw 目录交叉核验后输出全员情报摘要。
 - 影响：补齐 2026-04-16 COO 收工审计记录，形成可复查的当日运营归档。
 - 原因：执行每日收工 cron，沉淀当日团队输入与复盘。
+
+### [Codex] 修复 Hermes 群聊 PDF 工具外显与审批卡
+- 时间：03:13
+- 文件：
+  - `~/.hermes/profiles/coo/config.yaml`
+  - `~/.hermes/profiles/coo/skills/openclaw-imports/pdf-extract/SKILL.md`
+- 改动：将 COO profile 的 `display.tool_progress` 设为 `off`，关闭群聊中的 skill/terminal 过程外显；同时把 `pdf-extract` 的 OCR 临时目录流程改为 `mktemp -d`，明确禁止 `rm -rf /tmp/...` 固定目录清理写法，避免在 gateway / 飞书群聊中触发 Command Approval Required。
+- 影响：Hermes 小J 在群里处理 PDF/brief 时，不再把内部工具轨迹直接发到群里；后续同类 OCR 流程默认走安全临时目录，减少审批卡打断。
+- 原因：2026-04-17 群聊 `oc_af9c1a6ccb4844b673e8c824165e965c` 处理 brief PDF 时，工具轨迹和危险命令审批卡被直接外发到飞书群，影响对外观感与执行连续性。
