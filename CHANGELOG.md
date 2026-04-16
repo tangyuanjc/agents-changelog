@@ -1,4 +1,14 @@
-     1|### [小J] 收录欣欣 2026-04-16 今日时报
+     1|### [小J] 收录黄宁 2026-04-16 今日时报
+- 时间：07:14
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-16/ou_c5bb2da837826b19ea9c7b6747861237.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-16.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：按 team lane 日报入库流程新增黄宁 4.16 今日时报 raw 文件，补写当日共享汇总 section，并在 TEAM-STATUS 的 2026-04-16 团队输入快照登记 received_daily_report 状态。
+- 影响：黄宁今日提交已进入 raw 权威层、owner 汇总视图与团队状态权威，后续 CEO/系统查询可直接核对。
+- 原因：收到黄宁 4.16 今日时报，需要完成标准落库与状态登记。
+
+### [小J] 收录欣欣 2026-04-16 今日时报
      2|- 时间：18:33
      3|- 文件：
      4|  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-16/ou_ad30272f15dfc74a7fb905ae7856a005.md`
