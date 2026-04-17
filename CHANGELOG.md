@@ -1,3 +1,13 @@
+### [小J] 收录欣欣 2026-04-17 今日时报
+- 时间：18:32
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-17/ou_ad30272f15dfc74a7fb905ae7856a005.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-17.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：按 team lane 日报入库流程新增欣欣 4.17 今日时报 raw 文件，补写当日共享汇总 section，并在 TEAM-STATUS 的 2026-04-17 团队输入快照登记 received_daily_report 状态。
+- 影响：欣欣今日提交已进入 raw 权威层、owner 汇总视图与团队状态权威，后续 CEO/系统查询可直接核对。
+- 原因：收到欣欣 4.17 今日时报，需要完成标准落库与状态登记。
+
 ### [小J] 2026-04-17 数据管道巡检异常入账
 - 时间：11:33
 - 文件：
