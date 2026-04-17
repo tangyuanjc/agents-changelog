@@ -1,3 +1,14 @@
+### [小J] 收录泡泡 2026-04-17 工作更新
+- 时间：21:51
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-17/ou_d89d30f80a0cdd287cb77db6a1f0346f.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-17.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-MEMORY.md`
+- 改动：按 team lane 工作更新入库流程新增泡泡 4.17 raw 文件，补写当日共享汇总 section，在 TEAM-STATUS 的 2026-04-17 团队输入快照登记 `received_work_update`，并将货架侧当前主线与小O卡点沉淀进 TEAM-MEMORY。
+- 影响：泡泡当日活动更新、文档本地化、商品机制/线框协同与 Hermes/Codex 卡点已进入 raw 权威层、owner 汇总视图、团队状态权威与团队长期协作记忆，后续可直接追溯和跟进。
+- 原因：收到泡泡 4.17 工作更新，需要完成标准落库与协作记忆更新。
+
 ### [小J] add 2026-04-17 daily wrap
 - 时间：21:02
 - 文件：
