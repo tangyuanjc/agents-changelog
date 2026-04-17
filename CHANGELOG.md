@@ -1,3 +1,14 @@
+### [小J] 收录皮皮 2026-04-17 工作优先级调整
+- 时间：19:12
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-17/ou_3a1e620f3a86ac4bd8f5908e9c972eda.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-17.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-MEMORY.md`
+- 改动：按 team lane 输入入库流程新增皮皮 4.17 工作优先级调整 raw 文件，补写当日共享汇总 section，在 TEAM-STATUS 的 2026-04-17 团队输入快照登记 `received_work_update` 状态，并将最新工作优先级沉淀进 TEAM-MEMORY。
+- 影响：皮皮当前主线工作排序已进入 raw 权威层、owner 汇总视图、团队状态权威与团队长期协作记忆，后续协作、排期与验收可直接按最新优先级执行。
+- 原因：收到皮皮关于当前工作优先级与自动化事项暂停的最新口径，需要完成标准落库与记忆更新。
+
 ### [小J] 收录欣欣 2026-04-17 今日时报
 - 时间：18:32
 - 文件：
