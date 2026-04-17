@@ -1,3 +1,60 @@
+### [Opus-CSO] 黑板架构v2定案 + GBrain Phase 1基础设施落地
+- 时间：2026-04-18 06:30-07:00
+- 文件：
+  - `~/.org/AGENTS.md` (新增"黑板架构v2战略Baseline"章节)
+  - `~/gbrain/` (克隆GBrain v0.10.2 + bun install + bun link)
+  - `~/.gbrain/brain.pglite` (PGLite brain数据库初始化)
+  - `~/.hermes/skills/gbrain` (symlink到~/gbrain/skills,25个skills)
+  - `~/.hermes/profiles/coo/skills/gbrain` (symlink到~/gbrain/skills)
+  - `~/.hermes/GBRAIN-PILOT.md` (爱马仕Phase 1a任务brief)
+  - `~/.hermes/profiles/coo/GBRAIN-PILOT.md` (小J Phase 1b任务brief)
+  - `~/Desktop/ai-company-blackboard-architecture.html` (架构v2可视化)
+  - `~/.claude/projects/-Users-tangyuanjc/memory/project_blackboard_architecture_v2_0418.md`
+  - `~/.claude/projects/-Users-tangyuanjc/memory/project_ai_native_org_declaration_0418.md`
+- 改动：
+  1. JC与Opus完成黑板架构v2定案(七层结构+三原则"透明/共生/不以人类意志转移")
+  2. GBrain runtime全局安装(gbrain CLI v0.10.2, bun link)
+  3. 共享brain数据库初始化(PGLite引擎,跨agent共享同一个brain)
+  4. 爱马仕/小J的skills目录均symlink到gbrain skills池
+  5. 派发Phase 1a(爱马仕:runtime验证)和Phase 1b(小J:87文件数据量压测)两个pilot任务
+  6. AGENTS.md加入v2战略baseline章节+变更gate规则
+- 验证：
+  - `gbrain --help` 返回0.10.2版本 ✓
+  - `gbrain put concepts/brain-init-test` + `gbrain get` 读写测试pass ✓
+  - `gbrain search "brain"` keyword search返回匹配 ✓
+  - `gbrain doctor --fast` health score 90/100 ✓
+  - 爱马仕/小J skills symlinks都可见 ✓
+- 影响：
+  1. **所有agent现在共享同一个第二大脑** — 黑板架构的知识层落地
+  2. 爱马仕/小J下次启动时会读到GBRAIN-PILOT.md任务
+  3. 日报从"终态"降级为"中间态"(审计Agent是下一代方案)
+  4. 任何未来架构变更必须走v2 baseline gate(见AGENTS.md)
+- 原因：M2战略期最根本架构决策定案,AI原生组织的第一批基础设施
+- 待办：
+  - [ ] JC配OPENAI_API_KEY让embedding生效(当前只有keyword search)
+  - [ ] 爱马仕执行Phase 1a自测
+  - [ ] 小J执行Phase 1b + ingest 87 memory文件
+  - [ ] Opus/Codex走MCP接入(Phase 3)
+  - [ ] screenpipe选型落地(监控/审计Agent工具)
+
+### [爱马仕] 扩容 Nous fallback 链并完成旗舰模型烟测
+- 时间：04:19
+- 文件：
+  - `~/.hermes/config.yaml`
+  - `~/.hermes/logs/agent.log`
+- 改动：保留现有首层 fallback `opencode-zen/gpt-5.4` 不变，在其后新增 4 个 Nous fallback：`openai/gpt-5.4`、`openai/gpt-5.4-pro`、`anthropic/claude-opus-4.7`、`nousresearch/hermes-4-405b`；随后用 Hermes 自带 venv 直接调用 `agent.auxiliary_client.call_llm(provider='nous', ...)` 做真实烟测，并执行 `hermes gateway start` 重新加载默认网关服务。
+- 验证：2026-04-18 04:19 CST 复核 `config.yaml` 已包含新增 fallback 链；Hermes runtime 对 `openai/gpt-5.4`、`openai/gpt-5.4-mini`、`openai/gpt-5.4-pro`、`anthropic/claude-opus-4.7`、`nousresearch/hermes-4-405b` 均返回 200 且严格指令测试通过；`google/gemini-2.5-pro`、`moonshotai/kimi-k2.5` 虽有响应，但在严格指令跟随测试中不稳定，因此未放入优先 fallback；`hermes gateway status` 显示默认 `ai.hermes.gateway` 已 loaded，日志确认 04:19:28 重新连上 Feishu，Cron ticker 已恢复。
+- 影响：爱马仕主模型仍保持 `custom -> gpt-5.4 -> api.655147.xyz` 不变，但当主链或首层 fallback 失效时，会继续尝试 Nous 上已实测可用且相对稳定的高质量模型，抗故障能力明显增强。
+- 原因：用户要求不更换主模型，仅配置 Nous fallback，并确认几个旗舰模型是否真实可用。
+
+### [爱马仕] 接入 Nous Portal API key 并完成模型可用性核验
+- 时间：04:06
+- 文件：
+  - `~/.hermes/auth.json`
+- 改动：通过 `hermes auth add nous` 将 Nous Portal API key 写入 Hermes credential pool；随后对官方 `https://inference-api.nousresearch.com/v1/models` 拉取模型目录，共识别 389 个模型，并完成 `anthropic/claude-sonnet-4.6`、`google/gemini-2.5-flash`、`qwen/qwen3.6-plus`、`deepseek/deepseek-v3.2`、`nousresearch/hermes-4-405b` 的 chat-completions 烟测；确认 `openai/gpt-5.4` 虽出现在 Nous 模型目录中，但按当前 Hermes `nous` 接法实测返回 400，因此未切换现有主链。
+- 影响：爱马仕现在已经具备可调用的 `nous` provider 凭据，但默认模型仍保持 `custom -> gpt-5.4`，不会影响现有在线工作流；后续若要切主链，可优先使用已烟测通过的 Nous 模型。
+- 原因：用户新增 Nous Portal key，需要给 Hermes 完成接入并确认可用模型边界。
+
 ### [小J] 收录泡泡 2026-04-17 工作更新
 - 时间：21:51
 - 文件：
