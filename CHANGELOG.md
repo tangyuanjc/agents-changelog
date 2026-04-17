@@ -1,3 +1,12 @@
+### [小J] add 2026-04-17 daily wrap
+- 时间：21:02
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/daily-logs/2026-04-17.md`
+  - `~/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-04-17.md`
+- 改动：执行每日收工流程，运行 `workspace/tools/daily_report_generator.py`，交叉核验 `IDENTITIES.json`、`TEAM-STATUS.md`、共享 inbox 与 raw 目录后，写入 2026-04-17 完整收工日志与小J日记，并明确区分脚本采集信号、权威已落库、以及权威未闭环项。
+- 影响：形成 2026-04-17 COO 收工审计记录，可直接追溯团队当日输入覆盖情况，以及黄宁/芳芳在脚本层与权威层之间的差异。
+- 原因：每日收工 cron 要求生成员工情报摘要、简版复盘、完整日志与日记，并完成读回验证。
+
 ### [小J] 收录皮皮 2026-04-17 工作优先级调整
 - 时间：19:12
 - 文件：
@@ -28,7 +37,17 @@
 - 影响：后续 heartbeat 可继续跟踪 AI-73；owner 可从 2026-04-17 日志追溯巡检、归因、派单和群通知状态。
 - 原因：定时数据管道巡检触发异常，需要完成外部派单闭环与审计记录。
 
-     1|### [小J] 收录黄宁 2026-04-16 今日时报
+     1|### [小J] 收录黄宁 2026-04-17 今日时报
+- 时间：19:43
+- 文件：
+  - `/Users/tangyuanjc/Documents/Playground/hermes-home-coo-patched/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-17/ou_c5bb2da837826b19ea9c7b6747861237.md`
+  - `/Users/tangyuanjc/Documents/Playground/hermes-home-coo-patched/workspace/projects/ai-ecommerce-org/inbox/2026-04-17.md`
+  - `/Users/tangyuanjc/Documents/Playground/hermes-home-coo-patched/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：按 team lane 日报入库流程新增黄宁 4.17 今日时报 raw 文件，创建当日共享汇总文件，并在 TEAM-STATUS 新增 2026-04-17 团队输入快照登记 received_daily_report 状态。
+- 影响：黄宁今日提交已进入 raw 权威层、owner 汇总视图与团队状态权威，后续 CEO/系统查询可直接核对。
+- 原因：收到黄宁 4.17 今日时报，需要完成标准落库与状态登记。
+
+### [小J] 收录黄宁 2026-04-16 今日时报
 - 时间：07:14
 - 文件：
   - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-16/ou_c5bb2da837826b19ea9c7b6747861237.md`
