@@ -1,3 +1,33 @@
+### [Opus-CSO] ai-hotboard 产品化交接 + 裁判/评审架构铁律固化
+- 时间：2026-04-19 14:00
+- 文件：
+  - `~/.hermes/cron/jobs.json`（cron `080514ba1f16` enabled=false + paused_reason）
+  - `~/.hermes/autonomy/ai_hotboard_supervisor_state.json`（phase=archived_as_loop）
+  - `~/.hermes/autonomy/ai_hotboard_codex_handover.md`（新建，Codex 交接 spec）
+  - `~/.org/AGENTS.md`（新增"裁判/评审机制架构铁律"一级 section）
+  - Paperclip issue AI-76（Codex 工单 high）/ AI-77（爱马仕状态同步 medium）
+  - `~/.claude/projects/-Users-tangyuanjc/memory/project_ai_hotboard_product_handoff_0419.md` + MEMORY.md 索引
+- 改动：
+  1. JC 2026-04-19 拍板 ai-hotboard 定位=上线产品（人类员工 AI 热点信息源看板），非监督机制 pilot
+  2. 45 轮对抗炼丹停在 47/80 且 Layer B 反退（source/report 9→3），判定 MVP 失败
+  3. 停 `ai-hotboard-adversarial-v3-15m` cron，状态归档为 `archived_as_loop`（45 轮诊断数据保留作 post-mortem 素材）
+  4. 起草 Codex 一次性还原 contract：6 条硬约束（禁手风琴/M2 不重复/信源+提报默认全展开/徽章样式/oklch/banner）+ scope 红线 + CSO session 内亲判验收（目标 ≥65/80）
+  5. 裁判架构铁律固化到 AGENTS.md：session 内 C-level 亲判优先于 flow2api 中转，HTTP 脚本只做无人值守 fallback
+  6. Paperclip 派 Codex（AI-76 high）+ 通知爱马仕勿重启 cron（AI-77 medium）
+- 影响：
+  1. Codex 按 AI-76 + handover 文档一次性实现 ai-hotboard 产品版，通过后上线
+  2. 爱马仕不再手动重启 ai-hotboard cron 或派 subagent 走老循环
+  3. 未来任何 supervisor/judge 机制设计默认走 session 内 C-level 亲判路径，不再默认套 flow2api（避免 503 阻塞+模型偏旧+脱离上下文三个坑）
+  4. 黑板架构 v2 收编 ai-hotboard 讨论延后至少两周（先独立产品跑稳）
+- 验证：
+  - `paperclipai agent list` 确认 Codex / 爱马仕 agent ID 有效 ✓
+  - cron session 日志确认 phase=stuck 的守门逻辑生效（04-18 23:02 后 cron 每 15min 打 tick 但无副作用）✓
+  - jobs.json enabled=false 后下次 tick 不再触发 ✓
+- 原因：45 轮对抗炼丹 ROI 见顶、Layer B 倒退暴露"冷启动改 A 破 B"的结构缺陷、flow2api 503 阻塞暴露中转裁判架构 quirk；产品级 UI 还原任务应交 Codex 一次性手工 + C-level 亲判，对抗循环留给文本生成/素材遮瑕类可量化渐进任务（参考 Monster Code LibTV）
+- 待办：
+  - [ ] Codex 交付 AI-76，Opus-CSO session 内亲判（目标 ≥65/80）
+  - [ ] 两周观察后评估是否收编黑板架构 v2
+
 ### [小J] add 2026-04-18 daily wrap
 - 时间：21:06
 - 文件：
