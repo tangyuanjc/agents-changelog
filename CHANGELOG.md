@@ -1,3 +1,35 @@
+### [Opus-CSO] ai-hotboard 方案纠偏：三层对抗机制保留 + 4 项修补
+- 时间：2026-04-19 15:15
+- 文件：
+  - `~/.hermes/autonomy/ai_hotboard_charter.md`（加 6 条强化硬约束 + 冻结规则段）
+  - `~/.hermes/autonomy/ai_hotboard_opus_judge.py`（prompt 加 6 条禁止项 + 冻结规则；main 读 previous scores 传入 format）
+  - `~/.hermes/autonomy/ai_hotboard_supervisor_state.json`（phase=opus_review, opus_fail_streak=0, scores_opus 保留）
+  - `~/.hermes/autonomy/ai_hotboard_codex_handover.md`（标为 SUPERSEDED，指向 AI-76 新 spec）
+  - Paperclip AI-76（Codex 改派：工具链修补，非前端）/ AI-77（爱马仕 cron 即将重启状态更新）
+- 改动：
+  1. JC 纠偏：撤销"Codex 一次性按 charter 手工还原"shortcut，三层对抗式监督机制继续推进直到验收
+  2. charter 补丁：6 条强化硬约束（禁手风琴 / M2 不重复 / 信源 7 + 提报 3 默认全展开 / 徽章 #2a2f3e 32px 圆 / oklch / banner 无左边框）写入"硬边界"段；新增"冻结规则"段（≥8 分维度下降超 2 分 = P0）
+  3. opus_judge prompt 升级：禁止项扩充 6 条；加"上轮 scores 参考"block；冻结规则 prompt 化
+  4. opus_judge main() 扩展：读 state.json.scores_opus 传入 format，首轮 fallback 文案"（首轮，无历史分数）"
+  5. state reset：phase=archived_as_loop → opus_review，fail_streak 3→0；scores_opus 保留供冻结规则参照
+  6. AI-76 改派：Codex 不做前端，改做工具链修补（mechanical_checks 加 6 条规则 + opus_judge flow2api 稳定性：指数重试 + Anthropic 直连降级链）
+  7. AI-77 改派：爱马仕 cron 即将重启，subagent 派单须传达 6 条硬约束 + 冻结规则
+- 验证：
+  - `python3 -c "...JUDGE_PROMPT_TEMPLATE.format(dom_summary, previous_scores)"` format 无冲突 ✓
+  - state.json 新 phase 生效 ✓
+  - AI-76 / AI-77 paperclip 更新成功 ✓
+- 影响：
+  1. 三层对抗式监督（M2W1 核心任务）保留，不被单一产品任务 shortcut 掉
+  2. 冻结规则解决"改 A 破 B"结构缺陷，Layer B 倒退（9→3）不会再静默通过
+  3. opus_judge 稳定性修复后不会再因 flow2api 503 阻塞
+  4. cron 重启后预期能收敛到 3 连 pass，ai-hotboard 作为产品自然上线
+- 原因：本 session Opus-CSO 早上判 MVP 失败 → 提议 Codex 一次性交付，JC 明确纠偏保留三层机制（M2W1 核心价值）。修补而不是跳过，是对 M2 战略的忠诚
+- 待办：
+  - [ ] Codex 完成 AI-76（mechanical + judge stability）
+  - [ ] Opus 审 Codex 代码 dry-run
+  - [ ] Opus 重启 cron `080514ba1f16`
+  - [ ] 三层机制跑到 3 连 pass → phase=converged → 上线
+
 ### [Opus-CSO] ai-hotboard 产品化交接 + 裁判/评审架构铁律固化
 - 时间：2026-04-19 14:00
 - 文件：
