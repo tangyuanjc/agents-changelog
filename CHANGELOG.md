@@ -1,3 +1,36 @@
+### [Opus-CSO] ai-hotboard v1 收敛上线（CSO 亲判 69/80）
+- 时间：2026-04-19 17:05
+- 文件：
+  - `~/hermes-workspace/` commit `48ff110`（Codex 独立 session 交付前端 v1）
+  - `~/.hermes/autonomy/ai_hotboard_opus_review.json`（round 46 CSO session 亲判记录）
+  - `~/.hermes/autonomy/ai_hotboard_supervisor_state.json`（phase=converged, total=69）
+  - `~/.hermes/autonomy/ai_hotboard_FINAL_REPORT.md`（新建，对抗循环终结文档）
+  - Paperclip AI-76 / AI-77 status=done
+- 改动：
+  1. Codex 2026-04-19 15:13 CST 独立 session 按强化 charter + 6 条硬约束交付 ai-hotboard 前端 v1（commit 48ff110）
+  2. Opus-CSO 2026-04-19 17:05 CST session 内亲判（claude-opus-4-7[1m] 多模态读 DOM dump + screenshot + 双锚点图）
+  3. 8 维度总分 69/80：Layer A 22/30（layout 7/ card 9/ visual 6）+ Layer B 47/50（signal 7/ action 10/ source 10/ report 10/ strategy 10）
+  4. 冻结规则全通过：零维度倒退，Layer B source/report 从上轮 3 反弹到 10（上轮最致命倒退灾区完美修复）
+  5. 6 条硬约束全 pass：禁手风琴 / M2 不重复 / 信源+提报默认全展开 / 徽章样式 / oklch / banner 无左边框
+  6. JC 拍板 B 务实上线：CSO session 亲判 = 终审，phase=converged（跳过 charter 3 连 pass，因 Codex 非 cron subagent 重跑无意义）
+  7. AI-76 (Codex) + AI-77 (爱马仕) 关闭，P1 polish（header 面板 / 密度 / 徽章尺寸）延后独立工单
+- 影响：
+  1. ai-hotboard v1 正式可用，人类员工 + 爱马仕 + 小J + 其他 agent 的 AI 热点信息源之一
+  2. 三层对抗式监督机制（机械预检 + 自评 + Opus Judge）M2W1 核心任务完美验证：46 轮 total 49→47→stuck→46（新轮次 CSO 亲判）→69 收敛
+  3. 机制经验沉淀：charter 硬约束要具体到 DOM/CSS 层 + 冻结规则防改 A 破 B + session 内 C-level 亲判 > flow2api 中转
+  4. 对抗循环任务边界明确：文本生成/素材遮瑕可用（Monster Code LibTV）；视觉还原类需配合独立工程师一次交付 + C-level 亲判
+- 验证：
+  - CSO 在 session 内直接多模态对比 3 张图 + DOM dump，不走 API 中转 ✓
+  - state.json phase=converged 生效 ✓
+  - Paperclip 两条 issue 关闭 + final verdict 评论已留痕 ✓
+  - FINAL_REPORT.md 按 charter 规定产出 ✓
+- 原因：JC 今早判"三层对抗机制推进直到能验收就行"，现在能验收且 pass；P1 polish 不阻塞产品使用；继续跑 cron 循环反而可能让 hermes subagent 手痒改代码破坏稳定版
+- 待办：
+  - [ ] ai-hotboard v1 向员工公告（JC 决定渠道）
+  - [ ] P1 polish 独立工单（两周内 Codex）
+  - [ ] 真实信源 pipeline 接入（X / 公众号 / 小红书 / JC 日记）= v2 milestone
+  - [ ] 两周稳定运行后评估黑板架构 v2 收编
+
 ### [Opus-CSO] ai-hotboard 方案纠偏：三层对抗机制保留 + 4 项修补
 - 时间：2026-04-19 15:15
 - 文件：
