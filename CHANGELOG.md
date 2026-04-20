@@ -1,3 +1,13 @@
+### [Opus-CSO] 修正:奥格威飞书app id记录错误
+- 时间：2026-04-20 15:10
+- 文件：
+  - `~/.opus-lab/ogilvy/workspace/STATE.md`
+  - `~/.opus-lab/ogilvy/runtime-decision.md`
+  - `~/.opus-lab/ogilvy/credentials.env`（新建,chmod 600,不提交）
+- 改动：上一条changelog把奥格威app id错记为`cli_a908948c53f89bb4`(实际是小J的app)。正确值是`cli_a93f952b25b89cef`(奥格威openclaw时代就有独立app,四个worker xiaoj/gauss/ogilvy/brandagent各自独立凭证)。已tenant_access_token API验证凭证有效(code=0 expire=7200)。
+- 原因：从`~/.openclaw.pre-migration/env/templates/openclaw-secrets.env.template`看到`FEISHU_APP_ID=cli_a908948c53f89bb4`误认为是奥格威app,实际是openclaw默认(小J)app。`openclaw.json`的`channels.feishu.accounts`才是各worker真实映射。
+- 教训：openclaw.json > .env template 优先级,未来查openclaw时代worker凭证走前者。
+
 ### [Opus-CSO] 奥格威从黑板架构Layer 5移出,Opus Lab私有试验田成立
 - 时间：2026-04-20 14:50
 - 文件：
