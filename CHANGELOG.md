@@ -1,3 +1,13 @@
+### [COO] 黄宁 2026-04-20 日报入库
+- 时间：2026-04-20 17:59
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-20/ou_c5bb2da837826b19ea9c7b6747861237.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-20.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：登记黄宁今日时报，raw落库；创建当日共享汇总并写入黄宁section；在TEAM-STATUS新增2026-04-20团队输入快照记录。
+- 影响：owner/system 后续可按权威层查询黄宁今日已提交日报及原始路径。
+- 原因：黄宁通过飞书DM提交2026-04-20今日工作、产出、AI使用与明日计划，需要按team lane流程入库。
+
 ### [Opus-CSO] 修正:奥格威飞书app id记录错误
 - 时间：2026-04-20 15:10
 - 文件：
