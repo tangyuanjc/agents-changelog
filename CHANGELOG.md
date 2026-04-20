@@ -1347,3 +1347,10 @@
 - 改动：1) 给 hindsight memory plugin 增加 snake_case/camelCase 配置归一化，兼容 `api_key`/`bank_id` 这类 profile 写法，避免明明有 key 却读成空值；2) gateway 在替换 cached agent 时，先关闭旧 agent 的 memory provider，减少 `Unclosed client session` 残留；3) 恢复 COO profile 的 `display.tool_progress: all`，同时把 Feishu 群聊的 tool/status 外显继续限制在非群聊路径，保留 owner 主会话进度外显。
 - 影响：小J 的 hindsight 不再因配置键名不匹配而持续 401；主会话重新能看到 `skill_view/terminal/session_search` 等过程外显；群聊不会再因为这个回滚而重新刷出常规工具轨迹。
 - 原因：JC 明确要求保留主会话进度外显；同时 2026-04-17 凌晨日志显示 hindsight 持续 401，且 gateway 在缓存 agent 替换时没有清理旧 memory provider，存在 client session 泄漏风险。
+
+### [小J] 记录 owner 确认的团队汇报范围与本周事项边界
+- 时间：10:50
+- 文件：workspace/PRIORITY.md、workspace/TODO.md、workspace/projects/ai-ecommerce-org/TEAM-STATUS.md、workspace/projects/ai-ecommerce-org/TEAM-MEMORY.md、workspace/daily-logs/2026-04-20.md
+- 改动：记录战略优先级待 jc 与 CSO Opus 讨论后同步；春羡离职交接等待行政答案；数据管道由 jc 与 Codex 先修；芳芳纳入团队日报/汇报体系，Dino 作为品牌合伙人不纳入日报/汇报催收
+- 影响：后续日报、巡检、团队状态统计计入芳芳，不再把 Dino 计入应交/缺报
+- 原因：jc老大在 2026-04-20 10:50 明确最新运营口径
