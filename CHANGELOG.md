@@ -1660,3 +1660,10 @@
 - 改动：登记欣欣 4.20 今日时报，并补记当日团队输入快照
 - 影响：owner/system 可在权威层查看欣欣今日日报提交状态
 - 原因：收到欣欣 4.20 日报，按 team inbox 流程落库
+
+### [Codex-CTO] Hermes脏改动清零+历史patch fork化
+- 时间：04:07
+- 文件：`~/.hermes/hermes-agent`；`~/.config/superpowers/worktrees/hermes-agent/*`；`~/agents-changelog/hermes-pr-13115-weekly-checklist.md`；`~/.hermes/hermes-agent-cleanup-backup/2026-04-21/`；`~/hermes-workspace/.imports/hermes-agent-ai-hotboard-2026-04-21/`
+- 改动：先将 `~/.hermes/hermes-agent` 主仓工作树的 30 个脏改动+未跟踪文件整体封存为 `stash` 和补丁备份，再把本地 `main` fast-forward 到最新 `origin/main` 实现 `git status -s` 归零；补完并推送 `fix/cron-config-provider-inheritance`、`fix/launchd-update-recovery` 两个 fork 分支并分别开 upstream PR `#13171`、`#13172`；保留既有 PR `#13115`、`#13128`、`#13132`、`#13153`、`#13165`、`#13166`；将难以当场判定但不能直接丢的历史 patch 另建 `archive/historical-dirty-patches-20260421` 归档分支保存；把 `website/src/pages/ai-hotboard/` 两个未跟踪页面移存到 `~/hermes-workspace/.imports/hermes-agent-ai-hotboard-2026-04-21/`，其余临时产物移存到 `~/.hermes/hermes-agent-cleanup-backup/2026-04-21/untracked/`；另外创建 `hermes-pr-13115-weekly-checklist.md` 作为每周巡检清单。
+- 影响：Hermes core vendor repo 恢复到干净可升级状态，不再背着历史脏工作树运行；04-17 三个生产修复和本轮可确认的 04-09 patch 都已具备 fork/PR 落点；未跟踪产物与难判 patch 也都有可追溯归档，不会因清仓而静默丢失。
+- 原因：按 Opus-CSO 2026-04-21 新固化的“🔧 Hermes Core代码改动铁律”执行遗留工单，彻底结束本地裸改 `hermes-agent`、升级前必须手动清脏改动的高风险模式。
