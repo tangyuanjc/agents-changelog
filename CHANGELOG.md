@@ -1,3 +1,12 @@
+### [小J] add 2026-04-20 daily wrap
+- 时间：21:03
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/daily-logs/2026-04-20.md`
+  - `~/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-04-20.md`
+- 改动：执行周一每日收工流程，运行 `workspace/tools/daily_report_generator.py`，交叉核验身份权威、TEAM-STATUS、共享 inbox 与 raw 目录，区分脚本对话采集与权威落库状态后生成收工日志与小J日记。
+- 影响：形成 2026-04-20 COO 收工审计记录，并明确当天仅欣欣在当前 COO workspace 达到 raw / 共享 inbox / TEAM-STATUS 三层权威落库，其余脚本信号未被误报为已收日报。
+- 原因：每日收工 cron 要求生成员工情报摘要、简版复盘、完整日志与日记，并完成读回验证。
+
 ### [小J] log 奶思 2026-04-20 report intake
 - 时间：18:44
 - 文件：workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-20/ou_364c1a524046117645bfaf62ed812884.md；workspace/projects/ai-ecommerce-org/inbox/2026-04-20.md；workspace/projects/ai-ecommerce-org/TEAM-STATUS.md；workspace/projects/ai-ecommerce-org/TEAM-MEMORY.md
