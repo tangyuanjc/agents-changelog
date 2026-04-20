@@ -1,3 +1,59 @@
+### [Opus-CSO] 黑板架构v2→v2.1实战回填 + GBrain Phase 1a正式派工
+- 时间：2026-04-21
+- 文件：
+  - `~/.claude/projects/-Users-tangyuanjc/memory/project_blackboard_architecture_v2_0418.md` (新增v2.1回填章节)
+  - `~/Desktop/ai-company-blackboard-architecture.html` (v2→v2.1, Layer 5奥格威tombstone)
+  - Paperclip AI-84 (爱马仕GBrain Phase 1a runtime验证pilot, priority=high)
+- 改动：
+  1. **Layer 5员工变更**: 奥格威2026-04-20移出Layer 5→Opus Lab友人Agent,高斯/艾伦保留,空位由爱马仕按需补
+  2. **三层对抗机制M2W1首轮完美验证**: ai-hotboard v1 CSO亲判69/80 pass(round 45→46 +22),writer/judge分离+硬约束+冻结规则=收敛
+  3. **裁判机制硬约束固化**: Opus副调度器=session内C-level亲判,HTTP中转只做夜间fallback,不能是唯一裁判路径
+  4. **Opus副调度器实战样本**: ai-hotboard v2五线程派工(CSO拆线程+Codex并行+session亲判)成为N≤5产品级多模块交付协作模板
+  5. **GBrain Phase 1a正式派工**: AI-84 issue(爱马仕指派,priority=high),触发runtime验证pilot,爱马仕cron会pick up执行
+- 验证：
+  - v2 memory增加4个章节可读 ✓
+  - HTML架构图版本badge v2→v2.1 ✓
+  - Layer 5 Workers 3→2+tombstone显示 ✓
+  - Changelog区块加v2→v2.1条目 ✓
+  - Paperclip AI-84创建成功(assigneeAgentId=爱马仕) ✓
+- 影响：
+  1. v2架构不再只是设计,三层对抗机制+裁判机制有实战证据
+  2. 未来类似"产品级多模块交付"任务直接走五线程协作模板
+  3. Opus副调度器模式被硬约束:不走HTTP中转,session内亲判
+  4. GBrain Phase 1基础设施从"装完等pilot"进入"正式派工爱马仕执行"
+- 原因：
+  - v2架构04-18定案后,04-19到04-21陆续完成ai-hotboard v1上线/v2派工+Opus Lab奥格威重定位,这些是v2架构的实战演化,需要回填进baseline memory避免下次决策时翻旧记忆
+  - GBrain PILOT.md放在~/.hermes/只是被动等待,3天没被执行,走Paperclip issue是爱马仕cron主动扫描的正式触发路径
+- 待办：
+  - [ ] 爱马仕执行AI-84(GBrain Phase 1a)
+  - [ ] 小J Phase 1b issue等爱马仕验证完再派
+  - [ ] screenpipe Mac安装选型
+  - [ ] Phase 2 P1业务核心(产品/SKU/价格/品牌手册)ingest数据源清单
+
+### [Codex-CTO] 修复奥格威 baoyu skill 安装与回复图片不可见
+- 时间：2026-04-20 23:58
+- 文件：
+  - `~/.hermes/profiles/ogilvy/skills/baoyu-diagram/`（新增profile-local hub skill）
+  - `~/.hermes/profiles/ogilvy/skills/.hub/taps.json`（新增`jimliu/baoyu-skills` tap）
+  - `~/.hermes/hermes-agent/gateway/platforms/feishu.py`（回复消息拉取父消息媒体上下文）
+  - `~/.hermes/hermes-agent/tests/gateway/test_feishu.py`（新增回归测试）
+  - `~/.hermes/profiles/ogilvy/SOUL.md`（补Hermes skills安装规则+图片处理规则）
+  - `~/.opus-lab/ogilvy/workspace/AGENTS.md`（补profile-local skill管理与media handling）
+  - `~/.opus-lab/ogilvy/runtime-decision.md`（追加坑6/坑7）
+- 改动：
+  1. 查明`baoyu-skills`当晚失败原因: Ogilvy手动`git clone ... /tmp/baoyu-skills`超时且即使成功也不会进入Hermes profile技能目录;已改用Hermes原生`skills tap/search/install`
+  2. 给Ogilvy profile安装`baoyu-diagram`,现在`hermes --profile ogilvy skills list`可见
+  3. 查明幸运儿户型图不可见原因: `23:30`文字消息的`parent_id`指向一条`msg_type=image`父消息,原适配器只取`reply_to_text`,没取父消息图片资源
+  4. Feishu适配器新增回复上下文媒体拉取:回复图片再发文字时,父消息图片会下载进`media_urls`,进入现有vision enrichment
+  5. 提示词补规则: 外部skill必须用profile-local Hermes安装流;图像任务优先确认真实媒体上下文;给群里看的图产出SVG/PNG而不是只给`.excalidraw`
+- 验证：
+  - `pytest tests/gateway/test_feishu.py -k 'normalize_image_message_sets_reply_placeholder or process_inbound_message_fetches_reply_context'` → 2 passed
+  - `hermes --profile ogilvy skills list | rg baoyu-diagram` → 可见
+- 影响：
+  1. JC再发baoyu类画图需求时,Ogilvy可直接使用`baoyu-diagram`
+  2. 群里"回复一张图再让Ogilvy标注/分析"的路径不再静默丢图
+  3. `ai.hermes.gateway-ogilvy`已重启并保持运行(PID 21056),新Feishu适配器代码已生效
+
 ### [Opus-CSO] 奥格威 Phase 1a 链路打通,hermes profile零代码上线,后续维护交Codex
 - 时间：2026-04-20 21:00
 - 文件：
@@ -1546,4 +1602,3 @@
 - 改动：登记欣欣 4.20 今日时报，并补记当日团队输入快照
 - 影响：owner/system 可在权威层查看欣欣今日日报提交状态
 - 原因：收到欣欣 4.20 日报，按 team inbox 流程落库
-
