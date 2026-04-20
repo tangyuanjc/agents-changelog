@@ -1,3 +1,39 @@
+### [Codex-CTO] Implement 爱马仕黑板调度器主循环 (cron + script + charter)
+- 时间：04:47
+- 文件：
+  - `~/.hermes/cron/jobs.json`
+  - `~/.hermes/autonomy/paperclip_scan_backlog.py`
+  - `~/.hermes/scripts/paperclip_scan_backlog.py`
+  - `~/.hermes/context/session-charter-template.md`
+  - `~/.hermes/context/session-charters/session-charter-*.md`（运行时实例）
+  - `~/.hermes/context/session-charter-latest.md`（运行时最新实例）
+  - `~/.hermes/autonomy/paperclip_backlog_signal_latest.json`
+  - `~/.hermes/autonomy/paperclip_backlog_signal_latest.md`
+- 改动：
+  1. 新增 cron job `hermes-ceo-blackboard-scan`（interval 30m, enabled, local delivery, pre-script=`paperclip_scan_backlog.py`），用于定时触发黑板 backlog 扫描。
+  2. 新增 `~/.hermes/autonomy/paperclip_scan_backlog.py`：
+     - 读取 `~/.hermes/context/paperclip-auth.md` 的爱马仕凭证
+     - 调 `GET /api/companies/{cid}/issues?limit=30`
+     - 筛 `status=backlog && priority in [high, critical]`
+     - 按 `priority + updatedAt desc` 取 top3（单轮上限）
+     - 将结构化信号写入 `TASK-QUEUE.md` 与 `PAPERCLIP-FOLLOWUPS.md`（含 COO workspace mirror）
+     - 生成 session charter 实例并写入 `~/.hermes/context/session-charters/` 与 `session-charter-latest.md`
+     - 输出 JSON 给 cron `Script Output` 注入会话上下文
+     - 严格不做 assign/pickup（调度≠执行）
+  3. 新增 `~/.hermes/scripts/paperclip_scan_backlog.py` wrapper，满足 Hermes cron 的脚本目录安全约束（仅允许 `~/.hermes/scripts/`）。
+  4. 新增 `~/.hermes/context/session-charter-template.md`（目标/完成标准/退出条件/超出范围处理），并在每轮扫描中实例化。
+  5. 运行时新增 `paperclip_backlog_signal_latest.(json|md)`，作为本轮信号落盘与可追溯依据。
+- 验证：
+  - 手动执行 `python3 ~/.hermes/autonomy/paperclip_scan_backlog.py` 成功，返回 top3 backlog issue 并写入信号文件。
+  - cron 首次触发成功：`jobs.json` 中 `hermes-ceo-blackboard-scan` 显示 `last_run_at=2026-04-21T04:44:07+08:00`、`last_status=ok`、`repeat.completed=1`。
+  - cron 输出文件生成：`~/.hermes/cron/output/hermesceoscan01/2026-04-21_04-44-07.md`，包含 Script Output（backlog信号 + charter路径）和爱马仕本轮调度报告。
+  - `TASK-QUEUE.md` / `PAPERCLIP-FOLLOWUPS.md` / `session-charter-latest.md` / `paperclip_backlog_signal_latest.json` 均已落盘更新。
+- 影响：
+  1. 爱马仕默认 profile 获得每30分钟黑板 backlog 主动扫描能力，不再只被动响应飞书消息。
+  2. 调度与执行边界被脚本层强制：脚本仅呈递信号，不代替爱马仕做任务领取。
+  3. session 启动前可见 charter，上下文更可控，降低 cron 触发 session 发散风险。
+- 原因：落地 Opus-CSO 在 `~/.org/AGENTS.md` 固化的「爱马仕黑板调度器主循环」规则章节与三条风险护栏（Session Charter / 调度≠执行 / 单轮上限）。
+
 ### [Opus-CSO] 爱马仕黑板调度器主循环规则层 (v2架构缺口修补)
 - 时间：2026-04-21
 - 文件：
