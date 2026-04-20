@@ -1,3 +1,42 @@
+### [Opus-CSO] 奥格威 Phase 1a 链路打通,hermes profile零代码上线,后续维护交Codex
+- 时间：2026-04-20 21:00
+- 文件：
+  - `~/.hermes/profiles/ogilvy/`（新建hermes profile,和coo同级独立gateway/env/workspace）
+  - `~/.hermes/profiles/ogilvy/.env`（飞书凭证+bot_open_id+home_channel+allowed_users,chmod 600）
+  - `~/.hermes/profiles/ogilvy/SOUL.md`（profile根人设总纲）
+  - `~/.hermes/profiles/ogilvy/config.yaml`（从coo复制改）
+  - `~/.hermes/profiles/ogilvy/workspace` → symlink到 `~/.opus-lab/ogilvy/workspace`（source-of-truth在opus-lab）
+  - `~/.opus-lab/ogilvy/runtime-decision.md` v1.2（最终方案hermes profile+5个踩坑记录+Codex工单池）
+  - `~/.opus-lab/ogilvy/charter.md`（补赵为先画像+合规红线两人共同适用）
+  - `~/.opus-lab/ogilvy/workspace/STATE.md`（Phase 1a完成状态+验证记录）
+  - `~/.opus-lab/ogilvy/workspace/context/ALLOWED_CHATS.md`（群chat_id+三人open_id）
+  - launchd service: `ai.hermes.gateway-ogilvy`
+- 改动：
+  1. 原计划"Bun脚本+派Codex写300行runtime"(v1.0/v1.1)作废,JC点破"hermes profile就够",**零代码上线**
+  2. 创建hermes profile `ogilvy`,和coo同架构,独立飞书app(`cli_a93f952b25b89cef`)+独立gateway
+  3. Workspace物理位置在`~/.opus-lab/ogilvy/workspace/`,通过symlink接入hermes — source-of-truth保留在opus-lab不污染hermes命名空间
+  4. 飞书scope调整(JC操作):订阅`im.message.receive_v1`事件,开`im:message.group_at_msg:readonly`+`im:message.group_at_msg.include_bot:readonly`权限,对外共享已开
+  5. Phase 1a链路全通验证:单聊/群@简单对话/群@真实尽调任务(10分钟+,agent跑浏览器走百度/Bing/巨潮资讯走完完整尽调报告产出)
+- 踩坑(对Codex接手有用,详见runtime-decision.md):
+  1. 误认app_id → openclaw.json `channels.feishu.accounts.ogilvy` 才是权威源
+  2. 群@无响应 → FEISHU_BOT_OPEN_ID留空,hermes `_message_mentions_bot()` drop(DEBUG级日志看不到)
+  3. "No home channel"英文hint → env `FEISHU_HOME_CHANNEL` 控制,不是config.yaml字段
+  4. 外部群查成员232033 → 用bot自己tenant_access_token调API(bot作为群成员有权限)
+  5. 重启前消息不重放 → 配置变更后让用户重发一条触发
+- 影响：
+  1. 奥格威在"最佳损友 飞书群"对外服务JC高中同学两位,friends-only beta
+  2. 使用hermes harness但不挂黑板架构:workspace/数据/memory严格隔离在`~/.opus-lab/`不回流公司
+  3. 不进Paperclip黑板+不调度给爱马仕+不写GBrain+不对外公开
+  4. 未来奥格威运营/bug/prompt调优**全部交Codex-CTO**,不再走Opus-CSO本会话链路(避免scope creep)
+- 待办(工单池,Codex按优先级挑):
+  - [ ] P0 长任务先发"收据"+ETA(尽调10分钟用户无预期)
+  - [ ] P1 简单对话不调tools(当前prompt偏重research模式)
+  - [ ] P1 响应用飞书post富文本(当前plaintext)
+  - [ ] P2 长回复拆分多条消息
+  - [ ] P2 飞书展示名改纯"奥格威"(JC飞书后台操作)
+- 原因：JC本轮原话"不需要codex来写代码,改了MD就能用" + "后面我就不需要再找你来修,直接codex来修就好了"。Opus-CSO本session主要完成架构+上线验证,后续运营移交Codex,符合C-level分工铁律(Opus=CSO战略,Codex=CTO代码)
+- 同步粒度：本条目只说"奥格威Phase 1a链路通+Codex接手",不暴露服务对象具体身份/尽调任务细节/真实用户使用记录,保护朋友隐私
+
 ### [小J] add 2026-04-20 daily wrap
 - 时间：21:03
 - 文件：
