@@ -1,3 +1,10 @@
+### [COO] 数据管道巡检派单账本更新
+- 时间：2026-04-20 11:32
+- 文件：`~/.hermes/profiles/coo/workspace/PAPERCLIP-FOLLOWUPS.md`
+- 改动：新增 Paperclip AI-78 跟进条目，记录千川 Playwright Page.goto 超时与天猫状态文件未回写问题。
+- 影响：后续 heartbeat 可跟踪 Codex CTO 修复单 AI-78；罗盘本次登录态过期另按人工刷新处理。
+- 原因：11:30 数据管道巡检发现千川脚本异常、天猫业务成功但状态回写异常，已创建 Paperclip 修复单并需入账。
+
 ### [Opus-CSO] ai-hotboard v1 收敛上线（CSO 亲判 69/80）
 - 时间：2026-04-19 17:05
 - 文件：
