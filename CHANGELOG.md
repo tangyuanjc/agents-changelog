@@ -1,3 +1,34 @@
+### [Opus-CSO] ai-hotboard v2 启动：5 条并行线程派 Codex
+- 时间：2026-04-20 18:15
+- 文件：
+  - `~/.hermes/autonomy/ai_hotboard_charter.md`（信源 / 信源提报 子项白名单 v2 调整）
+  - `~/.hermes/autonomy/ai_hotboard_opus_judge.py`（prompt 硬约束 3/4 同步 v2 子项）
+  - Paperclip AI-79 / AI-80 / AI-81 / AI-82 / AI-83（Codex 5 线程工单）
+- 改动：
+  1. JC 2026-04-20 确认 ai-hotboard 定位 = 5-8 真人员工 + agent 公网共用 + 全员共识投票，走 v2 完整路径（跳过 MVP 中间态）
+  2. 数据源优先级定：X 4 路（接爱马仕已有 cron `x-bookmark-signal-sync-*` 产物）为主；公众号 / 小红书 / JC 人类高质量对谈 (原肖恩对谈) 保留占位 v2 milestone；JC 苹果备忘录日记**从白名单移除**（JC 私人信源不开放员工）
+  3. charter / opus_judge prompt 同步改：信源 7 子项更名占位 + 信源提报从 3→2（移除 JC 日记）
+  4. 发现并记录：爱马仕 X cron 3 条每天 12:30/18:30/00:30 enabled，产物 schema 含 bookmarks/likes/following/for_you 各 20 条；但 JSON mtime 04-16 vs cron last_run 04-20 不一致，有静默失败 bug 待 Codex 诊断
+  5. 5 条并行 Codex 工单全部创建（assign=Codex, CSO 验收），每线程独立分支 `ai-hotboard/thread-N-xxx`
+- 线程清单：
+  - AI-79 thread-1 按钮交互 + 投票持久化（high）：前端 button 化 + POST /api/hotboard/vote + SQLite 持久化 + GET aggregate
+  - AI-80 thread-2 X 4 路信号接入 + cron 诊断（high）：feed API + 主时间轴合并 + 诊断 cron 不写 JSON
+  - AI-81 thread-3 多用户认证 飞书 SSO（medium）：白名单 5-8 员工 + session 跨进程持久
+  - AI-82 thread-4 公网部署（medium）：默认 Cloudflare Tunnel 方案，JC 拍板前不动手
+  - AI-83 thread-5 左栏导航路由 + 信源提报写入（medium）：各导航项占位 + intake API
+- 影响：
+  1. Codex 明天开始并行跑，预计 3-5 天全部交付
+  2. 合并顺序：2 → 1 → 5 → 3 → 4（数据先行，部署最后）
+  3. CSO 回收 5 次，每次 session 内亲判（沿用 AI-76 成功模式）
+  4. v2 上线后 5-8 真人员工 + agent 公网可用，全员投票收集喜好信号
+  5. 本次派单采用 JC 提议的分线程 workers 模式，验证 "CSO 分工 + Codex 长线程并行" 协作模板
+- 原因：JC 明确走 v2 完整路径（非 MVP），CSO 拆 5 线程充分利用 Codex 长线程能力；每线程 1 spec + 1 分支避免冲突
+- 待办：
+  - [ ] JC 在 AI-82 决策：Cloudflare Tunnel vs 云主机 + 提供域名
+  - [ ] Codex 完成 5 线程（预计 04-23 前）
+  - [ ] CSO 回收验收 5 次，按依赖顺序 merge 到 main
+  - [ ] v2 公网上线后做员工使用公告
+
 ### [COO] 黄宁 2026-04-20 日报入库
 - 时间：2026-04-20 17:59
 - 文件：
