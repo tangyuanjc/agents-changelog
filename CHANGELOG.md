@@ -1,3 +1,38 @@
+### [Opus-CSO] 爱马仕黑板调度器主循环规则层 (v2架构缺口修补)
+- 时间：2026-04-21
+- 文件：
+  - `~/.org/AGENTS.md` (新增"爱马仕黑板调度器主循环"章节,162行→265行)
+  - Paperclip AI-86 (派 Codex 做 cron + 脚本 + session charter,priority=high)
+- 改动：
+  1. **问题诊断**: v2架构里爱马仕=黑板调度器,但实际只响应飞书消息不扫 Paperclip backlog。AI-84 (GBrain Phase 1a) 派出后无响应验证了这个缺口。
+  2. **规则层落地**: 爱马仕主循环5步 (Lane Check → 扫黑板 → 读TASK-QUEUE → 处理触发信号 → 收尾前再扫)
+  3. **调度规则**: 对每条 backlog issue 4种 action (分派/pick up/追问/建议 close)
+  4. **三条风险护栏**:
+     - Session Charter (防发散,参考小J 346KB session教训)
+     - 调度≠执行 (防单点瓶颈,爱马仕不自己扛所有 issue)
+     - 单轮上限3条 (防 session 爆炸)
+  5. **派工给 Codex (AI-86)** 实施配置/代码层:
+     - `~/.hermes/cron/jobs.json` 加 `hermes-ceo-blackboard-scan` (interval 30min)
+     - `paperclip_scan_backlog.py` 脚本 (列 backlog → 呈递爱马仕,不自动 assign)
+     - Session charter 模板文件
+- 验证：
+  - AGENTS.md 『爱马仕黑板调度器主循环』章节已加 ✓
+  - Paperclip AI-86 创建成功 (assigneeAgentId=fc27cbd2 Codex) ✓
+  - AGENTS.md 规则和 AI-86 描述互为引用 ✓
+- 影响：
+  1. **只影响爱马仕** — 小J/Opus/Codex/其他agent不受此规则约束
+  2. **爱马仕下次 session 应该自动跑主循环**,扫 backlog 处理 AI-84 和其他 high priority issue
+  3. cron 层 (AI-86) 落地后,无人值守时 backlog 也会被 30min 粒度处理
+- 分工澄清 (feedback_md_ownership确认):
+  - 规则 MD (AGENTS.md) = Opus-CSO 做 ← 本条目
+  - cron 配置 + 代码脚本 = Codex 做 ← AI-86 在 backlog
+- 原因：v2架构v2.1定案后,第一次"设计vs现实"漂移被发现(AI-84无响应),需要填补 Layer 3 调度器的实际运作机制
+- 待办：
+  - [ ] Codex 完成 AI-86 (cron + 脚本 + charter)
+  - [ ] 爱马仕执行 AI-84 (GBrain Phase 1a)
+  - [ ] 主循环正式跑起来后观察 backlog 处理效率
+  - [ ] Event-driven (Paperclip webhook) 留 M2W2 再评估
+
 ### [Opus-CSO] Hermes Core代码改动铁律固化(AGENTS.md)+Codex接手fork维护
 - 时间：2026-04-21 01:30
 - 文件：
