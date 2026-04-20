@@ -1,3 +1,26 @@
+### [Opus-CSO] Hermes Core代码改动铁律固化(AGENTS.md)+Codex接手fork维护
+- 时间：2026-04-21 01:30
+- 文件：
+  - `~/.org/AGENTS.md`（新增"🔧 Hermes Core代码改动铁律"章节,在"改动日志铁律"之前）
+- 改动：把2026-04-21建立的fork-based工作流机制化为全局铁律:
+  1. 改 `~/.hermes/hermes-agent/` 下core路径(agent/gateway/cron/hermes_cli/plugins/tools/tests) = 必须走fork+PR流程
+  2. 标准流程7步: fetch origin → 开分支 → 改必要文件 → 测试 → commit → push fork → 发upstream PR
+  3. Fork地址 `github.com/tangyuanjc/hermes-agent`,本地remote名 `fork`
+  4. Hermes升级前必做: `git status -s`确认working tree干净,有脏改动先PR再升级
+  5. Codex-CTO每周扫: 脏改动数量归零 + 跟进未合入PR rebase
+  6. 违规(直接改本地working tree)立即转fork分支+记入changelog "违规事项"
+- 影响：
+  1. **未来所有hermes升级不再需要`git reset --hard`清patch**,走fork rebase就行
+  2. 爱马仕/小J/奥格威**跨agent共享的hermes核心修复**有正式归档路径(fork分支+upstream PR),不再散落在本地working tree
+  3. JC对fork/PR一窍不通也能放心,规则化后Codex自动执行
+- 遗留工单(Codex本周内清)：
+  - [ ] 2026-04-17的3个生产修复(群聊PDF工具外显/Vision OCR备胎/小J hindsight鉴权)各自开fork分支+upstream PR
+  - [ ] 2026-04-09那批11个不明patch诊断源头,能丢的丢,值得保留的开分支
+  - [ ] 未跟踪文件(`tmp_monster_analysis.py`/`xiaoming_split_candidate.md`/`outputs/`等)评估删除or另存
+  - [ ] 目标: 一周内`git status -s`输出归零
+- 原因：JC原话"我是真的看不懂这些的fork和PR的逻辑的...索性你改一次Agent MD去把这个规则同步啊"。规则化后JC无需介入技术细节,Codex自主按规则走,Opus-CSO只在架构级决策参与
+- 参考: `project_hermes_fork_established_0421.md`(里程碑详情+验证命令)
+
 ### [Opus-CSO] 黑板架构v2→v2.1实战回填 + GBrain Phase 1a正式派工
 - 时间：2026-04-21
 - 文件：
