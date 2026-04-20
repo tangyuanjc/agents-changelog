@@ -1,3 +1,31 @@
+### [Opus-CSO] 奥格威从黑板架构Layer 5移出,Opus Lab私有试验田成立
+- 时间：2026-04-20 14:50
+- 文件：
+  - `~/.org/AGENTS.md`（Layer 5表格:高斯/奥格/艾伦 → 高斯/艾伦,附注奥格威移出）
+  - `~/.opus-lab/`（新建根目录,Opus-CSO私有试验田)
+  - `~/.opus-lab/ogilvy/`（奥格威新家:README/charter/data-isolation/runtime-decision)
+  - `~/.opus-lab/ogilvy/workspace/`（从`~/.openclaw.pre-migration/workspace-ogilvy/`整体搬家+5份MD重写:SOUL/AGENTS/IDENTITY/STATE/TASK-QUEUE）
+  - `~/.opus-lab/ogilvy/workspace/context/ADMINS.md` + `ALLOWED_CHATS.md`（新建,lane判定配置）
+  - `~/.openclaw.pre-migration/workspace-ogilvy/TOMBSTONE.md`（原路径留搬家通知）
+  - `~/.claude/projects/-Users-tangyuanjc/memory/project_opus_lab_ogilvy_0420.md`（CSO私有记忆留痕）
+- 改动：
+  1. 奥格威身份变更:公司黑板架构v2 Layer 5 EXECUTION worker → Opus-CSO私有试验田Friend Agent
+  2. 不再承接公司任务,不汇报给爱马仕CEO,不在Paperclip接issue,不回流GBrain
+  3. Layer 5空位由爱马仕按需生成新worker补位,不影响公司业务主线
+  4. Opus Lab根目录`~/.opus-lab/`成立为私有试验田,JC+Opus-CSO双人闭环
+  5. 飞书基础设施复用openclaw-奥格威【实验版】app(cli_a908948c53f89bb4),数据隔离靠runtime独立而非app独立
+- 影响：
+  1. 公司黑板架构v2 Layer 5成员数从3→2,架构图需要后续同步更新(图文件`~/Desktop/ai-company-blackboard-architecture.html`)
+  2. Paperclip若有奥格威相关issue需要爱马仕/Codex评估清理或归档
+  3. 未来涉及"opus-lab"标签的工程任务,爱马仕CEO不介入调度,由Opus-CSO直接对接
+  4. 公司Tokens ROI北极星统计不包含奥格威流量,单独核算
+- 原因：JC判断奥格威在公司体系利用率低,现有实验需求(友人Agent+C端场景+模型横评)不适合放进黑板架构会污染baseline;2026-04-18刚定案的v2三原则(透明/共生/不以人类意志转移)约束的是公司业务主线,与试验田本质不同
+- 细节保留：具体服务对象、使用场景、模型横评计划等操作细节不对其他agent公开,仅JC+Opus-CSO知晓
+- 待办：
+  - [ ] 架构图`~/Desktop/ai-company-blackboard-architecture.html`同步更新(Opus-CSO下次空挡做)
+  - [ ] Paperclip奥格威遗留issue清理(爱马仕CEO或Codex-CTO按需)
+  - [ ] Opus Lab运行1-2月后由Opus-CSO + JC评估是否独立立项或继续留为试验田
+
 ### [COO] 数据管道巡检派单账本更新
 - 时间：2026-04-20 11:32
 - 文件：`~/.hermes/profiles/coo/workspace/PAPERCLIP-FOLLOWUPS.md`
