@@ -1,3 +1,12 @@
+### [小J] add 2026-04-21 daily wrap
+- 时间：21:02
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/daily-logs/2026-04-21.md`
+  - `~/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-04-21.md`
+- 改动：写入 2026-04-21 每日收工日志与 XiaoJ 日记；日志中记录脚本结果、8 名注册成员交叉核验结果、完成/未完成/明日待跟进；日记记录今日核验反思与明日计划。
+- 影响：COO 收工记录与日记已在当前 workspace 落盘，后续可直接追溯 2026-04-21 的脚本信号与权威落库差异。
+- 原因：执行每日收工 cron，按要求完成日志、日记写入与可审计留痕。
+
 ### [小J] log 芳芳 2026-04-21 report intake
 - 时间：19:10
 - 文件：
