@@ -1,3 +1,33 @@
+### [Opus-CSO] 黑板架构v2.1→v2.2 派单全向互通 + 爱马仕调度器语义升级
+- 时间：2026-04-22
+- 文件：
+  - `~/.claude/projects/-Users-tangyuanjc/memory/feedback_all_agents_can_dispatch.md` (新增)
+  - `~/.claude/projects/-Users-tangyuanjc/memory/feedback_xiaoj_dispatch_boundary.md` (新增)
+  - `~/.org/AGENTS.md` (加"派单协议·全向互通"章节)
+  - `~/Desktop/ai-company-blackboard-architecture.html` (v2.1→v2.2,Layer 3加相互派单箭头+爱马仕语义升级+小J边界标注)
+  - `~/.claude/projects/-Users-tangyuanjc/memory/MEMORY.md` (索引更新)
+- 改动：
+  1. **派单全向互通确立**: 任何C-level可直接派任何C-level/worker,不必走爱马仕中转
+  2. **爱马仕调度器语义升级**: 从"派工唯一出口"→"冲突仲裁+全局优先级+无主分派",不审批C-level间的直接派单
+  3. **小J派单边界**: 员工请求涉及架构/核心代码/配置变更,小J必须升级JC,不得自主派Codex
+  4. **实战证据**: 2026-04-21 Opus直接派Codex AI-86(21分钟完成) / 派爱马仕AI-84(成功执行) — 这些已经在走全向互通模式,本次只是规则层固化
+- 验证：
+  - AGENTS.md "派单协议"章节已加 ✓
+  - 两个feedback memory内容完整,互相引用 ✓
+  - MEMORY.md索引包含新条目 ✓
+  - 架构图v2.2 Layer 3 加相互派单箭头 ✓
+- 影响：
+  1. **认知层**: C-level不再默认"等爱马仕派单",发现事就可以直接派
+  2. **执行层**: 爱马仕cron主循环(AI-86)处理的是无主/冲突/全局优先级,不是代派所有事
+  3. **安全层**: 小J边界保证人类员工不能透过小J间接改架构(防攻击面+架构漂移)
+- 原因：
+  - JC 2026-04-22 看AI-86完成后主动点破"派单是不是也全向互通" — 直觉对齐黑板架构本意
+  - 符合v2三原则 透明+共生+不以人类的意志转移
+  - 之前默认"JC/Opus/爱马仕派→Codex/小J执行"单向链路是规则层滞后于能力层的认知惯性,不是架构要求
+- 待办：
+  - [ ] C-level首次按新规则互相派单的实战验证(Opus等机会实测 codex exec + Codex互派)
+  - [ ] 小J边界规则在小J的session规则里补充实施(单独brief给小J或AGENTS.md小J专区)
+
 ### [小J] add 2026-04-21 daily wrap
 - 时间：21:02
 - 文件：
