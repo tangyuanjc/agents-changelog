@@ -1,3 +1,13 @@
+### [小J] log 皮皮 2026-04-21 report intake
+- 时间：18:45
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-21/ou_3a1e620f3a86ac4bd8f5908e9c972eda.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-21.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：登记皮皮 2026-04-21 今日日报，已落库 raw inbox 与当日共享汇总；`TEAM-STATUS.md` 因底层文件读取死锁（Resource deadlock avoided）本次未完成写入。
+- 影响：owner / system 可从 raw 与共享汇总读取皮皮今日日报；状态权威层仍待 owner/system 修复文件死锁后补登记。
+- 原因：执行 team lane 日报入库，并如实记录部分完成与阻塞原因。
+
 ### [小J] log 小龙 2026-04-21 report intake
 - 时间：18:32
 - 文件：
