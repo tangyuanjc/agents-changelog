@@ -1,3 +1,44 @@
+### [Opus-CSO] AGENTS.md治理协议 + 宪法传达机制 (v2.2后续)
+- 时间：2026-04-22
+- 文件：
+  - `~/.org/AGENTS.md` (顶部加"📜 本文件治理协议"章节,元规则)
+  - `~/.hermes/AGENTS.md` (新增symlink → `~/.org/AGENTS.md`,爱马仕继承宪法)
+  - `~/.hermes/profiles/coo/workspace/AGENTS.md` (顶部加"宪法引用"章节)
+  - `~/.opus-lab/ogilvy/workspace/AGENTS.md` (顶部加"宪法引用·Opus Lab隔离"章节)
+  - `~/.codex/memories/CLI-START-HERE.md` (加"公司宪法"小节+跨agent任务读宪法映射表)
+  - `~/.claude/CLAUDE.md` (加"公司宪法"小节+三动作决策树)
+- 改动：
+  1. **治理协议固化** — AGENTS.md顶部新增元规则章节,明确:
+     - 宪法(全局) vs 章程(profile-local)分层
+     - 宪法应该/不应该包含什么(正反清单)
+     - AGENTS.md / memory / changelog 三文件分工
+     - 三动作决策树 (改AGENTS.md/changelog/GitHub什么时候做)
+     - 常见场景速查表
+     - Opus-CSO是宪法唯一writer,其他agent发现需改派issue给Opus
+  2. **宪法传达机制** — 解决"我写的规则可能没人读"gap:
+     - 爱马仕symlink继承全局宪法(他之前没AGENTS.md)
+     - 小J/奥格威profile-local章程顶部加宪法引用段(按需read,不全量load)
+     - Codex CLI-START-HERE指向全局宪法+跨agent任务读宪法映射表
+     - Claude CLAUDE.md加明确的跨agent任务必读宪法指令
+  3. **覆盖范围** — 所有4个入口(Claude CLI/桌面/Web · Codex CLI/桌面)都能通过各自load路径触达全局宪法
+- 验证：
+  - 爱马仕symlink: `ls -la ~/.hermes/AGENTS.md` → 指向 `~/.org/AGENTS.md` ✓
+  - 小J/奥格威workspace AGENTS.md 顶部含宪法引用段 ✓
+  - Codex memories CLI-START-HERE 含"0. 公司宪法"章节 ✓
+  - Claude CLAUDE.md顶部含"公司宪法"章节 ✓
+- 影响：
+  1. **治理层升级** — AGENTS.md第一次有"自身治理"的元规则,JC不再需要人肉判断"什么时候改AGENTS.md"
+  2. **传达机制落地** — v2架构的宪法层真正对各agent生效,不再是Opus自言自语
+  3. **为未来所有session铺路** — 新session启动时按各自入口自动触达宪法引用,按需read对应章节
+- 原因：
+  - JC 2026-04-22 问 "什么时候改AGENTS.md/写changelog/push GitHub" — 暴露宪法治理协议缺失
+  - CSO查证发现 `~/.org/AGENTS.md` 实际上没被各agent自动load,规则可能只有Opus在读 — v2架构第二个"设计vs现实"漂移
+  - JC定调:"AGENTS.md就应该是所有Agents都遵循的宪法,类似公司章程" — 明确定位为黑板架构必经基础设施
+- 待办：
+  - [ ] 派test issue给爱马仕验证symlink后新session能读到宪法规则
+  - [ ] 考虑下次专门window对宪法做"瘦身"(把B类战略baseline移到memory,只保留A类跨agent铁律)
+  - [ ] Codex执行AI-86已完成但主循环尚未真实cron触发过,需观察首次cron fire
+
 ### [Opus-CSO] 黑板架构v2.1→v2.2 派单全向互通 + 爱马仕调度器语义升级
 - 时间：2026-04-22
 - 文件：
