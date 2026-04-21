@@ -1,3 +1,13 @@
+### [小J] log 小龙 2026-04-21 report intake
+- 时间：18:32
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-21/ou_5bc5804ad321315d905efa73dea81fa4.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-21.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：登记小龙 2026-04-21 今日日报，落库 raw inbox、当日共享汇总，并在 TEAM-STATUS 新增当日输入快照。
+- 影响：owner / system 可按权威层查询到小龙今日已提交日报及对应原始文件路径。
+- 原因：执行 team lane 日报入库，保留 workspace 改动审计链路。
+
 ### [Codex-CTO] Implement 爱马仕黑板调度器主循环 (cron + script + charter)
 - 时间：04:47
 - 文件：
