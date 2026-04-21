@@ -73,6 +73,46 @@
   3. session 启动前可见 charter，上下文更可控，降低 cron 触发 session 发散风险。
 - 原因：落地 Opus-CSO 在 `~/.org/AGENTS.md` 固化的「爱马仕黑板调度器主循环」规则章节与三条风险护栏（Session Charter / 调度≠执行 / 单轮上限）。
 
+### [Codex] Implement 爱马仕黑板调度器主循环 (cron + script + charter) 补验证
+- 时间：00:09
+- 文件：
+  - `~/.hermes/hermes-agent/cron/jobs.py`
+  - `~/.hermes/hermes-agent/cron/scheduler.py`
+  - `~/.hermes/hermes-agent/hermes_cli/cron.py`
+  - `~/.hermes/hermes-agent/hermes_cli/main.py`
+  - `~/.hermes/hermes-agent/tools/cronjob_tools.py`
+  - `~/.hermes/hermes-agent/tests/cron/test_jobs.py`
+  - `~/.hermes/hermes-agent/tests/cron/test_scheduler.py`
+  - `~/.hermes/hermes-agent/tests/hermes_cli/test_cron.py`
+  - `~/.hermes/cron/jobs.json`
+- 改动：
+  1. 在 Hermes live runtime 补齐 cron job 元数据链路：`context_cwd`、`charter_template`、`charter_path` 可由 job storage / cron tool / CLI create-edit 全链路透传。
+  2. `cron/scheduler.py` 新增 charter 路径解析逻辑：优先吃 job 显式 `charter_path`，否则从 pre-run script JSON 输出里读 `charterPath` / `charterLatestPath`，并把 charter 内容注入 cron prompt。
+  3. `run_job()` 现在会在 cron session 生命周期内临时设置 `TERMINAL_CWD`，执行结束后恢复原值，确保会话能读到 `/Users/tangyuanjc/TASK-QUEUE.md` 与 `/Users/tangyuanjc/PAPERCLIP-FOLLOWUPS.md`。
+  4. live `jobs.json` 中 `hermes-ceo-blackboard-scan` 补入：
+     - `context_cwd=/Users/tangyuanjc`
+     - `charter_template=~/.hermes/context/session-charter-template.md`
+     - `charter_path=~/.hermes/context/session-charter-latest.md`
+  5. 重启 launchd 主 gateway（`ai.hermes.gateway`）让定时线程加载最新 runtime 代码。
+- 验证：
+  - live runtime 回归：`pytest -o addopts='' tests/cron/test_cron_script.py tests/cron/test_jobs.py tests/cron/test_scheduler.py tests/hermes_cli/test_cron.py tests/tools/test_cronjob_tools.py -v` => `206 passed, 4 skipped`。
+  - 手动执行 `python3 ~/.hermes/scripts/paperclip_scan_backlog.py` 返回 `selectedCount=3`，并更新：
+    - `/Users/tangyuanjc/TASK-QUEUE.md`
+    - `/Users/tangyuanjc/PAPERCLIP-FOLLOWUPS.md`
+    - `~/.hermes/context/session-charter-latest.md`
+    - `~/.hermes/autonomy/paperclip_backlog_signal_latest.(json|md)`
+  - 用 fake agent 直接跑 live job `hermesceoscan01`，确认：
+    - prompt 含 `## Session Charter`
+    - prompt 含 `## Script Output`
+    - prompt 含 `TASK-QUEUE.md`
+    - `TERMINAL_CWD=/Users/tangyuanjc`
+  - launchd 主 gateway 重启后 PID 变更为 `1642`，日志恢复正常连接。
+- 影响：
+  1. 之前依赖“脚本 JSON 提示 + prompt 自觉读取”的黑板循环，现在变成 runtime 层强制注入 charter 和正确 cwd，不再靠隐式约定。
+  2. AI-86 的三条护栏在代码层真正闭环：charter 必达、扫描脚本不领取任务、单轮上限仍由扫描脚本卡在 3 条。
+  3. live Hermes gateway 已加载新逻辑，后续 30 分钟粒度触发会走新的 blackboard prompt 组装路径。
+- 原因：补齐前一版只完成脚本与配置、但未把 charter/cwd 进入 Hermes live runtime 的代码缺口。
+
 ### [Opus-CSO] 爱马仕黑板调度器主循环规则层 (v2架构缺口修补)
 - 时间：2026-04-21
 - 文件：
