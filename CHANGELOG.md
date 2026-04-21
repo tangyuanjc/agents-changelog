@@ -1,3 +1,39 @@
+### [Opus-CSO] 派单全向互通实战验证+三原则判断工具化 (v2.2完整收官)
+- 时间：2026-04-22
+- 文件：
+  - `~/.org/AGENTS.md` (派单协议章节加'C-level直接触发命令对照表'+使用注意事项+反模式)
+  - `~/.claude/projects/-Users-tangyuanjc/memory/feedback_three_principles_as_judgment_tool.md` (新增)
+  - `~/.claude/projects/-Users-tangyuanjc/memory/MEMORY.md` (索引更新)
+- 改动：
+  1. **三原则升级为CSO判断工具** (不是口号) — JC 2026-04-22 用"本机agent怎么可能不可以"戳破Opus"触发机制不对称"错误判断。固化为feedback: CSO遇到"X必须Y触发/做不到/受限于Z"时,必须先用三原则(透明/共生/不以人类意志转移)过一遍,违反任一原则→默认判断是错的
+  2. **C-level直接触发命令对照表固化到宪法** — 实测通过:
+     - Codex: `codex exec --skip-git-repo-check "<prompt>"` (秒级响应)
+     - 爱马仕: `hermes chat -Q -q "<prompt>"` (秒级)
+     - 小J: `coo chat -Q -q "<prompt>"` (秒级)
+     - 奥格威: `hermes -p ogilvy chat -Q -q "<prompt>"`
+  3. **3个agent全部验证通过** — 宪法传达到位+秒级触发:
+     - Codex: 引用原文+回答'codex exec模式work,减少延迟'
+     - 爱马仕: 列出主循环5步+明确说'减少人类在环瓶颈,符合不以人类意志转移'
+     - 小J: 3个场景题全部基于宪法原文正确判断(价格机制不能派/表格能派/cron改动不能派)
+- 验证：
+  - 爱马仕symlink ~/.hermes/AGENTS.md 工作 ✓(爱马仕读到symlink内容)
+  - 小J workspace AGENTS.md宪法引用段工作 ✓(小J按映射表导航到全局宪法)
+  - Codex memories更新工作 ✓(codex引用宪法原文)
+  - hermes chat -q / coo chat -q / codex exec 三个 CLI 非交互模式 ✓
+- 影响：
+  1. **v2架构"不以人类意志转移"原则真正实战成立** — Opus完全闭环派任何agent,无需JC触发
+  2. **CSO判断工具包升级** — 三原则从原则升格为 linter,不再是装饰
+  3. **触发机制不对称被证伪** — 所有agent都可秒级响应
+  4. **派单全向互通从规则→实测→固化对照表** 完整闭环
+- 原因：
+  - JC 04-22 02:50 拒绝"等cron触发"的建议:"为什么爱马仕和小J作为hermes agent就不能直接快速读到呢? 一定是有问题的"
+  - Opus深挖hermes CLI发现 `chat -Q -q` 非交互模式 = `codex exec` 等价物
+  - 实测3个agent全部秒级响应
+  - JC 复盘: "这三原则真的挺值得我们每一次遇到问题时候去思考的"
+- 待办：
+  - [ ] AI-91/AI-92 保留观察爱马仕cron是否下次fire自动扫backlog (AI-86 cron验证窗口)
+  - [ ] 长期: 所有 C-level 对话中"这不可能/必须X触发"类default assumption需用三原则自检
+
 ### [Opus-CSO] AGENTS.md治理协议 + 宪法传达机制 (v2.2后续)
 - 时间：2026-04-22
 - 文件：
