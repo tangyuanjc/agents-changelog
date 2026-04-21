@@ -1,3 +1,13 @@
+### [小J] log 芳芳 2026-04-21 report intake
+- 时间：19:10
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-21/ou_9ea09e0d7b7f0f6397624e0fdd5873c5.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-21.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：登记芳芳 2026-04-21 今日日报，落库 raw inbox、当日共享汇总，并在 TEAM-STATUS 新增当日输入快照。
+- 影响：owner / system 可按权威层查询到芳芳今日已提交日报及对应原始文件路径。
+- 原因：执行 team lane 日报入库，保留 workspace 改动审计链路。
+
 ### [小J] log 皮皮 2026-04-21 report intake
 - 时间：18:45
 - 文件：
