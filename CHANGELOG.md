@@ -1,3 +1,13 @@
+### [小J] log 泡泡 2026-04-22 report intake
+- 时间：21:34
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-22/ou_d89d30f80a0cdd287cb77db6a1f0346f.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-22.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：登记泡泡 2026-04-22 工作更新，raw inbox 落原文；共享汇总提炼天猫百亿加补节与五一活动价格/券重算、工商举报跟进、推广与老客复购设置、会员充值、品牌新享协议签署和共享空间更新；TEAM-STATUS 增加泡泡当日 `received_work_update` 记录。
+- 影响：owner / system 可从 raw、当日汇总与状态权威层确认泡泡已提交 2026-04-22 工作更新，并直接看到 4.23-4.30 大促与五一活动的主要执行项。
+- 原因：泡泡在 Feishu DM 提交 2026-04-22 晚间工作更新，需要按 team lane 入库流程完成三处权威落库并保留审计轨迹。
+
 ### [小J] add 2026-04-22 daily wrap
 - 时间：21:02 CST
 - 文件：
