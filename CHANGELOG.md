@@ -1,3 +1,12 @@
+### [小J] add 2026-04-22 daily wrap
+- 时间：21:02 CST
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/daily-logs/2026-04-22.md`
+  - `~/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-04-22.md`
+- 改动：写入 2026-04-22 每日收工日志与小J日记；日志记录脚本执行结果、全员交叉核验结论、完成/未完成/明日待跟进；日记记录当日核验过程、跨 workspace 误判风险与次日计划。
+- 影响：形成 2026-04-22 收工留痕，后续可直接回溯当天团队输入核验与复盘结论。
+- 原因：执行每日收工 cron，按要求写入完整日志与日记并保留审计轨迹。
+
 ### [小J] log 皮皮 2026-04-22 report intake
 - 时间：18:36
 - 文件：
