@@ -1,3 +1,13 @@
+### [小J] log 黄宁 2026-04-22 report intake
+- 时间：18:34
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-22/ou_c5bb2da837826b19ea9c7b6747861237.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-22.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：登记黄宁 2026-04-22 日报，raw inbox 落原文；共享汇总补充今日工作、产出、AI 使用、明日计划；TEAM-STATUS 增加黄宁当日 `received_daily_report` 记录。
+- 影响：owner / system 可在当日汇总与状态权威层直接确认黄宁已提交 2026-04-22 日报。
+- 原因：黄宁在 Feishu DM 提交 2026-04-22 今日时报，需要按 team lane 日报流程完成三处权威落库。
+
 ### [Opus-CSO] 派单全向互通实战验证+三原则判断工具化 (v2.2完整收官)
 - 时间：2026-04-22
 - 文件：
