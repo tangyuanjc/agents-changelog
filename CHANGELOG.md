@@ -1,3 +1,14 @@
+### [Opus-CSO] ~/.codex/instructions.md 三处过时信息修正（消除 Codex 启动上下文冲突）
+- 时间：2026-04-23
+- 文件：
+  - `~/.codex/instructions.md`
+- 改动：
+  1. **第 32 行"全局共享规则"过时路径修复** — 原指向 `~/.openclaw/workspace/AGENTS.md`（OpenClaw 已归档到 `~/.openclaw.pre-migration/`），改为指向 `~/.org/AGENTS.md` 全局宪法并说明 Opus-CSO 为唯一 writer、映射表见 CLI-START-HERE 第 0 节
+  2. **第 60 行"不共享记忆"错误信息修复** — 原说"本 CLI 实例与 Codex 桌面端（云端）不共享记忆"，与 CLI-START-HERE.md:8 和 2026-04-15 验证结果矛盾。改为"共享同一个 ~/.codex/（2026-04-15 已验证：sessions、memories、instructions、sqlite 全部互通）"
+  3. **第 80-85 行"桌面端→CLI 端手动同步规则"废弃** — 该规则基于第 60 行错误假设建立，要求桌面端手动写摘要到 memories/。既然共享同一目录，整段改为"⚠️ 已废弃"并说明实际共享机制
+- 影响：Codex CLI 和桌面端（两端共享 ~/.codex/）启动时读取的 instructions.md 三处过时信息消除。未来 Codex 不会再基于"不共享"错误假设重复手动同步动作，也不会误导 Codex 读取已归档的 openclaw workspace AGENTS.md
+- 原因：Layer 0.5 私有 Agent dogfooding（MacBook 大C/O记 + Mac Mini Opus/Codex 桌面端）过程中，JC 让 Opus-CSO 交叉检查本机 ~/.codex/ 三个文件（AGENTS.md 新写 + instructions.md + memories/CLI-START-HERE.md）是否有冲突。发现 instructions.md 是 2026-04-07 写的，没同步 04-15 验证结果和 openclaw → .org 宪法迁移。这属于"对 agent 未来行为有持续影响"的改动，按 AGENTS.md 治理协议走 changelog + push，但不新增跨 agent 铁律所以不改宪法
+
 ### [小J] log 泡泡 2026-04-22 report intake
 - 时间：21:34
 - 文件：
