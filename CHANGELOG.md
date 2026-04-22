@@ -1,3 +1,14 @@
+### [小J] log 皮皮 2026-04-22 report intake
+- 时间：18:36
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-22/ou_3a1e620f3a86ac4bd8f5908e9c972eda.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-22.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-MEMORY.md`
+- 改动：登记皮皮 2026-04-22 日报，raw inbox 落原文；共享汇总提炼复盘结构优化、退款率口径纠偏、投放维护动作与明日重点；TEAM-STATUS 增加皮皮当日 `received_daily_report` 记录；TEAM-MEMORY 补充皮皮今日复盘体系和投放维护的长期协作口径。
+- 影响：owner / system 可在 raw、当日汇总与状态权威层确认皮皮已提交 2026-04-22 日报，后续也可直接复用其复盘结构和投放跟进口径。
+- 原因：皮皮在 Feishu DM 提交 2026-04-22 今日工作汇报，需要按 team lane 日报流程完成权威落库并沉淀长期协作记忆。
+
 ### [小J] log 黄宁 2026-04-22 report intake
 - 时间：18:34
 - 文件：
