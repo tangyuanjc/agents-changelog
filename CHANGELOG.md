@@ -1,3 +1,13 @@
+### [小J] log 小龙 2026-04-23 report intake
+- 时间：18:34
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-23/ou_5bc5804ad321315d905efa73dea81fa4.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-23.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：登记小龙 2026-04-23 日报，raw inbox 落原文；共享汇总记录新建联 14 人、新增通过 6 人、寄样 3 个、发布 1；TEAM-STATUS 增加小龙当日 `received_daily_report` 记录。
+- 影响：owner / system 可从 raw、当日汇总与状态权威层确认小龙已提交 2026-04-23 日报。
+- 原因：小龙在 Feishu DM 提交 2026-04-23 今日日报，需要按 team lane 日报流程完成三处权威落库。
+
 ### [小J] log 欣欣 2026-04-23 report intake
 - 时间：18:34
 - 文件：
