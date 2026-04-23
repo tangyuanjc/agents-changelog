@@ -2005,3 +2005,10 @@
 - 改动：为 AI 热点看板新增公众号真实 source：后端加独立 SQLite article store、`opencli weixin download` 驱动的 URL ingest worker、owner-only `POST /api/hotboard/wechat/ingest` 与登录可读 `GET /api/hotboard/wechat/feed`；前端把 `/ai-hotboard/source/wechat` 从 placeholder 升级为真实 feed，并给 owner 增加“粘贴微信公众号文章 URL”即时抓取入口；同时补齐 store/ingest/API/route-config 的测试与 route tree 更新。
 - 影响：JC 或其他 owner 现在可以直接往热点看板投递单篇微信公众号文章 URL，系统会抓成 markdown、落库、并在前端 source 页面展示，不再依赖重型订阅式方案。
 - 原因：按 2026-04-24 方案 B 落地“手工扔 URL 即时抓取”公众号源，避免扫码订阅和 docker 维护成本。
+
+### [Codex-CTO] AI 热点看板将小红书 placeholder 替换为 Zara YouTube 精选真实源
+- 时间：03:20
+- 文件：`~/hermes-workspace/src/server/hotboard-zara-scraper.ts`、`~/hermes-workspace/src/server/hotboard-zara-store.ts`、`~/hermes-workspace/src/routes/api/hotboard/zara/feed.ts`、`~/hermes-workspace/src/routes/api/hotboard/zara/refresh.ts`、`~/hermes-workspace/src/screens/ai-hotboard/ai-hotboard-screen.tsx`、`~/hermes-workspace/src/screens/ai-hotboard/ai-hotboard-route-config.ts`
+- 改动：删除 AI 热点看板里原本的“小红书” placeholder 导航项，改接 `https://zara.faces.site/ai` 的 YouTube curated library；后端新增 Playwright scraper，先等待 hydrate，再点击 `View Complete Collection` 展开 27 条精选视频，解析 YouTube URL、标题、频道、tags、描述和缩略图，并落到独立 SQLite `hotboard-zara.sqlite`；新增 owner-only `POST /api/hotboard/zara/refresh` 和登录可读 `GET /api/hotboard/zara/feed`；前端新增 `/ai-hotboard/source/zara-youtube` 真实 source 页面和 owner 刷新按钮；补齐 store/scraper/feed/refresh/route-config/screen 测试。
+- 影响：AI 热点看板的信源侧栏现在不再展示小红书占位项，改为可直接浏览和手动刷新 Zara Zhang AI 学习库里的 YouTube 精选视频；Zara 源刷新频率被限制为每人每小时 3 次，避免 Playwright 频繁抓站。
+- 原因：JC 判定小红书源质量一般，要求以更稳定、低频更新但高质量的 Zara curated YouTube library 替换 placeholder 信源。
