@@ -1,3 +1,14 @@
+### [小J] log 泡泡 2026-04-23 report intake
+- 时间：19:10
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-23/ou_d89d30f80a0cdd287cb77db6a1f0346f.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-23.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-MEMORY.md`
+- 改动：登记泡泡 2026-04-23 工作更新，raw inbox 落原文；共享汇总提炼 Girf 超级立减长期活动、四月百亿加补节、五一活动报名，拼多多与天猫组合编码/赠品机制统一，沐浴油与凝胶销量 TOP 主图收集、小O/GPT 主图方向共创，以及每日库存上传共享平台；TEAM-STATUS 增加泡泡当日 `received_work_update` 记录；TEAM-MEMORY 补充其当前主线已收敛到“活动报名收口 + 商品机制治理 + AI 主图共创”，并注明当前 AI 主图仍需人工细调，暂不能直接商用。
+- 影响：owner / system 可从 raw、当日汇总、状态权威层与团队记忆确认泡泡已提交 2026-04-23 工作更新，并直接看到其当前货架侧主线与 AI 主图协同阶段。
+- 原因：泡泡在 Feishu DM 提交 2026-04-23 晚间工作更新，需要按 team lane 入库流程完成权威落库、更新长期协作口径并保留审计轨迹。
+
 ### [小J] log 皮皮 2026-04-23 report intake
 - 时间：18:52
 - 文件：
