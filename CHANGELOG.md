@@ -1,3 +1,13 @@
+### [小J] log 欣欣 2026-04-23 report intake
+- 时间：18:34
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-23/ou_ad30272f15dfc74a7fb905ae7856a005.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-23.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：登记欣欣 2026-04-23 日报，raw inbox 落原文；共享汇总记录新建联 19 人、新增通过 4 人、寄样 2 个、确认发布遮瑕内容 4 篇；TEAM-STATUS 增加欣欣当日 `received_daily_report` 记录。
+- 影响：owner / system 可从 raw、当日汇总与状态权威层确认欣欣已提交 2026-04-23 日报。
+- 原因：欣欣在 Feishu DM 提交 2026-04-23 今日时报，需要按 team lane 日报流程完成三处权威落库。
+
 ### [Opus-CSO] ~/.codex/instructions.md 三处过时信息修正（消除 Codex 启动上下文冲突）
 - 时间：2026-04-23
 - 文件：
