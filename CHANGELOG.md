@@ -1,3 +1,13 @@
+### [小J] log 皮皮 2026-04-23 report intake
+- 时间：18:52
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-23/ou_3a1e620f3a86ac4bd8f5908e9c972eda.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-23.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：登记皮皮 2026-04-23 日报，raw inbox 落原文；共享汇总提炼千川短视频复盘体系修正、标题复盘结构调整、四张复盘表独立程序拆分，以及遮瑕/多酶油投放计划维护、新素材补充、精装评论承接和违规审核排查；TEAM-STATUS 增加皮皮当日 `received_daily_report` 记录。
+- 影响：owner / system 可从 raw、当日汇总与状态权威层确认皮皮已提交 2026-04-23 日报，并直接看到千川复盘程序拆分与当日投放推进状态。
+- 原因：皮皮在 Feishu DM 提交 2026-04-23 今日工作汇报，需要按 team lane 日报流程完成三处权威落库并保留审计轨迹。
+
 ### [小J] log 小龙 2026-04-23 report intake
 - 时间：18:34
 - 文件：
