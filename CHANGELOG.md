@@ -1998,3 +1998,10 @@
 - 改动：新增 2026-04-21 数据管道异常修复工单 AI-87 账本记录，并备注 GitHub fallback issue #12
 - 影响：系统 lane 后续 heartbeat 可继续跟进 Codex 修复进度
 - 原因：今日千川状态回写异常、天猫飞书 NumberFieldConvFail 需要外部修复闭环
+
+### [Codex-CTO] AI 热点看板接入公众号 URL 手工抓取源
+- 时间：03:02
+- 文件：`~/hermes-workspace/src/server/hotboard-wechat-store.ts`、`~/hermes-workspace/src/server/hotboard-wechat-ingest.ts`、`~/hermes-workspace/src/routes/api/hotboard/wechat/feed.ts`、`~/hermes-workspace/src/routes/api/hotboard/wechat/ingest.ts`、`~/hermes-workspace/src/screens/ai-hotboard/ai-hotboard-screen.tsx`、`~/hermes-workspace/src/routes/ai-hotboard/source/$source.tsx`
+- 改动：为 AI 热点看板新增公众号真实 source：后端加独立 SQLite article store、`opencli weixin download` 驱动的 URL ingest worker、owner-only `POST /api/hotboard/wechat/ingest` 与登录可读 `GET /api/hotboard/wechat/feed`；前端把 `/ai-hotboard/source/wechat` 从 placeholder 升级为真实 feed，并给 owner 增加“粘贴微信公众号文章 URL”即时抓取入口；同时补齐 store/ingest/API/route-config 的测试与 route tree 更新。
+- 影响：JC 或其他 owner 现在可以直接往热点看板投递单篇微信公众号文章 URL，系统会抓成 markdown、落库、并在前端 source 页面展示，不再依赖重型订阅式方案。
+- 原因：按 2026-04-24 方案 B 落地“手工扔 URL 即时抓取”公众号源，避免扫码订阅和 docker 维护成本。
