@@ -1,3 +1,13 @@
+### [小J] log 欣欣 2026-04-24 report intake
+- 时间：18:40
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-24/ou_ad30272f15dfc74a7fb905ae7856a005.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-24.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：登记欣欣 2026-04-24 日报，raw inbox 落原文；共享汇总记录新建联人数 20、新增通过人数 5、寄样数 2 个、已确认发布遮瑕内容 4 篇；TEAM-STATUS 增加欣欣当日 `received_daily_report` 记录。
+- 影响：owner / system 可从 raw、当日汇总与状态权威层确认欣欣已提交 2026-04-24 日报。
+- 原因：欣欣在 Feishu DM 提交今日日报，需要按 team lane 日报流程完成三处权威落库并保留审计轨迹。
+
 ### [小J] log 小龙 2026-04-24 report intake
 - 时间：18:33
 - 文件：
