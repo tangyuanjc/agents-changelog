@@ -2062,3 +2062,10 @@
 - 改动：删除 AI 热点看板里原本的“小红书” placeholder 导航项，改接 `https://zara.faces.site/ai` 的 YouTube curated library；后端新增 Playwright scraper，先等待 hydrate，再点击 `View Complete Collection` 展开 27 条精选视频，解析 YouTube URL、标题、频道、tags、描述和缩略图，并落到独立 SQLite `hotboard-zara.sqlite`；新增 owner-only `POST /api/hotboard/zara/refresh` 和登录可读 `GET /api/hotboard/zara/feed`；前端新增 `/ai-hotboard/source/zara-youtube` 真实 source 页面和 owner 刷新按钮；补齐 store/scraper/feed/refresh/route-config/screen 测试。
 - 影响：AI 热点看板的信源侧栏现在不再展示小红书占位项，改为可直接浏览和手动刷新 Zara Zhang AI 学习库里的 YouTube 精选视频；Zara 源刷新频率被限制为每人每小时 3 次，避免 Playwright 频繁抓站。
 - 原因：JC 判定小红书源质量一般，要求以更稳定、低频更新但高质量的 Zara curated YouTube library 替换 placeholder 信源。
+
+### [Codex-CTO] 交付 marketing-workflow-pipeline Day 1 归因 CLI
+- 时间：12:35
+- 文件：`~/.claude/skills/marketing-workflow-pipeline/`, `~/.hermes/skills/marketing-workflow-pipeline`, `~/.local/bin/mwp`, `~/Desktop/production_assets/attribution.jsonl`, `~/Desktop/codex_tickets/REPORT_TICKET_MWP_0425.md`
+- 改动：新增 `mwp` CLI 与 skill，支持 record / placed / metrics / query / stats / list，JSONL 归因落到 `attribution.jsonl`，并为 video/audio/3d/ar 与通用 `prompt_agent` 预留扩展。
+- 影响：JC Phase 0 投放素材可在 Day 1 记录血统，爱马仕/小J 可通过 Hermes skill 镜像读取同一工作流。
+- 原因：CSO-Opus P0 工单要求投放前先落地营销素材归因 schema，避免素材数据回流后无法追溯。
