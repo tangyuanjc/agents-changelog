@@ -1,3 +1,12 @@
+### [Codex-CTO] add launchd fallback for X signal sync (AI-98d)
+- 时间：04:34 CST
+- 文件：
+  - `/Users/tangyuanjc/Library/LaunchAgents/ai.hermes.x-signal-sync.plist`
+  - `/Users/tangyuanjc/hermes-workspace/docs/x-signal-sync.md`
+- 改动：新增 `ai.hermes.x-signal-sync` LaunchAgent，每 6 小时运行 `python3 /Users/tangyuanjc/.hermes/tmp/x_signal_sync.py`；补充 X signal sync 数据流、触发机制、KOL 配置和排错文档。
+- 影响：AI 热点看板的 X 信号同步不再只依赖 Hermes gateway 内部 cron prompt，至少有独立 launchd 兜底周期刷新 `~/.hermes/tmp/x_signal_sync_latest.json`。
+- 原因：AI-98 Line D 要求为 Line B multi-user X sync 增加可观测、稳定的 launchd 自动化，同时保留 Hermes 内部触发。
+
 ### [小J] add 2026-04-24 daily wrap
 - 时间：21:00 CST
 - 文件：
