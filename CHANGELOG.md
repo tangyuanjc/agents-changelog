@@ -2069,3 +2069,10 @@
 - 改动：新增 `mwp` CLI 与 skill，支持 record / placed / metrics / query / stats / list，JSONL 归因落到 `attribution.jsonl`，并为 video/audio/3d/ar 与通用 `prompt_agent` 预留扩展。
 - 影响：JC Phase 0 投放素材可在 Day 1 记录血统，爱马仕/小J 可通过 Hermes skill 镜像读取同一工作流。
 - 原因：CSO-Opus P0 工单要求投放前先落地营销素材归因 schema，避免素材数据回流后无法追溯。
+
+### [Codex-CTO] Hermes X signal sync 升级为多账号 KOL schema (AI-96)
+- 时间：04:12
+- 文件：`~/.hermes/hermes-agent/scripts/x_signal_sync.py`、`~/.hermes/hermes-agent/config/x_users.toml`、`~/.hermes/tmp/x_signal_sync.py`、`~/hermes-workspace/src/server/hotboard-feed-api.ts`
+- 改动：把 X signal sync 从 tmp 单文件脚本迁到仓库内可版本化实现，新增 KOL 用户配置；输出数组内每条 tweet 增加 `source_user`，`counts` 升级为 `{total, by_user}`；KOL 抓取失败按用户 graceful skip，保留 JC owner 单账号兜底；workspace feed-api 透传 `source_user`。
+- 影响：AI 热点看板 X 数据源可同时混入 JC 自己 timeline/bookmarks/likes 与公开 KOL tweets，latest 产物已验证包含 12 个 source_user，且不提交 X cookies/token。
+- 原因：JC 反馈 X 数据覆盖窄，Opus-CSO 派发 AI-96 要求扩成 multi-user KOL 抓取。
