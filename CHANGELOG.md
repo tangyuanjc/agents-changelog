@@ -2173,3 +2173,12 @@
 - 改动：把 X signal sync 从 tmp 单文件脚本迁到仓库内可版本化实现，新增 KOL 用户配置；输出数组内每条 tweet 增加 `source_user`，`counts` 升级为 `{total, by_user}`；KOL 抓取失败按用户 graceful skip，保留 JC owner 单账号兜底；workspace feed-api 透传 `source_user`。
 - 影响：AI 热点看板 X 数据源可同时混入 JC 自己 timeline/bookmarks/likes 与公开 KOL tweets，latest 产物已验证包含 12 个 source_user，且不提交 X cookies/token。
 - 原因：JC 反馈 X 数据覆盖窄，Opus-CSO 派发 AI-96 要求扩成 multi-user KOL 抓取。
+
+### [Codex-CTO] 修复小J COO Hermes 生图链路走 OpenAI-compatible gpt-image-2
+- 时间：00:59
+- 文件：`~/.hermes/hermes-agent/plugins/image_gen/openai/__init__.py`、`~/.hermes/hermes-agent/tests/plugins/image_gen/test_openai_provider.py`、`~/.hermes/profiles/coo/config.yaml`
+- 改动：Hermes OpenAI image_gen 插件新增 credential fallback，优先读 `OPENAI_API_KEY/OPENAI_BASE_URL`，其次读 `image_gen.openai.*`，最后在主模型为 custom OpenAI-compatible endpoint 时复用 `model.api_key/base_url`；COO profile 增加 `image_gen.provider: openai`、`image_gen.openai.model: gpt-image-2-medium`，不复制新增明文 key。
+- 影响：小J 主会话/飞书侧可调用 `image_generate` 走当前 `https://api.655147.xyz/v1` 的 `gpt-image-2`，不再因缺 `FAL_KEY` 失败；保持 FAL legacy 路径不变，只有显式设置 `image_gen.provider: openai` 时才走插件分发。
+- 验证：`pytest -o addopts='' tests/plugins/image_gen/test_openai_provider.py tests/tools/test_image_generation_plugin_dispatch.py tests/tools/test_image_generation.py -q` 为 84 passed；真实生成落盘 `/Users/tangyuanjc/.hermes/profiles/coo/cache/images/openai_gpt-image-2-medium_20260427_005227_31ed466f.png`，大小 1260086 bytes；`check_image_generation_requirements=True`、provider=`openai`；`ai.hermes.gateway-coo` PID 从 82862 重启为 75049，飞书 websocket 已重连。
+- GitHub：Hermes core 本地分支 `fix/openai-images-fallback` 已提交 `477f7abf fix: let OpenAI image plugin use profile credentials`；推 fork/开 PR 被 GitHub 拒绝，原因是当前 gh token 缺 `workflow` scope 且 fork/main 落后 upstream 914 commits，无法同步包含 workflow 变更的历史。后续需 `gh auth refresh -s workflow` 后再 `git push fork fix/openai-images-fallback` 并开 PR。
+- 原因：JC 要求补齐小J生图能力；实测 `image_generate` 原先只走 FAL/缺 `FAL_KEY`，但 COO 当前 custom endpoint 已验证支持 `/images/generations` 的 `gpt-image-2` base64 返回。
