@@ -1,3 +1,15 @@
+### [Codex-CTO] 加固天猫/千川日报数据管道与 12:05 自动报修闭环
+- 时间：23:50 CST
+- 文件：
+  - `/Users/tangyuanjc/data-pipelines/scripts/check_daily_pipelines.py`
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.datapipeline.healthcheck.plist`
+  - `/Users/tangyuanjc/data-pipelines/run_tmall.sh`
+  - `/Users/tangyuanjc/data-pipelines/run_qianchuan.sh`
+  - `/Users/tangyuanjc/.openclaw/workspace/skills/tmall-sycm-feishu-daily-gauss/scripts/sync_tmall_sycm_to_feishu.mjs`
+- 改动：新增并加载 `com.datapipeline.healthcheck`，每天 12:05 独立检查天猫/千川 state，失败时发数据群并尝试创建 Paperclip 高优先级报修单给 Codex；修复巡检误判 `exit_code=0` 为失败的问题，并把巡检飞书通知改成 best-effort，避免通知通道异常反过来污染巡检结果；千川 wrapper 继续使用系统 Chrome 并将账号列表/微前端波动归为可重试失败；天猫脚本增加 Keychain 自动登录支持、修复 Keychain 账号解析、跨 iframe 定位淘宝登录框、识别淘宝滑块风控为 `slider-captcha`，不再误判为账号密码页或短信验证码页；天猫飞书写表 app secret 已迁入 macOS Keychain；天猫/千川 wrapper 的飞书摘要改为 best-effort，避免通知失败阻断 state 写入。
+- 影响：数据管道闭环从“脚本跑 + 人看群”升级为“launchd 自动跑 → state 落盘 → 12:05 独立巡检 → 飞书群告警 + Paperclip 报修 Codex”；千川 2026-04-26 最新 state 已判定 OK，目标日期 2026-04-25 已成功回写；天猫剩余不确定性明确收敛到阿里滑块/风控，脚本会自动提交账号密码并在出现滑块时群里明确提示；未完成 10/10 下载和 10/10 导入时 state 保持 error，12:05 巡检会继续报修，不再被降级态误判为通过。
+- 原因：JC 反馈最近一周天猫生意参谋和千川取数坏得太频繁，需要一次性修到可观测、可报修、可追责，而不是每天人工盯登录/验证码/群聊闭环。
+
 ### [Opus-CSO] 爱马仕 compression auxiliary context_length override + api655 5.5 长上下文 sanity 验证
 - 时间：22:45 CST
 - 文件：
