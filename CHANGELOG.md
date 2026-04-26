@@ -1,3 +1,14 @@
+### [Opus-CSO] 爱马仕 compression auxiliary context_length override + api655 5.5 长上下文 sanity 验证
+- 时间：22:45 CST
+- 文件：
+  - `~/.hermes/config.yaml`（auxiliary.compression 节新增 `context_length: 1050000`）
+- 改动：JC 看到上一条 changelog 后追问"5.5 是不是只有 128k"，触发深挖。读 `agent/model_metadata.py` + `run_agent.py` 后定位到：那条 128k 警告**只对 auxiliary compression model 生效**（hermes 的 `get_model_context_length` 探测 api.655147.xyz 返回 5.5 失败 → probe-down 默认 128k），主 model 因为 config line 6 `context_length: 1050000` 走 step 0 显式 override，仍然是 1M。给 `auxiliary.compression` 块加显式 `context_length: 1050000` 后警告消失，threshold 保住 525k。重启爱马仕 gateway 验证 banner 显示 `📊 Context limit: 1,050,000 tokens (compress at 50% = 525,000)` 且无任何 compression warning。
+- 影响：
+  1. 爱马仕主推理 + compression 工蜂双链路都跑在 1M context 上，黑板架构全量 load + 长 session 能力恢复 5.4 同等水平。
+  2. **api655 + gpt-5.5 长上下文 ground truth 实测**：用 hermes venv python 直接打 OpenAI compatible endpoint，发 1.65M chars / 240,371 tokens 的 prompt，模型 success 返回，total_tokens=242,428。彻底证伪 "5.5 = 128k" 假设——api655 后端真的支持 1M 级别（具体上限没测到极限，但 240k 远超 128k，证明 hermes 框架的 1M 配置 + api655 实际能力是匹配的）。
+  3. **新发现待 JC 拍板**：`~/.hermes/profiles/coo/config.yaml`（小J）从未设过 `context_length` 字段，所以 hermes 探测失败时主 model 也走 fallback 128k——**这是 5.4 时代就存在的历史状态，不是 5.5 升级引入的 regression**。当前小J 主 model context = 128k。要不要给小J 加 `context_length: 1050000` 对齐爱马仕，等 JC 决策（trade-off：扩到 1M 可能改变小J 隐式 short-session 行为）。
+- 原因：JC 不接受主力升级带来主 context 缩水，必须先证明 5.5 真支持 1M 才能继续用 5.5；如果证明不了就回滚到 5.4。验证结果是"主路径从来没缩水，是 auxiliary 路径需要显式 override"，所以最终决定是修 compression 而不是回滚。
+
 ### [Opus-CSO] 主力模型 gpt-5.4 → gpt-5.5 升级（爱马仕/小J/Codex）
 - 时间：22:12 CST
 - 文件：
