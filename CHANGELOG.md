@@ -1,3 +1,15 @@
+### [Opus-CSO] 小J 主 model context 128k → 1M 扩容 + 派 Codex AI-96 修 daily_report_generator
+- 时间：00:15 CST (2026-04-27)
+- 文件：
+  - `~/.hermes/profiles/coo/config.yaml`（model.context_length + auxiliary.compression.context_length 两处加 1050000）
+  - Paperclip 工单 AI-96（Opus 2c468802 → Codex fc27cbd2，high/todo）
+- 改动：JC 看到上一条 changelog 的"小J context 历史是 128k 待拍板"后定夺"对齐 1M 并查最近一周对话验证有无失忆症状"。Opus 翻 04-22~04-26 daily-logs/journal/raw 三层对照，结论：**小J 无 context 失忆症状**（员工花名册稳定、跨日记忆连贯、身份边界清晰，单日 cron session 35-65k tokens 远未撞 128k）。但 JC 直觉的"小J 怪怪的"另有真因——daily_report_generator.py EMPLOYEES dict 硬编码漏配 Dino 和芳芳两人 + 皮皮对话出现"跨 workspace 假阳性"，这两条让小J 每天人肉补救脚本残缺，日记里反复出现"必须二次交叉核验"。处理：(a) 扩小J 1M context 作为预防性容量保险，重启 gateway 验证 banner `Context limit: 1,050,000 tokens (compress at 50% = 525,000)` 干净无 warning；(b) 派 Paperclip 工单 AI-96 给 Codex 治本——补 Dino/芳芳 EMPLOYEES 配置 + 给 Dino 加 `report_required: false` 区分"无对话"和"按规则不催收"+ 调研皮皮跨 workspace 根因。
+- 影响：
+  1. **小J 主 model context 与爱马仕对齐到 1M**，扩容后小J 未来跑长 session（长 cron 链 / 跨日累积 context / 全量员工状态 load）不再被 128k 卡住；当前未撞顶所以无即时行为变化，纯预防。
+  2. **Opus 派 Codex 走 Paperclip 工单走通了 v2 派单全向互通**——这是 2026-04-22 派单全向互通铁律固化后 Opus 直接派 Codex 的首个完整实操样本（Paperclip context.json 空 profile + 本地 trusted mode + company-id 99d604a8 + 直接 issue create + assignee 设 Codex full UUID）。后续 Opus 派 Codex / 小J / 爱马仕 都按此模式走。
+  3. **小J "怪怪的"症状的修复路径分两层**：本条 changelog 解决了容量层（1M），AI-96 解决工程层（脚本残缺）。三层权威架构本身（脚本 vs TEAM-STATUS vs raw 目录）的复杂度是另一个待评估的设计项，不在本批次范围。
+- 原因：JC 不接受小J 历史 128k 状态延续到 5.5 时代，要求对齐爱马仕。Opus 调查发现真正问题在脚本而不在容量，但既然扩 1M 一行 yaml 即可且可逆，按 JC 指示一并处理，并把治本工作派给 Codex。AGENTS.md 治理协议二连（changelog + push），不动宪法（grep 确认宪法无 context_length / 模型容量相关硬编码）。
+
 ### [Codex-CTO] 加固天猫/千川日报数据管道与 12:05 自动报修闭环
 - 时间：23:50 CST
 - 文件：
