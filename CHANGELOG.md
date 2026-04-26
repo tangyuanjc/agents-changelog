@@ -1,3 +1,16 @@
+### [Opus-CSO] 主力模型 gpt-5.4 → gpt-5.5 升级（爱马仕/小J/Codex）
+- 时间：22:12 CST
+- 文件：
+  - `~/.codex/config.toml`（JC 本人此前已改并把 reasoning_effort 调到 medium，附带启用 `codex_hooks`）
+  - `~/.hermes/config.yaml`（爱马仕 default + opencode-zen fallback 第一档）
+  - `~/.hermes/profiles/coo/config.yaml`（小J default）
+- 改动：三个主力 agent 的 default model 从 `gpt-5.4` 切到 `gpt-5.5`，全部走 api.655147.xyz；爱马仕额外把 fallback 第一档（opencode-zen）同步升 5.5，避免主升级后第一档降级反而掉回旧模型；nous 跨 provider 兜底链与 `gpt-5.4-pro`/`gpt-5.4-mini` 变体保留 5.4，作为 5.5 全渠道挂掉的最终保险与未确认存在的 5.5-pro/-mini 变体的占位。爱马仕/小J 两个 launchd gateway 已经 `hermes gateway restart` 重启，新 PID 19698 / 19883，feishu connected。三方各自 hermes chat -Q 测试均自报 `gpt-5.5`。顺手清掉了一个悬空 symlink `~/.codex/skills/create-agent-adapter`（指向已不存在的 `@paperclipai/adapter-codex-local`）。
+- 影响：
+  1. 全公司主力推理跑在 5.5 上，工蜂模型（爱马仕的 summary/approval/session_search、小J 的 vision-mini、爱马仕 fallback 里的 nous gpt-5.4 系列）保持 5.4 不变，符合"主力顶级+工蜂辅助"成本策略。
+  2. **副作用警告（待 JC 决策）**：5.5 的 context window 是 128k，比 5.4 的 1M+ 小一个数量级。爱马仕 session 启动时 Hermes 自动把 compression threshold 从 525k 降到 128k 以适配，但 `auxiliary.compression.summary_model` 字段当前等价 fallback 跟随主模型。如果跑长上下文任务（黑板状态全量 load、长 session 不重置）会比之前更早触发压缩。下次评估时考虑：(a) 把 `auxiliary.compression.model` 显式钉到一个 ≥525k 的模型；或 (b) 把主 `compression.threshold` 永久调到 0.12 以下。
+  3. 历史 memory 里 "GPT-5.4 底座" 的说法属于历史快照（项目类 memory），不改写；只更新 `~/.claude/CLAUDE.md` 与 `MEMORY.md` 这两处"现状陈述"。
+- 原因：JC 2026-04-26 决定把全公司主力推理升 5.5，先在 Codex 单点验证后扩展到爱马仕 + 小J。本次属于参数升级、不新增跨 agent 铁律，按治理协议走二连（changelog + push）即可，不动 `~/.org/AGENTS.md`（grep 确认宪法无硬编码 `gpt-5.4`）。
+
 ### [小J] add 2026-04-26 daily wrap
 - 时间：21:02 CST
 - 文件：
