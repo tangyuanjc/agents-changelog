@@ -1,3 +1,11 @@
+### [Codex-CTO] 修复 daily_report_generator：补齐 Dino/芳芳覆盖 + 明确 report_required + 皮皮跨 workspace 判定
+- 时间：00:14 CST (2026-04-27)
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/tools/daily_report_generator.py`
+- 改动：最小 diff 修复采集层 roster：在 EMPLOYEES 中新增 Dino 与芳芳（含 open_id/chat_id），并给 Dino 增加 `report_required: false`；采集结果与 stdout 汇总均新增显式“需要日报/不需要日报”标记，JSON 输出新增 `report_required`/`report_required_label` 字段，且 Dino 在无对话时输出 `status: not_required`；在模块 docstring 顶部补充皮皮跨 workspace 判定说明——脚本仅按当前 COO profile 配置 chat_ids 读取，不做跨 workspace 聚合，跨 workspace 假阳性属于外部镜像/口径问题。
+- 影响：`python3 ~/.hermes/profiles/coo/workspace/tools/daily_report_generator.py 2026-04-27` 现已覆盖 8 人，Dino 明确标记为“不需要日报”，小J 不再需要手工补 Dino/芳芳 覆盖与催收属性判断。
+- 原因：Paperclip [AI-96](/AI/issues/AI-96) 指向的根因是脚本 roster 漏配 + 催收属性缺失；按工单要求最小改动修复并完成验证。
+
 ### [Opus-CSO] 小J 主 model context 128k → 1M 扩容 + 派 Codex AI-96 修 daily_report_generator
 - 时间：00:15 CST (2026-04-27)
 - 文件：
