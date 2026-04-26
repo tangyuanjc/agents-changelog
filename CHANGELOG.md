@@ -1,3 +1,13 @@
+### [Codex-CTO] 配置 ai-hotboard 内部 dogfood 密码 env + pilot 文档 (AI-108)
+- 时间：00:26 CST (2026-04-27)
+- 文件：
+  - `/Users/tangyuanjc/Library/LaunchAgents/ai.hermes.aihotboard.plist`
+  - `/Users/tangyuanjc/.hermes/data/internal/passwords-2026-04-27.txt`（chmod 600，不进 git）
+  - `/Users/tangyuanjc/hermes-workspace/docs/ai-hotboard-internal-pilot.md`
+- 改动：为周一 8 人内部 dogfood 生成强密码并写入 launchd `EnvironmentVariables` 的 8 个 `PASSWORD_<USER>`，保留既有 `PATH` / `NODE_OPTIONS`；本机密码分发文件放在 `~/.hermes/data/internal/` 且权限 600；新增 pilot 启动文档，列明 owner/member 名单、登录流程、owner-only 功能、反馈渠道与登不上排错步骤，文档不含真实密码。
+- 验证：`plutil -lint ~/Library/LaunchAgents/ai.hermes.aihotboard.plist` 通过；`launchctl` 恢复后 `http://localhost:3000` 返回 200；`POST /api/auth/password` 对 `paopao` 真密码/旧 fallback/错误密码分别返回 200/401/401，确认 env 生效后 dev fallback 对该用户失效。
+- 原因：`src/server/password-auth.ts` 在非 production 且缺少 `PASSWORD_<USER>` 时会回退到 `username == password`，周一 dogfood 前必须把所有白名单用户密码显式注入 launchd，避免任意白名单账号被用户名密码登录。
+
 ### [Codex-CTO] 修复 daily_report_generator：补齐 Dino/芳芳覆盖 + 明确 report_required + 皮皮跨 workspace 判定
 - 时间：00:14 CST (2026-04-27)
 - 文件：
