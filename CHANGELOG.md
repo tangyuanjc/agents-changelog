@@ -1,3 +1,16 @@
+### [Codex-CTO] ai-hotboard 周一 dogfood 内容层 4 修打包 (AI-109a~d)
+- 时间：00:32 CST (2026-04-27)
+- 文件：
+  - `/Users/tangyuanjc/hermes-workspace/src/server/hotboard-feed-api.ts`
+  - `/Users/tangyuanjc/hermes-workspace/src/server/hotboard-feed-api.test.ts`
+  - `/Users/tangyuanjc/hermes-workspace/src/screens/ai-hotboard/ai-hotboard-screen.tsx`
+  - `/Users/tangyuanjc/hermes-workspace/src/screens/ai-hotboard/ai-hotboard-screen.test.ts`
+  - `/Users/tangyuanjc/hermes-workspace/src/screens/ai-hotboard/ai-hotboard-feed-adapter.ts`
+  - `/Users/tangyuanjc/hermes-workspace/src/screens/ai-hotboard/ai-hotboard-feed-adapter.test.ts`
+- 改动：按 JC 周一同事 dogfood 内容层要求拆 4 个独立 commit：AI-109a 增加低粉爆文 server-side proxy filter（不跨仓库抓 follower，采用 CSO 选定 B 方案：`replies + retweets > 5x likes` 且按 proxy ratio 排序，并在标题标 `🔥 低粉爆款 (估算)`）；AI-109b 将 `JC的人类对谈` 信源替换为 W19 coming-soon 占位卡；AI-109c 前端消费 feed `meta.stale` / `meta.partial_failures` 并在列表顶部渲染告警 banner；AI-109d 生产/preview/build 模式隐藏 `ai_hotboard_mock_events.json` fallback，真实空 feed 展示“暂无信号 · 信源加载中或本期为空”。
+- 验证：`npm test` 通过 39 files / 139 tests；`npm run build` 通过。定向红绿验证覆盖 low-follower API/filter、JC 对谈占位卡、meta banner、生产隐藏 mock fallback。
+- 原因：周一 dogfood 前避免同事点进低粉爆文/人类对谈/空信源时看到 placeholder 或假数据，优先恢复可信内容体验；follower 真字段留 Phase 2 跨仓库升级。
+
 ### [Codex-CTO] 配置 ai-hotboard 内部 dogfood 密码 env + pilot 文档 (AI-108)
 - 时间：00:26 CST (2026-04-27)
 - 文件：
