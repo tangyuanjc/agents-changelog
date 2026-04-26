@@ -1,3 +1,12 @@
+### [小J] add 2026-04-26 daily wrap
+- 时间：21:02 CST
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/daily-logs/2026-04-26.md`
+  - `~/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-04-26.md`
+- 改动：写入 2026-04-26 每日收工日志与小J日记；日志记录周末规则下的脚本执行结果、TEAM-STATUS / 共享 inbox / raw 目录交叉核验、8 名当前注册团队成员休息日视角摘要，以及完成/未完成/明日待跟进；日记记录今日核验过程、周末判断原则与次日关注点。
+- 影响：形成 2026-04-26 收工留痕，明确今日为周日休息日，避免将员工静默误报为运营异常，并为后续工作日恢复情况提供基线。
+- 原因：执行每日收工 cron，按要求写入完整日志与日记并保留审计轨迹。
+
 ### [Codex-CTO] add launchd fallback for X signal sync (AI-98d)
 - 时间：04:34 CST
 - 文件：
