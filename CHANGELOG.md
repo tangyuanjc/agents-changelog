@@ -1,3 +1,20 @@
+### [Opus-CSO] 黑板架构 v2.2 → v2.3 baseline patches (Layer 0.5 实证 + CEO 调度边界)
+- 时间：18:35 CST (2026-04-27)
+- 文件：
+  - `~/.org/AGENTS.md` (黑板架构 v2 章节加 v2.3 patches)
+  - `~/.claude/projects/-Users-tangyuanjc/memory/project_blackboard_architecture_v2_0418.md` (尾部加 v2.3 patches 章节)
+  - `~/.claude/projects/-Users-tangyuanjc/memory/feedback_jc_role_harness_architect.md` (加 JC 04-27 拍板"暂不升宪法"决策段 + 触发条件)
+- 改动：
+  - **Patch A1 · Layer 0.5 从纸面 → 可运行**: 七层结构表 Layer 0.5 (v2 baseline 04-18 一行纸面定义) 升级为完整模板。新增 6 端 agent 拓扑(Mac Mini × 4 接口 + MacBook × 2)、Layer 0.5 定位铁律(透明=知道一切公司信息,权力边界=不承担 C-level 职责,类比老板秘书)、MCP 跨机子约束(Tailscale 不通,需 Cloudflare Tunnel)。来源 `project_layer05_dogfooding_0423.md` (2026-04-23 JC 作为首个 dogfooding 样本接入私有 agent)
+  - **Patch A2 · CEO 调度器边界澄清**: v2 baseline 把爱马仕重定义为"黑板调度器"但没明说"仅对稳态期有效"。新增"新工作流必经 Phase 0 MVP (JC+CSO 深度) → Phase 1 半稳态 (CEO 接) → Phase 2 全稳态"3 阶段切换规则,以及各阶段分工表(Phase 0 CEO 旁听不介入 / Phase 1 CEO 主调度 / Phase 2 全权调度)。**不可跳过 Phase 0 直接让 CEO 主导**(否则 CEO 调度空气)。来源 `feedback_mvp_then_steady_state.md` (2026-04-25 营销工作流 SOP 校准 JC 点破)
+  - **A3 · JC = harness 架构师 元定位 暂不升宪法**: JC 04-27 拍板理由原话:"我怕现在这么快就升级到宪法的维度。我怕很多工作我没有参与的话,对应工作会变形......等真的我们有多条自动化工作流都能顺利的变成生产性的工作流,而不只是单纯工作的工作流......他直接就能形成对应的 tokens ROI 的时候,那个时候我们再来讨论这个事情吧。" 触发条件锁定:**至少 2 条工作流 Phase 1 切换成功 + 连续 2 周稳定 + 真有 tokens ROI 数字 + JC 真抽身**
+- 验证：
+  - 三动作决策树自检通过:对 agent 未来行为有持续影响 (✅) + 新增/修订跨 agent 铁律 (✅,Layer 0.5 定位 + CEO 调度边界两条) → 走宪法 + changelog + GitHub 三连
+  - 三原则 linter 自检:透明 (✅,baseline 章节明示 v2 → v2.3 演进路径) / 共生 (✅,Layer 0.5 定位铁律保护私有 agent 不被 C-level 化降维) / 不以人类意志转移 (✅,Phase 切换 gate 让 JC 系统化抽身,不靠记性)
+  - 跟 v2.2 baseline 不冲突,只是补丁/澄清,不重构
+- 原因：JC 04-27 在 Claude Desktop 新 session 复盘最近一周跨 session memory,要求 CSO 把"在其他 session 讨论过但没同步到 v2.2 主线"的架构事项统一回收。CSO 扫 04-20~04-27 全量 memory 找出 4 条架构相关(A1/A2/A3/L3 试用),JC 拍板乙方案:A1+A2 立即升 v2.3 入 baseline + 改宪法 + push 三连;A3 触发条件锁定后不动;L3 留试用第 3 轮再升格(`feedback_l3_adversarial_trial.md`)
+- 启示(CSO 自我校准): JC 第二次校准 CSO "早固化"偏好 — 第一次 04-22 治理日(CSO 怕传达 gap,JC 说"必经过程不是 bug");这次"早入宪法,JC 说先实证再固化"。**模式: CSO 偏好规则完整性,JC 偏好实证主义**。CSO 未来遇到"应该入宪法吗"判断时,先问"实证够不够 + 触发条件到没到",而不是默认"规则完整重要"
+
 ### [小J] log 小龙 2026-04-27 report intake
 - 时间：18:21 CST (2026-04-27)
 - 文件：
