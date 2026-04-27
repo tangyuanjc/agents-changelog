@@ -1,3 +1,19 @@
+### [Codex-CTO] 新增 KOC-first 全渠道盈亏计算器 pilot
+- 时间：19:49 CST (2026-04-27)
+- 文件：
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/docs/plans/2026-04-27-channel-profit-calculator-design.md`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/docs/superpowers/plans/2026-04-27-channel-profit-calculator.md`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/src/lib/channel-profit/schemas.ts`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/src/lib/channel-profit/calculator.ts`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/src/lib/channel-profit/source-store.ts`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/src/lib/channel-profit/audit-log.ts`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/src/app/api/channel-profit/calculate/route.ts`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/data/channel-profit/*.json`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/README.md`
+- 改动：按黑板架构 v2 的 Layer 2/3/4 定位，把飞书表 `野兽代码全渠道全品机制核算` 降级为 legacy source，并实现第一期 KOC pilot：本地标准原表（SKU 成本、bundle recipe、channel policy、campaign mechanism、store mapping）+ 纯 TypeScript 盈亏计算核心 + `POST /api/channel-profit/calculate` + JSONL audit log。计算返回基础毛利、直播毛利、盈亏点 ROI、可承受佣金/投流上限，并带 trace；audit 记录补齐 trace 和核心财务值，采用 fail-closed 策略，写不进 audit 时 API 返回 500，避免无留痕结果进入黑板工作流。
+- 验证：`pnpm --dir web exec vitest run src/lib/channel-profit/calculator.test.ts src/lib/channel-profit/source-store.test.ts src/lib/channel-profit/audit-log.test.ts src/app/api/channel-profit/calculate/route.test.ts` 通过 4 files / 17 tests；`pnpm --dir web test` 通过 16 files / 57 tests（仅现有 `--localstorage-file` warning）；`pnpm --dir web lint` exit 0；`pnpm --dir web build` 通过 Next build + TypeScript；真实 dev server smoke `POST /api/channel-profit/calculate` 返回 HTTP 200，`breakEvenRoi=2.7844`、`liveProfit=42.62`，并写入含 trace 的 audit JSONL；smoke 后已删除 `web/data/channel-profit/audit-log.jsonl` 并停止 dev server。
+- 原因：JC 指出原飞书渠道核算表在最新黑板架构下“很落后”，希望统一原表供不同人类员工/Agent 工作流调用，例如 KOC 单品盈亏点 ROI。Codex 使用 subagent-driven-development 拆给子 Agent 执行并逐项回收审查；本轮只做代码/文档/API 落地，不改 `~/.org/AGENTS.md`，因为没有新增跨 agent 铁律。
+
 ### [小J] log 皮皮 2026-04-27 report intake
 - 时间：19:06 CST (2026-04-27)
 - 文件：
