@@ -8,6 +8,19 @@
 - 影响：为 COO workspace 留存 2026-04-27 团队日报核验结果与次日跟进清单。
 - 原因：定时每日收工任务要求写入日志和日记并完成验证。
 
+### [Codex-CTO] 更新 KOC 盈亏口径：三文鱼成本入主表 + 默认佣金/退货率拍板
+- 时间：21:14 CST (2026-04-27)
+- 文件：
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/data/channel-profit/sku_cost_master.json`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/data/channel-profit/channel_policy.json`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/src/lib/channel-profit/source-store.test.ts`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/docs/plans/2026-04-27-channel-profit-feishu-source-map.md`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/docs/plans/2026-04-27-channel-profit-agent-workflow.md`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/README.md`
+- 改动：按 JC 新拍板更新 KOC 试点真实口径。重新读取飞书 `成本表更新-12,16!A70:C71`，确认 revision `533` 下 `A70:C70=野兽代码三文鱼超声蜜 / 2ml（单支） / 1.6`、`A71:C71=野兽代码三文鱼超声蜜 / 2mlX7（盒装） / 13.2`；当前 `sku_salmon_sonic_honey_2ml` 成本 source 从 `毛利核算!M11` 行内成本切到成本主表 `1WRTTE!A70:C70`。KOC 默认退货率改为 `15%`，默认佣金改为 `5%`；`毛利核算!X11` 的 `30% 极限佣金比例` 明确改为佣金上限留痕，不再当默认佣金。README 与 Agent workflow 文档同步改成默认口径示例。
+- 验证：先写真实快照守护测试并确认红灯抓到旧 source；更新 JSON 后 `pnpm --dir web exec vitest run src/lib/channel-profit/source-store.test.ts src/lib/channel-profit/calculator.test.ts src/lib/channel-profit/agent-workflow.test.ts` 通过 3 files / 14 tests；最终 `pnpm --dir web exec vitest run src/lib/channel-profit/calculator.test.ts src/lib/channel-profit/source-store.test.ts src/lib/channel-profit/audit-log.test.ts src/lib/channel-profit/blackboard-event.test.ts src/lib/channel-profit/agent-workflow.test.ts src/app/api/channel-profit/calculate/route.test.ts` 通过 6 files / 24 tests；`pnpm --dir web test` 通过 18 files / 64 tests（仅现有 `--localstorage-file` warning）；`pnpm --dir web lint` exit 0；`pnpm --dir web build` 通过。真实 API smoke 不传佣金/退货率时返回 HTTP 200，走默认 `15%/5%`，结果 `netRevenue=16.91`、`baseProfit=9.12`、`commissionFee=0.85`、`liveProfit=8.28`、`breakEvenRoi=2.0434`；audit JSONL 为 `channel_profit.calculation.completed` v1，source revision 为 `feishu-revision:533` 并含成本主表 source；smoke 后已删除 runtime audit-log 并停止 dev server。
+- 原因：JC 已把三文鱼超声蜜成本补进飞书成本表，并明确 KOC 默认退货率 15%、默认佣金 5%。本次把人工口径拍板落到标准原表、测试和 Agent-facing 文档里，避免后续 Agent 继续沿用旧 fixture 或把 30% 极限佣金当默认佣金。
+
 ### [Codex-CTO] 推进 KOC 盈亏计算器：真实飞书快照 + Agent 工作流 + 黑板事件
 - 时间：20:32 CST (2026-04-27)
 - 文件：
