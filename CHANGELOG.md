@@ -2182,3 +2182,11 @@
 - 验证：`pytest -o addopts='' tests/plugins/image_gen/test_openai_provider.py tests/tools/test_image_generation_plugin_dispatch.py tests/tools/test_image_generation.py -q` 为 84 passed；真实生成落盘 `/Users/tangyuanjc/.hermes/profiles/coo/cache/images/openai_gpt-image-2-medium_20260427_005227_31ed466f.png`，大小 1260086 bytes；`check_image_generation_requirements=True`、provider=`openai`；`ai.hermes.gateway-coo` PID 从 82862 重启为 75049，飞书 websocket 已重连。
 - GitHub：Hermes core 本地分支 `fix/openai-images-fallback` 已提交 `477f7abf fix: let OpenAI image plugin use profile credentials`；推 fork/开 PR 被 GitHub 拒绝，原因是当前 gh token 缺 `workflow` scope 且 fork/main 落后 upstream 914 commits，无法同步包含 workflow 变更的历史。后续需 `gh auth refresh -s workflow` 后再 `git push fork fix/openai-images-fallback` 并开 PR。
 - 原因：JC 要求补齐小J生图能力；实测 `image_generate` 原先只走 FAL/缺 `FAL_KEY`，但 COO 当前 custom endpoint 已验证支持 `/images/generations` 的 `gpt-image-2` base64 返回。
+
+### [Codex-CTO] 修复小J COO 带参考图的 gpt-image-2 生图空响应
+- 时间：15:37
+- 文件：`~/.hermes/hermes-agent/agent/image_gen_provider.py`、`~/.hermes/hermes-agent/plugins/image_gen/openai/__init__.py`、`~/.hermes/hermes-agent/tools/image_generation_tool.py`、`~/.hermes/hermes-agent/tests/plugins/image_gen/test_openai_provider.py`、`~/.hermes/hermes-agent/tests/tools/test_image_generation.py`、`~/.hermes/hermes-agent/tests/tools/test_image_generation_plugin_dispatch.py`
+- 改动：给 `image_generate` 增加 `reference_image` 参数；OpenAI image_gen provider 在传入本地参考图时走 `images.edit`，纯文生图仍走 `images.generate`；补测试覆盖 reference image 分发、缺图报错、schema 仍不暴露模型/供应商选择。
+- 影响：黄宁这类“用我提供的产品图生成一张图，一定用 gpt-image-2”的飞书请求可以直接把上传图片路径传入生图工具，不再依赖模型从 vision 描述里自行脑补，也避免工具后空响应卡住会话。
+- 验证：黄宁 15:07 上传图已确认落盘 `/Users/tangyuanjc/.hermes/profiles/coo/cache/images/img_de6be18549a2.jpg`；本机 live 调用 `_handle_image_generate(... reference_image=...)` 成功生成 `/Users/tangyuanjc/.hermes/profiles/coo/cache/images/openai_gpt-image-2-medium_20260427_153507_cd0a9d78.png`；`pytest tests/plugins/image_gen/test_openai_provider.py tests/tools/test_image_generation_plugin_dispatch.py tests/tools/test_image_generation.py` 为 87 passed；`ai.hermes.gateway-coo` 已重启并重新连接 Feishu websocket。
+- 原因：排障发现 COO 当前 OpenAI gpt-image-2 文生图和 `images.edit` 都可用，但工具 schema 没有参考图参数，导致带图生图请求未稳定进入 image tool，最终被模型空响应恢复逻辑吞掉。
