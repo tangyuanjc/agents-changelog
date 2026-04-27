@@ -1,3 +1,23 @@
+### [Codex-CTO] 推进 KOC 盈亏计算器：真实飞书快照 + Agent 工作流 + 黑板事件
+- 时间：20:32 CST (2026-04-27)
+- 文件：
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/data/channel-profit/*.json`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/src/lib/channel-profit/agent-workflow.ts`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/src/lib/channel-profit/agent-workflow.test.ts`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/src/lib/channel-profit/blackboard-event.ts`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/src/lib/channel-profit/blackboard-event.test.ts`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/src/lib/channel-profit/audit-log.ts`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/src/app/api/channel-profit/calculate/route.ts`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/src/app/api/channel-profit/calculate/route.test.ts`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/docs/plans/2026-04-27-channel-profit-feishu-source-map.md`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/docs/plans/2026-04-27-channel-profit-agent-workflow.md`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/docs/plans/2026-04-27-channel-profit-blackboard-event.md`
+  - `/Users/tangyuanjc/codex-工作区/抖音数据化抓取/web/README.md`
+- 改动：按 JC 指令拆给 3 个子 Agent 并由 Codex 回收审查。A 将本地 seed 从手工 fixture 推进到飞书 legacy 表真实快照：选择 `毛利核算!A11:AG11`、SKU `sku_salmon_sonic_honey_2ml`（野兽代码三文鱼超声蜜2ml）、revision `521`，并把成本/渠道/活动/店铺 source 写入标准 JSON；B 新增 `prepareChannelProfitAgentWorkflow`，给人类员工/私有 Agent 做结构化意图归一化、缺参追问、默认口径说明和中文结果摘要；C 新增 `buildChannelProfitBlackboardEvent`，把成功计算转换为 `channel_profit.calculation.completed` v1 事件。Codex 额外补上 API 集成，使 `POST /api/channel-profit/calculate` 的 JSONL audit 运行时直接写 v1 黑板事件，并从相关 JSON source 字段提取 `sourceRefs`，包含飞书 `revision=521` 证据。
+- 验证：基线和回收后均跑过定向测试；最终 `pnpm --dir web exec vitest run src/lib/channel-profit/calculator.test.ts src/lib/channel-profit/source-store.test.ts src/lib/channel-profit/audit-log.test.ts src/lib/channel-profit/blackboard-event.test.ts src/lib/channel-profit/agent-workflow.test.ts src/app/api/channel-profit/calculate/route.test.ts` 通过 6 files / 23 tests；`pnpm --dir web test` 通过 18 files / 63 tests（仅现有 `--localstorage-file` warning）；`pnpm --dir web lint` exit 0；`pnpm --dir web build` 通过 Next build + TypeScript。真实 dev server smoke `POST /api/channel-profit/calculate` 对 `sku_salmon_sonic_honey_2ml` 返回 HTTP 200，`netRevenue=19.9`、`baseProfit=11.81`、`liveProfit=5.84`、`breakEvenRoi=3.4075`；audit JSONL 为 `channel_profit.calculation.completed` v1，含 actor、subject、sourceRefs 和 `feishu-revision:521`；smoke 后已删除 `web/data/channel-profit/audit-log.jsonl` 并停止 dev server。
+- 待 JC 拍板：row 11 没有退货率字段，当前 KOC 默认 `refundRate=0`；`极限佣金比例 30%` 当前用于默认佣金，但业务上可能应标为佣金上限；`koc挂车/线下-确认在用` 是否拆成 `koc_cart` 与 `offline`；三文鱼超声蜜成本未命中两张成本表，当前只能以主表行内成本作为 source。
+- 原因：JC 要把旧飞书渠道核算表纳入黑板架构下的“统一原表 + Agent 调用 + 黑板留痕”能力，而不是继续让员工和 Agent 复制表格公式。此轮把第一期 KOC pilot 从 fixture 走到可真实调用、可追溯、可回放到黑板/GBrain 的状态。
+
 ### [Codex-CTO] 新增 KOC-first 全渠道盈亏计算器 pilot
 - 时间：19:49 CST (2026-04-27)
 - 文件：
