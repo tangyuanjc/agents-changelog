@@ -1,4 +1,11 @@
 
+### [Codex-CTO] 修复小J新飞书群 @mention 不回复
+- 时间：19:55 CST (2026-04-28)
+- 文件：`~/.hermes/profiles/coo/.env`
+- 改动：纠正 COO profile 的 `FEISHU_BOT_OPEN_ID`，使其与飞书新群 `oc_3101e4ca9ce172fa324eff12aa0ce100` 中实际 @ 到的 Hermes 小J bot open_id 一致。
+- 影响：小J 在“小龙欣欣 AI提效 7天试跑群”里被 @ 时可通过群聊 mention gate，不再因旧 bot open_id 把 owner 的群消息误丢弃。
+- 验证：用 COO Feishu App OpenAPI 只读确认群存在、bot 已在群、19:46 测试消息 `om_x100b503daf3a7930b4b56c734dfd815` 的 mention name 为 `Hermes 小J` 且 open_id 与新配置一致；未记录任何 app secret。
+
 ### [小J] log 皮皮 2026-04-28 report intake
 - 时间：19:26 CST (2026-04-28)
 - 文件：
