@@ -2358,3 +2358,12 @@
 - 影响：黄宁这类“用我提供的产品图生成一张图，一定用 gpt-image-2”的飞书请求可以直接把上传图片路径传入生图工具，不再依赖模型从 vision 描述里自行脑补，也避免工具后空响应卡住会话。
 - 验证：黄宁 15:07 上传图已确认落盘 `/Users/tangyuanjc/.hermes/profiles/coo/cache/images/img_de6be18549a2.jpg`；本机 live 调用 `_handle_image_generate(... reference_image=...)` 成功生成 `/Users/tangyuanjc/.hermes/profiles/coo/cache/images/openai_gpt-image-2-medium_20260427_153507_cd0a9d78.png`；`pytest tests/plugins/image_gen/test_openai_provider.py tests/tools/test_image_generation_plugin_dispatch.py tests/tools/test_image_generation.py` 为 87 passed；`ai.hermes.gateway-coo` 已重启并重新连接 Feishu websocket。
 - 原因：排障发现 COO 当前 OpenAI gpt-image-2 文生图和 `images.edit` 都可用，但工具 schema 没有参考图参数，导致带图生图请求未稳定进入 image tool，最终被模型空响应恢复逻辑吞掉。
+
+### [Codex-CTO] 修复小J Hermes 新群 @ 提及因 stale bot open_id 被丢弃
+- 时间：20:28
+- 文件：`~/.hermes/profiles/coo/.env`、`~/.hermes/hermes-agent/gateway/platforms/feishu.py`、`~/.hermes/hermes-agent/tests/gateway/test_feishu.py`
+- 改动：先将 COO profile 的 `FEISHU_BOT_OPEN_ID` 修正为当前 Feishu bot 实际 open_id；随后在 Hermes Feishu adapter 启动 hydration 时始终调用 `/bot/v3/info` 刷新内存中的 bot open_id/name，probe 成功时覆盖过期 env，probe 失败时保留 env；新增 stale `FEISHU_BOT_OPEN_ID` 迁移场景回归测试。
+- 影响：小J 迁移 Hermes/换 Feishu bot/open_id 后，新群里明确 @Hermes 小J 不会再因为旧 open_id 被 mention gate 静默丢弃；仍保留群聊必须 @bot 才响应的安全门，不扩大为全群监听。
+- 验证：新群 `oc_3101e4ca9ce172fa324eff12aa0ce100` 已在 20:19、20:21 真实进站并回复；`ai.hermes.gateway-coo` PID 从 `84075` 重启为 `93673`，20:22:48 Feishu WebSocket 重连；`/bot/v3/info` 返回 open_id 与 COO env 一致；targeted tests `pytest -o addopts='' tests/gateway/test_feishu.py -k 'HydrateBotIdentity or group_message_matches_bot_name_when_only_name_available'` 为 7 passed。
+- GitHub：正式窄分支 `fix/feishu-bot-open-id-hydration-fork` 已推到 fork，upstream PR `NousResearch/hermes-agent#16993`；另一个基于最新 upstream 的本地分支因 gh token 缺 `workflow` scope 无法直接 push，已改用 fork/main 窄分支避开 workflow 历史。
+- 原因：排障发现小J新群不回复的根因是 COO `.env` 残留旧 `FEISHU_BOT_OPEN_ID`，Hermes mention gate 在 mention open_id 与配置 open_id 不一致时跳过 name fallback，导致群消息被丢弃且 message_id 已进入 dedup，旧消息无法重放。
