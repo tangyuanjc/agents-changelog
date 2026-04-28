@@ -1,4 +1,13 @@
 
+### [小J] 记录小龙欣欣 AI提效 7天试跑专项
+- 时间：20:26 CST (2026-04-28)
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/NOW.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-MEMORY.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：记录飞书群 `oc_3101e4ca9ce172fa324eff12aa0ce100` 为小龙/欣欣 7天 AI提效专项群；沉淀分工口径：小龙=KOC建联流程AI化，欣欣=内容/脚本AI化；两人日报新增 `【AI使用与产出】` 模块。
+- 验证：已搜索确认 NOW、TEAM-MEMORY、TEAM-STATUS 均含群 ID、专项状态与日报新增模块要求。
+
 ### [Codex-CTO] 修复小J新飞书群 @mention 不回复
 - 时间：19:55 CST (2026-04-28)
 - 文件：`~/.hermes/profiles/coo/.env`
