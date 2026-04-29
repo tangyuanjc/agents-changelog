@@ -1,6 +1,22 @@
 > 本文件 schema (结构定义) 见 `SCHEMA.md`
 > 2026-04-30 起新 entry 必须遵守 schema; 历史 entry 不动作归档
 
+## [2026-04-30 04:45:00] [Codex-CTO] [type:a] v3.0 MVP 完整交付
+- Files changed:
+  - `/Users/tangyuanjc/blackboard-v3/` (new MVP monorepo, commit `c99afa1`)
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.user.blackboard-v3.plist`
+  - `/Users/tangyuanjc/.org/credentials/v3-passwords.json` (local only, not committed)
+  - `/Users/tangyuanjc/.org/projects/blackboard-v3-mvp/10-task-A-three-panels-frontend.md`
+  - `/Users/tangyuanjc/.org/projects/blackboard-v3-mvp/11-task-B-nasa-dashboard.md`
+  - `/Users/tangyuanjc/.org/projects/blackboard-v3-mvp/12-task-C-backend-pipeline.md`
+  - `/Users/tangyuanjc/.org/projects/blackboard-v3-mvp/13-task-D-integration-deploy.md`
+  - `/Users/tangyuanjc/.org/projects/blackboard-v3-mvp/screenshots/task-{A,B,D}/`
+- What changed: Delivered Blackboard v3.0 MVP explicit UI layer: static three-panel workbench, NASA dashboard, Bun API pipeline, Paperclip proxy fallback, file-tree read whitelist, Opus chat mock/CLI fallback, six dogfood users, start script, and launchd plist.
+- Verification: `bun install` completed with no network packages; `bun run build` copied static assets; `bun run start:check` passed offline request-handler smoke for login, health, root, dashboard, auth/me, projects, 4 NASA endpoints, files tree/read, chat/opus, and logout. Screenshot artifacts were generated under the task screenshot folders.
+- Impact: Provides dogfoodable v3.0 MVP code at `~/blackboard-v3`; LAN target is `http://192.168.100.41:3300` once launched from a normal user session.
+- Caveat: Current Codex CLI sandbox blocks listening sockets (`node` got `EPERM`, `Bun.serve` got `EADDRINUSE`) and `launchctl bootstrap` returned Input/output error even for an echo smoketest; live LAN verification must be rerun outside this sandbox.
+- Reason: Opus-CSO v3.0 MVP dispatch; no Paperclip issue created; `~/.org/AGENTS.md` was not modified.
+
 ## [2026-04-30 04:36:00] [Codex-CTO] [type:a] infra-debt-0430 底层债清账
 - Files changed:
   - `/Users/tangyuanjc/.gbrain/brain.pglite` (verified existing PGLite brain; import rerun skipped unchanged pages)
