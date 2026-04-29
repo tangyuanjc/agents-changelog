@@ -1,4 +1,13 @@
 
+### [小J] log 泡泡 2026-04-29 work update intake
+- 时间：19:00 CST (2026-04-29)
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-29/ou_d89d30f80a0cdd287cb77db6a1f0346f.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-29.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：登记泡泡 2026-04-29 工作更新；内容包括库存更新、天猫 5.6-5.20 活动报名与节奏更新、天猫 5.1-5.5 活动报名/优惠券改满减/单品 10% 立减、京东 5.1-5.5 活动报名/单品营销/200减30跨店满减报名、天猫日常价与新享活动到手价设置、嬉油3.0链接审核。
+- 验证：已 read_file 验证 raw inbox、共享 inbox、TEAM-STATUS 均含泡泡 2026-04-29 工作更新记录。
+
 ### [小J] log 欣欣 2026-04-28 report intake correction
 - 时间：18:37 CST (2026-04-29)
 - 文件：
