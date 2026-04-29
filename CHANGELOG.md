@@ -1,6 +1,22 @@
 > 本文件 schema (结构定义) 见 `SCHEMA.md`
 > 2026-04-30 起新 entry 必须遵守 schema; 历史 entry 不动作归档
 
+
+## [2026-04-30 05:00:00] [Codex-CTO] [type:c] ai-hotboard 本机备份与告警补丁
+- Files changed:
+  - `/Users/tangyuanjc/hermes-workspace/scripts/backup-aihotboard-sqlite.sh`
+  - `/Users/tangyuanjc/hermes-workspace/scripts/monitor-aihotboard.sh`
+  - `/Users/tangyuanjc/hermes-workspace/launchd/ai.hermes.aihotboard-backup.plist`
+  - `/Users/tangyuanjc/hermes-workspace/launchd/ai.hermes.aihotboard-monitor.plist`
+  - `/Users/tangyuanjc/hermes-workspace/docs/ai-hotboard-ops.md`
+  - `/Users/tangyuanjc/Library/LaunchAgents/ai.hermes.aihotboard-backup.plist`
+  - `/Users/tangyuanjc/Library/LaunchAgents/ai.hermes.aihotboard-monitor.plist`
+- What changed: Added local-only daily SQLite backup for ai-hotboard data and a 5-minute launchd/HTTP monitor with Feishu IM alert/recovery state machine.
+- Commits: hermes-workspace `a3c0f22` (AI-116 backup), `3f644db` (AI-117 monitor), `06eb6fc` (AI-118 runbook).
+- Verification: `scripts/backup-aihotboard-sqlite.sh` created `~/.hermes/data/backups/aihotboard-2026-04-30.tar.gz` (`chmod 600`) and uploaded it through `lark-cli drive +upload`; `launchctl bootstrap` registered backup and monitor plists; intentional `launchctl bootout gui/$(id -u)/ai.hermes.aihotboard` produced one Feishu alert and restore produced one recovery message; `npm test` passed 40 files / 146 tests.
+- Caveat: This installed `lark-cli` has no `drive +create-folder`; raw `drive/v1/files/create_folder` exits with no CLI response, so upload target is the verified Feishu Drive root folder token `nodcnvDEIBZTozpbbzJFaPShmFd` until a dedicated `ai-hotboard-backups` folder token is supplied. The task-provided `ou_01e...` open_id is cross-app for this bot; monitor uses same-app JC open_id `ou_a06ae3d7885f83839917ac0f44e46247`.
+- Reason: CSO Wave 4 Line P operational hardening for the 8-person ai-hotboard pilot; no cloud server and no `~/.org/AGENTS.md` modification.
+
 ## [2026-04-30 04:45:00] [Codex-CTO] [type:a] v3.0 MVP 完整交付
 - Files changed:
   - `/Users/tangyuanjc/blackboard-v3/` (new MVP monorepo, commit `c99afa1`)
