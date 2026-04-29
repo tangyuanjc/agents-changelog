@@ -1,4 +1,13 @@
 
+### [小J] log 欣欣 2026-04-28 report intake correction
+- 时间：18:37 CST (2026-04-29)
+- 文件：
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-04-28/ou_ad30272f15dfc74a7fb905ae7856a005.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-04-28.md`
+  - `~/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- 改动：欣欣补充/更正 2026-04-28 日报；统计口径更正为新建联 15 人、新增通过 5 人、寄样 4 个、遮瑕内容确认发布 5 篇；补充 AI 使用与产出：用 AI 拆解分析脚本，分析视频转化点/痛点并改写脚本、分镜头；产出飞书 wiki 脚本链接；反馈网页链接能力有限、脚本细致度不如豆包。
+- 验证：已 read_file 验证 raw inbox 保留首次提交与更正提交、共享 inbox 采用更正版本、TEAM-STATUS 标记为 `received_daily_report_corrected`。
+
 ### [小J] log 小龙 2026-04-29 report intake
 - 时间：18:12 CST (2026-04-29)
 - 文件：
