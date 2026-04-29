@@ -2519,3 +2519,12 @@ CSO 醒来 (~UTC+8 09:00) 扫:
 - ## CSO-ESCALATION 段优先处理
 - agents-changelog 看 Codex commit
 
+
+## [2026-04-30 05:15:00] [Codex-CTO] AI Hotboard Wave 5 内容丰富度 + dogfood UX (AI-119~125)
+
+- 文件：`~/.hermes/hermes-agent/scripts/x_signal_sync.py`、`~/.hermes/hermes-agent/tests/scripts/test_x_signal_sync.py`、`~/hermes-workspace/src/routes/ai-hotboard/index.tsx`、`~/hermes-workspace/src/routes/ai-hotboard/-index.test.ts`、`~/hermes-workspace/src/components/auth/login-screen.tsx`、`~/hermes-workspace/src/components/auth/login-screen.test.ts`、`~/hermes-workspace/src/screens/ai-hotboard/ai-hotboard-screen.tsx`、`~/hermes-workspace/src/screens/ai-hotboard/ai-hotboard-screen.test.ts`
+- 改动：X signal sync 抓取深度从 20/8/15 提升到统一 50；AI Hotboard 默认入口改成“全部 AI 动态”；登录页增加产品定义 copy；member 账号不再看到公众号/Zara owner-only 灰态卡；信号分增加 tooltip；新增 localStorage 已读记录与已读折叠/显示 toggle；去掉若干硬编码 emoji、模糊占位和 JC 个人名错误提示。
+- 影响：泡泡/成员首次进入看板默认看到更满的全量时间线，旧内容会在二次进入时折叠，owner-only 操作不会再以灰卡干扰 member 浏览；X latest 产物从 77K 增至 671K，bookmarks/for_you/following owner 层均抓到 50 条，多数 KOL following 也抓到 50 条。
+- 验证：`scripts/run_tests.sh tests/scripts/test_x_signal_sync.py -q` 为 2 passed；`npm test` 为 41 files / 154 tests passed；`npm run build` passed；Playwright mock member 验证 `/ai-hotboard/` h1 为“全部 AI 动态”、`ai-hotboard-seen-paopao-open` 写入、二次进入折叠 2 条、`[ ] 显示已读` toggle 后展开；`/source/wechat` member 不显示 owner drop/只读锁卡。
+- GitHub：Hermes agent fix 在 fork 分支 `ai-119-x-sync-depth`，commit `19f7c5618`；Hermes workspace 分支 `jc/ai-hotboard-day1-2026-04-23` 增加 commits `395c9ba`、`ae986ea`、`991766c`、`e495701`、`18a4cb7`、`1fabbc1`。
+- 原因：JC 反馈“内容不够丰富”，CSO Wave 5 诊断确认主因是抓取深度与 dogfood 首屏/已读体验，而不是同步频率不足。
