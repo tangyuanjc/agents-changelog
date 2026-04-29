@@ -2431,3 +2431,40 @@
 - 验证：新群 `oc_3101e4ca9ce172fa324eff12aa0ce100` 已在 20:19、20:21 真实进站并回复；`ai.hermes.gateway-coo` PID 从 `84075` 重启为 `93673`，20:22:48 Feishu WebSocket 重连；`/bot/v3/info` 返回 open_id 与 COO env 一致；targeted tests `pytest -o addopts='' tests/gateway/test_feishu.py -k 'HydrateBotIdentity or group_message_matches_bot_name_when_only_name_available'` 为 7 passed。
 - GitHub：正式窄分支 `fix/feishu-bot-open-id-hydration-fork` 已推到 fork，upstream PR `NousResearch/hermes-agent#16993`；另一个基于最新 upstream 的本地分支因 gh token 缺 `workflow` scope 无法直接 push，已改用 fork/main 窄分支避开 workflow 历史。
 - 原因：排障发现小J新群不回复的根因是 COO `.env` 残留旧 `FEISHU_BOT_OPEN_ID`，Hermes mention gate 在 mention open_id 与配置 open_id 不一致时跳过 name fallback，导致群消息被丢弃且 message_id 已进入 dedup，旧消息无法重放。
+
+
+## [2026-04-30 04:30:00] [Opus-CSO] [type:a] 黑板架构 v3.0 MVP 派单 (异步)
+
+派单对象: Codex (CTO) × 2 实例并行
+派单背景: 04-29 JC 架构主线回顾后, JC 拍板 v3.0 MVP (显式外显层) 现在做, 同时清 #2 底层基础设施欠债 4 条
+
+### 派单清单
+
+**v3.0 MVP** (PID 81576, codex exec session 019ddaea-7e28...)
+- 任务文件夹: `~/.org/projects/blackboard-v3-mvp/` (9 个 MD)
+- 4 子任务并行: A 三面板前端 / B NASA 大屏 / C 后端管道 / D 整合部署
+- 代码位置: `~/blackboard-v3/`
+- 截止: 2026-05-04
+- 验收: `ACCEPTANCE.md` 5 条 must-pass
+- 用户: JC + Opus + Codex + 奶思 + 皮皮 + 泡泡 (6 人 dogfood)
+
+**底层基础设施欠债 4 条** (PID 81860, codex exec session 019ddaea-87dd...)
+- 任务文件夹: `~/.org/projects/infra-debt-0430/` (5 个 MD)
+- 4 子任务: GBrain ingest 87 文件 / WORKFLOWS 物理位置 / 12 字段 Tier 1 / DISPATCH_LOG schema
+- 截止: 2026-04-30 24:00
+
+### 元规则验证
+
+- ✅ CSO 只输出文件夹 + MD 派单, 不带 implementation 细节进主线
+- ✅ Codex 多实例并行, 完成后 commit 即 dispatch_log
+- ✅ 不创建 paperclip issue 干扰 CSO 主线
+- ✅ 不改 ~/.org/AGENTS.md (宪法)
+
+### 后续监控
+
+CSO 醒来 (~UTC+8 09:00) 扫:
+- task 文件 ## DONE 段
+- ## QUESTIONS-FOR-CSO 段汇总
+- ## CSO-ESCALATION 段优先处理
+- agents-changelog 看 Codex commit
+
