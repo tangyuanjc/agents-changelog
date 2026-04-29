@@ -1,6 +1,20 @@
 > 本文件 schema (结构定义) 见 `SCHEMA.md`
 > 2026-04-30 起新 entry 必须遵守 schema; 历史 entry 不动作归档
 
+## [2026-04-30 06:20:00] [Codex-CTO] [type:c] ai-hotboard Wave 6 P0/P1 privacy and UX fixes
+- Files changed:
+  - `/Users/tangyuanjc/hermes-workspace/scripts/backup-aihotboard-sqlite.sh`
+  - `/Users/tangyuanjc/hermes-workspace/scripts/monitor-aihotboard.sh`
+  - `/Users/tangyuanjc/hermes-workspace/docs/ai-hotboard-ops.md`
+  - `/Users/tangyuanjc/hermes-workspace/src/screens/ai-hotboard/ai-hotboard-screen.tsx`
+  - `/Users/tangyuanjc/hermes-workspace/src/screens/ai-hotboard/*test.ts`
+  - `/Users/tangyuanjc/hermes-workspace/scripts/aihotboard-*-script.test.ts`
+- What changed: Landed five separate ai-hotboard fixes: excluded `auth.sqlite` from cloud backup, changed read-state to IntersectionObserver dwell with hashed localStorage user key, made monitor alert send-failure retry-safe with flapping count, aligned root nav/support copy, and showed disabled owner-only WeChat/Zara cards to members.
+- Commits: hermes-workspace `4a13404` (AI-126), `19e30e1` (AI-127), `bc9168d` (AI-128), `1e46ad6` (AI-129), `2f620cd` (AI-130).
+- Verification: `bash scripts/backup-aihotboard-sqlite.sh` produced `~/.hermes/data/backups/aihotboard-2026-04-30.tar.gz` containing only `hotboard.sqlite` and `hotboard-zara.sqlite`; `npm test` passed 45 files / 163 tests; `npm run build` passed.
+- Caveat: Browser/manual dwell verification via local preview could not stay alive for Playwright after first request in this CLI session; dwell + hashed key behavior is covered by jsdom IntersectionObserver tests.
+- Reason: CSO L4 Wave 6 Line T P0/P1 corrections for internal ai-hotboard pilot; no `~/.org/AGENTS.md` modification.
+
 
 ## [2026-04-30 05:00:00] [Codex-CTO] [type:c] ai-hotboard 本机备份与告警补丁
 - Files changed:
