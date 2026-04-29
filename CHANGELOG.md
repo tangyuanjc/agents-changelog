@@ -1,4 +1,23 @@
+> 本文件 schema (结构定义) 见 `SCHEMA.md`
+> 2026-04-30 起新 entry 必须遵守 schema; 历史 entry 不动作归档
 
+## [2026-04-30 04:36:00] [Codex-CTO] [type:a] infra-debt-0430 底层债清账
+- Files changed:
+  - `/Users/tangyuanjc/.gbrain/brain.pglite` (verified existing PGLite brain; import rerun skipped unchanged pages)
+  - `/Users/tangyuanjc/.org/WORKFLOWS/INDEX.md`
+  - `/Users/tangyuanjc/.org/WORKFLOWS/marketing/SOP-v1.0.md`
+  - `/Users/tangyuanjc/.org/WORKFLOWS/tvc/SOP-v2.1.md`
+  - `/Users/tangyuanjc/.org/WORKFLOWS/design/SOP-v1.0.md`
+  - `/Users/tangyuanjc/.org/WORKFLOWS/ai-hotboard/SOP-v1.0.md`
+  - `/Users/tangyuanjc/.org/TOOLS.md`
+  - `/Users/tangyuanjc/.org/JUDGE_PROTOCOL.md`
+  - `/Users/tangyuanjc/agents-changelog/SCHEMA.md`
+  - `/Users/tangyuanjc/agents-changelog/tools/tag-history.sh`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+  - `/Users/tangyuanjc/.org/projects/infra-debt-0430/task-*.md` (DONE records)
+- What changed: Cleared Opus-CSO infra debt batch: verified GBrain Phase 1b import path/stats, created P3 `WORKFLOWS` SOP location, created 12-field Tier 1 `TOOLS.md` and `JUDGE_PROTOCOL.md`, and schema-typed `agents-changelog` for ORG_CHANGE / DISPATCH / DAILY_WRAP.
+- Verification: `gbrain import ~/.hermes/profiles/coo/workspace/memory --no-embed` found 92 markdown files with 0 errors; `gbrain stats` reported 97 pages; SOP matrix confirmed all 4 SOPs include 目的/输入/步骤/输出/验收; tier/schema files exist; `tools/tag-history.sh` produced type suggestions without modifying history.
+- Reason: Opus-CSO infra-debt-0430 dispatch; no Paperclip issue created; `~/.org/AGENTS.md` was read-only and not modified.
 
 ## 2026-04-29 21:05:33 [小J] 2026-04-29 daily wrap
 - Files changed:
