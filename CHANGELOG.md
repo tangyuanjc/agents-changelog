@@ -1,3 +1,13 @@
+## [2026-04-30 21:56:29] [Codex-CTO] [type:c] Ogilvy 主力模型切换到 gpt-5.5
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/ogilvy/config.yaml`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Changed Ogilvy profile `model.default` from `gpt-5.4` to `gpt-5.5`; left provider, endpoint, auxiliary vision model, toolsets, and other gateway settings unchanged.
+- Verification: Direct `/chat/completions` health check against Ogilvy's configured custom endpoint returned `status=200`, `response_model=gpt-5.5`, `content=OK`; `hermes --profile ogilvy status` showed `Model: gpt-5.5`, Feishu home `oc_fd95bc60a1b378384efac443feacc510`, and gateway PID `98270`; profile one-shot returned `OK-5.5`.
+- Runtime: Restarted only `ai.hermes.gateway-ogilvy` via launchd, PID changed `1163 -> 98270`; `ai.hermes.gateway` and `ai.hermes.gateway-coo` PIDs stayed unchanged.
+- Impact: Ogilvy's live Feishu gateway now loads `gpt-5.5` as the main model for future conversations.
+- Reason: JC requested upgrading Ogilvy's main model because the current API endpoint supports GPT-5.5.
+
 ### 2026-04-30 欣欣 日报入库
 ## 2026-04-30 21:02:56 - [小J] add 2026-04-30 daily wrap
 
@@ -2647,4 +2657,3 @@ JC 17:31 双命题:
 ### 不升宪法 (待触发)
 - 全栈操盘手: 待 ≥1 名员工成功转型或 AI native 新人入职
 - by-day 节奏铁律: 待 ≥3 次实战验证
-
