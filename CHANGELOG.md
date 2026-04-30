@@ -2667,3 +2667,11 @@ JC 17:31 双命题:
 - 截止: 2026-05-07 (本周, by-week 节奏)
 - DoD: NASA 大屏第 5 卡可见 JC 当天总结
 
+
+## [2026-04-30 23:05:00] [Codex-CTO] SENSOR Plugin v0 MVP：主宇宙观察窗接入 Blackboard v3
+
+- 文件：`~/blackboard-v3/scripts/collect-jc-observation.ts`、`~/blackboard-v3/apps/api/src/sensor-observation.ts`、`~/blackboard-v3/apps/api/src/sensor-scheduler.ts`、`~/blackboard-v3/apps/api/src/index.ts`、`~/blackboard-v3/apps/api/src/check.ts`、`~/blackboard-v3/apps/web/static/app.js`、`~/blackboard-v3/apps/web/static/styles.css`、`~/blackboard-v3/deploy/launchd/com.user.blackboard-v3-sensor.plist`、`~/.org/projects/sensor-plugin-0430/README.md`
+- 改动：新增 hourly screenpipe 观察窗采集脚本，按 screenpipe REST `/search`（`content_type=ocr/start_time/end_time/limit/q`）拉 MacBook OCR 数据，并兼容 README 的 `start/end` 参数；直连失败后 fallback SSH localhost；接 `claude -p` 生成 `做了什么 / 卡点 / 产出` 三段摘要；用 `gbrain import --no-embed` 写入 `reports/jc-observation-*`；Blackboard v3 新增 `GET /api/nasa/observation` 和 NASA 第 5 卡 `主宇宙观察窗`。
+- 调度：准备 `com.user.blackboard-v3-sensor` launchd plist；当前 Codex sandbox 下 `launchctl bootstrap`、`crontab`、`launchctl kickstart`、`kill` 均被系统拒绝，因此补了 Blackboard API 进程内 hourly fallback，待非 sandbox 重启 `com.user.blackboard-v3` 后生效。
+- 验证：`git diff --check` passed；`bun run build && cd apps/api && bun run check` passed，覆盖 `GET /api/nasa/observation: 200`；`bun build scripts/collect-jc-observation.ts --target=bun` passed；`plutil -lint deploy/launchd/com.user.blackboard-v3-sensor.plist` OK；单次采集已保守写入 GBrain report。
+- 注意：MacBook live screenpipe 当前未连通：`192.168.100.92:3030` connection refused、`.local` 解析失败、`chenziliang@192.168.100.92:22` 在当前 sandbox 下 `Operation not permitted`；已在 task README 追加 `QUESTIONS-FOR-CSO`，不创建 Paperclip issue，不改 `~/.org/AGENTS.md`。
