@@ -2611,3 +2611,11 @@ JC 17:31 双命题:
 - 不创建 paperclip issue
 - 主线只增 ~30 min 工作量
 
+
+## [2026-04-30 19:15:00] [Codex-CTO] AI 原生指数 v0 MVP 接入 Blackboard v3
+
+- 文件：`~/blackboard-v3/apps/api/src/ai-maturity.ts`、`~/blackboard-v3/apps/api/src/index.ts`、`~/blackboard-v3/apps/api/src/check.ts`、`~/blackboard-v3/apps/web/static/app.js`、`~/blackboard-v3/apps/web/static/styles.css`、`~/.org/projects/ai-native-index/10-task-v0-mvp.md`
+- 改动：新增本地 `bun:sqlite` 表 `ai_maturity_scores` 与 3 个 endpoint；在 v3.0 MVP 顶部导航加入 `AI 原生指数` tab；实现 `/ai-maturity` 自评问卷与分数/历史双视图；task 文件追加 `## DONE`。
+- 影响：JC 可在现有 Blackboard v3 同 port 3300 路由填写 AI 原生指数自评，数据留存在 `~/blackboard-v3/apps/api/data/ai-maturity.sqlite`；v0 未接 codebanana、不新增 Paperclip issue、不改宪法。
+- 验证：`git diff --check` passed；`bun run build && cd apps/api && bun run check` passed，覆盖登录、`/ai-maturity`、submit/latest/history、SQLite insert 后自清理；DB 表存在且 smoke 后 `count=0`，避免污染 JC 正式自评历史。
+- 注意：`01-framework.md` 实际列出 15 个子指标且总分 100，task 文案写 12 题，本轮按框架表为真相源实现 15 slider；当前 sandbox 拒绝 `launchctl kickstart`/`kill` 与系统截图，live 3300 需在非 sandbox session 重启 `com.user.blackboard-v3` 后吃到后端新 route。
