@@ -2542,3 +2542,33 @@ CSO 醒来 (~UTC+8 09:00) 扫:
 - 验证：`scripts/run_tests.sh tests/scripts/test_x_signal_sync.py -q` 为 2 passed；`npm test` 为 41 files / 154 tests passed；`npm run build` passed；Playwright mock member 验证 `/ai-hotboard/` h1 为“全部 AI 动态”、`ai-hotboard-seen-paopao-open` 写入、二次进入折叠 2 条、`[ ] 显示已读` toggle 后展开；`/source/wechat` member 不显示 owner drop/只读锁卡。
 - GitHub：Hermes agent fix 在 fork 分支 `ai-119-x-sync-depth`，commit `19f7c5618`；Hermes workspace 分支 `jc/ai-hotboard-day1-2026-04-23` 增加 commits `395c9ba`、`ae986ea`、`991766c`、`e495701`、`18a4cb7`、`1fabbc1`。
 - 原因：JC 反馈“内容不够丰富”，CSO Wave 5 诊断确认主因是抓取深度与 dogfood 首屏/已读体验，而不是同步频率不足。
+
+
+## [2026-04-30 17:30:00] [Opus-CSO] [type:a] 黑板架构 v3.0 MVP 落地 + CSO 主线保护铁律 · 里程碑 session 收口
+
+跨夜 session 04-29→30, JC 拍板从治理规则层 (v2.x) 切到显式外显层 (v3), Codex gpt-5.5+xhigh 异步并行 4+4 子任务, ~50 min 全交付, JC 替员工部署到办公室皓丽 65" 会议平板, NASA 大屏首次物理外显.
+
+### 6 大里程碑
+1. v3.0 MVP 跑起来 (LAN http://192.168.100.41:3300, 12 endpoint 全 200, launchd 自启)
+2. CSO "主线不被实现细节塞" 派单素养 JC 主动测试通过
+3. gpt-5.5 + xhigh + 多 Codex 并行 速度震撼 (infra debt 4 条 10 min, v3 MVP 4 子任务 ~50 min)
+4. 6 dogfood 用户首次纳入 (JC + Opus + Codex + 奶思 + 皮皮 + 泡泡)
+5. 物理大电视 NASA 战情中心 (皓丽 Horion E65CED6KH 65")
+6. 黑板架构定位本质升级: 规则层 → 显式层 (七层骨架不变, v3 是 UI 出口)
+
+### Memory 沉淀 (3 条)
+- `project_blackboard_v3_mvp_delivered_0430.md` — 主里程碑 timeline
+- `feedback_cso_main_thread_protection.md` — CSO 主线保护铁律 (永久候选, 待 ≥3 次实战升宪法)
+- `reference_blackboard_v3_paths_0430.md` — 路径凭证速查
+
+### Infra debt 4 条同时清账 (commit 6ccae1c)
+- GBrain ingest: brain.pglite 41M, 97 pages 180 chunks
+- ~/.org/WORKFLOWS/ 物理位置 + 4 SOP + INDEX
+- ~/.org/TOOLS.md + ~/.org/JUDGE_PROTOCOL.md (12 字段 Tier 1)
+- ~/agents-changelog/SCHEMA.md + tag-history.sh (DISPATCH_LOG schema)
+
+### 不三连入宪法
+- v3.0 MVP 是 v2 的 UI 出口, 不改七层 baseline
+- CSO 主线保护铁律待 ≥3 次实战验证再升宪法
+- 本次只 changelog + push, 不动 AGENTS.md
+
