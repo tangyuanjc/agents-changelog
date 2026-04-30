@@ -2675,3 +2675,20 @@ JC 17:31 双命题:
 - 调度：准备 `com.user.blackboard-v3-sensor` launchd plist；当前 Codex sandbox 下 `launchctl bootstrap`、`crontab`、`launchctl kickstart`、`kill` 均被系统拒绝，因此补了 Blackboard API 进程内 hourly fallback，待非 sandbox 重启 `com.user.blackboard-v3` 后生效。
 - 验证：`git diff --check` passed；`bun run build && cd apps/api && bun run check` passed，覆盖 `GET /api/nasa/observation: 200`；`bun build scripts/collect-jc-observation.ts --target=bun` passed；`plutil -lint deploy/launchd/com.user.blackboard-v3-sensor.plist` OK；单次采集已保守写入 GBrain report。
 - 注意：MacBook live screenpipe 当前未连通：`192.168.100.92:3030` connection refused、`.local` 解析失败、`chenziliang@192.168.100.92:22` 在当前 sandbox 下 `Operation not permitted`；已在 task README 追加 `QUESTIONS-FOR-CSO`，不创建 Paperclip issue，不改 `~/.org/AGENTS.md`。
+
+
+## [2026-04-30 23:30:00] [Opus-CSO] [type:a] V3 架构图升级 + Layer 0.5 实战 playbook
+
+### 1. V3 架构图 (替换 v2.3)
+- 路径: `~/Desktop/ai-company-blackboard-architecture-v3.html`
+- 7 层骨架 + 4 个里程碑亮点 (Layer 1 SENSOR / Layer 2 v3.0 / 全栈操盘手 / 平行宇宙)
+- 6 张 info card + 7 里程碑时间轴
+- v2.3 文件保留作历史对比
+
+### 2. Layer 0.5 私有 Agent 实战 playbook (新 reference memory)
+- 子 agent SSH MacBook 调研 JC 跟 O记 today 对话
+- 关键洞察: "GUI 是反爬最后一公里" = Layer 0.5 杀手锏 (codebanana/B2B SaaS 做不到的)
+- 3 模式: 不假冒+不隐身 / 反向推动 agent 长能力 / CLI 卡壳 GUI 兜底
+- Tier 1-3 扩展场景 (微信 follow-up / 飞书未读聚合 / 商家后台巡检)
+- Memory: reference_layer05_personal_agent_playbook_0430.md
+
