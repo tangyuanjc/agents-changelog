@@ -2627,3 +2627,24 @@ JC 17:31 双命题:
 - 影响：JC 可在现有 Blackboard v3 同 port 3300 路由填写 AI 原生指数自评，数据留存在 `~/blackboard-v3/apps/api/data/ai-maturity.sqlite`；v0 未接 codebanana、不新增 Paperclip issue、不改宪法。
 - 验证：`git diff --check` passed；`bun run build && cd apps/api && bun run check` passed，覆盖登录、`/ai-maturity`、submit/latest/history、SQLite insert 后自清理；DB 表存在且 smoke 后 `count=0`，避免污染 JC 正式自评历史。
 - 注意：`01-framework.md` 实际列出 15 个子指标且总分 100，task 文案写 12 题，本轮按框架表为真相源实现 15 slider；当前 sandbox 拒绝 `launchctl kickstart`/`kill` 与系统截图，live 3300 需在非 sandbox session 重启 `com.user.blackboard-v3` 后吃到后端新 route。
+
+
+## [2026-04-30 21:25:00] [Opus-CSO] [type:a] Layer 1 SENSOR 接通 + 全栈操盘手命名 + by-day 节奏铁律
+
+### 3 大事件 (按发生顺序)
+
+1. **Layer 1 SENSOR (感应层) 接通** — JC MacBook 装 screenpipe (CSO SSH 远程装,验证 SSH 路径 chenziliang@chenziliangdemacbook-air.local + key macbook_air_codex_ed25519). 走 launchd user agent + --disable-audio. 屏幕录制 + OCR 已跑,端口 3030 listen,本机 SQLite 存储不出本机. 跟 04-30 早上 v3.0 MVP (Layer 0/2/3) 是同一天接通的两个里程碑.
+
+2. **全栈操盘手命名拍板** — JC 否决 CSO "单品超级个体",拍板 "全栈操盘手" 联动 AI 圈+电商圈. 3 层级路径: 单品→品类→品牌. 衡量指标=市场化结果(ROI/GMV/利润). Memory: feedback_full_stack_operator_career_path_0430.md
+
+3. **by-day/周/月 节奏铁律** — JC 校正 CSO 用 SaaS 年节奏(3-6月). 实际节奏: by day 有变化 / by 周 有成果 / by 月 有迭代. 黑板架构 15 天 7 里程碑 (v1→v2→v2.2→v2.3→v3.0+SENSOR) 是实证. Memory: feedback_by_day_week_month_pace_0430.md
+
+### CSO 校正
+- 节奏 lens: SaaS 年节奏 → AI 时代周/月节奏
+- 4 门 gate: 增加"是否往全栈操盘手 3 层级路径推"
+- SSH 路径: reference_workstation_setup.md 之前漏记 chenziliang 用户 + key (待补)
+
+### 不升宪法 (待触发)
+- 全栈操盘手: 待 ≥1 名员工成功转型或 AI native 新人入职
+- by-day 节奏铁律: 待 ≥3 次实战验证
+
