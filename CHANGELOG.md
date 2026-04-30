@@ -2657,3 +2657,13 @@ JC 17:31 双命题:
 ### 不升宪法 (待触发)
 - 全栈操盘手: 待 ≥1 名员工成功转型或 AI native 新人入职
 - by-day 节奏铁律: 待 ≥3 次实战验证
+
+
+## [2026-04-30 22:35:00] [Opus-CSO] [type:b] SENSOR plugin 派单 (本周交付)
+
+派 Codex CTO 1 实例 (异步 nohup, 主线保护铁律) 做 v0 MVP:
+- cron 每小时拉 MacBook screenpipe → claude CLI 总结 3 段 → gbrain put → v3.0 NASA 大屏第 5 卡 "主宇宙观察窗"
+- 任务文件夹: ~/.org/projects/sensor-plugin-0430/
+- 截止: 2026-05-07 (本周, by-week 节奏)
+- DoD: NASA 大屏第 5 卡可见 JC 当天总结
+
