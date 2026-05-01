@@ -1,4 +1,16 @@
 
+## [2026-05-01 21:20:50] [Codex-CTO] [type:c] Wake-up Brief Phase 0.5 priority guardrails
+- Files changed:
+  - `/Users/tangyuanjc/blackboard-v3/scripts/collect-wake-up-brief.ts`
+  - `/Users/tangyuanjc/blackboard-v3/scripts/collect-wake-up-brief.test.ts`
+  - `/Users/tangyuanjc/.org/projects/wake-up-brief-phase0/README.md`
+  - `/Users/tangyuanjc/.org/wake-up-brief/2026-05-01.md`
+  - `/Users/tangyuanjc/blackboard-v3/output/wake-up-brief/2026-05-01.json`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Added deterministic priority guardrails before Opus classification: app/bot/cronjob/system notices stay green, human `source=at_me` goes red, and human p2p help keywords go red; Opus now only classifies undecided messages and receives explicit precedence rules in the prompt.
+- Verification: `bun test scripts/collect-wake-up-brief.test.ts` passed; manual same-window backfill `WAKE_UP_BRIEF_NOW=2026-05-01T15:56:08+08:00 bun scripts/collect-wake-up-brief.ts` regenerated the brief with counts `urgent=3, normal=4, ignore=15`; targeted raw check shows Cronjob/data-pipeline/Feishu app approvals green and Gu Yikai/Guan Xiaoying human @JC prompt-help messages red.
+- Reason: Phase 0.5 prompt-tuning dispatch fixed the 2026-05-01 priority inversion without changing launchd schedule, creating Paperclip, or modifying `~/.org/AGENTS.md`.
+
 ## 2026-05-01 21:01:20 [小J] add 2026-05-01 daily wrap
 
 - Files changed: `workspace/daily-logs/2026-05-01.md`, `workspace/journal/xiaoj-diary-2026-05-01.md`
