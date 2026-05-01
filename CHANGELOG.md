@@ -1,3 +1,35 @@
+
+## 2026-05-01 21:01:20 [小J] add 2026-05-01 daily wrap
+
+- Files changed: `workspace/daily-logs/2026-05-01.md`, `workspace/journal/xiaoj-diary-2026-05-01.md`
+- What changed: wrote the daily closeout log and XiaoJ diary for 2026-05-01; included daily report generator result and authority cross-check against TEAM-STATUS/shared inbox/raw.
+- Impact: preserves auditable COO daily wrap output in the workspace.
+- Reason: scheduled daily closeout cron.
+
+## [2026-05-01 17:53:58] [Codex-CTO] [type:c] sensor-plugin launchd child env hotfix
+- Files changed:
+  - `/Users/tangyuanjc/blackboard-v3/scripts/collect-jc-observation.ts`
+  - `/Users/tangyuanjc/blackboard-v3/scripts/collect-jc-observation-env.ts`
+  - `/Users/tangyuanjc/blackboard-v3/scripts/collect-jc-observation-env.test.ts`
+  - `/Users/tangyuanjc/blackboard-v3/README.md`
+  - `/Users/tangyuanjc/.blackboard-v3/sensor.env` (local private env, mode `600`, not committed)
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Replaced launchd child process command lookup with absolute `claude` and `gbrain` paths, passed an explicit launchd-safe env to `Bun.spawn`, filled sparse launchd user defaults, and added a private env-file loader for Claude base/proxy settings without storing values in repo or logs.
+- Verification: Red-green `bun test scripts/collect-jc-observation-env.test.ts` now passes 4 tests / 10 expects; `env -i` child smoke through `buildCommandEnv()` returned `exitCode=0` and `ok`; `plutil -lint` passed for deploy and live sensor plists; `launchctl kickstart -k gui/$(id -u)/com.user.blackboard-v3-sensor` produced `output/sensor/reports/jc-observation-2026-05-01T09-52-35-527Z.md` with `状态: ok`, `样本数: 30`, `原始字符: 15869`, and real three-part summary content.
+- Reason: Opus-CSO HOTFIX-launchd-env dispatch; launchd had sparse child env/PATH, causing `gbrain` lookup failure and then Claude auth/base-url failure under non-login subprocesses; no Paperclip issue created and `~/.org/AGENTS.md` was not modified.
+
+## [2026-05-01 15:54:32] [Codex-CTO] [type:c] sensor-plugin tailnet SQLite fix
+- Files changed:
+  - `/Users/tangyuanjc/blackboard-v3/scripts/collect-jc-observation.ts`
+  - `/Users/tangyuanjc/blackboard-v3/apps/api/src/sensor-scheduler.ts`
+  - `/Users/tangyuanjc/blackboard-v3/deploy/launchd/com.user.blackboard-v3-sensor.plist`
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.user.blackboard-v3-sensor.plist`
+  - `/Users/tangyuanjc/blackboard-v3/README.md`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Switched JC observation collection from LAN/HTTP screenpipe search to tailnet SSH plus direct SQLite OCR reads on `chenziliang@100.70.33.96:~/.screenpipe/db.sqlite`; updated scheduler and launchd environment variables to `SENSOR_MACBOOK_*`; appended `DONE-UPDATE-tailscale-fix-v2` to the Blackboard README.
+- Verification: `plutil -lint` passed for deploy and live launchd plists; contract check confirmed `collect-jc-observation.ts` uses `sqlite3 ~/.screenpipe/db.sqlite`, has `SENSOR_SSH_ATTEMPTS`, and contains no `/search` or `192.168.100.92`; `launchctl print gui/$(id -u)/com.user.blackboard-v3-sensor` shows `SENSOR_MACBOOK_HOST=100.70.33.96`; live run wrote `source=ssh-sqlite:chenziliang@100.70.33.96:~/.screenpipe/db.sqlite` but current MacBook tailnet peer did not reply (`tailscale ping` no reply, SSH `Operation timed out`), so non-empty OCR remains pending until peer connectivity returns; `bun run build` passed and `bun run start:check` ended with `blackboard-v3 offline API/static check ok`.
+- Reason: Opus-CSO UPDATE-tailscale-fix ADDENDUM confirmed screenpipe HTTP `/search` now requires auth while SQLite direct read works without changing screenpipe bind settings; no Paperclip issue created and `~/.org/AGENTS.md` was read-only.
+
 ## [2026-04-30 21:56:29] [Codex-CTO] [type:c] Ogilvy 主力模型切换到 gpt-5.5
 - Files changed:
   - `/Users/tangyuanjc/.hermes/profiles/ogilvy/config.yaml`
@@ -2692,3 +2724,12 @@ JC 17:31 双命题:
 - Tier 1-3 扩展场景 (微信 follow-up / 飞书未读聚合 / 商家后台巡检)
 - Memory: reference_layer05_personal_agent_playbook_0430.md
 
+
+## [2026-05-01 15:57:00] [Codex-CTO] [type:a] Wake-up Brief Phase 0 落地：飞书早报 + Blackboard v3 卡片
+
+- 文件：`~/blackboard-v3/scripts/collect-wake-up-brief.ts`、`~/blackboard-v3/apps/api/src/wake-up-brief.ts`、`~/blackboard-v3/apps/api/src/wake-up-brief.test.ts`、`~/blackboard-v3/apps/api/src/index.ts`、`~/blackboard-v3/apps/api/src/check.ts`、`~/blackboard-v3/apps/web/static/app.js`、`~/blackboard-v3/apps/web/static/styles.css`、`~/blackboard-v3/deploy/launchd/com.user.wake-up-brief.plist`、`~/.org/projects/wake-up-brief-phase0/README.md`
+- 改动：新增每日 wake-up brief 采集脚本，使用既有 JC `lark-cli` user token 只读搜索过去 24h 个人单聊 + 群聊 @JC，调用 `claude -p` 做三档分类，写入 `~/.org/wake-up-brief/YYYY-MM-DD.md`，同时输出 raw JSON 到 `~/blackboard-v3/output/wake-up-brief/`。
+- 调度：`~/Library/LaunchAgents/com.user.wake-up-brief.plist` 已安装并 bootstrap；`StartCalendarInterval` 固定 08:30 UTC+8；手动 `launchctl kickstart -k gui/$(id -u)/com.user.wake-up-brief` 验证 exit 0。为避免 launchd 非交互环境卡在 Claude，Opus 分类加 `WAKE_UP_BRIEF_OPUS_TIMEOUT_SECONDS=45`，超时走关键词 fallback。
+- 大屏：Blackboard v3 新增 `GET /api/nasa/wake-up-brief`，NASA grid 新增 `Wake-up Brief` 卡，显示紧急/普通/可忽略计数、预览和本地 brief 路径；live `com.user.blackboard-v3` 已 kickstart 生效。
+- 验证：`lark-cli doctor` ok；`~/.org/wake-up-brief/2026-05-01.md` 已生成；launchd stdout 返回 `{"ok":true,...,"candidates":22}`；live endpoint 返回 `exists=true,date=2026-05-01,counts=9/10/3`；`bun test apps/api/src/wake-up-brief.test.ts`、`bun run build`、`cd apps/api && bun run check` 均通过。
+- 边界：未创建 Paperclip issue；未修改 `~/.org/AGENTS.md`；不代回消息、不读微信、不发飞书通知。注意 lark-cli 当前无 unread filter，本轮 Phase 0 按“过去 24h 醒后注意候选”保守实现。
