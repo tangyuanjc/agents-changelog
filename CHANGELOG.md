@@ -2745,3 +2745,15 @@ JC 17:31 双命题:
 - 大屏：Blackboard v3 新增 `GET /api/nasa/wake-up-brief`，NASA grid 新增 `Wake-up Brief` 卡，显示紧急/普通/可忽略计数、预览和本地 brief 路径；live `com.user.blackboard-v3` 已 kickstart 生效。
 - 验证：`lark-cli doctor` ok；`~/.org/wake-up-brief/2026-05-01.md` 已生成；launchd stdout 返回 `{"ok":true,...,"candidates":22}`；live endpoint 返回 `exists=true,date=2026-05-01,counts=9/10/3`；`bun test apps/api/src/wake-up-brief.test.ts`、`bun run build`、`cd apps/api && bun run check` 均通过。
 - 边界：未创建 Paperclip issue；未修改 `~/.org/AGENTS.md`；不代回消息、不读微信、不发飞书通知。注意 lark-cli 当前无 unread filter，本轮 Phase 0 按“过去 24h 醒后注意候选”保守实现。
+
+
+## [2026-05-02 18:49:36] [Codex-CTO] [type:b] Wake-up Brief 0502 tuning + Phase 2 spec delivery
+
+- 派单目录：`~/.org/projects/wakeup-brief-tuning-0502/`
+- A1 判决：Phase 0.5 priority guardrail 已投产，5/2 早 brief 为 `0/0/9`，但 🟢 段仍逐条展开，因此执行 A2。
+- A2 改动：`~/blackboard-v3/scripts/collect-wake-up-brief.ts` 将可忽略段改为聚合摘要（Cronjob 响应 / 群表情 / todo-reminder 等），并补 `scripts/collect-wake-up-brief.test.ts`。
+- A3 改动：确认并提交 `GET /api/nasa/wake-up-brief` + NASA `Wake-up Brief` 卡；增强 API preview，使聚合 bullet 也能出现在大屏卡。
+- A4 交付：`~/.org/projects/wakeup-brief-tuning-0502/PHASE-2-WECHAT-SPEC.md`，推荐 Mac 本地微信只读采集 + O记 草稿 + JC 手动确认，不默认直接发送。
+- commit：`~/blackboard-v3` `4e184aa [Codex-CTO] add wake-up brief aggregation and dashboard card`。
+- 验证：`bun test apps/api/src/wake-up-brief.test.ts scripts/collect-wake-up-brief.test.ts` 5 pass；`bun run build` passed。
+- 边界：未触碰 sensor / Layer-1 staged commit；blackboard 工作区仍保留已有未提交 sensor 相关变更，未纳入本次 commit。
