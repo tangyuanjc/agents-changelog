@@ -1,4 +1,14 @@
 
+## 2026-05-02 21:00 小J每日收工
+
+- Files changed:
+  - `workspace/daily-logs/2026-05-02.md`
+  - `workspace/journal/xiaoj-diary-2026-05-02.md`
+- What changed: 记录 2026-05-02 每日收工日志与小J日记；按周末规则完成员工情报休息日视角复盘。
+- Impact: 提供当天 COO 收工审计记录，避免将周末员工静默误报为缺报或异常。
+- Reason: scheduled daily wrap cron.
+
+
 ## [2026-05-01 21:20:50] [Codex-CTO] [type:c] Wake-up Brief Phase 0.5 priority guardrails
 - Files changed:
   - `/Users/tangyuanjc/blackboard-v3/scripts/collect-wake-up-brief.ts`
