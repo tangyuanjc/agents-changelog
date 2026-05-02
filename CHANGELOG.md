@@ -2757,3 +2757,12 @@ JC 17:31 双命题:
 - commit：`~/blackboard-v3` `4e184aa [Codex-CTO] add wake-up brief aggregation and dashboard card`。
 - 验证：`bun test apps/api/src/wake-up-brief.test.ts scripts/collect-wake-up-brief.test.ts` 5 pass；`bun run build` passed。
 - 边界：未触碰 sensor / Layer-1 staged commit；blackboard 工作区仍保留已有未提交 sensor 相关变更，未纳入本次 commit。
+
+## [2026-05-02 18:50:00] [Codex-CTO] [type:c] Task B SENSOR health + tailnet dogfood recovery
+
+- 文件：`~/blackboard-v3/scripts/collect-jc-observation.ts`、`~/blackboard-v3/scripts/collect-jc-observation-env.ts`、`~/blackboard-v3/apps/api/src/sensor-observation.ts`、`~/blackboard-v3/apps/api/src/sensor-scheduler.ts`、`~/blackboard-v3/apps/api/src/index.ts`、`~/blackboard-v3/apps/api/src/check.ts`、`~/blackboard-v3/apps/web/static/app.js`、`~/blackboard-v3/apps/web/static/styles.css`、`~/blackboard-v3/deploy/launchd/com.user.blackboard-v3-sensor.plist`、`~/.org/projects/sensor-fix-0502/TAILNET-CROSS-NET.md`、`~/.org/projects/sensor-fix-0502/HANDOFF.md`
+- 根因：2026-05-02 18:34 CST Mac mini 本机 `tailscale status` 为 `Tailscale is stopped`，导致 launchd sensor SSH 到 `100.70.33.96:22` timeout；不是 screenpipe SQLite schema、launchd interval 或 dashboard render 断点。
+- 修复：执行 `tailscale up` 恢复 tailnet；`tailscale ping 100.70.33.96` 经 DERP(hkg) 三次 `pong`；SSH 读 MacBook `~/.screenpipe/db.sqlite` 返回 latest frame `2026-05-02T10:34:51.728502+00:00`，last hour `frames=334` / `ocr=303`。
+- 验证：手动 sensor run 生成 `reports/jc-observation-2026-05-02T10-35-48-970Z`，`status=ok,count=30,rawChars=15858`；`launchctl kickstart -k gui/$(id -u)/com.user.blackboard-v3-sensor` 生成 `reports/jc-observation-2026-05-02T10-42-09-287Z`，`status=ok,count=30,rawChars=15754`；`bun test scripts/collect-jc-observation-env.test.ts`、staged tree `bun run build`、`bun run start:check` 均通过。
+- 大屏：Playwright CLI 登录 `http://192.168.100.41:3300/dashboard`，第 5 卡标题 `主宇宙观察窗`，显示 2026-05-02 18:35 的真实 screenpipe 三段摘要。
+- 交付：`~/blackboard-v3` commit `c5315bc`；本任务目录写 `TAILNET-CROSS-NET.md` 和 `HANDOFF.md`；未改 wake-up brief 任务文件，未改 `~/.org/AGENTS.md`，未创建 Paperclip issue。
