@@ -2812,3 +2812,15 @@ JC 17:31 双命题:
 - 验证：手动 sensor run 生成 `reports/jc-observation-2026-05-02T10-35-48-970Z`，`status=ok,count=30,rawChars=15858`；`launchctl kickstart -k gui/$(id -u)/com.user.blackboard-v3-sensor` 生成 `reports/jc-observation-2026-05-02T10-42-09-287Z`，`status=ok,count=30,rawChars=15754`；`bun test scripts/collect-jc-observation-env.test.ts`、staged tree `bun run build`、`bun run start:check` 均通过。
 - 大屏：Playwright CLI 登录 `http://192.168.100.41:3300/dashboard`，第 5 卡标题 `主宇宙观察窗`，显示 2026-05-02 18:35 的真实 screenpipe 三段摘要。
 - 交付：`~/blackboard-v3` commit `c5315bc`；本任务目录写 `TAILNET-CROSS-NET.md` 和 `HANDOFF.md`；未改 wake-up brief 任务文件，未改 `~/.org/AGENTS.md`，未创建 Paperclip issue。
+
+## [2026-05-04 03:35:00] [Codex-CTO] [type:b] P0b Hindsight 公司级 self-host + ingest + endpoint
+
+- 派单：Opus-CSO P0b `~/.org/projects/hindsight-company-level-0504/`，执行 B1-B5，并要求 per-repo commit + HANDOFF。
+- 文件：`~/blackboard-v3/deploy/hindsight/docker-compose.yaml`、`~/blackboard-v3/deploy/hindsight/run.sh`、`~/blackboard-v3/deploy/hindsight/.env.example`、`~/blackboard-v3/scripts/hindsight-ingest.ts`、`~/blackboard-v3/deploy/launchd/com.user.hindsight-ingest.plist`、`~/blackboard-v3/apps/api/src/hindsight.ts`、`~/blackboard-v3/apps/api/src/index.ts`、`~/blackboard-v3/apps/api/src/check.ts`、`~/.hermes/config.yaml`、`~/.hermes/hindsight/config.json`、`~/.hermes/profiles/coo/hindsight/config.json`、`~/.hermes/profiles/ogilvy/hindsight/config.json`、`~/Library/LaunchAgents/com.user.hindsight-ingest.plist`。
+- 改动：Mac mini 通过 Homebrew 安装 `docker`/`docker-compose`/`colima`，用官方 Hindsight v0.5.6 Docker stack self-host 到 `localhost:8888/9999`；配置 custom OpenAI-compatible LLM base、容器代理、轻量 local embedding、`rrf` reranker 以绕过 Apple Silicon/HuggingFace 启动卡点。
+- 多 agent：爱马仕默认、COO 小J、Ogilvy 均指向 self-host `company-shared` bank；`auto_retain=false`，保留显式 retain 工具但不自动吞私聊；COO 原 cloud config 已备份，云端 `xiaoj-coo` 数据未删。
+- 数据：ingest 脚本硬编码 allowlist：`~/agents-changelog/`、Paperclip issues/activity、`~/.org/wake-up-brief/*.md`、`~/.org/projects/*/HANDOFF.md`；明确拒绝私有 memory dirs / raw private chat / diary。手动 run + launchd kick 均成功。
+- 大屏：新增 `GET /api/nasa/hindsight`，返回 live Hindsight health + stats；验证时 `company-shared` 为 `488 nodes / 10092 links / 14 documents / 246 observations`。
+- 验证：`curl :8888/health` healthy；B3 Hermes+COO retain/recall probe 返回 2 results；`bun run start:check` passed；`com.user.hindsight-ingest` last exit 0；Hermes gateway default/COO/Ogilvy 已 targeted kickstart。
+- commit：`~/blackboard-v3` `ee93cdb [Codex-CTO] add company Hindsight self-host integration`；本条 entry 随 `~/agents-changelog` repo commit 落地。
+- 边界：未修改 `~/.codex/`，未 ingest 私有 agent memory/private chat，未迁移 cloud `original_text` 到 shared bank；如要无损迁移 COO cloud 旧数据，需 JC/Opus 单独批准迁移口径。
