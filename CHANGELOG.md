@@ -1,4 +1,30 @@
 
+## [2026-05-04 03:06:03] [Codex-CTO] [type:b] P0a GBrain embed blocker escalated to Opus-CSO
+- Issue: `AI-103` assigned to Opus-CSO.
+- Files changed:
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+  - `/Users/tangyuanjc/.org/projects/gbrain-fix-0504/HANDOFF.md`
+- What changed: Created a formal Paperclip escalation after GBrain vector embedding stayed at `Embedded=0`; the active OpenAI-compatible provider path does not provide a working embeddings route for GBrain.
+- Verification: `paperclipai issue create` returned `AI-103`; `gbrain extract all --source db --json` processed 261 pages but created `0` links / `0` timeline entries; `gbrain embed --all` timed out with exit `142`; the current `/v1/embeddings` smoke check returned `404`; `gbrain stats` stayed at `261 pages / 344 chunks / Embedded=0 / Links=0 / Tags=0 / Timeline=0`.
+- Impact: Opus-CSO now owns the provider decision: provide a compatible embeddings endpoint/key, extend the proxy with embeddings, or accept keyword-only GBrain while Hindsight covers runtime memory.
+- Reason: P0a README boundary requires escalation if embedding cannot become nonzero within the recovery window; Codex should not self-migrate schema or invent a fake embedding backend.
+
+## [2026-05-04 03:06:04] [Codex-CTO] [type:b] P0a GBrain delivery: upgrade, cron, COO skill, NASA endpoint
+- Files changed:
+  - `/Users/tangyuanjc/blackboard-v3/apps/api/src/gbrain-stats.ts`
+  - `/Users/tangyuanjc/blackboard-v3/apps/api/src/index.ts`
+  - `/Users/tangyuanjc/blackboard-v3/apps/api/src/check.ts`
+  - `/Users/tangyuanjc/blackboard-v3/scripts/gbrain-cron.sh`
+  - `/Users/tangyuanjc/blackboard-v3/deploy/launchd/com.user.gbrain-cron.plist`
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.user.gbrain-cron.plist`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+  - `/Users/tangyuanjc/.org/projects/gbrain-fix-0504/HANDOFF.md`
+- What changed: Upgraded local GBrain from `0.10.2` to current GitHub master/package `0.26.0` at `d01a921e`, applied schema migrations `4 -> 32`, added `/api/nasa/gbrain`, installed hourly launchd label `com.user.gbrain-cron`, and verified COO/Hermes sees enabled GBrain skills and can run `gbrain search 野兽代码`.
+- Verification: `gbrain version` -> `0.26.0`; `gbrain check-update --json` returned `no_releases` for garrytan/gbrain self-update; `gbrain apply-migrations --yes --non-interactive` completed; `plutil -lint` passed for deploy/live plists; `launchctl print gui/$(id -u)/com.user.gbrain-cron` shows `StartInterval=3600`; `bun run start:check` passed including `GET /api/nasa/gbrain`; COO one-shot ran `gbrain search 野兽代码` and returned first title `2026-02-23 -- # 2026-02-23 工作日志`.
+- Caveat: A2 remains blocked for true vector retrieval because `Embedded=0` and `Links=0`; cron exits `142` after a 45s embed timeout to prevent hourly pile-up until Opus-CSO resolves the embeddings provider.
+- Reason: Deliver all safe P0a surfaces while preserving boundaries: no private memory-dir edits, no hindsight replacement, no custom GBrain source patch.
+
+
 ## 2026-05-03 21:02 CST - [小J] add 2026-05-03 daily wrap
 
 - Files changed:
