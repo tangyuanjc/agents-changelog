@@ -2868,3 +2868,14 @@ JC 17:31 双命题:
 - 子任务 B：`api.655147.xyz` 解析到 `45.205.28.251`，公网 Caddy 后的 `CLI Proxy API Server` 当前 `POST /v1/embeddings` 返回 404；本机未发现 Docker/launchd/process 部署证据，已 escalate JC 提供 SSH/面板/repo/部署目录或让 owner 加 route。
 - 验证：local health ready；embedding smoke `http=200`、`2 embeddings`、`dim0=1536`；vector query `野兽代码` 返回 scored results；cron `com.user.gbrain-cron` fresh run `last exit code=0`；`bun run start:check` 通过且 `GET /api/nasa/gbrain: 200`，endpoint body 返回 `embedded=362, links=75`。
 - 边界：未修改 GBrain 源码；未触碰私有 memory dirs；未改 Hindsight self-host；未写入真实 API key。
+
+## [2026-05-04 18:33:54] [Codex-CTO] [type:c] Ogilvy 飞书群图片上下文修复 + profile cwd 配置收敛
+
+- 群聊：`oc_fd95bc60a1b378384efac443feacc510`，检查 2026-05-03 08:00-09:05 CST 附近消息与 Ogilvy gateway 日志。
+- 根因：Feishu 群聊 require-mention gate 会丢弃未 @bot 的纯 image/file 消息；用户随后再发 `@Ogilvy 看看这个图` 时，文本消息本身 `media=0`，因此 agent 无法看到前一张图。另一个同类场景是用户回复图片消息提问，旧链路只取父消息文字，不取父消息媒体。
+- Hermes core 修复：`~/.hermes/hermes-agent/gateway/platforms/feishu.py` 增加同群同发送者短 TTL adjacent-media 缓存，把“先发图、再 @bot 提问”的图片/文件合并到下一条合规 @ 消息；`reply_to` 上下文升级为 `text + parent media`；防止 bot/app 发送的媒体进入 adjacent cache。
+- 测试：`~/.hermes/hermes-agent/tests/gateway/test_feishu.py` 补 adjacent media、父消息图片、file-as-image 回归；live repo targeted tests `5 passed`，Feishu adapter 全测 `194 passed`；clean upstream-base worktree 广测 `259 passed`。
+- live 验证：只重启 `ai.hermes.gateway-ogilvy`；最终 PID `74316`，`gateway_state.json` 显示 `feishu.state=connected`；`ai.hermes.gateway` PID `47302`、`ai.hermes.gateway-coo` PID `47344` 未重启。
+- profile 优化：迁移 Ogilvy deprecated `MESSAGING_CWD`，将等价工作目录固化到 `~/.hermes/profiles/ogilvy/config.yaml` 的 `terminal.cwd`，并从 `~/.hermes/profiles/ogilvy/.env` 移除旧键；重启后新日志不再出现该 deprecated warning。
+- fork/PR 状态：已按 Hermes Core 铁律在 clean upstream-base worktree 生成本地 commit `faf4a0aec fix(feishu): attach adjacent group media to mention requests`；推送 `fork fix/feishu-group-adjacent-media` 被 GitHub 拒绝，原因是当前 `gh` OAuth token 缺 `workflow` scope 且 fork main 落后 upstream workflow 历史。未开 upstream PR；需后续执行 `gh auth refresh -s workflow` 后重推/开 PR。
+- 边界：未改 `~/.org/AGENTS.md`；未重启默认 Hermes gateway / COO gateway；未打印或变更任何密钥。
