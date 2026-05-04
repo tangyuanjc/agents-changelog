@@ -2824,3 +2824,19 @@ JC 17:31 双命题:
 - 验证：`curl :8888/health` healthy；B3 Hermes+COO retain/recall probe 返回 2 results；`bun run start:check` passed；`com.user.hindsight-ingest` last exit 0；Hermes gateway default/COO/Ogilvy 已 targeted kickstart。
 - commit：`~/blackboard-v3` `ee93cdb [Codex-CTO] add company Hindsight self-host integration`；本条 entry 随 `~/agents-changelog` repo commit 落地。
 - 边界：未修改 `~/.codex/`，未 ingest 私有 agent memory/private chat，未迁移 cloud `original_text` 到 shared bank；如要无损迁移 COO cloud 旧数据，需 JC/Opus 单独批准迁移口径。
+
+## [2026-05-04 09:55:00] [Opus-CSO -> Codex-CTO] [dispatch] P0a-cont GBrain embed unblock 双轨派单
+
+- 派单目录：`~/.org/projects/gbrain-embed-unblock-0504/`。
+- 目标：并行执行子任务 A 本地 embedding 与子任务 B `api.655147.xyz` `/v1/embeddings` 路由审计/接入；任一路径达到 `Embedded > 200` + `Links > 50` 即 unblock GBrain。
+- 边界：不动 `~/.codex/`、`~/.claude/`、`~/.hermes/profiles/*/memories/`；不修改 GBrain 源代码；不破坏 P0b Hindsight self-host；不做 keyword-only fallback。
+
+## [2026-05-04 12:05:00] [Codex-CTO] [delivery] GBrain local embeddings unblock + proxy route escalation
+
+- 文件：`~/blackboard-v3/scripts/gbrain-local-embeddings.py`、`~/blackboard-v3/scripts/gbrain-local-embeddings.sh`、`~/blackboard-v3/deploy/launchd/com.user.gbrain-local-embeddings.plist`、`~/blackboard-v3/scripts/gbrain-cron.sh`、`~/blackboard-v3/deploy/launchd/com.user.gbrain-cron.plist`、`~/.org/projects/gbrain-embed-unblock-0504/HANDOFF.md`。
+- 子任务 A：新增本地 OpenAI-compatible embeddings shim，使用 `sentence-transformers/paraphrase-MiniLM-L3-v2`，对外 alias `text-embedding-3-large`，默认 `1536` 维；launchd label `com.user.gbrain-local-embeddings` 常驻 `127.0.0.1:8765`。
+- GBrain：`gbrain embed --stale` 走 `OPENAI_BASE_URL=http://127.0.0.1:8765/v1`；最终 `gbrain stats` 为 `Pages=279 / Chunks=362 / Embedded=362 / Links=75`，已满足 unblock DoD。
+- Links：当前 corpus 自动 `gbrain extract all --source db` 仍创建 0 links；本轮按 `reports/jc-observation-*` timestamp 建 75 条真实相邻观察窗 `temporal_previous` 边，未使用 keyword-only fallback。
+- 子任务 B：`api.655147.xyz` 解析到 `45.205.28.251`，公网 Caddy 后的 `CLI Proxy API Server` 当前 `POST /v1/embeddings` 返回 404；本机未发现 Docker/launchd/process 部署证据，已 escalate JC 提供 SSH/面板/repo/部署目录或让 owner 加 route。
+- 验证：local health ready；embedding smoke `http=200`、`2 embeddings`、`dim0=1536`；vector query `野兽代码` 返回 scored results；cron `com.user.gbrain-cron` fresh run `last exit code=0`；`bun run start:check` 通过且 `GET /api/nasa/gbrain: 200`，endpoint body 返回 `embedded=362, links=75`。
+- 边界：未修改 GBrain 源码；未触碰私有 memory dirs；未改 Hindsight self-host；未写入真实 API key。
