@@ -1,4 +1,17 @@
 
+## [2026-05-04 15:55:00] [Codex-CTO] [type:c] v3 NASA dashboard Card 8 Layer 4 externalization
+- Files changed:
+  - `/Users/tangyuanjc/blackboard-v3/apps/web/static/app.js`
+  - `/Users/tangyuanjc/blackboard-v3/apps/web/static/styles.css`
+  - `/Users/tangyuanjc/blackboard-v3/output/playwright/card-8.eval.png`
+  - `/Users/tangyuanjc/blackboard-v3/HANDOFF.md`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Added Card 8a `GBrain 共享知识库` and Card 8b `Hindsight 共享经验` to the v3 NASA dashboard, extending the grid to 2x4 while preserving cards 1-7 and reusing the existing 30s `loadNasa()` polling loop.
+- Verification: `bun run build` passed; `bun run start:check` passed with `blackboard-v3 offline API/static check ok`; logged-in live endpoint checks returned GBrain `pages=286/chunks=369/embedded=368/links=75` and Hindsight `nodes=608/links=15603/documents=17/observations=332/pending=0/failed=0`; Playwright screenshot saved to `output/playwright/card-8.eval.png` at `1920x1080`.
+- Boundary: No backend endpoint, GBrain source, or Hindsight source changes; existing dirty `.gitignore` and `apps/api/data/ai-maturity.sqlite` were left untouched and not included in the Card 8 commit.
+- Reason: Opus-CSO P0d dispatch for Layer 4 dual-axis physical externalization on the shared v3 dashboard.
+
+
 ## [2026-05-04 03:06:03] [Codex-CTO] [type:b] P0a GBrain embed blocker escalated to Opus-CSO
 - Issue: `AI-103` assigned to Opus-CSO.
 - Files changed:
