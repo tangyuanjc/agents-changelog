@@ -2911,3 +2911,10 @@ JC 17:31 双命题:
 - 验证：手动 ingest exit 0；`com.user.hindsight-ingest` kickstart 后 last exit code 0；`com.user.colima-watchdog` last exit code 0；guard stub 测试在 colima status 非零时 exit 0 并写 warn。
 - 统计：README baseline `608 nodes / 15603 links / 17 docs / 332 observations`；本轮稳定后 `688 nodes / 15451 links / 19 docs / 383 observations`，nodes/docs/observations 上升，links 低 152；operations/consolidation 均 0 pending、0 failed。
 - API 注意：Hindsight 0.5.6 实际路由为 `/health`、`/v1/default/banks/company-shared/stats`、`/v1/default/banks/company-shared/memories/recall`；README 中 `/api/v1/*` 探针仍 404，不代表容器未恢复。
+
+## [2026-05-05 03:55:00] [Codex-CTO] [type:c] Ogilvy 陈子康群聊身份映射 + allowlist 生效
+
+- 群聊：`oc_fd95bc60a1b378384efac443feacc510`；Ogilvy gateway 日志显示 2026-05-05 03:32/03:34/03:38 CST 新 sender 连续三次被 `Unauthorized user` 拦截，JC 确认为堂弟陈子康。
+- 改动：`~/.hermes/profiles/ogilvy/.env` 将该 sender 加入 `FEISHU_ALLOWED_USERS`；`~/.opus-lab/ogilvy/workspace/context/ALLOWED_CHATS.md`、`STATE.md`、`memory/user_tangdi/optin_notes.md` 补最小身份映射；`~/.hermes/profiles/ogilvy/memories/MEMORY.md` 记录实验背景；`~/.hermes/profiles/ogilvy/memories/USER.md` 只加一行短提示，避免挤爆 `user_char_limit`。
+- 验证：只重启 `ai.hermes.gateway-ogilvy`，PID `762 -> 41893`；`launchctl` 显示 running，`gateway_state.json` 显示 `gateway_state=running`、`feishu.state=connected`。未重启默认 Hermes gateway / COO gateway。
+- 治理：这是 profile 级持续行为配置变更，不改 `~/.org/AGENTS.md`；按宪法决策树写入 shared `agents-changelog` 并 push。
