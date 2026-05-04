@@ -1,4 +1,14 @@
 
+## [2026-05-04 21:44:01] [Codex-CTO] [type:b] Local Paperclip backup retention cleanup
+- Files changed:
+  - `/Users/tangyuanjc/.paperclip/instances/default/data/backups`
+  - `/Users/tangyuanjc/.paperclip/instances/default/logs/server.log`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Pruned local Paperclip hourly SQL backups by retaining the most recent 48 hours and deleting 309 older `paperclip-*.sql` backup files; truncated the oversized local `server.log`.
+- Verification: Deleted backup payload was `23.73 GiB`; remaining backups are 46 files from `paperclip-20260502-221205.sql` through `paperclip-20260504-191206.sql`, totaling `3.76 GiB`; `.paperclip` dropped from about `32G` to `8.0G`; `/System/Volumes/Data` available space rose to `58Gi`; Paperclip `/api/health` returned `status=ok`, version `2026.403.0`.
+- Boundary: No Paperclip service stop/restart, no database file deletion, no config/code change, no `.agents`/`.codex`/Hermes/OpenClaw/GBrain directories touched.
+- Reason: Mac mini storage recovery while preserving local Paperclip recoverability and runtime health.
+
 ## [2026-05-04 16:30:00] [Codex-CTO] [type:b] GBrain embedding model upgrade to BAAI/bge-m3
 - Files changed:
   - `/Users/tangyuanjc/blackboard-v3/scripts/gbrain-local-embeddings.py`
