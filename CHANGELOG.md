@@ -1,3 +1,16 @@
+## [2026-05-05 02:01:40] [Codex-CTO] [type:b] v3 Paperclip iframe panel height fix
+- Files changed:
+  - `/Users/tangyuanjc/blackboard-v3/apps/web/static/styles.css`
+  - `/Users/tangyuanjc/blackboard-v3/apps/api/src/check.ts`
+  - `/Users/tangyuanjc/.org/projects/v3-paperclip-iframe-fix-0505/ACCEPTANCE.md`
+  - `/Users/tangyuanjc/.org/projects/v3-paperclip-iframe-fix-0505/screenshots/workbench-after-chromium.png`
+  - `/Users/tangyuanjc/.org/projects/v3-paperclip-iframe-fix-0505/screenshots/workbench-after-issues-chromium.png`
+  - `/Users/tangyuanjc/.org/projects/v3-paperclip-iframe-fix-0505/screenshots/workbench-after-google-chrome.png`
+- What changed: Fixed the v3 workbench Paperclip iframe wrapper so it flexes to fill the center panel instead of collapsing to a ~154px iframe, and added a static check to prevent regression.
+- Verification: Paperclip `http://127.0.0.1:3100/api/health` returned `status=ok`, version `2026.403.0`; `bun run test` passed; Playwright measured iframe `640x470` with wrapper `flex=1 1 auto`; Paperclip Issues view showed `104` issue IDs and at least `AI-104` through `AI-99` in the first viewport; screenshots saved under the project screenshots directory.
+- Commit: `/Users/tangyuanjc/blackboard-v3` `0a0d60e` (`fix paperclip iframe panel height`).
+- Boundary: Did not modify Paperclip core service code and did not create a Paperclip issue; existing unrelated dirty files in `~/blackboard-v3` and pre-existing `agents-changelog` dirtiness were left unstaged.
+- Reason: Opus-CSO P1 dispatch to restore complete Paperclip visibility inside `~3300/workbench`.
 
 ## [2026-05-04 21:44:01] [Codex-CTO] [type:b] Local Paperclip backup retention cleanup
 - Files changed:
@@ -2889,3 +2902,12 @@ JC 17:31 双命题:
 - profile 优化：迁移 Ogilvy deprecated `MESSAGING_CWD`，将等价工作目录固化到 `~/.hermes/profiles/ogilvy/config.yaml` 的 `terminal.cwd`，并从 `~/.hermes/profiles/ogilvy/.env` 移除旧键；重启后新日志不再出现该 deprecated warning。
 - fork/PR 状态：已按 Hermes Core 铁律在 clean upstream-base worktree 生成本地 commit `faf4a0aec fix(feishu): attach adjacent group media to mention requests`；推送 `fork fix/feishu-group-adjacent-media` 被 GitHub 拒绝，原因是当前 `gh` OAuth token 缺 `workflow` scope 且 fork main 落后 upstream workflow 历史。未开 upstream PR；需后续执行 `gh auth refresh -s workflow` 后重推/开 PR。
 - 边界：未改 `~/.org/AGENTS.md`；未重启默认 Hermes gateway / COO gateway；未打印或变更任何密钥。
+## [2026-05-05 02:03:00] [Codex-CTO] [type:c] Hindsight self-host revive + Colima 守护
+
+- 派单目录：`~/.org/projects/hindsight-revive-0505/`；执行 CSO P0 Layer 4b Hindsight Docker 双轴半瘫修复步骤 1-5。
+- 根因：`colima status` 返回 `colima is not running`，Docker context 为 `colima` 但 socket `/Users/tangyuanjc/.colima/default/docker.sock` 不存在；不是 Hindsight 数据或容器配置丢失。
+- 恢复：`nohup colima start` 后 11 秒恢复，`hindsight-company-app` 与 `hindsight-company-db` 自动 running；API `http://localhost:8888/health` 返回 healthy/database connected。
+- 改动：`~/blackboard-v3/scripts/hindsight-ingest.ts` 增加 colima 非运行时 exit 0 skip guard，写 `/tmp/hindsight-ingest.warn.log`，避免 launchd/codex-watchdog 误报；新增 `~/blackboard-v3/scripts/colima-watchdog.sh` 与 `~/blackboard-v3/deploy/launchd/com.user.colima-watchdog.plist`，并安装到 `~/Library/LaunchAgents/com.user.colima-watchdog.plist` 每小时守护。
+- 验证：手动 ingest exit 0；`com.user.hindsight-ingest` kickstart 后 last exit code 0；`com.user.colima-watchdog` last exit code 0；guard stub 测试在 colima status 非零时 exit 0 并写 warn。
+- 统计：README baseline `608 nodes / 15603 links / 17 docs / 332 observations`；本轮稳定后 `688 nodes / 15451 links / 19 docs / 383 observations`，nodes/docs/observations 上升，links 低 152；operations/consolidation 均 0 pending、0 failed。
+- API 注意：Hindsight 0.5.6 实际路由为 `/health`、`/v1/default/banks/company-shared/stats`、`/v1/default/banks/company-shared/memories/recall`；README 中 `/api/v1/*` 探针仍 404，不代表容器未恢复。
