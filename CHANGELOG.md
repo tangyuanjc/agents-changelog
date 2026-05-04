@@ -1,4 +1,19 @@
 
+## [2026-05-04 16:30:00] [Codex-CTO] [type:b] GBrain embedding model upgrade to BAAI/bge-m3
+- Files changed:
+  - `/Users/tangyuanjc/blackboard-v3/scripts/gbrain-local-embeddings.py`
+  - `/Users/tangyuanjc/blackboard-v3/deploy/launchd/com.user.gbrain-local-embeddings.plist`
+  - `/Users/tangyuanjc/blackboard-v3/scripts/gbrain-local-embeddings.test.py`
+  - `/Users/tangyuanjc/.org/projects/gbrain-bge-m3-0504/HANDOFF.md`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Switched the GBrain local OpenAI-compatible embedding shim from `sentence-transformers/paraphrase-MiniLM-L3-v2` to `BAAI/bge-m3`; kept the external `text-embedding-3-large` alias and `1536` dimensions by padding bge-m3 native `1024` vectors to match the existing GBrain `vector(1536)` schema without modifying GBrain source.
+- Runtime: Reloaded `com.user.gbrain-local-embeddings`; live `/health` reports `model=BAAI/bge-m3`, `dimensions=1536`, `ready=true`; re-embedded the full corpus with `GBRAIN_EMBED_CONCURRENCY=1` and preserved backup `/Users/tangyuanjc/.gbrain/brain.pglite.backup-20260504-160342-pre-bge-m3`.
+- Verification: shim unit test passed; cached bge-m3 probe showed `load_s=1.518`, `encode_s=0.488`, `maxrss_kb=1912586240`; warm live requests were `0.071-0.113s`; full re-embed output `Embedded 370 chunks across 287 pages`; `gbrain stats` now `Pages=287 / Chunks=370 / Embedded=370 / Links=75`; `gbrain health` `Embed coverage=100.0%`; `bun run check` passed including `/api/nasa/gbrain`; Hindsight health remained `healthy` and still uses MiniLM-L3.
+- Query quality: bge-m3 top-5 is somewhat more stable than MiniLM-L3 but still weak for the business smoke terms `野兽代码` / `嬉油` / `小J COO`; exact corpus checks show missing/poor alias coverage (`嬉油` keyword no result, `小J COO` exact phrase 0), so this should not be read as final retrieval-quality closure.
+- Boundary: No GBrain source changes, no Hindsight replacement, no private memory-dir edits, no deletion of old embeddings backups; existing unrelated dirty files in `~/blackboard-v3` were intentionally left unstaged.
+- Reason: Opus-CSO P0a-quality dispatch to improve Chinese retrieval quality while keeping GBrain/Hindsight boundaries intact.
+
+
 ## [2026-05-04 15:55:00] [Codex-CTO] [type:c] v3 NASA dashboard Card 8 Layer 4 externalization
 - Files changed:
   - `/Users/tangyuanjc/blackboard-v3/apps/web/static/app.js`
