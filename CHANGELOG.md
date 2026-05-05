@@ -1,3 +1,19 @@
+## [2026-05-06 01:15 CST] [Codex-CTO] [type:b] Layer 0.5 file-watch sensor channel
+
+- Files changed:
+  - `/Users/chenziliang/bin/layer05-sensor-watch` (MacBook compiled Swift/FSEvents watcher)
+  - `/Users/chenziliang/bin/layer05-sensor-watch.swift` (MacBook watcher source)
+  - `/Users/chenziliang/bin/layer05-sync-one.sh` (MacBook rsync push helper)
+  - `/Users/chenziliang/Library/LaunchAgents/com.user.layer05-sensor-watch.plist` (MacBook launchd agent)
+  - `/Users/tangyuanjc/blackboard-v3/scripts/layer05-status-audit.sh`
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.user.layer05-status-audit.plist`
+  - `/Users/tangyuanjc/.org/projects/sensor-file-watch-extension-0506/ACCEPTANCE.md`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Added the Layer 0.5 private-agent metadata file-watch path from MacBook `~/.layer05-status/<agent_id>/` to Mac mini `~/.sensor-uploads/<agent_id>/`, using native Swift/FSEvents plus `rsync` over Tailscale SSH; added passive schema audit on Mac mini.
+- Verification: MacBook launchd reported `50647 -15 com.user.layer05-sensor-watch` and logged `started root=/Users/chenziliang/.layer05-status`; mock `o-ji/status.json` with task `codex-e2e-20260506-010459` arrived on Mac mini as timestamped `status.json` uploads; `~/blackboard-v3/scripts/layer05-status-audit.sh` reported `checked=3 warnings=0`; Mac mini audit launchd reported `- 0 com.user.layer05-status-audit`.
+- Risk: After the mock E2E succeeded, inbound Mac mini -> MacBook Tailscale SSH intermittently timed out (`tailscale ping` no reply, SSH `Operation timed out`), so future maintenance may need a reachability follow-up; the sensor acceptance itself is based on observed MacBook -> Mac mini uploads.
+- Reason: Opus-CSO 5-05 v2.5 patch closeout for automatic Layer 0.5 metadata aggregation without uploading private content.
+
 ## [2026-05-05 02:01:40] [Codex-CTO] [type:b] v3 Paperclip iframe panel height fix
 
 ## 2026-05-05 21:05 CST - 小J每日收工
