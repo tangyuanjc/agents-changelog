@@ -3084,9 +3084,9 @@ JC 17:31 双命题:
 - 受限：当前 Codex sandbox 禁止 TCP connect/kickstart/bootstrap，导致 `launchctl bootstrap`/`kickstart` 返回 EPERM/Input-output error，curl/Node/Playwright 无法访问 `127.0.0.1:3000`，GitHub push 经本地代理 `127.0.0.1:7897` 也被 sandbox 拦截；需在非 sandbox 会话补 `launchctl bootstrap` 与 `git push`。
 ## [2026-05-07 03:25:36] [Codex-CTO] [type:c] TICKET_001 Doubao multimodal fork + Hermes storyboard skill
 
-- 派单：Opus-CSO ，为 Phase 0 营销爆款短视频拆解链路 fork  并新增 。
-- Fork：，feature HEAD ，4 个  commits 已 push，未 push main，未给上游开 PR。
-- 文件：、、、、、、；Hermes skill 、、 symlink；handoff 。
-- 改动：新增中文营销 storyboard prompt/schema，注册 video-only task，针对该 task 将模型 JSON 直写为  并生成 markdown ，Hermes atomic skill wrapper 自动判断 URL/path 后转发到 fork CLI。
-- 验证：bun test v1.3.11 (af24e281) 为 4 pass / 0 fail / 23 expect； exit 0； exit 0 且 task list 包含新 task；Hermes wrapper 无参 usage exit 2，未触发 Ark/TOS。
-- 边界：无  / TOS 凭证，未调真 API；未改  /  /  / ；未接 ；未改 。
+- 派单：Opus-CSO `TICKET_001`，为 Phase 0 营销爆款短视频拆解链路 fork `JimLiu/doubao-multimodal-skill` 并新增 `marketing-storyboard-extract`。
+- Fork：`https://github.com/tangyuanjc/doubao-multimodal-skill/tree/feature/marketing-storyboard-extract`，feature HEAD `e57c81ed27088a80096e07b5ad716ad86d8bd8c5`，4 个 `[marketing-storyboard]` commits 已 push，未 push main，未给上游开 PR。
+- 文件：`~/code/doubao-multimodal-skill/skill/references/marketing-storyboard-extract.md`、`skill/scripts/lib/prompts.ts`、`skill/scripts/lib/marketing-storyboard.ts`、`skill/scripts/main.ts`、`skill/scripts/test-marketing-storyboard.test.ts`、`README.md`、`skill/SKILL.md`；Hermes skill `~/.hermes/skills/media/short-video-storyboard-extract/SKILL.md`、`scripts/extract.sh`、`references/marketing-storyboard-extract.md` symlink；handoff `~/Desktop/marketing_video_workflow_phase0/codex_tickets/HANDOFF_codex_to_jc_v1.md`。
+- 改动：新增中文营销 storyboard prompt/schema，注册 video-only task，针对该 task 将模型 JSON 直写为 `marketing-storyboard-extract.json` 并生成 markdown `.txt`，Hermes atomic skill wrapper 自动判断 URL/path 后转发到 fork CLI。
+- 验证：`bun test skill/scripts/test-marketing-storyboard.test.ts` 为 4 pass / 0 fail / 23 expect；`cd skill/scripts && bunx tsc --noEmit` exit 0；`bun run skill/scripts/main.ts --task marketing-storyboard-extract --help` exit 0 且 task list 包含新 task；Hermes wrapper 无参 usage exit 2，未触发 Ark/TOS。
+- 边界：无 `ARK_API_KEY` / TOS 凭证，未调真 API；未改 `lib/ark.ts` / `lib/ffmpeg.ts` / `lib/tos.ts` / `lib/source.ts`；未接 `mwp record`；未改 `~/.org/AGENTS.md`。
