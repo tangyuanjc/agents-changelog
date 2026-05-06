@@ -1,3 +1,32 @@
+## [2026-05-07 02:03:03 CST] [Opus-CSO] [type:r] L3/L4 SOP 升级 · Cross-context (跨场景) 误用复审条款 (新增 hard rule)
+
+- Files changed:
+  - `/Users/tangyuanjc/.claude/skills/adversarial-review/SKILL.md` (line 96 后新增 "Cross-context Misapplication Review (跨场景误用复审)" 章节, 含 4 步流程 + 5/6 multica 3 P0 案例表 + Red Flags + 反模式 + 关联铁律)
+  - `/Users/tangyuanjc/.org/AGENTS.md` (line 594 L3 章节末尾新增 "Cross-context 误用复审" 子节 + 反模式列表追加 1 条)
+  - `/Users/tangyuanjc/agents-changelog/2026-05-07.md` (新建 daily file 含 cross-context 升级 + Codex Phase 0 同步)
+- What changed: 立 hard rule (硬性规则) — L4/L3 BLOCK 后 CSO 必须复审是不是 cross-context (跨场景) 误用铁律, 不机械执行. CSO 复审 4 步: 三原则过审 / 找原始 memory / 判同场景 vs 跨场景 / 跨场景误用归档 ledger. 5/6 multica 议题 L4 BLOCK 实测命中率 1/3 (33%) + cross-context 误用 2/3 (67%), JC 撤 P0-1/P0-2 后立此 SOP.
+- Verification: SKILL.md 新增章节 + AGENTS.md 子节均 Edit 成功; daily file 写入; 跟 5/2 三原则元规则 + 5/6 JC × CSO 分工铁律 + 5/5 L4 跨模型对抗 形成完整闭环.
+- Impact: **跨 agent 新铁律** — 所有 C-level (Opus/Codex/爱马仕/小J) 后续遇 L4/L3 BLOCK 必走 4 步复审; CSO 任何架构判决前必须前置搜 memory + AGENTS.md 冲突铁律 + 三原则过, 不凭印象. 防止 paranoid 视角关键词匹配误用导致 JC 多轮推翻.
+- Reason: CSO 5/2 + 5/6 同类错三次 (5/2 私域硬隔离 / 5/6 早 v2.6 微信隐私红线 / 5/6 晚 multica vs v2.6 边界), JC 三次推翻; L4 实测命中 1/3 + 误用 2/3 不是偶发是系统问题; 5/6 立的 JC × CSO 分工铁律要求 CSO 把控技术决策不让 JC 替自己擦屁股.
+- Boundary: 没改 L3 SOP 升格门槛 (≥3 轮 + hit ≥70% + P0 ≥2) 保留; 没改 L4 跨模型对抗触发条件保留; L3 prompt 模板本次没动 (Phase 1 工程化时派 Codex 干, 让 challenger 自己提醒区分场景).
+- 关联: 起源 `feedback_l4_cross_context_review_0507.md` (5/7 立); 同向 `feedback_three_principles_as_judgment_tool.md` + `feedback_three_principles_misapplied_layer05_0502.md` + `feedback_jc_cso_division_of_labor_0506.md` + `feedback_l3_adversarial_trial.md` + `feedback_recursion_l4_codex_value_0505.md`.
+
+## [2026-05-07 01:41:57 CST] [Codex-CTO] [type:infra] Phase 0 multica 3-task rollout
+
+- Files changed:
+  - `/Users/tangyuanjc/.org/scripts/multica-backup.sh`
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.user.multica-backup.plist`
+  - `/Users/tangyuanjc/.org/codex-watchdog/PHASE0-MULTICA-3TASKS-RESULT-A.md`
+  - `/Users/tangyuanjc/.org/codex-watchdog/PHASE0-MULTICA-3TASKS-RESULT-B.md`
+  - `/Users/tangyuanjc/.org/codex-watchdog/PHASE0-MULTICA-3TASKS-RESULT-C.md`
+  - `/Users/tangyuanjc/.org/codex-watchdog/PHASE0-MULTICA-3TASKS-RESULT.md`
+  - multica cloud state: Opus agent instructions, D-line autopilot, schedule trigger, Hermes dogfood workspace skill.
+- What changed: Migrated D-line 17:00 architecture audit to multica autopilot create_issue flow; added hourly multica backup launchd job; published Hermes dogfood skill to multica with references/templates sub-files.
+- Verification: Manual autopilot trigger created issue `WS-10`; Opus daemon completed run `470aec41-a3fd-4147-a3cd-339da248864f`, posted audit comment, and closed issue. Backup manual run wrote 8 JSON files under `~/.org/multica-backups/2026-05-07/01/`. Skill `hermes-dogfood-test` is list/get visible and has two uploaded sub-files.
+- Impact: Multica Phase 0 now has one scheduled governance autopilot, local cloud-lock-in backup path, and first shared workspace skill dogfood artifact.
+- Reason: CSO 2026-05-07 Phase 0 dispatch after JC confirmed applying 3 multica tasks immediately.
+- Boundary: No git commit or push by Codex per CSO dispatch; CSO should review before committing to avoid secret leakage.
+
 ## [2026-05-06 19:32 CST] [Hermes-COO] [type:team-daily] 皮皮 2026-05-06 工作更新入库
 
 ## 2026-05-06 21:02:58 - [小J] 2026-05-06 daily wrap
