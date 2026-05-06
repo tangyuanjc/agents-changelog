@@ -3082,3 +3082,11 @@ JC 17:31 双命题:
 - commit：`~/hermes-workspace` `b1955a6 [AI-131] point X sync launchd at authority script`；`817f079 [AI-132] align X bookmarks feed with signal source`。
 - 验证：targeted tests `19 passed`；`npm run typecheck` 仍 exit 2，但 remaining errors 不在本次触碰文件（typecheck log `/tmp/aihotboard-typecheck-fix-1778053352.log`）。本机 `~/Library/LaunchAgents/ai.hermes.x-signal-sync.plist` 已备份并写入权威脚本路径；`monitor-x-signal-sync.sh` 已因 launchd label 当前缺失发送飞书告警。
 - 受限：当前 Codex sandbox 禁止 TCP connect/kickstart/bootstrap，导致 `launchctl bootstrap`/`kickstart` 返回 EPERM/Input-output error，curl/Node/Playwright 无法访问 `127.0.0.1:3000`，GitHub push 经本地代理 `127.0.0.1:7897` 也被 sandbox 拦截；需在非 sandbox 会话补 `launchctl bootstrap` 与 `git push`。
+## [2026-05-07 03:25:36] [Codex-CTO] [type:c] TICKET_001 Doubao multimodal fork + Hermes storyboard skill
+
+- 派单：Opus-CSO ，为 Phase 0 营销爆款短视频拆解链路 fork  并新增 。
+- Fork：，feature HEAD ，4 个  commits 已 push，未 push main，未给上游开 PR。
+- 文件：、、、、、、；Hermes skill 、、 symlink；handoff 。
+- 改动：新增中文营销 storyboard prompt/schema，注册 video-only task，针对该 task 将模型 JSON 直写为  并生成 markdown ，Hermes atomic skill wrapper 自动判断 URL/path 后转发到 fork CLI。
+- 验证：bun test v1.3.11 (af24e281) 为 4 pass / 0 fail / 23 expect； exit 0； exit 0 且 task list 包含新 task；Hermes wrapper 无参 usage exit 2，未触发 Ark/TOS。
+- 边界：无  / TOS 凭证，未调真 API；未改  /  /  / ；未接 ；未改 。
