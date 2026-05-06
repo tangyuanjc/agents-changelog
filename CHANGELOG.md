@@ -2964,3 +2964,12 @@ JC 17:31 双命题:
 - Live：`gbrain graph-query opus-memory/memory --depth 1 --direction out` 已列出 `feedback_agentsmd_shared_rule`、`feedback_all_agents_can_dispatch`、`feedback_md_ownership` 等 out links；`gbrain timeline opus-memory/project_layer05_sensor_channel_0505`、`feedback_ai_bandwidth_workflow_dividend_0429` 有真实日期条目。
 - Cron：`~/blackboard-v3/scripts/gbrain-cron.sh` exit 0，末尾 `gbrain cron end status=0`，stats 保持 `Links=197 / Timeline=468 / Tags=114`。
 - CLI 注意：按任务包执行 `bun build --compile --outfile bin/gbrain src/cli.ts` 编译成功，但 compiled binary 运行 PGLite 报 `/$bunfs/root/pglite.data` 缺失；已恢复 `~/.bun/bin/gbrain` 为原 source-backed wrapper，并保留 `~/.bun/bin/gbrain.bak-0506`。未改 embedding shim、launchd plist、`~/.gbrain/brain.pglite/`，未 push garrytan/gbrain upstream。
+
+## [2026-05-06 15:45:00] [Codex-CTO] [type:c] ai-hotboard Wave A P0 X sync + source consistency fixes
+
+- 派单目录：`~/.org/projects/ai-hotboard-wave-a-0506/`；目标是修复内部 dogfood 两个 P0：X sync launchd 路径回退，以及 `/source/x-bookmarks` 与 `/sources/health` 信源数据不一致。
+- AI-131 改动：`~/hermes-workspace/launchd/ai.hermes.x-signal-sync.plist` 模板改为直接运行 `~/.hermes/hermes-agent/scripts/x_signal_sync.py`；新增 `launchd/ai.hermes.x-signal-health.plist`、`scripts/monitor-x-signal-sync.sh`、`scripts/x-signal-monitor-script.test.ts`；`scripts/monitor-aihotboard.sh` 接入 30 分钟节流的 X signal health 兜底，检查 launchd path drift 与 latest JSON <300KB 并飞书告警。
+- AI-132 改动：`src/server/hotboard-feed-api.ts` 默认不再把 X source 缺失/空数据回退到 `ai_hotboard_mock_events.json`，只在显式 `HOTBOARD_ENABLE_MOCK_FEED_FALLBACK=1` 时启用 mock；`src/server/source-registry.ts` 支持 nested `counts.*.total`，让 feed 与 health 使用同一 `x_signal_sync_latest.json` 口径。
+- commit：`~/hermes-workspace` `b1955a6 [AI-131] point X sync launchd at authority script`；`817f079 [AI-132] align X bookmarks feed with signal source`。
+- 验证：targeted tests `19 passed`；`npm run typecheck` 仍 exit 2，但 remaining errors 不在本次触碰文件（typecheck log `/tmp/aihotboard-typecheck-fix-1778053352.log`）。本机 `~/Library/LaunchAgents/ai.hermes.x-signal-sync.plist` 已备份并写入权威脚本路径；`monitor-x-signal-sync.sh` 已因 launchd label 当前缺失发送飞书告警。
+- 受限：当前 Codex sandbox 禁止 TCP connect/kickstart/bootstrap，导致 `launchctl bootstrap`/`kickstart` 返回 EPERM/Input-output error，curl/Node/Playwright 无法访问 `127.0.0.1:3000`，GitHub push 经本地代理 `127.0.0.1:7897` 也被 sandbox 拦截；需在非 sandbox 会话补 `launchctl bootstrap` 与 `git push`。
