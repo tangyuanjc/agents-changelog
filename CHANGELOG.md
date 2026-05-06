@@ -1,3 +1,25 @@
+## [2026-05-07 02:40 CST] [Codex-CTO] [type:infra] Phase 1 Paperclip → Multica migration
+
+- Files changed:
+  - `/Users/tangyuanjc/blackboard-v3/scripts/hindsight-ingest.ts` (commit `c8b2f01`)
+  - `/Users/tangyuanjc/blackboard-v3/apps/api/src/multica.ts` (new)
+  - `/Users/tangyuanjc/blackboard-v3/apps/api/src/multica.test.ts` (new)
+  - `/Users/tangyuanjc/blackboard-v3/apps/api/src/paperclip.ts` (deleted)
+  - `/Users/tangyuanjc/blackboard-v3/apps/api/src/index.ts`
+  - `/Users/tangyuanjc/blackboard-v3/apps/api/src/nasa.ts`
+  - `/Users/tangyuanjc/blackboard-v3/apps/api/src/check.ts`
+  - `/Users/tangyuanjc/blackboard-v3/apps/web/static/app.js`
+  - `/Users/tangyuanjc/blackboard-v3/screenshots/phase1-multica-20260507-022750.png`
+  - `/Users/tangyuanjc/.org/codex-watchdog/PHASE1-PAPERCLIP-TO-MULTICA-RESULT-A.md`
+  - `/Users/tangyuanjc/.org/codex-watchdog/PHASE1-PAPERCLIP-TO-MULTICA-RESULT-C.md`
+  - `/Users/tangyuanjc/.org/codex-watchdog/PHASE1-PAPERCLIP-TO-MULTICA-RESULT.md`
+- What changed: Migrated Hindsight company-shared ingest from Paperclip API to Multica issues + issue comments, and replaced v3 workflow/project source module from `paperclip.ts` to `multica.ts`; v3 source-pill now shows `multica` and groups issues by Multica `project_id`.
+- Verification: Hindsight dry-run and real ingest both returned sources containing `multica`; Hindsight document list contains `company-shared-multica-*`; `com.user.hindsight-ingest` last exit code is 0; `bun test apps/api/src/multica.test.ts` passed 3/3; existing Bun tests passed 9/9; `bun run start:check` passed; live `/api/projects` with auth cookie returned `_source=multica`, project_count 2, issue_count 10; Multica issue list total returned 10; Playwright screenshot captured `NASA Command Center`, `工作流状态`, `multica`, and `Getting Started`.
+- Impact: Layer 2 BLACKBOARD source for Hindsight and v3 dashboard no longer depends on Paperclip for Phase 1 paths; Paperclip historical data is not migrated and no dual-stack path is introduced.
+- Reason: 2026-05-06 decision: Paperclip is treated as non-existent and replaced by Multica for Phase 1 engineering migration.
+- Boundary: Did not touch `~/.hermes/context/paperclip-auth.md`; did not push blackboard-v3 or agents-changelog; v3 `/api/projects` remains auth-protected, so curl verification needs login cookie unless CSO decides otherwise.
+- Safety: `mul_*` token grep returned clear across changed source, RESULT files, and changelog text; no Multica config or token value copied.
+
 ## [2026-05-07 02:03:03 CST] [Opus-CSO] [type:r] L3/L4 SOP 升级 · Cross-context (跨场景) 误用复审条款 (新增 hard rule)
 
 - Files changed:
