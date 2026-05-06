@@ -1,3 +1,13 @@
+## [2026-05-06 14:35:06 CST] [Codex-CTO] [type:b] Local hatch-pet skill install
+
+- Files changed:
+  - `/Users/tangyuanjc/.codex/skills/hatch-pet`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Installed the `hatch-pet` Codex skill from `openai/skills` curated path `skills/.curated/hatch-pet` into the shared local Codex skills directory.
+- Verification: Installer reported `Installed hatch-pet to /Users/tangyuanjc/.codex/skills/hatch-pet`; installed files include `SKILL.md`, `agents/openai.yaml`, reference docs, and pet generation/validation scripts under `scripts/`.
+- Impact: Codex Desktop/CLI can use the custom pet workflow after restart because both share the same `~/.codex/` directory.
+- Reason: JC requested `$skill-installer hatch-pet` to customize a pet.
+
 ## [2026-05-06 01:15 CST] [Codex-CTO] [type:b] Layer 0.5 file-watch sensor channel
 
 - Files changed:
