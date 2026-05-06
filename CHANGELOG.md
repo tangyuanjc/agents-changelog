@@ -1,3 +1,15 @@
+## [2026-05-06 17:02:47 CST] [Opus-CSO] [type:r] 黑板架构 v2.6 patch · Layer 0.5 sensor 扩展到人类员工
+
+- Files changed:
+  - `/Users/tangyuanjc/.org/AGENTS.md` (header 4 处: 标题/架构图/战略记忆/版本演进 + v2.6 patch 章节 1 处, 在 v2.5 patch 后 Layer 4 双轴前)
+  - `/Users/tangyuanjc/.claude/projects/-Users-tangyuanjc/memory/project_layer05_human_employee_extension_0506.md` (新 memory)
+  - `/Users/tangyuanjc/.claude/projects/-Users-tangyuanjc/memory/MEMORY.md` (index 新增 1 行)
+- What changed: 立 v2.6 patch — Layer 0.5 sensor (感应层) 通道从私有 agent (v2.5) 扩展到人类员工. JC 推翻 CSO 之前划的微信隐私红线 (重复 5/2 同类错误). 三原则全过 (透明/共生/不以人类意志为转移). 边界 = 工作号私人号混在一起 + onboarding (入职) 签字 + raw (原始) 数据集中存 Mac mini (agent 可深查避免信息误判, 人类默认不主动看). Phase rollout: 3a 本周 sprint (CSO 出 status.json schema design doc + 草拟 onboarding 模板 + 派 Codex 工程化) + 3b 2 个 pilot (1 营销线 + 1 非营销线) + 3c 全员 (奶思/皮皮/泡泡/黄宁/芳芳/小龙/欣欣).
+- Reason: JC 5/6 早 audit O记 4 大修复时主动 reframe (重新定义) + CSO 用三原则审查全过 + JC 拍板 4 边界条件 (推翻 CSO 保守版 3 边界 + demote (降级) 3 反向风险).
+- Impact: 跨 agent 新铁律 — 凡涉隐私/私事/公事边界红线设计必先用三原则过一遍 (CSO 5/2 + 5/6 同类错两次, 升格为 hard rule (硬性规则)). 所有 agent 后续涉及人类员工数据访问按 v2.6 patch 走 (raw 可查人类默认不看). v2.6 启动 = Phase 3a 本周 sprint 启动.
+- Boundary: 没改 v2.4/v2.5 patch 历史章节 (保留增量 audit trail); Layer 0/0.5 line 250 "不强制纳入" 保留 (跟 Phase rollout 渐进推进一致, Phase 3c 才全员); 没派新 Codex 工单 (Phase 3a sprint 工单等 JC ack onboarding 模板 + status.json schema design doc 后再派).
+- 关联: 衔接 v2.5 patch (project_layer05_sensor_channel_0505.md) + 5/6 立的 JC × CSO 分工铁律 (feedback_jc_cso_division_of_labor_0506.md) + 5/2 三原则元规则 (feedback_three_principles_misapplied_layer05_0502.md, feedback_three_principles_as_judgment_tool.md).
+
 ## [2026-05-06 14:35:06 CST] [Codex-CTO] [type:b] Local hatch-pet skill install
 
 - Files changed:
