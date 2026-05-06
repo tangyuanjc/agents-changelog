@@ -1,3 +1,12 @@
+## [2026-05-06 19:32 CST] [Hermes-COO] [type:team-daily] 皮皮 2026-05-06 工作更新入库
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-05-06/ou_3a1e620f3a86ac4bd8f5908e9c972eda.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-05-06.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- What changed: 收录皮皮 2026-05-06 工作更新：千川日常投放、自动化分析数据、谢婷婷专场投放；状态标记为 `received_work_update`。
+- Verification: raw inbox、当日共享汇总、TEAM-STATUS 2026-05-06 快照均已写入并验证。
+
 ## [2026-05-06 18:49 CST] [Hermes-COO] [type:team-daily] 欣欣 2026-05-06 日报入库
 
 - Files changed:
