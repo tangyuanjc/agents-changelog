@@ -2944,3 +2944,13 @@ JC 17:31 双命题:
 - 改动：`~/.hermes/profiles/ogilvy/.env` 将该 sender 加入 `FEISHU_ALLOWED_USERS`；`~/.opus-lab/ogilvy/workspace/context/ALLOWED_CHATS.md`、`STATE.md`、`memory/user_tangdi/optin_notes.md` 补最小身份映射；`~/.hermes/profiles/ogilvy/memories/MEMORY.md` 记录实验背景；`~/.hermes/profiles/ogilvy/memories/USER.md` 只加一行短提示，避免挤爆 `user_char_limit`。
 - 验证：只重启 `ai.hermes.gateway-ogilvy`，PID `762 -> 41893`；`launchctl` 显示 running，`gateway_state.json` 显示 `gateway_state=running`、`feishu.state=connected`。未重启默认 Hermes gateway / COO gateway。
 - 治理：这是 profile 级持续行为配置变更，不改 `~/.org/AGENTS.md`；按宪法决策树写入 shared `agents-changelog` 并 push。
+
+## [2026-05-06 14:38:00] [Codex-CTO] [type:c] GBrain links + timeline extractor db-source fix
+
+- 派单目录：`~/.org/projects/gbrain-extractor-fix-0506/`；目标是修复 `gbrain extract links --source db` 与 `gbrain extract timeline --source db` 0 产出。
+- 根因：DB slug 已 source-prefixed（如 `opus-memory/user_jc_profile`），但 memory index 使用 sibling-relative markdown `.md` 链接（如 `user_jc_profile.md`）；旧 extractor 不抽 flat sibling `.md`，且 DB path exact-filter 未做 source-aware 解析。Timeline 旧逻辑只解析 body 内 `- **YYYY-MM-DD** | ...`，未从 frontmatter/slug 日期派生。
+- 改动：`~/gbrain/src/core/link-extraction.ts` 新增本地 `.md` 链接抽取并避免 canonical entity link 双抽；`~/gbrain/src/commands/extract.ts` 新增 DB source slug resolver（exact → sibling → source-root）与 frontmatter/slug timeline fallback；`~/gbrain/test/extract-db.test.ts` 补 source-prefixed links/timeline 回归。
+- 验证：`bun test test/extract-db.test.ts` 为 `16 pass / 0 fail`；`bun test test/link-extraction.test.ts` 为 `92 pass / 0 fail`；`gbrain stats` 最终为 `Pages=606 / Chunks=871 / Embedded=871 / Links=197 / Tags=114 / Timeline=468`，Tags 从 114 保持不变。
+- Live：`gbrain graph-query opus-memory/memory --depth 1 --direction out` 已列出 `feedback_agentsmd_shared_rule`、`feedback_all_agents_can_dispatch`、`feedback_md_ownership` 等 out links；`gbrain timeline opus-memory/project_layer05_sensor_channel_0505`、`feedback_ai_bandwidth_workflow_dividend_0429` 有真实日期条目。
+- Cron：`~/blackboard-v3/scripts/gbrain-cron.sh` exit 0，末尾 `gbrain cron end status=0`，stats 保持 `Links=197 / Timeline=468 / Tags=114`。
+- CLI 注意：按任务包执行 `bun build --compile --outfile bin/gbrain src/cli.ts` 编译成功，但 compiled binary 运行 PGLite 报 `/$bunfs/root/pglite.data` 缺失；已恢复 `~/.bun/bin/gbrain` 为原 source-backed wrapper，并保留 `~/.bun/bin/gbrain.bak-0506`。未改 embedding shim、launchd plist、`~/.gbrain/brain.pglite/`，未 push garrytan/gbrain upstream。
