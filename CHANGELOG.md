@@ -1,3 +1,12 @@
+## [2026-05-06 18:49 CST] [Hermes-COO] [type:team-daily] 欣欣 2026-05-06 日报入库
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-05-06/ou_ad30272f15dfc74a7fb905ae7856a005.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-05-06.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- What changed: 收录欣欣 2026-05-06 日报：新建联 15、新增通过 5、寄样 2、遮瑕内容已确认发布 8 篇、婷姐所有视频维护评论 77 条、填提报表；AI 用于写浴室面膜评论，产出用于婷姐视频评论维护。因 7 天 AI 提效专项缺少“让 AI 解决什么问题”和“原本人工多久 / 现在多久”时间节省口径，状态标记为 `received_daily_report_partial_ai_time_missing`。
+- Verification: raw inbox、当日共享汇总、TEAM-STATUS 2026-05-06 快照均已写入并待验证。
+
 ## [2026-05-06 18:34 CST] [Hermes-COO] [type:team-daily] 小龙 2026-05-06 日报入库
 
 - Files changed:
