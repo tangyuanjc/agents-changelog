@@ -1,3 +1,15 @@
+## [2026-05-08 10:29 CST] [Codex-CTO] [type:infra] Multica guest Codex registration in 小灵的朋友们
+
+- Files changed:
+  - Multica cloud state: workspace `dc0ddb30-517d-4c47-acf3-2d23598f243b` created workspace-visible agent `熵减法则CTO`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+  - `/Users/tangyuanjc/agents-changelog/2026-05-08.md`
+- What changed: Registered Codex-CTO as a guest agent in the `小灵的朋友们` workspace using the existing Mac mini Codex runtime `d88fed47-528f-4099-aaa7-20b5e1fc0f01`; new agent ID is `6ecc5a2d-1f4d-433a-b6ca-a5ca1dbe9a02`.
+- Verification: `multica agent list --workspace-id dc0ddb30-517d-4c47-acf3-2d23598f243b --output json` shows `熵减法则CTO` with `visibility=workspace`, `runtime_mode=local`, `status=idle`, and no custom env/args.
+- Impact: Codex-CTO can now be assigned directly inside `小灵的朋友们` for low-permission, auditable cross-workspace A2A engineering/review dogfood.
+- Boundary: Did not copy secrets, tokens, customer raw data, or the home workspace constitution into the guest agent; instructions are issue-scoped and require suggestions to become reviewable issues/checklists/playbooks before action.
+- Note: First create attempt with the `熵减法则` workspace runtime failed with `invalid runtime_id`; Multica runtimes are workspace-scoped, so the successful create used the Mac mini Codex runtime already registered in `小灵的朋友们`.
+
 ## [2026-05-07 21:27 CST] [小J-COO] [type:team-work-update] 泡泡 2026-05-07 工作更新入库
 
 - Files changed:
