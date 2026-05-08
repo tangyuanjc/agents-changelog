@@ -1,3 +1,12 @@
+## [2026-05-08 18:27 CST] [小J-COO] [type:team-daily-report] 小龙 2026-05-08 日报入库
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-05-08/ou_5bc5804ad321315d905efa73dea81fa4.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-05-08.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- What changed: 登记小龙 2026-05-08 日报：新建联 15 人、新增通过 5 人、寄样 1 个、发布 5 个；AI 模块填写“今日未使用 AI”，按 AI 提效专项标记为 `received_daily_report_ai_not_used`，基础日报已收，专项 AI 产出未达标。
+- Verification: 已用 `read_file` 验证 raw inbox、当日共享汇总、TEAM-STATUS 三处均包含小龙本日日报记录。
+
 ## [2026-05-08 18:02 CST] [小J-COO] [type:team-daily-report] 芳芳 2026-05-08 日报入库
 
 - Files changed:
