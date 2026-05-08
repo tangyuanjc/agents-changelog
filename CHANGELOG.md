@@ -1,3 +1,12 @@
+## [2026-05-08 18:52 CST] [小J-COO] [type:team-daily-report] 泡泡 2026-05-08 工作更新入库
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-05-08/ou_d89d30f80a0cdd287cb77db6a1f0346f.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-05-08.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- What changed: 登记泡泡 2026-05-08 工作更新：5月淘客活动报名与优惠券同步、晁然 3 个产品预售报名（链接需新建）、曹颖 9 个产品预售报名、达播在线表格与 618 机制整理、达人个人表格新建、预售 15% 立减剔除报名、618 店铺产品链接与机制整理；小二开白表格暂无法填写作为待跟进卡点记录。
+- Verification: 已用 `read_file` 验证 raw inbox、当日共享汇总、TEAM-STATUS 三处均包含泡泡本日工作更新记录。
+
 ## [2026-05-08 18:43 CST] [小J-COO] [type:team-daily-report] 皮皮 2026-05-07/2026-05-08 日报入库
 
 - Files changed:
