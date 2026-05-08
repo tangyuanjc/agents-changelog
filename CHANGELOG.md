@@ -3204,3 +3204,12 @@ JC 17:31 双命题:
 - 改动：新增中文营销 storyboard prompt/schema，注册 video-only task，针对该 task 将模型 JSON 直写为 `marketing-storyboard-extract.json` 并生成 markdown `.txt`，Hermes atomic skill wrapper 自动判断 URL/path 后转发到 fork CLI。
 - 验证：`bun test skill/scripts/test-marketing-storyboard.test.ts` 为 4 pass / 0 fail / 23 expect；`cd skill/scripts && bunx tsc --noEmit` exit 0；`bun run skill/scripts/main.ts --task marketing-storyboard-extract --help` exit 0 且 task list 包含新 task；Hermes wrapper 无参 usage exit 2，未触发 Ark/TOS。
 - 边界：无 `ARK_API_KEY` / TOS 凭证，未调真 API；未改 `lib/ark.ts` / `lib/ffmpeg.ts` / `lib/tos.ts` / `lib/source.ts`；未接 `mwp record`；未改 `~/.org/AGENTS.md`。
+## 2026-05-08 21:10 CST - [小J] 每日收工日志与日记
+
+- Files changed:
+  - `workspace/daily-logs/2026-05-08.md`
+  - `workspace/journal/xiaoj-diary-2026-05-08.md`
+- What changed: 运行 2026-05-08 每日收工流程，写入员工情报摘要、简版复盘、完整日志与小J日记。
+- Impact: 为 COO profile 保留当日团队输入核验、未完成项和次日跟进依据。
+- Reason: 定时每日收工任务要求写入完整日志与日记，并验证文件存在非空。
+
