@@ -1,3 +1,14 @@
+## [2026-05-08 18:43 CST] [小J-COO] [type:team-daily-report] 皮皮 2026-05-07/2026-05-08 日报入库
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-05-07/ou_3a1e620f3a86ac4bd8f5908e9c972eda.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-05-08/ou_3a1e620f3a86ac4bd8f5908e9c972eda.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-05-07.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-05-08.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- What changed: 登记皮皮 2026-05-07 日报（千川日常投放、谢婷婷专场投放）与 2026-05-08 日报（千川日常投放、谢婷婷专场复盘、标准化复盘报告梳理），两日均标记为 `received_daily_report`。
+- Verification: 已用 `read_file` 验证 2026-05-07/2026-05-08 两日 raw inbox、当日共享汇总、TEAM-STATUS 均包含皮皮对应日报记录。
+
 ## [2026-05-08 18:34 CST] [小J-COO] [type:team-daily-report] 欣欣 2026-05-08 日报入库
 
 - Files changed:
