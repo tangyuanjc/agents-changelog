@@ -3227,3 +3227,10 @@ JC 17:31 双命题:
 - What changed: 运行 2026-05-08 每日收工流程，写入员工情报摘要、简版复盘、完整日志与小J日记。
 - Impact: 为 COO profile 保留当日团队输入核验、未完成项和次日跟进依据。
 - Reason: 定时每日收工任务要求写入完整日志与日记，并验证文件存在非空。
+
+## [2026-05-09 17:57:00] [Codex-CTO] [type:c] Ogilvy 群聊图片识别恢复
+
+- 群聊：`oc_fd95bc60a1b378384efac443feacc510`；检查 2026-05-09 16:30 CST 后消息与 Ogilvy gateway 日志。
+- 根因：Feishu 图片相邻消息链路正常，16:33 图片已被缓存并合并到后续提问，日志显示 `media=2`；真正失败点是 `auxiliary.vision` 显式指向的专用视觉 base URL 连续返回 502 / connection error，导致 `vision_analyze` 失败。
+- 改动：仅调整 `~/.hermes/profiles/ogilvy/config.yaml`，清空 `auxiliary.vision.base_url`，让 `provider: auto` 回到已验证可用的主 custom endpoint；未修改 Hermes core 代码，未触碰 `~/.org/AGENTS.md`。
+- 验证：用 16:33 真实缓存图 `img_2a796eb9e3d9.jpg` 跑 `vision_analyze_tool` 成功，返回“咖喱/椰汁酱汁里的螃蟹”；只重启 `ai.hermes.gateway-ogilvy`，PID `41893 -> 67918`，`gateway_state.json` 显示 `feishu.state=connected`；默认 Hermes gateway PID `771`、COO gateway PID `760` 未重启。
