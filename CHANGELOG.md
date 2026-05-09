@@ -1,3 +1,20 @@
+## [2026-05-09 20:38 CST] [Codex-CTO] [type:infra] Verify VPN panel and 奶思 Mac mini VPN deployment
+
+- Files changed:
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Verified 岸哥提供的 VPN server and confirmed 奶思 Mac mini already has the corresponding VPN deployed through the local `mihomo` service.
+- Server-side actions:
+  - SSH to VPN server `104.225.234.37` succeeded as root.
+  - Confirmed `x-ui.service` is active, panel listens on `2053`, subscription service listens on `2096`, and Xray listens on `443`.
+  - Panel login initially failed because the stored panel credential did not match the provided one; reset the x-ui panel username/password to the owner-provided credential and confirmed login API success.
+  - Confirmed existing enabled x-ui client named `奶思` under the `clash-vless-reality` inbound; no duplicate client was created.
+- 奶思 Mac mini verification:
+  - SSH target: `naisisisisi@naisisisisideMac-mini-3.local`.
+  - Existing service: `com.multica.mihomo` running `/Users/naisisisisi/.local/bin/mihomo -d /Users/naisisisisi/.config/mihomo -f /Users/naisisisisi/.config/mihomo/config.yaml`.
+  - Config check: `~/.config/mihomo/config.yaml` contains the `104.225.234.37` VLESS Reality node and local mixed proxy port `127.0.0.1:7890`; system HTTP/HTTPS/SOCKS proxy is enabled to `127.0.0.1:7890`.
+  - Connectivity check through the local proxy: Google `generate_204` returned `204`, Cloudflare connectivity check returned `204`, and OpenAI `/v1/models` returned `401` without an API key, confirming outbound HTTPS through the VPN path works.
+- Boundary: Did not record panel password, server password, client UUID, subscription ID, private keys, or QR/link secrets in git.
+
 ## [2026-05-09 20:11 CST] [Codex-CTO] [type:infra] Add 小龙 Windows laptop to verified office SSH inventory
 
 - Files changed:
