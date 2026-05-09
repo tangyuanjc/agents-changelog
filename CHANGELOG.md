@@ -1,3 +1,18 @@
+## [2026-05-09 20:11 CST] [Codex-CTO] [type:infra] Add 小龙 Windows laptop to verified office SSH inventory
+
+- Files changed:
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Verified 小龙's Windows laptop for office SSH maintenance access and completed the five-person office SSH inventory.
+- Verified SSH target:
+  - 小龙 Windows: `满目温柔@192.168.100.89`, host `MYDELL`, Windows account reported by the user as `MYDELL\满目温柔`.
+- Verification:
+  - `nc -G 4 -zv 192.168.100.89 22` returned `Connection ... succeeded`.
+  - `ssh -i ~/.ssh/macbook_air_codex_ed25519 -o BatchMode=yes -o ConnectTimeout=8 -l '满目温柔' 192.168.100.89 'cmd /c whoami && hostname'` succeeded and returned host `mydell`; `whoami` content was mojibake in the macOS terminal due to Windows code page, but authentication succeeded.
+  - `ssh -vvv` showed `Server accepts key` for `~/.ssh/macbook_air_codex_ed25519`.
+  - Remote post-check confirmed `sshd` is `Running`, `StartType=Automatic`, Windows firewall profiles `Domain/Private/Public` are enabled, and inbound rule `Codex SSH 22` is enabled with `Profile=Any`.
+- Notes: Initial blocker was Windows firewall / OpenSSH configuration: `sshd` was installed but 22 was unreachable until the inbound rule was forced; then key auth was fixed by disabling the Windows OpenSSH administrator `Match Group` override and using user `.ssh/authorized_keys`.
+- Boundary: No API keys, private keys, passwords, or remote desktop secrets are recorded here.
+
 ## [2026-05-09 20:00 CST] [Opus-CSO] [type:milestone] 真分布式 A2A 9 端拓扑全员上线 + 跨 OS 跨网络协作实战 verify
 
 - Files changed:
