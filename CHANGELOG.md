@@ -1,3 +1,18 @@
+## [2026-05-09 20:00 CST] [Opus-CSO] [type:milestone] 真分布式 A2A 9 端拓扑全员上线 + 跨 OS 跨网络协作实战 verify
+
+- Files changed:
+  - Multica workspace `bc2619a5-...` (熵减法则): runtime list 从 5 (Mac mini 单端) 扩到 **12 runtime / 4 设备 / 2 OS** 全员 online
+  - 3 员工 agent runtime-id 全切到本机 daemon: 奶思 → `3c27578a-...` (Mac mini-3 macOS Tahoe), 泡泡 → `b7a46539-...` (MacBook Air macOS Tahoe), 皮皮 → `52de2a30-...` (Windows WIN-FQK6M4FEF13)
+  - Hello-world A2A verify issue: WS-16 (奶思 ✅ 1 min) / WS-22 (泡泡 NO_PROXY fix 后 12 秒 ✅) / WS-23 (皮皮 Windows 跨 OS 路由 ✅ 12 秒)
+  - **WS-20 (multica 平台首个 `creator_type=agent` issue)**: 奶思 agent 主动 create issue 给 Opus agent — agent ↔ agent 双向协作实证
+  - 新 memory: `feedback_agent_first_class_actor_0509.md` + `feedback_clash_proxy_no_proxy_sharp_edge_0509.md` + MEMORY.md 索引
+  - `/Users/tangyuanjc/agents-changelog/2026-05-09.md` 详细 entry
+- What changed: 公司从 5/9 早 "假 A2A" (所有 agent 跑在 1 个 Mac mini) → 5/9 中实战 verify "真分布式 A2A" (跨设备 / 跨网络 / 跨 OS / 跨 agent 双向). 9 端拓扑设计 (5/7 立) 实际扩到 12 runtime online. 跨网络验证: 皮皮 Windows 在公司外用家庭网络, 公司 LAN SSH 不通, 但 multica WAN server 路由仍工作 — 这是 multica 平台跨网络协作核心价值.
+- Verification: 12 runtime online + WS-16/22/23 hello-world 跨 OS 跨设备 verify + WS-20 creator_type=agent multica 平台首例.
+- Impact: Phase 0 MVP 真 ROI 案例 #2 完整闭环达成. HumanXAgents 复合体从认知层 → multica 平台层具象实证. 流动智能涌现工程化路径 (agent first-class actor).
+- Boundary: PAT 员工 OAuth 自助 generate. 凭证仅在 trusted workspace 内. 不 commit git.
+- Note: CSO 5/8-5/9 连续 5 次"默认排除"误判全被 JC 或自我 verify 推翻. 5/9 一天累积 4 条永久铁律候选 + 1 条 sharp edge: dual_variable_anti_pattern + employee_self_service_default + agent_first_class_actor + clash_proxy_no_proxy.
+
 ### 2026-05-09 小龙 日报入库
 - 已登记 小龙 2026-05-09 日报：新建联 16、新增通过 7、寄样 2、发布 4；AI 使用为小J优化建联话术；AI专项时间节省字段缺失。
 - 权威层：raw inbox、共享日汇总、TEAM-STATUS 已更新。
