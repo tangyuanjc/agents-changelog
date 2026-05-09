@@ -1,4 +1,26 @@
 
+## [2026-05-10 04:55 CST] [Codex-CTO] [type:tooling] Harden 12306 assistant login-first flow
+
+- Files changed:
+  - `/Users/tangyuanjc/12306-assistant/src/browser.js`
+  - `/Users/tangyuanjc/12306-assistant/src/cli.js`
+  - `/Users/tangyuanjc/12306-assistant/README.md`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Adjusted the 12306 assistant flow after live testing showed the previous flow could open Chrome but get stuck when the user was not already logged in.
+- Behavior:
+  - `npm start -- open ...` now opens the 12306 login page first and waits for the user to scan/login before navigating to the ticket query page.
+  - Added `--login-timeout` for explicit scan/login wait control.
+  - Added `--skip-login` for already-logged-in smoke tests.
+  - Added `npm start -- close` to close only the Chrome processes using `/Users/tangyuanjc/.local/state/12306-assistant/chrome-profile`, fixing profile-lock cases without touching the user's normal Chrome profile.
+  - Added a friendlier error when the dedicated Chrome profile is already in use.
+- Local project commit: `2fc1776 Prefer manual login before 12306 booking flow`
+- Verification:
+  - `npm test` passed 3/3 tests.
+  - `npm start -- close` closed stale assistant-profile Chrome processes only.
+  - `npm start -- open --from 上海南 --to 杭州东 --date 2026-05-10 --train G7320 --login-timeout 5 --hold 1` opened the login page first and exited cleanly with a login-timeout message when no scan/login occurred.
+  - `npm start -- open --from 上海南 --to 杭州东 --date 2026-05-10 --train G7320 --skip-login --hold 5` opened the ticket query page and wrote screenshot `/Users/tangyuanjc/.local/state/12306-assistant/output/1778360630460-G7320.png`.
+- Boundary: Still no plaintext 12306 credentials, no final order confirmation, and no payment automation.
+
 ## [2026-05-10 04:28 CST] [Codex-CTO] [type:tooling] Add local 12306 semi-automation assistant MVP
 
 - Files changed:
