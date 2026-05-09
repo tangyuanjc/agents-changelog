@@ -1,4 +1,27 @@
 
+## [2026-05-10 04:28 CST] [Codex-CTO] [type:tooling] Add local 12306 semi-automation assistant MVP
+
+- Files changed:
+  - `/Users/tangyuanjc/12306-assistant/` new local Node/Playwright Core project
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Built the local "方案 B" 12306 官网半自动助手 MVP. The CLI supports `doctor`, `stations`, `query`, `login`, and `open`.
+- Safety boundary:
+  - Dedicated browser profile: `/Users/tangyuanjc/.local/state/12306-assistant/chrome-profile`
+  - Output screenshots: `/Users/tangyuanjc/.local/state/12306-assistant/output`
+  - No plaintext 12306 password storage in `.env`, config, logs, git, or changelog.
+  - No final order confirmation or payment automation; QR/SMS/face verification/passenger confirmation/payment stay human-confirmed.
+- Local project commit: `1162149 Initial 12306 assistant MVP`
+- Verification:
+  - `npm test` passed 3/3 tests.
+  - `npm run doctor` confirmed Chrome at `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome` and 12306 index `HTTP 200`.
+  - `npm start -- query --from 杭州东 --to 上海南 --date 2026-05-10 --train G7320` returned one match: `G7320 10:08-11:19`, second class `有`, first class `12`, business `9`, status `预订`.
+  - `npm start -- open --from 杭州东 --to 上海南 --date 2026-05-10 --train G7320 --hold 5` opened the official 12306 query page, loaded results, highlighted G7320, and wrote screenshot `/Users/tangyuanjc/.local/state/12306-assistant/output/1778357708525-G7320.png`.
+- Usage:
+  - `cd /Users/tangyuanjc/12306-assistant`
+  - `npm start -- query --from 杭州东 --to 上海南 --date 2026-05-10 --train G7320`
+  - `npm start -- login`
+  - `npm start -- open --from 杭州东 --to 上海南 --date 2026-05-10 --train G7320`
+
 ## [2026-05-10 04:20 CST] [Codex-CTO] [type:runtime] Restore Ogilvy Feishu gateway after transient websocket drop + assess 12306 assistant boundary
 
 - Files changed:
