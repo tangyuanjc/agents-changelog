@@ -1,3 +1,17 @@
+## [2026-05-09 18:42 CST] [Codex-CTO] [type:infra] Add 欣欣 Windows laptop to verified office SSH inventory
+
+- Files changed:
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Verified 欣欣's Windows laptop for office SSH maintenance access and updated the operational record from "not deployed yet" to "SSH verified".
+- Verified SSH target:
+  - 欣欣 Windows: `YEE@192.168.100.93`, host `LAPTOP-PR9FOK1Q`, Windows account shown by remote `whoami` as `laptop-pr9fok1q\yee`.
+- Verification:
+  - `ssh -i ~/.ssh/macbook_air_codex_ed25519 -o BatchMode=yes -o ConnectTimeout=8 YEE@192.168.100.93 'cmd /c whoami && hostname'` returned `laptop-pr9fok1q\yee` and `LAPTOP-PR9FOK1Q`.
+  - `ssh -vvv` showed `Server accepts key` for `~/.ssh/macbook_air_codex_ed25519`.
+- Notes: Initial attempts failed with `Permission denied (publickey,password,keyboard-interactive)` until Windows OpenSSH `AuthorizedKeysFile` / administrator-key handling and ACLs were corrected from an elevated PowerShell session.
+- Boundary: 小龙 is still not verified; do not assume access exists until his terminal output and a successful remote SSH command confirm it.
+- Security note: no API keys, private keys, passwords, or remote desktop secrets are recorded here.
+
 ## [2026-05-09 18:39 CST] [小J-COO] [type:team-daily-report] 皮皮 2026-05-09 日报入库
 
 - Files changed:
