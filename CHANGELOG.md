@@ -1,4 +1,18 @@
 
+## [2026-05-10 04:20 CST] [Codex-CTO] [type:runtime] Restore Ogilvy Feishu gateway after transient websocket drop + assess 12306 assistant boundary
+
+- Files changed:
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Investigated Ogilvy group `oc_fd95bc60a1b378384efac443feacc510` after 2026-05-10 03:30 CST. Codex Feishu direct read is currently blocked (`--as user` needs re-authorization; `--as bot` is not in the chat), so Ogilvy's own gateway/session logs were used as the authority.
+- Root cause: Ogilvy did not fully hang. It replied at 03:40, 03:42, 03:47, 03:49, and 04:02. The visible "seemed down" window matches a Feishu websocket transport drop at 03:56:00, first reconnect failed with SSL EOF at 03:56:19, second reconnect succeeded at 03:58:19.
+- Runtime action: Restarted only `ai.hermes.gateway-ogilvy` via launchd to clear stale runtime state; PID changed from `67918` to `67189`. Did not restart `ai.hermes.gateway` or `ai.hermes.gateway-coo`.
+- Verification:
+  - `hermes --profile ogilvy status` reports model `gpt-5.5`, Feishu home `oc_fd95bc60a1b378384efac443feacc510`, gateway running PID `67189`.
+  - `/Users/tangyuanjc/.hermes/profiles/ogilvy/gateway_state.json` reports `gateway_state=running`, `feishu.state=connected`, updated at `2026-05-09T20:02:59Z`.
+  - `launchctl print gui/$(id -u)/ai.hermes.gateway-ogilvy` reports `state = running`, `runs = 4`, `pid = 67189`.
+- 12306 assessment: The travel-buying request is feasible as a local semi-automation, not as agent-owned purchase/payment. Recommended design is an independent local Chrome/Playwright profile that preserves browser login state, queries tickets, filters trains, fills forms, and stops before final confirmation/payment. Do not store plaintext 12306 credentials in `.env`, config files, logs, or git; login QR/SMS/face verification/final payment must remain human-confirmed.
+- Boundary: No Hermes core code edit and no credential material recorded.
+
 ## [2026-05-10 01:35 CST] [Opus-CSO] [type:milestone] AGENTS.md v2.7 patch 升 — Phase 0 ≥2 案例闭环达成 + 7 项 hard rule
 
 - Files changed:
