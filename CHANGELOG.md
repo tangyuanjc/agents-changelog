@@ -1,3 +1,29 @@
+## [2026-05-09 18:30 CST] [Opus-CSO] [type:org] 创建 3 员工 agent record (奶思/泡泡/皮皮) + Phase 0 MVP 真 ROI 案例 #1+2 issue
+
+- Files changed:
+  - Multica workspace `bc2619a5-...` (熵减法则): 创建 3 agent — 奶思 `c32da03e-3e8a-4bfb-b3a5-e4720c1e37bb`, 泡泡 `45aa89f8-e1fd-411b-91ff-b5276b9d8791`, 皮皮 `2f2f4e78-f69b-4e75-95f1-a894188e3047`, runtime=Codex (Mac mini, 占位待切到员工本机)
+  - Multica workspace `d080a975-...` (乾宇三剑客): 新 issue WS-2 `6a606e28-d8e3-4f8a-8d1e-60274b768294` "VPN 部署 (岸哥 SOP → CTO SSH 装 3 员工电脑)", priority=high, assignee=Codex CTO `d1fda2ef-...`
+  - Multica workspace `bc2619a5-...` (熵减法则): 新 issue WS-14 `91a74d3b-9c50-4851-a017-d3b62a0899b6` "员工电脑 multica daemon 部署 + 注册 (奶思/泡泡/皮皮 真 A2A)", priority=high, assignee=Codex CTO
+  - `/Users/tangyuanjc/agents-changelog/2026-05-09.md` (详细 entries)
+- What changed: JC 5/9 早拍板 dogfood 3 case 累积成功 (XIA-3 + WS-1 + USB-C 端口故障定位), 进入实战阶段. 起手做 3 员工 agent. JC 5/9 校准: 仅创建 multica agent record 不够 (假 A2A, 都跑在 Mac mini), 真目标 = SSH 装 multica daemon 到员工本机 (真分布式 A2A, 9 端拓扑扩展). agent record 留着, daemon 装好后 update runtime-id 切到本机 (Option A).
+- Verification: 3 agent record 在 multica workspace 可见; 2 issue 创建成功有 ID + assignee. 待 Codex CTO 执行 WS-14 + WS-2 (预估 2-3 小时 SSH 装 + verify).
+- Impact: 5/7 立的"层 0.5 私有 Agent" 6 端拓扑扩展到 9 端 (大 C / 小 C / Mac mini / MacBook / 桌面端 + 奶思/泡泡/皮皮 mac). 跨过 P1 "≥2 真 ROI 案例" 升宪法门槛准备 — VPN 部署 + 员工 agent A2A 是双引擎.
+- Boundary: PAT token 不复用 JC 的, 让 JC 给 3 员工各自 generate; multica issue 凭证仅在 trusted workspace member 内可见; 不 commit 凭证到 git.
+- Note: 对应 5/7 立的 `feedback_human_x_agents_compound_roi_0507.md` (HumanXAgents 复合体) + `feedback_cross_org_dogfood_realtime_0507.md` (跨组织 A2A 即时性) 真 ROI 案例落地. Phase 0 MVP → Phase 1 升宪法门槛准备.
+
+## [2026-05-09 18:15 CST] [Opus-CSO] [type:engineering] Phase 1 Wave V2 闭环 + L3 Round 3 BLOCK 0 / 8.8 分
+
+- Files changed:
+  - `~/blackboard-v3` HEAD on 4 V2 atomic commits: `32612d8 / 240d6ac / 4c34447 / 996485e` (单机 working copy, 无 GitHub remote)
+  - Live Hindsight metadata: `company-shared-multica-283629758e64265c` text_length 19566 → **74** (`source_status=disabled`); `company-shared-paperclip-b0f51c5077fac736` text_length 60025 → **366** (`tombstone=true / migrated_to=multica`)
+  - `/Users/tangyuanjc/.org/codex-watchdog/PHASE1-WAVE-FIX-V2-RESULT.md` + RESULT-{1,2,5,8}.md
+  - `/Users/tangyuanjc/.org/codex-watchdog/PHASE1-WAVE-FIX-V2-L3-RESULT.md` (L3 Round 3 verdict)
+- What changed: 第三轮 L3 challenger codex (paranoid challenger 偏执对抗者, 跨实例独立进程, no collusion) review V2 fix 4 commits 全过. Score 5/8 早 6.7 → 5/9 早 **8.8 / 10**, BLOCK 3 → BLOCK 0 全闭合. V2 fix 核心改进 vs v1 = 实际执行 live data migration (迁移真做了, 不是只改代码).
+- Verification: `bun test` 26 pass / 0 fail; `bun run build && start:check` exit 0; raw ingest enable+disable dry-run 都 OK (sourceSkips=["multica:disabled"]); live Hindsight metadata-only probe verify 数据状态变化.
+- Impact: Phase 1 paperclip → multica 迁移完整闭环. Hindsight company-shared bank 不再 expose 旧 Paperclip 60K 字符 / Multica 19K 字符 raw PII. raw ingest 默认关 + 4 子项隐私边界闭合 (project summary scrub / issue detail role gate / Hindsight local guard / scrub regex 扩展中文 PII + 金额 + ID/银行卡).
+- Boundary: 不修代码 / 不 push / 不动 git config / hooks / cron / launchd; 唯一写入是 RESULT verdict 文件. dirty worktree (5 modified + 3 untracked) 是 pre-existing 跟 V2 无关.
+- Note: 三层免疫体系 (5/7 立 cross-context 复审 SOP) 实战第 2 轮成功. L3 三轮自我反思: 撤回了 false BLOCK (probe route 404 是路径不一致非数据缺失) + 标 2 个非 blocker watch item (`migrated_at` 每次刷新 / local guard 含 `100.*`). 当前 hindsight-ingest cron 仍 disabled (5/7 CSO 防 PII raw 流), V2 push 后还原.
+
 ## [2026-05-09 18:00 CST] [小J-COO] [type:team-daily-report] 黄宁 2026-05-09 日报入库
 
 - Files changed:
@@ -21,6 +47,19 @@
 - Boundary: 小龙 and 欣欣 have not been deployed yet; JC explicitly paused those. Do not assume access exists until their terminal output confirms SSH service and key installation.
 - Governance: This is persistent operational capability and future-agent context, so it gets `agents-changelog + push`; it does not by itself add a new cross-agent constitutional rule, so Codex did not edit `~/.org/AGENTS.md`. If JC wants "office employee SSH maintenance access" elevated into an org-wide rule/runbook mandate, dispatch Opus-CSO to update the constitution.
 - Security note: no API keys, private keys, passwords, or remote desktop secrets are recorded here.
+
+## [2026-05-09 09:00 CST] [Opus-CSO] [type:rule] Dual-variable experiment anti-pattern memory 新增 + XIA-3/WS-1 跨组织修正
+
+- Files changed:
+  - `~/.claude/projects/-Users-tangyuanjc/memory/feedback_dual_variable_experiment_anti_pattern_0509.md` (新)
+  - `~/.claude/projects/-Users-tangyuanjc/memory/MEMORY.md` 索引更新
+  - Multica issue XIA-3 `3c771688-...` (小灵的朋友们): comment `3f70c213-...` 修正归因
+  - Multica issue WS-1 `0cc66e44-...` (乾宇三剑客): comment `0f6273a9-...` 修正归因
+- What changed: CSO 5/8 晚故障诊断违反 5/5 立的 single-variable 实验设计铁律 — JC MacBook 充电异常时同时改"线"+"端口"2 变量观察 SystemVoltageIn 5V→20V → 错误归因"线坏". JC 5/9 早自己设计 single-variable 实验 (旧线+新端口) 推翻, 真因 = MacBook 旧 USB-C 端口故障 (CC pin 接触不良). 沉淀新 memory: dual-variable 同改 = anti-pattern, CSO 必须 step-by-step 实验. 跨组织 dogfood update 修正错误归因 + ack JC 直觉 + 透明致歉.
+- Verification: 5 次 30s 采样稳定数据: SystemVoltageIn=20.391V + UsbHvcHvcIndex=2 (60W 协商) + InstantAmperage=+1346mA (充电) + BatteryPower=+17.14W; 旧线还给泡泡 (没坏); 真因端口故障 (中期苹果店检测).
+- Impact: 5/7 立的"思维框架 fungible (可替代)" 铁律 (视角层) 推到方法论层 — JC 物理直觉 + single-variable 优于 CSO 双变量推断. HumanXAgents (人 × agent) 复合体在实验设计严谨度层面的具象价值.
+- Boundary: 候选铁律 (Phase 0 MVP), Phase 1 累积 ≥2 同类 case 后升 SOP, Phase 2 升宪法 v2.7 patch + AGENTS.md adversarial-review 章节加"双变量警示".
+- Note: 5/8 立 cross-context (跨场景) 复审 SOP 的实战首例 anti-pattern 检测 (CSO 自检发现违反同场景 5/5 铁律, 不是 cross-context 误用). 关联 `feedback_no_comfort_only_judgment.md` (4 立: JC 反驳时 CSO 立刻 ack 不要 defensive) 实战.
 
 ## [2026-05-08 18:52 CST] [小J-COO] [type:team-daily-report] 泡泡 2026-05-08 工作更新入库
 
