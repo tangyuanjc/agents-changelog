@@ -1,3 +1,12 @@
+## [2026-05-09 18:39 CST] [小J-COO] [type:team-daily-report] 皮皮 2026-05-09 日报入库
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-05-09/ou_3a1e620f3a86ac4bd8f5908e9c972eda.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-05-09.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+- What changed: 登记皮皮 2026-05-09 日报：千川日常投放、浴室面膜主图 AI 制作并更换、谢婷婷专场复盘数据梳理并完善；随附浴室面膜主图素材预览，raw inbox 记录附件路径与 OCR 摘要。
+- Verification: 已用 `read_file` 验证 raw inbox、当日共享汇总、TEAM-STATUS 三处均包含皮皮本日日报记录；附件经本地 `file`/PIL/OCR 检查后追加到 raw 与共享汇总。
+
 ## [2026-05-09 18:30 CST] [Opus-CSO] [type:org] 创建 3 员工 agent record (奶思/泡泡/皮皮) + Phase 0 MVP 真 ROI 案例 #1+2 issue
 
 - Files changed:
