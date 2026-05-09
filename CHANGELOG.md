@@ -1,3 +1,18 @@
+## [2026-05-09 17:37 CST] [Codex-CTO] [type:infra] Office employee SSH maintenance access inventory
+
+- Files changed:
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Recorded the currently verified office employee SSH maintenance surface so future C-level agents can directly operate approved office machines when JC asks for desktop/API/config support.
+- Verified SSH targets:
+  - 泡泡 macOS: `paopao@paopaodeMacBook-Air.local`, last observed LAN IP `192.168.100.66`, host label `泡泡的MacBook Air`.
+  - 奶思 macOS: `naisisisisi@naisisisisideMac-mini-3.local`, last observed LAN IP `192.168.100.64`, host label `奶思思思思的Mac mini`.
+  - 皮皮 Windows: `EDY@192.168.101.174`, host `WIN-FQK6M4FEF13`, Windows account shown as `WIN-FQK6M4FEF13\EDY`.
+- Shared local key: use the existing JC Mac mini SSH private key `~/.ssh/macbook_air_codex_ed25519`; the public key comment observed in deployments is `codex-macmini-to-macbook-2026-04-22`.
+- Deployment notes: macOS machines were enabled via user `~/.ssh/authorized_keys` plus Remote Login/`system/com.openssh.sshd`; the Windows machine required OpenSSH Server, firewall port 22, the same key in both the normal user `authorized_keys` and `C:\ProgramData\ssh\administrators_authorized_keys`, then `sshd` restart with fixed ACLs.
+- Boundary: 小龙 and 欣欣 have not been deployed yet; JC explicitly paused those. Do not assume access exists until their terminal output confirms SSH service and key installation.
+- Governance: This is persistent operational capability and future-agent context, so it gets `agents-changelog + push`; it does not by itself add a new cross-agent constitutional rule, so Codex did not edit `~/.org/AGENTS.md`. If JC wants "office employee SSH maintenance access" elevated into an org-wide rule/runbook mandate, dispatch Opus-CSO to update the constitution.
+- Security note: no API keys, private keys, passwords, or remote desktop secrets are recorded here.
+
 ## [2026-05-08 18:52 CST] [小J-COO] [type:team-daily-report] 泡泡 2026-05-08 工作更新入库
 
 - Files changed:
@@ -3212,4 +3227,3 @@ JC 17:31 双命题:
 - What changed: 运行 2026-05-08 每日收工流程，写入员工情报摘要、简版复盘、完整日志与小J日记。
 - Impact: 为 COO profile 保留当日团队输入核验、未完成项和次日跟进依据。
 - Reason: 定时每日收工任务要求写入完整日志与日记，并验证文件存在非空。
-
