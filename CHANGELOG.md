@@ -1,4 +1,43 @@
 
+## [2026-05-10 01:35 CST] [Opus-CSO] [type:milestone] AGENTS.md v2.7 patch 升 — Phase 0 ≥2 案例闭环达成 + 7 项 hard rule
+
+- Files changed:
+  - `~/.org/AGENTS.md` 黑板架构 baseline section 加 v2.7 patch (~120 行新内容, 4 处 metadata update)
+  - `~/Desktop/ai-company-blackboard-architecture-v3.8.html` 已升 v3.7 → v3.8
+- What changed: 按 4-27 立 MVP→稳态元规则, Phase 1 ≥2 真 ROI 案例完整闭环达标 → 升宪法 v2.7 hard rule. 案例 #1 员工 A2A 12 端拓扑 (4 设备 / 2 OS) + 案例 #2 VPN 部署 6/6 客户端 (含真皮皮 Windows 跨 wifi). 7 项 hard rule: agent first-class actor / 派单全向互通扩展 (跨设备/OS/wifi/组织) / dual-track 派单 / 员工自助 Tier (自助>codex>SSH>JC) / Cross-context 复审 SOP / Single-variable 实验 + 双变量 anti-pattern / 工作流 ROI 北极星.
+- Verification: AGENTS.md 1181 → ~1320 lines; 4 处 metadata update; 配套 9 条 memory reference.
+- Impact: 黑板架构 26 天 15 里程碑 (4-15 三省六部 → 5-10 v2.7 ≥2 案例闭环). 升 v2.7 触发由 Opus daemon dogfood (WS-29 RESULT) 推翻 main session conservative 判断 → 同 Opus model 不同 channel 判断分歧 = dual-track 铁律自然 fan-in 暴露 main session bias 实战首例.
+- Boundary: AGENTS.md = 全局宪法, Opus-CSO 唯一 writer, 三连 (改 + changelog + push GitHub) 必走. 不动 memory 文件 (各 memory 独立 record); 不动 multica 配置.
+- Note: 7 项 hard rule 全是 5/7-5/10 立的 candidate 升格 (4 条 5/9 候选 + 5/8 双变量 anti-pattern + 5/7 cross-context SOP + 5/7 工作流 ROI). 5/30 30 天 review 节点已设.
+
+## [2026-05-10 01:15 CST] [Opus-CSO] [type:engineering] WS-30 Paperclip 完全 deprecate (废弃) 派 Codex CTO — 5 part audit + execute (5/6 决策 → 5/10 物理坐实)
+
+- Files changed:
+  - Multica workspace `bc2619a5-...` (熵减法则): 新 issue WS-30 `b8d80f9e-...` priority=high, assignee=Codex CTO `3e1b5bae-...`
+- What changed: 5/6 决策"paperclip 当不存在" + 5/8-5/10 multica 真分布式 12 端 A2A 实战验证扎实 → JC 5/10 拍板**完全 deprecate paperclip**, 物理迁移 / 关闭 / 引用清理. Codex CTO 执行 5 part: 服务进程 + 脚本引用 + 历史归档 + AGENTS.md/docs + agents-changelog.
+- Verification: 待 Codex CTO 执行 (estimate 1-2 天工程量). 期望 RESULT.md 报告 audit + execute + verify + backup location.
+- Impact: 黑板架构 v3.8 → v3.9 关键里程碑 — 5/6 决策的"当不存在" 4 天后物理坐实. multica 升级为公司**唯一 BLACKBOARD**, baseline. 跟 v2.7 patch 配套.
+- Boundary: 不动 memory; 不删 paperclip git repo (归档保留); 不动 multica 配置; 缺 multica 功能时不实现 fallback, 写 RESULT 告 CSO 决策.
+- Note: JC "我觉得 multica 可以直接替换 paperclip 了" 是 5/8-5/10 充分实战验证后的拍板.
+
+## [2026-05-10 00:55 CST] [Opus-CSO] [type:milestone] 真皮皮 Windows VPN 案例 #2 6/6 闭环 + 跨 wifi A2A 实战首例 + 黑板架构图 v3.8 升 + WS-8 跨组织 share
+
+- Files changed:
+  - Multica workspace `d080a975-...` (乾宇三剑客): WS-3/WS-5/WS-6 真皮皮 VPN 接力链 + WS-8 跨组织 share (含 v3.8 HTML 65KB 附件)
+  - Multica workspace `bc2619a5-...` (熵减法则): WS-25/26/27/28 真皮皮装 Mihomo 接力链 (WS-27 done 22:23 via JC channel — dual-track 实战首例); WS-29 Opus daemon dogfood test ✅
+  - `~/Desktop/ai-company-blackboard-architecture-v3.8.html` 新 (65KB, +7.6KB vs v3.7) — incremental update from v3.7
+  - `~/.claude/projects/-Users-tangyuanjc/memory/project_cross_org_workflow_phase0_0507.md` 加邮箱→人 mapping 表 (655147=小军 / smallchild=岸哥)
+- What changed:
+  - 真皮皮 Windows VPN 安装 — Clash Verge Rev v2.4.7 + VLESS Reality + verify Google 200 / OpenAI 308 / 出口 IP 104.225.234.37
+  - **跨 wifi A2A 实战首例**: 皮皮在家 wifi (非公司 LAN) → multica.ai 公网 → CSO Mac mini, 不依赖同 LAN
+  - **dual-track 派单实战首例**: JC channel WS-27 跑赢 CSO channel WS-25/28, 30+ min 重复劳动暴露 CSO 没 watch 多 channel
+  - 黑板架构图 v3.7 → v3.8 升: capture 5/8-5/10 11 项进化
+  - WS-8 跨组织 share 到乾宇三剑客 workspace (邀请岸哥/小军/agents 4 angle feedback)
+- Verification: 真皮皮 Windows codex 22:53 RESULT 全验证; WS-29 Opus daemon 1 min picked up + add 200 字 strategic reflection comment 推荐升 v2.7.
+- Impact: Phase 0 案例 #2 VPN 部署 6/6 完整闭环 + 跨 wifi A2A 路径 verified + dual-track 派单铁律实战首例 + first cross-org HumanXAgents 复合体 thought-share.
+- Boundary: 凭证仅 trusted workspace member 内可见 (5 方信任); subscription URL 进 issue OK (JC 5/10 21:35 拍板 a 选项, 跟 WS-2 同标准).
+- Note: Opus daemon WS-29 RESULT 推翻 main session "1.5/2 闭环" conservative 判断 — dogfood test emergent 元观察: 同 Opus model 在不同 context (main session 有 historical bias vs daemon 有 clean context) 给不同 framing. JC ack daemon 判断更对.
+
 ## 2026-05-09 21:00 - 小J每日收工日志与日记
 
 - Files changed:
