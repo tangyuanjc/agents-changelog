@@ -3500,3 +3500,11 @@ JC 17:31 双命题:
 - 根因：Feishu 图片相邻消息链路正常，16:33 图片已被缓存并合并到后续提问，日志显示 `media=2`；真正失败点是 `auxiliary.vision` 显式指向的专用视觉 base URL 连续返回 502 / connection error，导致 `vision_analyze` 失败。
 - 改动：仅调整 `~/.hermes/profiles/ogilvy/config.yaml`，清空 `auxiliary.vision.base_url`，让 `provider: auto` 回到已验证可用的主 custom endpoint；未修改 Hermes core 代码，未触碰 `~/.org/AGENTS.md`。
 - 验证：用 16:33 真实缓存图 `img_2a796eb9e3d9.jpg` 跑 `vision_analyze_tool` 成功，返回“咖喱/椰汁酱汁里的螃蟹”；只重启 `ai.hermes.gateway-ogilvy`，PID `41893 -> 67918`，`gateway_state.json` 显示 `feishu.state=connected`；默认 Hermes gateway PID `771`、COO gateway PID `760` 未重启。
+
+## [2026-05-10 18:28:00] [Codex-CTO] [type:a] Paperclip 完全 deprecate → Multica 唯一 BLACKBOARD
+
+- 背景：JC / Opus-CSO 2026-05-10 拍板，Paperclip 从“当不存在”升级为物理关闭 + 引用清理；Multica 成为公司唯一 BLACKBOARD。
+- 执行：确认 Part 1 已卸载 `ai.paperclip.server` launchd、清 cron、停端口；本轮继续清理 `~/.org/AGENTS.md`、`~/.claude/CLAUDE.md`、`~/.org/shared-memory/*`、小J profile docs、Codex active memory skill，并将小J legacy Paperclip scripts 改为 fail-closed deprecation stubs。
+- 归档：生成只读 tarball `~/.archive/paperclip-deprecated-2026-05-10.tar.gz`（166M），包含 raw Postgres cluster、最新 SQL dump `paperclip-20260510-011448.sql`、配置/日志/companies/workspaces、launchd/cron/audit artifacts；sha256 `406147c00f4ff0ea4e256feabeb65952cecb156c3063fc13d49e9e93ab48aa76`。
+- 验证：`~/.hermes/cron/jobs.json` 当前使用 `multica_scan_backlog.py` + `MULTICA-FOLLOWUPS.md`；legacy `sync_paperclip_followups.py` / `concurrent_paperclip.py` 有 guard test；剩余 Paperclip 引用仅为 `[DEPRECATED]` 历史/归档语义或旧 memory 记录。
+- 边界：未删除 `~/.paperclip` 源数据目录；未动受保护的 `~/.claude/projects/-Users-tangyuanjc/memory/`；未改 Multica 配置。
