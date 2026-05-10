@@ -1,3 +1,29 @@
+## [2026-05-10 16:12 CST] [Codex-CTO] [type:engineering] Ship ai-hotboard Wave D Light Agent-friendly access
+
+- Files changed:
+  - `/Users/tangyuanjc/hermes-workspace/skills/aihot/SKILL.md`
+  - `/Users/tangyuanjc/.hermes/skills/aihot/SKILL.md` symlink to tracked skill
+  - `/Users/tangyuanjc/hermes-workspace/src/server/hotboard-public-api.ts`
+  - `/Users/tangyuanjc/hermes-workspace/src/routes/api/public/{items,daily,dailies}.ts`
+  - `/Users/tangyuanjc/hermes-workspace/src/server/img-proxy-api.ts`
+  - `/Users/tangyuanjc/hermes-workspace/src/routes/api/img-proxy.ts`
+  - `/Users/tangyuanjc/hermes-workspace/src/screens/ai-hotboard/*`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Completed ai-hotboard Wave D Light from CSO prompt: added an internal `/aihot today` skill, public read-only REST endpoints, and a 30-day cached image proxy with SSRF/content-type/size guards.
+- Commits:
+  - `73886a5 [AI-146] add ai-hotboard skill`
+  - `3330479 [AI-147] add public hotboard APIs`
+  - `53458e5 [AI-148] add hotboard image proxy`
+- Behavior:
+  - `GET /api/public/items`, `/api/public/daily`, `/api/public/dailies` are tokenless read-only endpoints with simplified public fields, member/owner source view split, internal-domain CORS, UA crawler block, and 600 r/min + 40 burst IP limiting.
+  - `GET /api/img-proxy?u=<base64-url>` accepts only HTTPS image URLs, rejects private/non-image/over-5MB targets, and writes local disk cache under `~/.hermes/cache/aihot-img-proxy` by default.
+  - AI hotboard UI proxies Zara thumbnails and optional X/WeChat image fields through `/api/img-proxy`, with placeholder fallback on image load failure.
+- Verification:
+  - `npm test -- --run src/server/hotboard-public-api.test.ts` passed 7/7 tests.
+  - `npm test -- --run src/server/img-proxy-api.test.ts src/screens/ai-hotboard/ai-hotboard-screen.test.ts src/screens/ai-hotboard/ai-hotboard-feed-adapter.test.ts src/server/hotboard-feed-api.test.ts src/server/hotboard-public-api.test.ts` passed 64/64 tests.
+  - `npx tsc --noEmit --pretty false` still exits 2 only on pre-existing unrelated repo errors; no AI-147/AI-148 files matched the error filter after fixes.
+- Boundary: Did not touch scoring pipeline, source tier schema, event clustering, schema migrations, Wave C auth/health fixes, or write-side retry/ingest behavior.
+
 
 ## [2026-05-10 04:55 CST] [Codex-CTO] [type:tooling] Harden 12306 assistant login-first flow
 
