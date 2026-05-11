@@ -3579,3 +3579,11 @@ JC 17:31 双命题:
 - 改动：通过 mihomo Unix controller 将运行时 TUN 切到 `false`，确认 `utun9` 消失；`~/.zprofile` 补齐大小写 proxy 变量，并把 Codex 自定义 API 域名加入 `NO_PROXY/no_proxy`；Ethernet 与 Wi-Fi 的 macOS proxy bypass 同步加入该域名。
 - 验证：Gemini 桌面端已到主界面；`scutil --proxy` 仍指向 `127.0.0.1:7897`，但 bypass 包含本地域与 Codex 自定义 API；新 zsh 下 Google/GitHub/OpenAI/Claude/Anthropic/Gemini 经代理可达，Codex 自定义 API 直连返回 401；`git ls-remote` GitHub 和 `npm view @anthropic-ai/sdk` 均成功。
 - 备份：`~/.zprofile.bak-codex-proxy-20260512-0246`。
+
+## [2026-05-12 03:21:00] [Codex-CTO] [type:c] Gemini CLI Google OAuth login
+
+- 背景：JC 的 Gemini CLI `/login` 报 `Could not load the default credentials`，需要直接用 Google 邮箱授权登录。
+- 根因：`~/.gemini/settings.json` 固定为 `security.auth.selectedType = gemini-api-key`，但本机没有 `GEMINI_API_KEY`；因此 CLI 在 API key / 默认凭证路径失败，而不是正常 Google OAuth。
+- 改动：备份 `~/.gemini/settings.json` 后将认证类型切为 `oauth-personal`，并通过浏览器对 `tangyuanjc@gmail.com` 完成 “Gemini Code Assist and Gemini CLI” Google OAuth 授权。
+- 验证：`gemini --prompt '只回复 OK' --skip-trust` 成功返回 `OK`；当前仍打开的旧交互式 Gemini 进程是改设置前启动的，需要退出重开才会读取新登录态。
+- 备份：`~/.gemini/settings.json.bak-codex-oauth-20260512-031417`。
