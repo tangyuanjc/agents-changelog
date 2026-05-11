@@ -3517,3 +3517,11 @@ JC 17:31 双命题:
 - What changed: wrote the Sunday daily wrap log and XiaoJ diary after running `workspace/tools/daily_report_generator.py` and cross-checking TEAM-STATUS/shared inbox/raw inbox.
 - Impact: preserves verified rest-day operational summary; avoids false missing-report escalation on weekend silence.
 - Reason: scheduled daily closeout cron.
+
+## [2026-05-11 13:42:00] [Codex-CTO] [type:c] Ogilvy smart approval + gateway approval window
+
+- 群聊：`oc_fd95bc60a1b378384efac443feacc510`；排查 2026-05-10 19:00 CST 至 2026-05-11 13:37 CST 的 Ogilvy 会话与 gateway 日志。
+- 根因：多次“需要授权”主要是 Hermes 终端命令审批 / security guard 行为，不是 12306 扫码登录、短信、最终下单确认或付款授权；人类时间差导致 manual approval 在群聊链路里容易超时。
+- 改动：仅调整 `~/.hermes/profiles/ogilvy/config.yaml` 的 `approvals`，将 `mode` 从 `manual` 改为 `smart`，`timeout` 提升到 `300` 秒，并增加 `gateway_timeout: 900`，让低风险命令自动通过并给复杂任务更长等待窗口。
+- 验证：Ogilvy profile 配置加载为 `mode=smart / timeout=300 / gateway_timeout=900`；`node -e "console.log(1)"` 与 `rm -rf preview && mkdir -p preview` 可 smart-approved，`rm -rf /` 仍被 hardline block；只重启 `ai.hermes.gateway-ogilvy`，PID `32716`，日志显示 `feishu connected`。
+- 边界：未绕过 12306 登录/付款/验证码等现实世界授权；未修改 Hermes core；未改 `~/.org/AGENTS.md`；未重启默认 Hermes gateway / COO gateway。
