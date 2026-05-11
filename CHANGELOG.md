@@ -3571,3 +3571,11 @@ JC 17:31 双命题:
 - 改动：仅调整 `~/.hermes/profiles/ogilvy/config.yaml` 的 `approvals`，将 `mode` 从 `manual` 改为 `smart`，`timeout` 提升到 `300` 秒，并增加 `gateway_timeout: 900`，让低风险命令自动通过并给复杂任务更长等待窗口。
 - 验证：Ogilvy profile 配置加载为 `mode=smart / timeout=300 / gateway_timeout=900`；`node -e "console.log(1)"` 与 `rm -rf preview && mkdir -p preview` 可 smart-approved，`rm -rf /` 仍被 hardline block；只重启 `ai.hermes.gateway-ogilvy`，PID `32716`，日志显示 `feishu connected`。
 - 边界：未绕过 12306 登录/付款/验证码等现实世界授权；未修改 Hermes core；未改 `~/.org/AGENTS.md`；未重启默认 Hermes gateway / COO gateway。
+
+## [2026-05-12 02:52:00] [Codex-CTO] [type:c] Local Clash proxy / TUN cleanup for desktop apps and CLIs
+
+- 背景：JC 切换代理后 Gemini 桌面端启动异常，且担心 Clash 虚拟网卡模式继续影响微信、Claude/Codex、CLI 访问海外服务。
+- 根因：Clash Verge 配置文件与 UI 已显示 `enable_tun_mode=false`，但 mihomo 运行时仍是 `tun.enable=true`，`8.8.8.8` 与 Google IP 路由被劫到 `utun9/198.18.0.1`。
+- 改动：通过 mihomo Unix controller 将运行时 TUN 切到 `false`，确认 `utun9` 消失；`~/.zprofile` 补齐大小写 proxy 变量，并把 Codex 自定义 API 域名加入 `NO_PROXY/no_proxy`；Ethernet 与 Wi-Fi 的 macOS proxy bypass 同步加入该域名。
+- 验证：Gemini 桌面端已到主界面；`scutil --proxy` 仍指向 `127.0.0.1:7897`，但 bypass 包含本地域与 Codex 自定义 API；新 zsh 下 Google/GitHub/OpenAI/Claude/Anthropic/Gemini 经代理可达，Codex 自定义 API 直连返回 401；`git ls-remote` GitHub 和 `npm view @anthropic-ai/sdk` 均成功。
+- 备份：`~/.zprofile.bak-codex-proxy-20260512-0246`。
