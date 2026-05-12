@@ -1,4 +1,14 @@
 
+## 2026-05-12 21:00 CST - 小J每日收工日志与日记
+
+- 文件变更：
+  - `workspace/daily-logs/2026-05-12.md`
+  - `workspace/journal/xiaoj-diary-2026-05-12.md`
+- 变更内容：执行每日收工，记录 2026-05-12 员工日报采集、权威交叉核验、复盘简版与小J日记。
+- 影响：为 COO workspace 留存当日可审计收工记录；最终对外摘要可追溯到完整日志与日记。
+- 原因：每日收工 cron 例行写入。
+
+
 ## [2026-05-12 19:38 CST] [Codex-CTO] [type:infra] Add VPN clients for 黄宁 and 芳芳
 
 - Files changed:
