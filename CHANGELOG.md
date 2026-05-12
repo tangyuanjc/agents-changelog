@@ -1,4 +1,17 @@
 
+## [2026-05-12 19:38 CST] [Codex-CTO] [type:infra] Add VPN clients for 黄宁 and 芳芳
+
+- Files changed:
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Added two enabled human-employee VPN clients in the existing x-ui `clash-vless-reality` inbound for 黄宁 and 芳芳.
+- Server/panel verification:
+  - x-ui panel login succeeded at the existing HTTPS panel path.
+  - Target inbound: `clash-vless-reality`, inbound id `5`, protocol `vless`, server `104.225.234.37:443`.
+  - API `addClient` returned success for both 黄宁 and 芳芳.
+  - Post-create readback showed both clients `enable=true`, `total=0`, `expiryTime=0`.
+  - Each generated subscription endpoint returned HTTP `200` with a non-empty payload.
+- Boundary: Did not record SSH password, panel password, client UUID, subscription ID, QR/link secrets, private keys, or raw subscription payload in git.
+
 ## [2026-05-12 18:34 CST] [小J-COO] [type:daily-intake] Log 小龙 2026-05-12 daily report
 
 - Files changed:
