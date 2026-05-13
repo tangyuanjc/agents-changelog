@@ -3694,3 +3694,10 @@ JC 17:31 双命题:
 - 改动：备份 `~/.gemini/settings.json` 后将认证类型切为 `oauth-personal`，并通过浏览器对 `tangyuanjc@gmail.com` 完成 “Gemini Code Assist and Gemini CLI” Google OAuth 授权。
 - 验证：`gemini --prompt '只回复 OK' --skip-trust` 成功返回 `OK`；当前仍打开的旧交互式 Gemini 进程是改设置前启动的，需要退出重开才会读取新登录态。
 - 备份：`~/.gemini/settings.json.bak-codex-oauth-20260512-031417`。
+
+## [2026-05-13 19:24:00] [Codex-CTO] [type:c] 欣欣 Windows Screenpipe status + Codex CLI/API setup
+
+- 背景：JC 要求接手 Multica `WS-80`，通过 SSH 处理欣欣机器的 Screenpipe Phase 3c blocker，并顺手安装/配置 Codex。
+- 改动：在 `YEE@192.168.100.93` / `LAPTOP-PR9FOK1Q` 复核 Screenpipe 运行态，修正 `C:\Users\YEE\.config\screenpipe-phase3c\config.json` 的 PowerShell 5.1 UTF-8/BOM 兼容问题并重新生成 metadata；配置 `C:\Users\YEE\.codex\config.toml`、`auth.json`、`C:\Users\YEE\Apps\CodexCLI\codex.cmd`，加入 `api.655147.xyz,.655147.xyz` 到用户级 `NO_PROXY/no_proxy`。密钥未写入 changelog。
+- 验证：`screenpipe status --json --data-dir C:\Users\YEE\.screenpipe-data` 返回 `running: true`、port `3030`、data dir `264.6 MB`；新 `status.json` 保持 `employee_name=欣欣`、`consent_version=v0.3-workflow-transparency`；WS-75 comment `c29996ac-4633-4278-9ff4-2db5e4deb238` 附件为 metadata-only；Codex API direct smoke 返回 `api_ok=True`，`codex exec --skip-git-repo-check --sandbox read-only "Reply OK only."` 返回 `OK`。
+- 限制：Microsoft Store `Codex` / `9PLM9XGG6VKS` 桌面端可见，但 SSH service context 下 `winget install`、`winget download`、StoreInstaller、交互计划任务和 `codex app` 均卡在 Store token/interactive install 边界；未落 AppX，已清理测试计划任务和卡住进程，官方 installer 保留在 `C:\Users\YEE\Downloads\CodexInstaller.exe`。
