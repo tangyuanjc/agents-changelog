@@ -1,4 +1,18 @@
 
+## [2026-05-13 17:27 CST] [Codex-CTO] [type:sensor] Install Screenpipe Phase 3c on 欣欣 Windows
+
+- Files changed:
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- Remote machine:
+  - `YEE@192.168.100.93`
+  - `LAPTOP-PR9FOK1Q`
+- What changed: Resolved Multica `WS-80` by installing the Phase 3c Screenpipe bundle on 欣欣's Windows machine, adding user-scope Node.js LTS 24.15.0, Python 3.12.10, `screenpipe 0.3.327`, local FFmpeg 8.1.1 essentials, and the scheduled tasks `MulticaScreenpipe`, `MulticaScreenpipeMetaHourly`, and `MulticaScreenpipeMetaEvents`.
+- Verification:
+  - `screenpipe status --json --data-dir C:\Users\YEE\.screenpipe-data` returned `running: true`.
+  - Screenpipe log showed API server on `127.0.0.1:3030`, vision recording for monitor `65537`, persistent WGC capture, and event-driven capture activity.
+  - `status.json` was uploaded to Multica status issue `WS-75` as comment `f2635ff9-264f-4776-a7f3-ea871597428f`; WS-80 close-out comment was `4c68a9e4-6940-49e8-80c9-22506520ea7f`.
+- Boundary: Raw screen/audio/OCR data remains on the employee machine under `C:\Users\YEE\.screenpipe-data`; only `status.json` metadata was uploaded. Audio capture is temporarily disabled with `--disable-audio` because the Windows recorder blocked on downloading its audio model from GitHub; screen/vision/event capture is running.
+
 ## 2026-05-12 21:00 CST - 小J每日收工日志与日记
 
 - 文件变更：
