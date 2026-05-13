@@ -3701,3 +3701,9 @@ JC 17:31 双命题:
 - 改动：在 `YEE@192.168.100.93` / `LAPTOP-PR9FOK1Q` 复核 Screenpipe 运行态，修正 `C:\Users\YEE\.config\screenpipe-phase3c\config.json` 的 PowerShell 5.1 UTF-8/BOM 兼容问题并重新生成 metadata；配置 `C:\Users\YEE\.codex\config.toml`、`auth.json`、`C:\Users\YEE\Apps\CodexCLI\codex.cmd`，加入 `api.655147.xyz,.655147.xyz` 到用户级 `NO_PROXY/no_proxy`。密钥未写入 changelog。
 - 验证：`screenpipe status --json --data-dir C:\Users\YEE\.screenpipe-data` 返回 `running: true`、port `3030`、data dir `264.6 MB`；新 `status.json` 保持 `employee_name=欣欣`、`consent_version=v0.3-workflow-transparency`；WS-75 comment `c29996ac-4633-4278-9ff4-2db5e4deb238` 附件为 metadata-only；Codex API direct smoke 返回 `api_ok=True`，`codex exec --skip-git-repo-check --sandbox read-only "Reply OK only."` 返回 `OK`。
 - 限制：Microsoft Store `Codex` / `9PLM9XGG6VKS` 桌面端可见，但 SSH service context 下 `winget install`、`winget download`、StoreInstaller、交互计划任务和 `codex app` 均卡在 Store token/interactive install 边界；未落 AppX，已清理测试计划任务和卡住进程，官方 installer 保留在 `C:\Users\YEE\Downloads\CodexInstaller.exe`。
+
+## [2026-05-13 19:47:00] [Codex-CTO] [type:c] 小龙 Windows Codex CLI/API setup + Desktop launch
+
+- 背景：JC 要求给小龙机器 SSH 安装并配置 Codex，使用同一自定义 API endpoint 和 key。
+- 改动：在 `满目温柔@192.168.100.89` / `MYDELL` / `C:\Users\满目温柔` 安装 `codex-cli 0.130.0` 到 `Apps\CodexCLI`，安装 `ripgrep 15.1.0` 到 `Apps\ripgrep`，写入 `C:\Users\满目温柔\.codex\config.toml`、`auth.json`、`codex.cmd`，并加入 `api.655147.xyz,.655147.xyz` 到用户级 `NO_PROXY/no_proxy`。密钥未写入 changelog。
+- 验证：远端身份 `mydell\满目温柔`，Windows 11 专业版 `10.0.26200`；`auth_has_key=True` 且未回显密钥；API direct smoke 返回 `api_ok=True`；`codex exec --skip-git-repo-check --sandbox read-only "Reply OK only."` 返回 `OK`；Desktop AppX 已存在 `OpenAI.Codex_26.506.3741.0_x64__2p2nqsd0c76g0`，`codex app C:\Users\满目温柔` exit 0 并拉起多个 `Codex` 进程。
