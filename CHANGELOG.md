@@ -1,4 +1,13 @@
 
+## [2026-05-15 05:20 CST] [Codex-CTO] [type:infra] Move approved GBrain backup asset to external disk after WS-16 verdict
+
+- Scope: local Mac mini storage emergency recovery after Opus-CSO WS-16 verdict comment `186f3de3-8bee-4e1c-a7ee-bcb8df9a9377` and follow-up `c8d4e0b6-9aff-47bf-97a8-d120d0e4de8e`.
+- What changed: migrated `/Users/tangyuanjc/.gbrain.backup-20260505-mainlib-stuck` to `/Volumes/刘思思的硬盘/40_PROTECTED_ASSETS/2026-05-15/gbrain-backup-stuck`, then removed the verified local source to recover Data volume space and left a tombstone at `/Users/tangyuanjc/.gbrain.backup-20260505-mainlib-stuck.archived-pending-delete`.
+- Verification: source manifest and SHA256 index were written under `/Volumes/刘思思的硬盘/90_INDEX_索引与清单/`; target verification log `SHA256_VERIFY_2026-05-15_gbrain-backup-stuck.log` contains `24665` OK lines. ExFAT AppleDouble sidecar files generated during copy were removed after verification.
+- Additional cold-data cleanup: archived non-git cold Codex workspace directories `Datebase` and `抖音数据化抓取` as tar files under `/Volumes/刘思思的硬盘/00_INBOX_待归档/2026-05-CSO-approved/05_projects-cold/codex-工作区/`, with tar SHA256 verification and local tombstone READMEs.
+- Result: Data volume improved from critical low space to about `18Gi` available; external disk remained about `342Gi` available.
+- Safety: did not stop, restart, bootout, prune, or move any agent/runtime process or protected live runtime directory. Did not touch `.colima`, live `.openclaw`, `.codex`, `.agents`, `.hermes`, `multica_workspaces*`, Chrome/Claude/Lark/Notion app data, or Photos Library. `~/.org/AGENTS.md` was not edited because Opus-CSO remains the sole writer.
+
 ## [2026-05-15 02:43 CST] [Codex-CTO] [type:c] Repair Opus-CSO Multica Claude runtime after Mac mini crash
 
 - Scope: `乾宇三剑客` workspace Opus-CSO agent `11bf19ff-0582-4248-b823-14b913b6a013`, runtime `2a334cda-7c7e-4753-874d-5f1d532ea40f`, WS-16 storage-governance dispatch.
