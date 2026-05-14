@@ -3756,3 +3756,11 @@ JC 17:31 双命题:
 - 背景：JC 要求给小龙机器 SSH 安装并配置 Codex，使用同一自定义 API endpoint 和 key。
 - 改动：在 `满目温柔@192.168.100.89` / `MYDELL` / `C:\Users\满目温柔` 安装 `codex-cli 0.130.0` 到 `Apps\CodexCLI`，安装 `ripgrep 15.1.0` 到 `Apps\ripgrep`，写入 `C:\Users\满目温柔\.codex\config.toml`、`auth.json`、`codex.cmd`，并加入 `api.655147.xyz,.655147.xyz` 到用户级 `NO_PROXY/no_proxy`。密钥未写入 changelog。
 - 验证：远端身份 `mydell\满目温柔`，Windows 11 专业版 `10.0.26200`；`auth_has_key=True` 且未回显密钥；API direct smoke 返回 `api_ok=True`；`codex exec --skip-git-repo-check --sandbox read-only "Reply OK only."` 返回 `OK`；Desktop AppX 已存在 `OpenAI.Codex_26.506.3741.0_x64__2p2nqsd0c76g0`，`codex app C:\Users\满目温柔` exit 0 并拉起多个 `Codex` 进程。
+
+## [2026-05-15 05:21:28] [Codex-CTO] [type:c] Gemini macOS OAuth recovery via IPv4-only TUN
+
+- 背景：JC 要求把 Gemini 桌面端“浏览器 OAuth 后进不去主界面”的修复经验存成记忆，避免下次重复排障。
+- 根因：Gemini macOS App 的 OAuth token exchange 不吃普通系统代理；TUN 关闭时直连 Google token endpoint 超时，TUN 开启但 IPv6 存在时优先走 Google IPv6 并 TLS 失败。有效运行态是 `TUN enabled + ipv6=false + tun.inet6-address=null`，让 token endpoint 回落 IPv4。
+- 证据：Gemini log 出现 `Active account set to 'user1'`、`signinStatus=signedIn`、`ClientGenerateResponseStream.endOfData`、`Loop exited normally`；`account_config` 从 0 字节变 18 字节；Clash runtime 为 `mode=rule` / `mixed-port=7897` / `ipv6=false` / `tun.enable=true` / `tun.device=utun7` / `tun.inet6=null`；`curl --noproxy '*' https://oauth2.googleapis.com/token` 经 IPv4 快速返回 HTTP 404。
+- 记忆：新增 Codex ad-hoc memory `~/.codex/memories/extensions/ad_hoc/notes/20260515-052128-gemini-app-ipv4-only-tun.md`，下次 Gemini 桌面端 OAuth 卡住时优先查 IPv4-only TUN，不先重复 OAuth。
+- 治理：已按 `~/.org/AGENTS.md` 决策树判断为本机排障记忆 + 未来 agent 行为依据，属于 memory + changelog 二连；不是跨 agent 铁律，未改 `~/.org/AGENTS.md`，不触发 Opus-CSO 宪法三连。
