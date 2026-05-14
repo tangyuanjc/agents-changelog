@@ -1,4 +1,14 @@
 
+## 2026-05-14 21:05:16 - [小J] add 2026-05-14 daily wrap
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/daily-logs/2026-05-14.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-05-14.md`
+- What changed: Wrote the 2026-05-14 COO daily wrap log and XiaoJ diary after running `daily_report_generator.py` and cross-checking IDENTITIES, TEAM-STATUS, shared inbox, and raw inbox.
+- Impact: Provides auditable end-of-day operational summary and diary for the COO workspace.
+- Reason: Scheduled daily wrap cron.
+
+
 ## [2026-05-14 18:40 CST] [小J-COO] [type:daily-intake] Log 欣欣 2026-05-14 daily report
 
 - Files changed:
