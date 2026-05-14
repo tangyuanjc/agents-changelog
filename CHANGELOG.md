@@ -1,4 +1,12 @@
 
+## [2026-05-15 02:43 CST] [Codex-CTO] [type:c] Repair Opus-CSO Multica Claude runtime after Mac mini crash
+
+- Scope: `乾宇三剑客` workspace Opus-CSO agent `11bf19ff-0582-4248-b823-14b913b6a013`, runtime `2a334cda-7c7e-4753-874d-5f1d532ea40f`, WS-16 storage-governance dispatch.
+- Root cause: Multica desktop daemon inherited no proxy env and resolved `claude` via `/opt/homebrew/bin` to Claude Code `2.1.91`; WS-16 runs failed with `403 Request not allowed`, and a proxy-only retry on the old CLI failed with `UND_ERR_INVALID_ARG`.
+- Changes: added Opus agent custom env for `HTTP_PROXY` / `HTTPS_PROXY` / `NO_PROXY`; upgraded `/opt/homebrew/bin/claude` from Claude Code `2.1.91` to `2.1.138` with `npm --prefix /opt/homebrew install -g @anthropic-ai/claude-code@2.1.138`.
+- Verification: manual `/opt/homebrew/bin/claude -p ... --model claude-opus-4-7` returned `OK`; Multica rerun `898b8fb8-9af4-45a7-babb-710cac12414e` completed successfully, posted Opus verdict comment `186f3de3-8bee-4e1c-a7ee-bcb8df9a9377`, and moved WS-16 to `in_review`.
+- Safety: did not stop or restart Multica daemon, Claude Desktop, Codex, Hermes, OpenClaw, Colima, or other agent processes; only terminated local smoke-test commands started during diagnosis.
+
 ## 2026-05-14 21:05:16 - [小J] add 2026-05-14 daily wrap
 
 - Files changed:
