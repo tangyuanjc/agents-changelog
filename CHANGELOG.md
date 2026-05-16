@@ -3804,3 +3804,9 @@ JC 17:31 双命题:
 - 证据：Gemini log 出现 `Active account set to 'user1'`、`signinStatus=signedIn`、`ClientGenerateResponseStream.endOfData`、`Loop exited normally`；`account_config` 从 0 字节变 18 字节；Clash runtime 为 `mode=rule` / `mixed-port=7897` / `ipv6=false` / `tun.enable=true` / `tun.device=utun7` / `tun.inet6=null`；`curl --noproxy '*' https://oauth2.googleapis.com/token` 经 IPv4 快速返回 HTTP 404。
 - 记忆：新增 Codex ad-hoc memory `~/.codex/memories/extensions/ad_hoc/notes/20260515-052128-gemini-app-ipv4-only-tun.md`，下次 Gemini 桌面端 OAuth 卡住时优先查 IPv4-only TUN，不先重复 OAuth。
 - 治理：已按 `~/.org/AGENTS.md` 决策树判断为本机排障记忆 + 未来 agent 行为依据，属于 memory + changelog 二连；不是跨 agent 铁律，未改 `~/.org/AGENTS.md`，不触发 Opus-CSO 宪法三连。
+
+## 2026-05-16 21:02:30 小J daily wrap 2026-05-16
+- files changed: `/Users/tangyuanjc/.hermes/profiles/coo/workspace/daily-logs/2026-05-16.md`, `/Users/tangyuanjc/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-05-16.md`
+- what changed: 写入 2026-05-16 每日收工日志与小J日记；按周末规则将员工静默改写为休息日正常状态，并记录脚本信号与权威 inbox/raw/TEAM-STATUS 核验结果。
+- impact: CEO-facing daily wrap 有可追溯文件；避免周末误报缺报/异常。
+- reason: scheduled COO daily wrap cron.
