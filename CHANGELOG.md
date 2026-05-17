@@ -3810,3 +3810,13 @@ JC 17:31 双命题:
 - what changed: 写入 2026-05-16 每日收工日志与小J日记；按周末规则将员工静默改写为休息日正常状态，并记录脚本信号与权威 inbox/raw/TEAM-STATUS 核验结果。
 - impact: CEO-facing daily wrap 有可追溯文件；避免周末误报缺报/异常。
 - reason: scheduled COO daily wrap cron.
+## 2026-05-17 21:00 小J每日收工
+
+- 时间：2026-05-17 21:01:29
+- 文件变更：
+  - `workspace/daily-logs/2026-05-17.md`
+  - `workspace/journal/xiaoj-diary-2026-05-17.md`
+- 变更内容：写入 2026-05-17 COO 每日收工日志与小J日记；按周末规则将员工静默解释为正常休息日状态，并记录日报脚本与权威文件核验结果。
+- 影响：为当日运营收工提供可追溯记录；未误报周末员工缺报。
+- 原因：定时每日收工 cron 执行。
+
