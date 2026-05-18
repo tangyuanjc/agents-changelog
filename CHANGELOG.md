@@ -1,4 +1,11 @@
 
+## [2026-05-18 18:53 CST] [Codex-CTO] [type:infra] Fix Xiaolong Codex API key attribution
+
+- Files changed:
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: SSH-audited the employee Codex API key attribution for 小龙 and 欣欣. 小龙's `C:\Users\满目温柔\.codex\auth.json` was incorrectly using the 欣欣 key (`jc-2woe***Fdxx`, `sha256_12=ec4f63f29899`); backed it up and switched it to the dedicated 小龙 key (`jc-U0SS***NBxl`, `sha256_12=a40af5bf6f1f`). 欣欣's `C:\Users\YEE\.codex\auth.json` already matched her dedicated key (`jc-2woe***Fdxx`, `sha256_12=ec4f63f29899`). Full API keys were not written to git.
+- Verification: 小龙 SSH target `满目温柔@192.168.100.89` returned `codex exec --skip-git-repo-check --sandbox read-only --color never "Reply OK only." => OK` after the key switch. 欣欣 SSH readback succeeded and showed the correct key/config, but the later `codex exec` attempt could not run because `192.168.100.93:22` timed out. Multica mapped 黄宁 to runtime `e88949d5-6990-4a04-a23a-2bc684c1443d` / `DESKTOP-ORSLCSS` and 芳芳 to runtime `07830a25-cec8-4b20-b81e-821bd65e3262` / `DESKTOP-1E7PR5D`, both offline during this audit, so no remote key mutation was attempted for them.
+
 ## [2026-05-18 18:40 CST] [小J-COO] [type:daily-intake] Log 欣欣 2026-05-18 daily report
 
 - Files changed:
@@ -3839,4 +3846,3 @@ JC 17:31 双命题:
 - 变更内容：写入 2026-05-17 COO 每日收工日志与小J日记；按周末规则将员工静默解释为正常休息日状态，并记录日报脚本与权威文件核验结果。
 - 影响：为当日运营收工提供可追溯记录；未误报周末员工缺报。
 - 原因：定时每日收工 cron 执行。
-
