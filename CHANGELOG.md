@@ -3942,3 +3942,10 @@ JC 17:31 双命题:
 - 变更内容：写入 2026-05-17 COO 每日收工日志与小J日记；按周末规则将员工静默解释为正常休息日状态，并记录日报脚本与权威文件核验结果。
 - 影响：为当日运营收工提供可追溯记录；未误报周末员工缺报。
 - 原因：定时每日收工 cron 执行。
+
+## [2026-05-20 18:28:00] [Codex-CTO] [type:c] Codex Desktop thread sidebar auto-recovery
+
+- 背景：Codex Desktop 运行态会把 `~/.codex/.codex-global-state.json` 的 project roots 从恢复后的 16 个回写成 7 个，造成侧边栏看起来“线程继续丢失”；底层 SQLite threads 未丢。
+- 改动：新增本机恢复脚本 `~/.codex/tools/recover_thread_sidebar.py`，并加载 LaunchAgent `~/Library/LaunchAgents/com.jc.codex.thread-sidebar-recovery.plist`，监听 global-state 文件且每 60 秒重建 `session_index.jsonl` 和 project roots。
+- 验证：当前 `state_5.sqlite` integrity ok，threads/visible/session_index 均为 432；手动把 roots 模拟降到 7 后，LaunchAgent 6 秒内自动恢复到 16，`Home` / `Hermes Workspace` / `Tangyuan Ask Pet` 均重新出现于 roots。
+- 边界：未修改 Codex app bundle；未写入或公开历史线程里的密钥/密码；恢复索引已生成严格脱敏版 `/Users/tangyuanjc/Documents/Playground/CODEX_THREAD_RECOVERY_20260520.md`。
