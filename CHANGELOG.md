@@ -1,4 +1,14 @@
 
+## [2026-05-20 18:33 CST] [小J-COO] [type:daily-intake] Log 小龙 2026-05-20 daily report
+
+- Files changed:
+  - `workspace/projects/ai-ecommerce-org/inbox/raw/2026-05-20/ou_5bc5804ad321315d905efa73dea81fa4.md`
+  - `workspace/projects/ai-ecommerce-org/inbox/2026-05-20.md`
+  - `workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Registered 小龙's 2026-05-20 daily report: 新建联 12、新增通过 5、寄样 3、发布 2；AI use recorded as Codex assisting with sample registration, commission binding, and invoice exemption. Marked as `received_daily_report_partial_ai_time_missing` because the AI module lacks the before/after time field.
+- Verification: Raw inbox, shared daily summary, and TEAM-STATUS 2026-05-20 snapshot were read back and confirmed to contain 小龙's entry.
+
 ## [2026-05-20 18:24 CST] [小J-COO] [type:daily-intake] Log 皮皮 2026-05-20 daily report
 
 - Files changed:
