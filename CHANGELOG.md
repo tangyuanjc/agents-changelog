@@ -1,4 +1,18 @@
 
+## [2026-05-21 00:02 CST] [Codex-CTO] [type:host-network-config] Add AI platform Clash rules
+
+- Files changed:
+  - `/Users/tangyuanjc/Library/Application Support/io.github.clash-verge-rev.clash-verge-rev/profiles/gNygokVIkear.yaml`
+  - `/Users/tangyuanjc/Library/Application Support/io.github.clash-verge-rev.clash-verge-rev/profiles/r2kRg4il4rzZ.yaml`
+  - `/Users/tangyuanjc/Library/Application Support/io.github.clash-verge-rev.clash-verge-rev/profiles/RPDZCo0nv7V3.yaml`
+  - `/Users/tangyuanjc/Library/Application Support/io.github.clash-verge-rev.clash-verge-rev/clash-verge.yaml`
+  - `/Users/tangyuanjc/Library/Application Support/io.github.clash-verge-rev.clash-verge-rev/clash-verge-check.yaml`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Added a `💬 Ai平台` proxy group and prepended ChatGPT/OpenAI/Claude/Anthropic domain suffix rules so those domains route through the AI platform group before older media/node-selection rules.
+- Verification: YAML parse succeeded for all edited Clash Verge files; mihomo accepted hot reload via the Unix control socket; runtime `/rules` shows the six AI rules at indices 0-5 pointing to `💬 Ai平台`; runtime `/proxies` shows `💬 Ai平台` exists and currently selects `🚀 节点选择`; GitHub, OpenAI API, ChatGPT, and Claude network checks still return HTTP responses through the proxy. TUN remains off.
+- Safety: No Clash Verge process was restarted or killed; a timestamped backup was created under Clash Verge `codex-backups`.
+
+
 ## [2026-05-20 21:55 CST] [Codex-CTO] [type:credential-pointer] Record VPN x-ui access location without plaintext secrets
 
 - Files changed:
