@@ -1,4 +1,15 @@
 
+## [2026-05-20 21:16 CST] [Codex-CTO] [type:host-network-memory] Record Clash Verge / TUN / proxy baseline
+
+- Files changed:
+  - `/Users/tangyuanjc/.codex/memories/extensions/ad_hoc/notes/20260520-211654-clash-verge-tun-proxy-baseline.md`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Captured the 2026-05-20 Mac mini vs JC MacBook Clash Verge comparison, including active proxy ports, TUN/IPv6 differences, the extra MacBook mihomo process, and the decision to leave current states unchanged unless symptoms recur.
+- Governance: Checked `/Users/tangyuanjc/.org/AGENTS.md` governance rules. This is durable local troubleshooting memory, not a new cross-agent constitutional rule, so no AGENTS.md edit or Opus-CSO issue is needed. Because it affects future agent behavior around host-level VPN/proxy handling, this is the changelog + push half of the required two-step.
+- Safety: No passwords, panel tokens, UUIDs, cookies, or authorization headers were recorded.
+- Verification: Memory note and changelog entry were written and read back before push.
+
+
 ## 2026-05-20 21:05 CST - 小J每日收工日志与日记
 
 - Files changed:
