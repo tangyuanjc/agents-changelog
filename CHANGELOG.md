@@ -1,4 +1,16 @@
 
+## [2026-05-20 21:55 CST] [Codex-CTO] [type:credential-pointer] Record VPN x-ui access location without plaintext secrets
+
+- Files changed:
+  - `/Users/tangyuanjc/.org/shared-memory/credentials-index.md` (local-only, gitignored)
+  - `/Users/tangyuanjc/.codex/memories/extensions/ad_hoc/notes/20260520-215528-vpn-xui-access-pointer.md`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Stored the company VPN/x-ui SSH and panel passwords in macOS Keychain, then recorded only the endpoint/account names and Keychain item names in local work configuration and Codex memory.
+- Governance: This is a durable work-config and future-agent retrieval update, not a new cross-agent rule, so it is a two-step change. No AGENTS.md edit or Opus-CSO constitutional issue is needed.
+- Safety: No plaintext passwords, tokens, cookies, UUIDs, or authorization headers were written to memory or changelog.
+- Verification: Keychain lookups for the two item names succeeded before writing this entry.
+
+
 ## [2026-05-20 21:16 CST] [Codex-CTO] [type:host-network-memory] Record Clash Verge / TUN / proxy baseline
 
 - Files changed:
