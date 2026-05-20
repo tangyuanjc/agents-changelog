@@ -1,4 +1,16 @@
 
+## [2026-05-20 10:12 CST] [小J-COO] [type:team-work-update] Log 芳芳 ERP 旺店通切换方案补充
+
+- Files changed:
+  - `workspace/projects/ai-ecommerce-org/inbox/raw/2026-05-20/ou_9ea09e0d7b7f0f6397624e0fdd5873c5.md`
+  - `workspace/projects/ai-ecommerce-org/inbox/2026-05-20.md`
+  - `workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+  - `workspace/projects/ai-ecommerce-org/TEAM-MEMORY.md`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Registered 芳芳's ERP switching work update and upgraded TEAM-MEMORY SOP for 网店管家 → 外包仓旺店通: use warehouse WDT account first, do not buy own WDT yet, estimated 2-3h remote cutover, one-time all-store switch, account/export/operation permissions, freeze window, stock migration, full pre-launch test scope, and historical data export boundary.
+- Verification: Raw inbox, shared daily summary, TEAM-STATUS 2026-05-20 snapshot, and TEAM-MEMORY SOP were read back and confirmed to contain this update.
+
+
 ## 2026-05-19 21:00 CST - [小J] add 2026-05-19 daily wrap
 
 - Files changed:
