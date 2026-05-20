@@ -4023,3 +4023,11 @@ JC 17:31 双命题:
 - 改动：更新 `~/.codex/tools/recover_thread_sidebar.py` 的 root 计算策略，从“canonical + count>=2”改为“所有主库中存在且本机路径仍存在、排除 Multica 临时 workdir、`/` 和 tmp 测试目录的 cwd 全部加入 roots”；LaunchAgent 自动沿用该策略。
 - 验证：本地时间 2026-05-01 00:00 至 2026-05-08 00:00 共 38 条线程、17 个项目，全部 rollout 文件存在且全部项目进入 roots；全量对账显示主库 434、主 sessions 434、`rollout_file_ids_missing_from_db=0`、`db_rows_with_missing_rollout_file=0`、`sidecar_db_threads_missing_from_main_db=0`；sidebar roots 扩到 29。
 - 边界：未修改 Codex app bundle；未恢复/展示历史线程正文或敏感标题；恢复报告继续使用 thread id / cwd / 文件存在性为证据。
+
+## [2026-05-21 04:03:00] [Codex-CTO] [type:c] Codex sidebar recovery synced active workspace roots after CSO review
+
+- 背景：JC 重启 Codex 后侧栏仍显得只恢复部分；底层 `state_5.sqlite` / `session_index.jsonl` / saved roots 均完整，但 `.codex-global-state.json` 的 `active-workspace-roots` 仍只有 `/Users/tangyuanjc/Documents/Playground` 1 项。
+- 协同：通过 Multica 创建 WS-208 派给 Opus-CSO 复核；CSO 判断 `active-workspace-roots` 是最可能的 UI thread 过滤层，并要求修复保持幂等、可关、可回滚。
+- 改动：升级 `~/.codex/tools/recover_thread_sidebar.py`，默认同步 `electron-saved-workspace-roots`、`project-order`、`active-workspace-roots` 三组 roots；新增 `--no-sync-active` 作为后悔开关；LaunchAgent 继续使用默认同步策略。
+- 验证：当前 `sqlite_integrity=ok`，threads/visible/session_index 均为 434，saved/project/active roots 均为 29 且 `all_equal=True`；WS-208 comment 已回贴当前修复证据。
+- 边界：未修改 Codex app bundle；未展示历史线程正文；保留备份 `/Users/tangyuanjc/.codex/manual_backups/active-roots-sync-test-20260521-035849`。
