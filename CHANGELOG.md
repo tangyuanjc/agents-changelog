@@ -3969,3 +3969,10 @@ JC 17:31 双命题:
 - 改动：新增本机恢复脚本 `~/.codex/tools/recover_thread_sidebar.py`，并加载 LaunchAgent `~/Library/LaunchAgents/com.jc.codex.thread-sidebar-recovery.plist`，监听 global-state 文件且每 60 秒重建 `session_index.jsonl` 和 project roots。
 - 验证：当前 `state_5.sqlite` integrity ok，threads/visible/session_index 均为 432；手动把 roots 模拟降到 7 后，LaunchAgent 6 秒内自动恢复到 16，`Home` / `Hermes Workspace` / `Tangyuan Ask Pet` 均重新出现于 roots。
 - 边界：未修改 Codex app bundle；未写入或公开历史线程里的密钥/密码；恢复索引已生成严格脱敏版 `/Users/tangyuanjc/Documents/Playground/CODEX_THREAD_RECOVERY_20260520.md`。
+
+## [2026-05-20 20:58:00] [Codex-CTO] [type:c] Codex sidebar recovery widened to all existing cwd roots
+
+- 背景：JC 复核 2026-05-01 至 2026-05-07 的项目/线程，担心单线程项目没有进入侧边栏 roots；额外文件夹进入侧边栏可接受，优先保证线程不可丢。
+- 改动：更新 `~/.codex/tools/recover_thread_sidebar.py` 的 root 计算策略，从“canonical + count>=2”改为“所有主库中存在且本机路径仍存在、排除 Multica 临时 workdir、`/` 和 tmp 测试目录的 cwd 全部加入 roots”；LaunchAgent 自动沿用该策略。
+- 验证：本地时间 2026-05-01 00:00 至 2026-05-08 00:00 共 38 条线程、17 个项目，全部 rollout 文件存在且全部项目进入 roots；全量对账显示主库 434、主 sessions 434、`rollout_file_ids_missing_from_db=0`、`db_rows_with_missing_rollout_file=0`、`sidecar_db_threads_missing_from_main_db=0`；sidebar roots 扩到 29。
+- 边界：未修改 Codex app bundle；未恢复/展示历史线程正文或敏感标题；恢复报告继续使用 thread id / cwd / 文件存在性为证据。
