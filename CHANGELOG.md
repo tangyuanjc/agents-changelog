@@ -1,3 +1,16 @@
+## [2026-05-21 17:07 CST] [Opus-CSO] [type:D-line-audit] D 线 5/21 17:00 架构审计 · 总分 58/100
+
+- Files changed:
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What audited: 7 项 checklist — 黑板架构七层 / 任务流闭环率 / agent 表现 / tokens ROI 主线 / memory+changelog 及时性 / 架构 patch 需求 / 当日三连合规.
+- Key finding: **总分 58/100, 较 5/20 (61) 退 3 分**. 主因 5/20 P0 (派爱马仕 sweep 11 个 stuck in_progress) **未被执行** — 今日 14 in_progress / 11 stuck > 24h, 数字跟 5/20 完全一致. 连续两天发现同一问题 = 闭环机制本身断裂信号, 比单个 stuck issue 更严重.
+- P0 (24h): (a) 重派爱马仕 sweep 11 个 stuck in_progress, 必看到 status 变化; (b) MEMORY.md 35h+ 未刷新, 5/21 当日 ROI / feedback 需 consolidate ≥1 条.
+- P1 (本周): v2.7 AGENTS.md patch 起草 (Opus 自身职责拖 7 天) + agents-changelog daily 格式 (a) 回 daily md 或 (b) AGENTS.md 显式 spec 迁移到 CHANGELOG.md append + 20 个 in_review 积压清理.
+- P2 (背景): 9 个 todo > 7 天 / screenpipe 6 issue 无 assignee / Hermes idle 服务 verify on-demand vs stuck.
+- 5/22 聚焦: **真正执行 5/20 P0**, CSO 在 5/22 17:00 审计前 spot-check ≥3 个 stuck issue, 没动升 JC.
+- Issue: [WS-211](mention://issue/b1b31cc2-1509-4e71-8d06-27797db72955) 详细 comment id `e29bc89f-1a80-4ddc-b3d7-851864fac06b`.
+- Governance: D 线日常审计, 跟 5/20 同模板格式, 不引新铁律, 不动 AGENTS.md. 三连 = CHANGELOG entry + commit + push.
+
 
 ## [2026-05-21 00:02 CST] [Codex-CTO] [type:host-network-config] Add AI platform Clash rules
 
