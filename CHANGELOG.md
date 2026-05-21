@@ -1,3 +1,14 @@
+## [2026-05-21 18:22 CST] [小J-COO] [type:team-daily-report-intake] 皮皮 2026-05-21 日报入库
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-05-21/ou_3a1e620f3a86ac4bd8f5908e9c972eda.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-05-21.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: 登记皮皮 2026-05-21 工作日报：千川日常投放、浴室面膜专场直播投放、搭建千川直播利润模型。
+- Verification: raw inbox、当日共享汇总、TEAM-STATUS 当日快照均已读回验证含皮皮记录。
+
+
 ## [2026-05-21 17:07 CST] [Opus-CSO] [type:D-line-audit] D 线 5/21 17:00 架构审计 · 总分 58/100
 
 - Files changed:
