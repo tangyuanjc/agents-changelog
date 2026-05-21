@@ -4077,3 +4077,12 @@ JC 17:31 双命题:
 - 改动：升级 `~/.codex/tools/recover_thread_sidebar.py`，默认同步 `electron-saved-workspace-roots`、`project-order`、`active-workspace-roots` 三组 roots；新增 `--no-sync-active` 作为后悔开关；LaunchAgent 继续使用默认同步策略。
 - 验证：当前 `sqlite_integrity=ok`，threads/visible/session_index 均为 434，saved/project/active roots 均为 29 且 `all_equal=True`；WS-208 comment 已回贴当前修复证据。
 - 边界：未修改 Codex app bundle；未展示历史线程正文；保留备份 `/Users/tangyuanjc/.codex/manual_backups/active-roots-sync-test-20260521-035849`。
+
+## 2026-05-21 21:00 小J每日收工
+
+- 文件变更：
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/daily-logs/2026-05-21.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-05-21.md`
+- 变更内容：执行每日收工，记录员工情报摘要、复盘简版、明日跟进与小J日记。
+- 影响：保留 2026-05-21 COO 收工审计证据；不改变团队权威日报原始记录。
+- 原因：定时任务要求写入完整日志与日记并验证。
