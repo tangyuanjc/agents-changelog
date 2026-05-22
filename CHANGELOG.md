@@ -48,6 +48,19 @@
 - What changed: 登记芳芳 2026-05-22 工作日报：AI 核算唯品会新品拿货价、AI 生成海报图片、后台发票上传 116 张、差评回评 10 条、天猫物流异常单 5 单、介入举证 3 单、异常售后 1 单，并巡查店铺发货/物流/工单问题。
 - Verification: raw inbox、当日共享汇总、TEAM-STATUS 当日快照均已读回验证含芳芳记录，状态为 `received_daily_report`。
 
+## [2026-05-22 18:34 CST] [Codex-CTO] [type:host-network-config] Extend domestic proxy bypass for Chanmama and common CN sites
+
+- Files changed:
+  - `/Users/tangyuanjc/.zprofile`
+  - `/Users/tangyuanjc/.zshenv`
+  - macOS network service proxy bypass domains for `Ethernet` and `Wi-Fi`
+  - launchd user environment `NO_PROXY/no_proxy`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Added `chanmama.com` plus common domestic service suffixes for Baidu, QQ/WeChat, JD, 1688, Xiaohongshu, Douyin, Weibo/Sina, Zhihu, Bilibili, Pinduoduo, Meituan/Dianping, NetEase, Sohu, Douban, Xueqiu, and 36kr to the host proxy bypass list.
+- Root cause: `www.chanmama.com` was not in macOS proxy exceptions or `NO_PROXY`, so browser/CLI traffic entered `127.0.0.1:7897`. Runtime connections showed Chanmama subdomains matching Clash `Match -> 🐟 漏网之鱼 -> 🚀 节点选择 -> jc`; QQ/JD/1688/Xiaohongshu/Douyin/Weibo similarly failed TLS through the proxy while direct/TUN-path requests succeeded.
+- Verification: Before the fix, Chanmama auto path used `127.0.0.1` and took ~3.66s while direct took ~0.08s; JD/1688/Xiaohongshu/Douyin/Weibo auto paths failed with `SSL_ERROR_SYSCALL`. After the fix, normal auto-path checks returned: Chanmama `200` in ~0.053s, JD `200`, 1688 `200`, Xiaohongshu `200`, Douyin `200`, Weibo `200`, Bilibili `200`; all used `local_ip=198.18.0.1` with real domestic remote IPs. OpenAI still used `127.0.0.1:7897` and returned expected `401`.
+- Safety: No Clash Verge / mihomo process was restarted or killed; TUN remained unchanged.
+
 ## [2026-05-22 18:17 CST] [Codex-CTO] [type:host-network-config] Fix active Ethernet bypass for domestic sites after Clash proxy regression
 
 - Files changed:
