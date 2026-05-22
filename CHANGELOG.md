@@ -1,3 +1,13 @@
+## [2026-05-22 17:41 CST] [Codex-CTO] [type:host-network-config] Extend NO_PROXY for Feishu/Lark Clash TLS failures
+
+- Files changed:
+  - `/Users/tangyuanjc/.zshenv`
+  - `/Users/tangyuanjc/.claude/projects/-Users-tangyuanjc/memory/feedback_clash_proxy_no_proxy_sharp_edge_0509.md`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Preserved the existing host `NO_PROXY/no_proxy` bypass list and appended `.feishu.cn,.larksuite.com,.bytedance.com,.bytedns1.com,.kunluncan.com`; synced the same value to `launchctl`; restarted Multica daemon and Chrome; added the WS-218 Feishu v2 verification note to the Clash/NO_PROXY sharp-edge memory.
+- Verification: Before the change, `curl -I https://gdizr0nraj.feishu.cn` failed through `127.0.0.1:7897` with `SSL_ERROR_SYSCALL`; afterward it returned `HTTP/2 302` without unsetting proxy variables. `lark-cli docs +create/+fetch/+update/+fetch` succeeded against scratch doc `DG8idMWFbofaGcxNgHwcNsFDnkf`.
+- Safety: No Clash Verge or mihomo process was restarted or reconfigured; only process environment and Chrome/Multica daemon inheritance were refreshed.
+
 ## [2026-05-21 18:37 CST] [小J-COO] [type:team-daily-report-intake] 欣欣 2026-05-21 日报入库
 
 - Files changed:
