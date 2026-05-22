@@ -1,4 +1,22 @@
 
+## [2026-05-23 00:30 CST] [Codex-CTO] [type:host-network-config] Browser-derived domestic proxy bypass expansion
+
+- Files changed:
+  - `/Users/tangyuanjc/.zprofile`
+  - `/Users/tangyuanjc/.zshenv`
+  - macOS network service proxy bypass domains for `Ethernet` and `Wi-Fi`
+  - launchd user environment `NO_PROXY/no_proxy`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Added browser-history-derived domestic bypass additions for high-frequency China business and content domains, including Douyin/Jinritemai/OceanEngine/Toutiao/SNSSDK/Kwaixiaodian, Volcengine identity, DingTalk Alidocs, Yuque/WPS/KDocs/LarkOffice, Tencent/Huawei cloud supplements, Kuaishou/Gifshow/Ksyun, Youku/iQiyi/Douyu/Huya, UnionPay/Ant/AMap, and common commerce domains such as Vip, Suning, Goofish, Dewu, Ele.me, and Koubei. AI/global/developer domains such as OpenAI, Claude, Grok, Google, X/Twitter, GitHub, YouTube, Reddit, Stripe, Supabase, and similar were intentionally kept off bypass.
+- Source analysis: Read-only domain-level aggregation of the past 30 days of local Chrome/OpenCLI history found about 3,482 visits, with domestic high-frequency misses led by `jinritemai.com`, `oceanengine.com`, `kwaixiaodian.com`, `volcengine.com`, `toutiao.com`, `snssdk.com`, `doubao.com`, and `yuque.com`. No full URL paths, query strings, accounts, or tokens were used in the routing list.
+- Verification:
+  - L1 Shell: `NO_PROXY` now contains `jinritemai.com`, `oceanengine.com`, `kwaixiaodian.com`, `volcengine.com`, `toutiao.com`, `snssdk.com`, `doubao.com`, and `yuque.com`; it does not contain `github.com`, `openai.com`, or `claude.ai`.
+  - L1 curl: domestic samples default/no-proxy path succeeded quickly: Chanmama `200` ~0.08s, Jinritemai `200` ~0.38s, OceanEngine `200` ~0.22s, Volcengine `200` ~0.26s, Toutiao `200` ~0.10s. Forced proxy was slower or failed for domestic samples, e.g. Jinritemai ~8.55s and Toutiao `SSL_ERROR_SYSCALL`.
+  - L1 curl foreign: OpenAI default path used `127.0.0.1:7897` and returned expected `401`; GitHub default used `127.0.0.1:7897` and returned `200`; Google `generate_204` default used `127.0.0.1:7897` and returned `204`.
+  - L2 system proxy: `scutil --proxy` and both `networksetup -getproxybypassdomains Ethernet/Wi-Fi` read back the new domestic domains; OpenAI/GitHub/Claude were absent from system bypass.
+  - L3 mihomo runtime: domestic TUN-captured curl connections showed `rule=GeoIP`, `rulePayload=cn`, `chains=["DIRECT","🎯 全球直连"]`; GitHub showed `rule=DomainKeyword`, `rulePayload=github`, `chains=["jc","♻️ 自动选择","🚀 节点选择"]`.
+- Safety: No Clash Verge / mihomo process was restarted or killed. TUN/runtime was observed unchanged before and after: `mode=rule`, `ipv6=false`, `tun.enable=true`, `tun.device=utun7`, `auto-route=true`, `inet4-address=198.18.0.1/30`, `inet6-address=null`.
+
 ## 2026-05-22 21:00 CST - 小J daily wrap
 
 - 文件变更：
