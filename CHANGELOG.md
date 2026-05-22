@@ -1,3 +1,26 @@
+## [2026-05-22 17:57 CST] [小J-COO] [type:team-daily-report-intake] 芳芳 2026-05-22 日报入库
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/raw/2026-05-22/ou_9ea09e0d7b7f0f6397624e0fdd5873c5.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/inbox/2026-05-22.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/projects/ai-ecommerce-org/TEAM-STATUS.md`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: 登记芳芳 2026-05-22 工作日报：AI 核算唯品会新品拿货价、AI 生成海报图片、后台发票上传 116 张、差评回评 10 条、天猫物流异常单 5 单、介入举证 3 单、异常售后 1 单，并巡查店铺发货/物流/工单问题。
+- Verification: raw inbox、当日共享汇总、TEAM-STATUS 当日快照均已读回验证含芳芳记录，状态为 `received_daily_report`。
+
+## [2026-05-22 18:17 CST] [Codex-CTO] [type:host-network-config] Fix active Ethernet bypass for domestic sites after Clash proxy regression
+
+- Files changed:
+  - `/Users/tangyuanjc/.zprofile`
+  - `/Users/tangyuanjc/.zshenv`
+  - macOS network service proxy bypass domains for `Ethernet` and `Wi-Fi`
+  - launchd user environment `NO_PROXY/no_proxy`
+  - `/Users/tangyuanjc/agents-changelog/CHANGELOG.md`
+- What changed: Added Ali/Taobao/Alimama/Alipay/DingTalk/Feishu/Lark/ByteDance/Coze domestic service domains to the active macOS proxy bypass list. Also made the same domains persistent for terminal-launched tools and new GUI/agent processes via `.zprofile`, `.zshenv`, and `launchctl setenv`.
+- Root cause: The active default route is `Ethernet` (`en0`), but the rich domestic bypass list had only been present on `Wi-Fi`; `scutil --proxy` therefore exposed only local bypass entries and Chrome sent `login.taobao.com` through `127.0.0.1:7897`, which fails TLS with `SSL_ERROR_SYSCALL`.
+- Verification: Before the fix, `curl --noproxy '*' https://login.taobao.com/` returned `200` in ~0.25s while forced `-x http://127.0.0.1:7897` failed with `SSL_ERROR_SYSCALL`. After the fix, normal `zsh -lc curl https://login.taobao.com/` returned `200`, `https://one.alimama.com/` returned `200`, `https://mcp.feishu.cn/` completed TLS and returned `404`, and `https://api.openai.com/v1/models` still went through `127.0.0.1:7897` and returned the expected `401`.
+- Safety: No Clash Verge / mihomo process was restarted or killed. TUN was observed on (`tun.enable=true`, IPv4-only) but was left unchanged because this incident was proven to be a bypass-domain regression.
+
 ## [2026-05-22 17:41 CST] [Codex-CTO] [type:host-network-config] Extend NO_PROXY for Feishu/Lark Clash TLS failures
 
 - Files changed:
