@@ -1,4 +1,14 @@
 
+## 2026-05-23 21:00 CST - 小J每日收工日志写入
+
+- 文件变更：
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/daily-logs/2026-05-23.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-05-23.md`
+- 变更内容：执行 2026-05-23 每日收工，运行日报采集脚本，按周末规则生成员工情报摘要、复盘日志与小J日记。
+- 影响：为 COO workspace 留存当日收工审计记录；员工静默按周末休息日正常状态处理，不误报异常。
+- 原因：定时收工 cron 要求写入完整日志与日记并验证。
+
+
 ## [2026-05-23 06:05 CST] [Codex-CTO] [type:codex-thread-recovery] Stop active-root tug-of-war and add full thread recall index
 
 - Files changed:
