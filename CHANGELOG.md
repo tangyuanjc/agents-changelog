@@ -1,3 +1,9 @@
+### 2026-05-28 — 欣欣日报入库（5.28）
+- Actor: 小J COO
+- Change: 登记欣欣 2026-05-28 今日时报；raw / shared inbox / TEAM-STATUS 三处落库。
+- Status: 基础日报已收到；AI 提效专项字段不完整，状态记为 `received_daily_report_partial_ai_fields_missing`。今日数据：新建联 10 人、新增通过 3 人、寄样 2 个、发布遮瑕内容 2 个，并完成 KOC 资源表登记；AI用途为跑通 KOC 资源表自动登记流程，缺“让 AI 解决什么问题 / 最后产出了什么 / 原本人工多久 / 现在多久”。
+- Verification: 已读回验证 raw、当日 shared inbox、TEAM-STATUS 均含欣欣 2026-05-28 记录。
+
 ### 2026-05-28 — 小龙日报入库（5.28）
 - Actor: 小J COO
 - Change: 登记小龙 2026-05-28 今日日报；raw / shared inbox / TEAM-STATUS 三处落库。
