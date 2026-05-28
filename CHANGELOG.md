@@ -4326,3 +4326,11 @@ JC 17:31 双命题:
 - 变更内容：执行每日收工，记录员工情报摘要、复盘简版、明日跟进与小J日记。
 - 影响：保留 2026-05-21 COO 收工审计证据；不改变团队权威日报原始记录。
 - 原因：定时任务要求写入完整日志与日记并验证。
+
+## [2026-05-29 03:49:00 CST] [Codex-CTO] [type:c] Multica Codex/Allen runtime recovery
+
+- 背景：WS-291 的 CTO Codex runtime 连续报 `401 Unauthorized: Missing bearer or basic authentication`，同时全局扫描发现艾伦 closing issue 会把 `gpt-5.5` 送到 Hermes xAI provider 后 404。
+- 根因：旧 WS-291 workdir 的 generated `codex-home` 缺 `auth.json` 与 custom provider 配置；艾伦 agent 自身 `model=gpt-5.5` 覆盖了 Hermes runtime 默认模型，触发 `https://api.x.ai/v1` 上不存在该模型的 404。
+- 改动：修补 WS-291 旧 workdir 的 `codex-home/auth.json` symlink 与 `config.toml` custom provider；全量扫描 71 个 Multica `codex-home` 并把 symlink/missing auth 归一到 `~/.codex/auth.json`；补齐 desktop profile 漏网 workdir `fe960c41` 的 `config.toml`；重新 rerun WS-291；将 WS-291 补到 `in_review`；创建艾伦 follow-up WS-293；通过 `multica agent update b285f936-4b6a-43fe-83f8-b7154ebc693a --model ""` 清空艾伦模型覆盖；取消已交付但卡住的 WS-291 run `61d1d04e`。
+- 验证：WS-291 新评论 `a1671089-3fe2-4e0c-940e-f3805ffee794` 已写入完整 CTO 条款评审；71 个 Multica `codex-home` 已复扫为 `missing_or_broken_auth=0`、`missing_config=0`；`fe960c41`、`6e8a66f4`、`70920b9c` 三个 `CODEX_HOME` 最小 `codex exec` smoke 均返回 `OK`；WS-293 rerun `68e213d2` 已改走 `provider=xai-oauth model=grok-4.3` 并产生成功 API calls，不再出现 `gpt-5.5` 404。
+- 边界：未重启 Multica daemon；未写入或回显任何 API key / token；员工远程 offline runtime 仅做分类扫描，未在无新授权场景下强行重配。
