@@ -1,4 +1,11 @@
 
+## 2026-05-29 13:43 — 皮皮补交 5.27/5.28 日报入库
+
+- Actor: 小J COO
+- Change: 登记皮皮 2026-05-27、2026-05-28 两日日报；分别写入 raw / shared inbox / TEAM-STATUS。
+- Status: 两日均按 `received_daily_report` 登记。工作事项：千川日常投放、KOC货盘整理、浴室面膜专场直播投放。
+- Verification: 已读回验证两日 raw、两日 shared inbox、TEAM-STATUS 均含皮皮记录。
+
 ## 2026-05-28 21:00 — COO每日收工日志与小J日记
 
 - 时间：2026-05-28 21:00
