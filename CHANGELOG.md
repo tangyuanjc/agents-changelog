@@ -1,4 +1,11 @@
 
+## 2026-05-29 18:35 — 小龙 5.29 日报入库
+
+- Actor: 小J COO
+- Change: 登记小龙 2026-05-29 今日日报；写入 raw / shared inbox / TEAM-STATUS。
+- Status: 按 `received_daily_report` 登记。今日数据：新建联 10 人、新增通过 2 人、寄样 2、发布 2；AI/自动化用于登记合适达人到表格，效率提升 50%。
+- Verification: 已读回验证 raw、shared inbox、TEAM-STATUS 均含小龙 2026-05-29 记录。
+
 ## 2026-05-29 18:10 — 皮皮 5.29 日报入库
 
 - Actor: 小J COO
