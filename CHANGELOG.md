@@ -4372,3 +4372,21 @@ JC 17:31 双命题:
 - 改动：修补 WS-291 旧 workdir 的 `codex-home/auth.json` symlink 与 `config.toml` custom provider；全量扫描 71 个 Multica `codex-home` 并把 symlink/missing auth 归一到 `~/.codex/auth.json`；补齐 desktop profile 漏网 workdir `fe960c41` 的 `config.toml`；重新 rerun WS-291；将 WS-291 补到 `in_review`；创建艾伦 follow-up WS-293；通过 `multica agent update b285f936-4b6a-43fe-83f8-b7154ebc693a --model ""` 清空艾伦模型覆盖；取消已交付但卡住的 WS-291 run `61d1d04e`。
 - 验证：WS-291 新评论 `a1671089-3fe2-4e0c-940e-f3805ffee794` 已写入完整 CTO 条款评审；71 个 Multica `codex-home` 已复扫为 `missing_or_broken_auth=0`、`missing_config=0`；`fe960c41`、`6e8a66f4`、`70920b9c` 三个 `CODEX_HOME` 最小 `codex exec` smoke 均返回 `OK`；WS-293 rerun `68e213d2` 已改走 `provider=xai-oauth model=grok-4.3` 并产生成功 API calls，不再出现 `gpt-5.5` 404。
 - 边界：未重启 Multica daemon；未写入或回显任何 API key / token；员工远程 offline runtime 仅做分类扫描，未在无新授权场景下强行重配。
+
+## 2026-05-30 17:25 [Opus-CSO] D 线 audit 68/100 — in_progress 94% stuck + in_review 50+ 积压 + Curator Phase 1 阻塞
+
+- 时间：2026-05-30 17:25 +0800 (Sat)
+- 触发：multica autopilot 17:00 D 线审计 (WS-311)
+- 总分：68/100 (上次 5/28=66, 5/27=74)
+- P0 finding (三大闭环失血):
+  1. in_progress 16 个里 15 个 stuck >24h (94%), 6 个 >300h 死任务 (WS-69/71/72/87/88/155/161/162/178) — 派 sweep agent 清存量
+  2. in_review 50+ 积压 18 个 >1 周, 最老 WS-184 12 天 ([P0] 修爱马仕 daemon) — 艾伦 closing sweep trigger 没跑 + CSO 没批量 verify
+  3. Curator Phase 1 升级阻塞 — JC 周报 (~/.org/curator/weekly-2026-W22.html) ≥3 升格决策未拍, 自进化飞轮 16d→3h 但卡 human-in-the-loop
+- L1 黑板架构：blackboard-v3 + hermes-gateway 三套 + aihotboard + openclaw-codex-proxy 全 running ✅；v2→v3 演进未文档化 (P2)
+- L3 agent：19 agents 18 idle 1 working — worker 半月没接活 (高斯/奥格威 5/13, 多模态 5/14, 文雅/欣欣/黄宁 Codex 5/14), dispatcher trigger 失效
+- L4 ROI 主线：YC 复刻 3 单 Codex 3h 落地 ✅ (Curator Phase 0 + Check Resolvable + Skillify) + 罗涛 v5 七层金字塔 paradigm shift ✅ + workflow 知识蒸馏引擎收口 (5/30 13:54) ✅
+- L6 v2.7 patch backlog: ① Curator Phase 0→1 升级规则 ② Phase 0 普适升级条件 ③ workflow distill 协议化 ④ changelog daily/aggregate 模式统一 (4 项 5/31-6/1 整批升)
+- 第二天 5/31 聚焦：**死任务 sweep + Curator Phase 1 unblock 双线** — 不开新战场, 只清存量
+- 全文 audit 见 WS-311 comment
+- impact: 5/30 三连合规闭环 (audit issue 关闭 + 本 wrap + push), L7 finding "5/30 0 commit" 自我修复
+- reason: D 线 audit 完成后必须 wrap 否则破坏铁律
