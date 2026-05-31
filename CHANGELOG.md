@@ -1,4 +1,14 @@
 
+## 2026-05-31 21:03:35 CST - 小J每日收工日志写入
+
+- 文件变更：
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/daily-logs/2026-05-31.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-05-31.md`
+- 变更内容：写入 2026-05-31 每日收工完整日志与小J日记；按周末规则将员工静默归为正常休息日状态。
+- 影响：保留 COO 收工审计记录与日记记录；不触发员工日报催收。
+- 原因：执行每日收工 cron。
+
+
 ## 2026-05-30 21:03:13 CST - 小J每日收工 2026-05-30
 
 - 文件变更：
