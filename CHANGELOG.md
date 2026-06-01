@@ -1,4 +1,15 @@
 
+## 2026-06-01 13:42:17 CST - 飞瓜快手国内站直连修复
+
+- 文件变更：
+  - `/Users/tangyuanjc/.zprofile`
+  - `/Users/tangyuanjc/.zshenv`
+  - macOS network proxy bypass domains for `Ethernet` and `Wi-Fi`
+  - launchd user env `NO_PROXY/no_proxy`
+- 变更内容：将 `feigua.cn` / `*.feigua.cn` 加入本机国内站直连清单，避免 `ks.feigua.cn` 经过本地 Clash 代理触发 TLS 失败。
+- 验证：`curl https://ks.feigua.cn/` 默认访问返回 `200`，约 `0.24s`，不再落到 `127.0.0.1:7897`；Chrome 已打开飞瓜快手首页。
+- 原因：飞瓜快手是国内业务站点，应按国内站走直连/TUN DIRECT 路径。
+
 ## 2026-05-31 21:03:35 CST - 小J每日收工日志写入
 
 - 文件变更：
