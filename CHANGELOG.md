@@ -1,4 +1,14 @@
 
+## 2026-06-01 21:00 小J每日收工
+
+- 文件变更：
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/daily-logs/2026-06-01.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-06-01.md`
+- 变更内容：写入 2026-06-01 每日收工完整日志与小J日记。
+- 影响：为 COO 晚间复盘提供可审计记录；最终对外仅输出员工情报摘要与简版复盘。
+- 原因：执行每日收工 cron，完成脚本结果、TEAM-STATUS、shared inbox、raw 目录交叉核验。
+
+
 ## 2026-06-01 18:48 — 欣欣 6.01 日报入库
 
 - Actor: 小J COO
