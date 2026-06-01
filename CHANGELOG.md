@@ -1,4 +1,11 @@
 
+## 2026-06-01 18:48 — 欣欣 6.01 日报入库
+
+- Actor: 小J COO
+- Change: 登记欣欣 2026-06-01 今日日报；写入 raw / shared inbox / TEAM-STATUS。
+- Status: 按 `received_daily_report_partial_ai_fields_missing` 登记。基础指标：上午请假半天、新建联 18、新增通过 6、寄样 1；AI 模块已写“尝试 AI 审核账号优质程度”，缺“让 AI 解决什么问题 / 最后产出 / 原本人工多久 / 现在多久”。
+- Verification: 已读回验证 raw、shared inbox、TEAM-STATUS 均含欣欣 2026-06-01 记录。
+
 ## 2026-06-01 18:36 — 小龙 6.01 日报入库
 
 - Actor: 小J COO
