@@ -1,4 +1,11 @@
 
+## 2026-06-01 18:31 — 皮皮 6.01 日报入库
+
+- Actor: 小J COO
+- Change: 登记皮皮 2026-06-01 今日日报；写入 raw / shared inbox / TEAM-STATUS。
+- Status: 按 `received_daily_report` 登记。工作事项：千川日常投放；整理天猫 AI 实战训练营课件知识点复用到抖音。
+- Verification: 已读回验证 raw、shared inbox、TEAM-STATUS 均含皮皮 2026-06-01 记录。
+
 ## 2026-06-01 13:42:17 CST - 飞瓜快手国内站直连修复
 
 - 文件变更：
