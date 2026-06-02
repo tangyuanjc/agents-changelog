@@ -1,4 +1,15 @@
 
+## 2026-06-02 10:30:47 CST - Coze 安装包域名直连修复
+
+- 文件变更：
+  - `/Users/tangyuanjc/.zprofile`
+  - `/Users/tangyuanjc/.zshenv`
+  - macOS network proxy bypass domains for `Ethernet` and `Wi-Fi`
+  - launchd user env `NO_PROXY/no_proxy`
+- 变更内容：将 `ugapk.cn` / `*.ugapk.cn` 加入本机国内站直连清单，避免 Coze macOS 安装包下载域名 `lf9-apk.ugapk.cn` 经过本地 Clash 代理触发 TLS 失败。
+- 验证：目标 DMG 链接默认 `Range GET` 返回 `206`，约 `0.41s`，不再落到 `127.0.0.1:7897`。
+- 原因：`coze.cn` 已在直连清单，但 Coze 安装包实际走字节国内下载域 `ugapk.cn`。
+
 ## 2026-06-01 21:00 小J每日收工
 
 - 文件变更：
