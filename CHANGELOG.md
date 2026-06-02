@@ -1,4 +1,11 @@
 
+## 2026-06-02 18:43 — 小龙 6.02 日报入库
+
+- Actor: 小J COO
+- Change: 登记小龙 2026-06-02 今日日报；写入 raw / shared inbox / TEAM-STATUS。
+- Status: 按 `received_daily_report_partial_ai_fields_missing` 登记。基础指标：新建联 15、新增通过 5、寄样 3、发布 2；AI 模块已写“筛选达人，让 Codex 学会判断达人质量”，缺“最后产出 / 原本人工多久 / 现在多久”。
+- Verification: 已读回验证 raw、shared inbox、TEAM-STATUS 均含小龙 2026-06-02 记录。
+
 ## 2026-06-02 18:34 — 欣欣 6.02 日报入库
 
 - Actor: 小J COO
