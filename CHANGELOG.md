@@ -4546,3 +4546,14 @@ JC 17:31 双命题:
 - 全文 audit 见 WS-315 comment
 - impact: 5/31 三连闭环 (audit issue 关闭 + 本 wrap + push); 趋势 4 天 74→66→68→62 警示 governance gap
 - reason: D 线 audit 必 wrap; 同时记录连续 3 天死寂的治理症状作为后续宪法依据
+
+## [2026-06-03 22:57 CST] [Codex-CTO] [type:c] Multica Codex launchd OpenAI env persistence
+
+- 文件：
+  - `/Users/tangyuanjc/.codex/set-openai-env.sh`
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.user.codex-openai-env.plist`
+- 改动：新增 LaunchAgent，在用户 GUI launchd 域 `RunAtLoad` 时执行脚本；脚本只读 `~/.codex/auth.json` 提取 `OPENAI_API_KEY`，并注入 `OPENAI_API_KEY` + `OPENAI_BASE_URL=http://127.0.0.1:6555/v1`；plist 仅保存脚本路径和 `auth.json` WatchPaths，不保存 secret。
+- 影响：Mac 重启或 GUI session 重建后，Multica.app / Multica daemon 启动时可继承本地 Codex reliability proxy env，避免回落到 `api.openai.com` 后复发 `401 Missing bearer`。
+- 验证：`launchctl getenv OPENAI_BASE_URL` 返回 `http://127.0.0.1:6555/v1`；`com.user.codex-openai-env` bootstrap/kickstart 后 `last exit code=0`；Homebrew CLI daemon 与 Multica.app profile daemon restart 后进程 env 均带 `OPENAI_BASE_URL=http://127.0.0.1:6555/v1`，key 只做 mask 校验；smoke issue `79ab4b1a-4121-4252-9dcd-bbbf816a6669` 由 CTO Codex runtime 接单并回 `OK`，未出现 401。
+- 边界：未修改 `~/.codex/auth.json` key；未触碰 `~/.hermes/hermes-agent`；未 kill Hermes gateway / 小J / 奥格威 进程；仅 bounce Multica daemon。
+- 原因：Opus-CSO 已定位 Multica daemon Codex 401 复发根因是 session 级 `launchctl setenv` 丢失，本次落地持久注入。
