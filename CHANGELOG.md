@@ -1,4 +1,11 @@
 
+## 2026-06-04 18:37 — 小龙 6.04 日报入库
+
+- Actor: 小J COO
+- Change: 登记小龙 2026-06-04 今日日报；写入 raw / shared inbox / TEAM-STATUS。
+- Status: 按 `received_daily_report_partial_ai_fields_missing` 登记。基础指标：新建联 10、新增通过 3、寄样 1、发布 3；AI 模块已写“执行寄样，发布流程”，缺“让AI解决什么问题 / 最后产出了什么 / 原本人工多久 / 现在多久”。
+- Verification: 已读回验证 raw、shared inbox、TEAM-STATUS 均含小龙 2026-06-04 记录。
+
 ## 2026-06-04 18:37 — 欣欣 6.04 日报入库
 
 - Actor: 小J COO
