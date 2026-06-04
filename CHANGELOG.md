@@ -4557,3 +4557,15 @@ JC 17:31 双命题:
 - 验证：`launchctl getenv OPENAI_BASE_URL` 返回 `http://127.0.0.1:6555/v1`；`com.user.codex-openai-env` bootstrap/kickstart 后 `last exit code=0`；Homebrew CLI daemon 与 Multica.app profile daemon restart 后进程 env 均带 `OPENAI_BASE_URL=http://127.0.0.1:6555/v1`，key 只做 mask 校验；smoke issue `79ab4b1a-4121-4252-9dcd-bbbf816a6669` 由 CTO Codex runtime 接单并回 `OK`，未出现 401。
 - 边界：未修改 `~/.codex/auth.json` key；未触碰 `~/.hermes/hermes-agent`；未 kill Hermes gateway / 小J / 奥格威 进程；仅 bounce Multica daemon。
 - 原因：Opus-CSO 已定位 Multica daemon Codex 401 复发根因是 session 级 `launchctl setenv` 丢失，本次落地持久注入。
+
+## [2026-06-04 11:04 CST] [Codex-CTO] [type:c] Hermes main repo recovery after Desktop installer conflict
+
+- 文件：
+  - `/Users/tangyuanjc/.hermes/hermes-agent`
+  - `/Users/tangyuanjc/hermes-fork-backup-20260603.bundle`
+  - `/Users/tangyuanjc/hermes-fork-state-before.txt`
+- 改动：先用 `git bundle create --all` 备份主 repo 全 refs，并记录恢复前 `git status` + `stash list`；随后把主 repo 从安装器留下的 `main` + `UU` 冲突状态强制切回部署分支 `runtime/stage2-rebase-20260515` at `edb31725c75b7ddc0f13e3bd603bf1b09f53a543`，再 apply `stash@{0}` (`hermes-install-autostash-20260603-134920`) 恢复未提交的 outbound redaction 真实补丁。
+- 影响：小J COO 与奥格威 gateway 继续指向可 import 的主 repo venv/editable 源；后续 gateway 重启或机器重启不会因 `agent/redact.py` 冲突标记触发 SyntaxError。
+- 验证：`IMPORT OK` smoke 通过：`import agent.redact, gateway.stream_consumer, tools.send_message_tool, tools.terminal_tool`；相关 redaction suite 通过：`286 passed, 7 warnings in 18.72s`；`git diff --check` clean；行首 conflict marker 扫描无命中。
+- 边界：未 drop 任何 stash；未 kill/restart Hermes gateway / 小J / 奥格威；未碰 `.worktrees/stage3-v014-20260517` 或其他 worktree；未 reboot；未 retry Hermes Desktop installer。`WS-155` 已 comment 给 Opus-CSO，待 CSO 复核 `agent/redact.py` diff 后再算最终 done。
+- 原因：Hermes Desktop installer 在 `~/.hermes/hermes-agent` autostash 后撞上未合并冲突，导致主 repo 错切到 `main` 且 `agent/redact.py` 含 conflict markers；需要恢复部署分支和 fork 安全补丁，避免 gateway 重载崩溃。
