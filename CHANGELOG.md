@@ -1,4 +1,11 @@
 
+## 2026-06-05 18:32 — 皮皮 6.05 日报入库
+
+- Actor: 小J COO
+- Change: 登记皮皮 2026-06-05 今日日报；写入 raw / shared inbox / TEAM-STATUS。
+- Status: 按 `received_daily_report` 登记。内容包括千川日常投放，以及继续完善浴室面膜单品。
+- Verification: 已读回验证 raw、shared inbox、TEAM-STATUS 均含皮皮 2026-06-05 记录。
+
 ## 2026-06-04 21:02:28 CST - [小J] 2026-06-04 daily wrap
 
 - Files changed:
