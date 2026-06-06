@@ -1,4 +1,14 @@
 
+## 2026-06-06 21:00 CST — [小J] add 2026-06-06 daily wrap
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/daily-logs/2026-06-06.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-06-06.md`
+- What changed: wrote Saturday daily wrap log and XiaoJ diary; applied weekend rest-day rule.
+- Impact: preserves verified COO end-of-day audit without misclassifying employee rest-day silence as missing reports or anomalies.
+- Reason: scheduled daily wrap cron required full log + diary write and verification.
+
+
 ## 2026-06-05 21:02 — 小J daily wrap
 
 - 文件变更：
