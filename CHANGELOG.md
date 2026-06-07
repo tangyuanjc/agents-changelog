@@ -4641,3 +4641,13 @@ JC 17:31 双命题:
 - 验证：`IMPORT OK` smoke 通过：`import agent.redact, gateway.stream_consumer, tools.send_message_tool, tools.terminal_tool`；相关 redaction suite 通过：`286 passed, 7 warnings in 18.72s`；`git diff --check` clean；行首 conflict marker 扫描无命中。
 - 边界：未 drop 任何 stash；未 kill/restart Hermes gateway / 小J / 奥格威；未碰 `.worktrees/stage3-v014-20260517` 或其他 worktree；未 reboot；未 retry Hermes Desktop installer。`WS-155` 已 comment 给 Opus-CSO，待 CSO 复核 `agent/redact.py` diff 后再算最终 done。
 - 原因：Hermes Desktop installer 在 `~/.hermes/hermes-agent` autostash 后撞上未合并冲突，导致主 repo 错切到 `main` 且 `agent/redact.py` 含 conflict markers；需要恢复部署分支和 fork 安全补丁，避免 gateway 重载崩溃。
+
+## 2026-06-07 21:02 CST - [小J] add 2026-06-07 daily wrap
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/daily-logs/2026-06-07.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-06-07.md`
+- What changed: wrote the Sunday COO daily wrap log and XiaoJ diary after running `daily_report_generator.py` and cross-checking identity roster, TEAM-STATUS, shared inbox, and raw inbox.
+- Impact: preserves verified rest-day operational record; avoids false weekend missing-report escalation.
+- Reason: scheduled daily wrap cron.
+
