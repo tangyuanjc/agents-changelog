@@ -4663,3 +4663,11 @@ JC 17:31 双命题:
 - Verification: shell files contain the new Typeless domains; `launchctl getenv NO_PROXY/no_proxy`, `networksetup -getproxybypassdomains Ethernet/Wi-Fi`, and `scutil --proxy` all read back Typeless bypass entries. After the change, `api.typeless.com` default curl returned `200` in 1.48s from remote `166.117.210.238`; `www.typeless.com` returned `200` in 2.91s; `typeless-static.com` returned expected `404` in 1.34s. Google remained on proxy: `generate_204` returned `204` in 0.82s via remote `127.0.0.1`, with mihomo rule `DomainKeyword google`.
 - Safety: did not restart, kill, or reconfigure Clash Verge / mihomo. `/configs` before and after remained `mode=rule`, `ipv6=false`, `tun.enable=true`, `tun.device=utun7`, `tun.inet4-address=["198.18.0.1/30"]`, `tun.inet6-address=null`.
 - Governance: this is host-network-config implementation only, not a new cross-agent constitutional rule, so AGENTS.md does not need editing; per `~/.org/AGENTS.md` decision tree this is changelog + push 二连, not 三连.
+
+## 2026-06-08 12:45 CST - [Codex-CTO] record Chrome identity boundary
+
+- Files changed:
+  - `/Users/tangyuanjc/.codex/memories/extensions/ad_hoc/notes/20260608-124507-chrome-profile-boundary.md`
+- What changed: recorded the local Chrome identity boundary between JC's daily `tangyuanJC` browser and the `Junjie` browser used by CSO Opus / Claude in Chrome.
+- Impact: future browser repair, cleanup, and automation triage should preserve `~/Library/Application Support/opencli-cdp-profile` as active agent-owned work state instead of treating it as disposable stale Chrome automation.
+- Reason: default-browser dispatch repair on 2026-06-08 restored link opening but briefly closed the Junjie/Claude-in-Chrome browser, which needed explicit durable prevention.
