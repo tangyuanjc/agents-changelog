@@ -4651,3 +4651,15 @@ JC 17:31 双命题:
 - Impact: preserves verified rest-day operational record; avoids false weekend missing-report escalation.
 - Reason: scheduled daily wrap cron.
 
+## [2026-06-08 11:53 CST] [Codex-CTO] [type:c] Typeless Cloudflare proxy bypass
+
+- Files changed:
+  - `/Users/tangyuanjc/.zprofile`
+  - `/Users/tangyuanjc/.zshenv`
+  - macOS network service bypass domains for `Ethernet` and `Wi-Fi`
+  - launchd user env `NO_PROXY/no_proxy`
+- What changed: added `typeless.com`, `.typeless.com`, `typeless-static.com`, and `.typeless-static.com` to shell and launchd `NO_PROXY/no_proxy`; added `typeless.com`, `*.typeless.com`, `typeless-static.com`, and `*.typeless-static.com` to macOS system proxy bypass domains.
+- Why: Typeless 1.6.1 calls `api.typeless.com` / `www.typeless.com` / `typeless-static.com`; the local Clash mixed-port path `127.0.0.1:7897` was taking 5.9s, 12s timeout, and 11.4s for repeated `api.typeless.com` requests, while bypass/TUN path returned in 0.85s, 0.90s, and 1.48s. This caused Typeless to show "connection slower than usual" warnings.
+- Verification: shell files contain the new Typeless domains; `launchctl getenv NO_PROXY/no_proxy`, `networksetup -getproxybypassdomains Ethernet/Wi-Fi`, and `scutil --proxy` all read back Typeless bypass entries. After the change, `api.typeless.com` default curl returned `200` in 1.48s from remote `166.117.210.238`; `www.typeless.com` returned `200` in 2.91s; `typeless-static.com` returned expected `404` in 1.34s. Google remained on proxy: `generate_204` returned `204` in 0.82s via remote `127.0.0.1`, with mihomo rule `DomainKeyword google`.
+- Safety: did not restart, kill, or reconfigure Clash Verge / mihomo. `/configs` before and after remained `mode=rule`, `ipv6=false`, `tun.enable=true`, `tun.device=utun7`, `tun.inet4-address=["198.18.0.1/30"]`, `tun.inet6-address=null`.
+- Governance: this is host-network-config implementation only, not a new cross-agent constitutional rule, so AGENTS.md does not need editing; per `~/.org/AGENTS.md` decision tree this is changelog + push 二连, not 三连.
