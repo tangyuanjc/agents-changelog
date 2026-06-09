@@ -4678,3 +4678,13 @@ JC 17:31 双命题:
 - What changed: recorded the local Chrome identity boundary between JC's daily `tangyuanJC` browser and the `Junjie` browser used by CSO Opus / Claude in Chrome.
 - Impact: future browser repair, cleanup, and automation triage should preserve `~/Library/Application Support/opencli-cdp-profile` as active agent-owned work state instead of treating it as disposable stale Chrome automation.
 - Reason: default-browser dispatch repair on 2026-06-08 restored link opening but briefly closed the Junjie/Claude-in-Chrome browser, which needed explicit durable prevention.
+
+
+## 2026-06-09 21:03:01 +0800 - 小J每日收工 2026-06-09
+
+- 变更文件：
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/daily-logs/2026-06-09.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-06-09.md`
+- 变更内容：执行每日收工，运行日报生成脚本，交叉核验 TEAM-STATUS、共享 inbox、raw 目录，并写入完整日志与小J日记。
+- 影响：保留 2026-06-09 COO 收工审计记录；员工静默按工作日证据口径记录为“当前未见同日输入落库，需继续核验”，未直接升级为异常。
+- 原因：定时任务要求每日生成收工复盘与日记，并验证输出文件。
