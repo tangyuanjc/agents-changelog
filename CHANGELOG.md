@@ -1,4 +1,14 @@
 
+## 2026-06-10 21:00 上海时间 - [小J] add 2026-06-10 daily wrap
+
+- Files changed:
+  - `workspace/daily-logs/2026-06-10.md`
+  - `workspace/journal/xiaoj-diary-2026-06-10.md`
+- What changed: 执行每日收工，记录日报脚本采集结果、员工沟通情报交叉核验、简版复盘与小J日记。
+- Impact: 为 2026-06-10 COO 收工提供可审计日志；区分脚本无对话与当前 workspace 未见权威落库，避免误报。
+- Reason: 定时每日收工任务要求写入完整日志和日记并验证。
+
+
 ## 2026-06-08 21:00 小J每日收工
 
 - 文件变更：`workspace/daily-logs/2026-06-08.md`、`workspace/journal/xiaoj-diary-2026-06-08.md`
