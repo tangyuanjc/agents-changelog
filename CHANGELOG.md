@@ -4743,3 +4743,13 @@ JC 17:31 双命题:
 - 影响：Opus-CSO Feishu D线监控不再因 CPA quiet period、嵌入命令文本、运行中 job 的历史 status 或 5/11 hotboard lastgood 刷屏；CPA 单轮拉取被收在 5 页内，StartInterval=300 下不会因为 10 页慢 run 形成连锁 stale/lock 告警。
 - 验证：CPA 最新生产 run `run-20260611-034442.json` 27 秒完成，`ok=true`、`fetched_rows=25`、`new_rows=25`、`store_error_rows=0`；`capture.lock` 释放；`/System/Volumes/Data` 清缓存后约 22GiB free；完整 sentinel dry-run 返回 `all monitored daemons fresh; local health clear`；CPA 单测 `78 tests OK`，sentinel pytest `21 passed`，`py_compile`、`bash -n`、`plutil -lint`、`git diff --check` 通过。
 - 原因：上一轮只验证了 `primary_disk + cpa_puller_health` 子集，遗漏了完整 D线 monitor 的 artifact/capture/launchd/daemon count 口径；本次按截图复现完整告警链路后修正根因和误报源。
+
+## [2026-06-11 04:49 CST] [Codex-CTO] [type:c] D-line gateway log alert baseline hardening
+
+- 文件：
+  - `/Users/tangyuanjc/.bin/multica_runtime_offline_alert.py`
+  - `/Users/tangyuanjc/.bin/test_multica_runtime_offline_alert.py`
+- 改动：`gateway_error_log` 检查在有 offset state 时，首次看到某个 `gateway.error.log` 或日志被截断后只建立当前 EOF 基线，不再用“文件 mtime 新 + tail 内有旧 401/AGENTS.md blocked”判定为最近告警；后续仍按新增字节扫描真实新增的 401 / `AGENTS.md blocked`。
+- 影响：Opus-CSO Feishu D线监控不会在 monitor state 重建、dry-run 或日志被普通 warning 追加后，把旧的 Minimax 401 / AGENTS.md blocked 记录误报为“最近 10 分钟 auth/context failure”。真实新追加的 gateway auth/context failure 仍会触发。
+- 验证：新增/更新 pytest 复现空 offset 误扫旧 401 场景，完整 sentinel pytest `21 passed`；`python3 -m py_compile ~/.bin/multica_runtime_offline_alert.py` 和 `bash -n ~/.bin/multica-runtime-offline-alert.sh` 通过；真实 config + 全新临时 state dry-run 返回 `[2026-06-10T20:46:00Z] all monitored daemons fresh; local health clear`；真实 launchd kickstart 后 runs=998、last exit code=0，并在主 log 写入 `[2026-06-10T20:46:42Z] all monitored daemons fresh; local health clear`。
+- 原因：上一轮完整 D线复核覆盖了 CPA/disk/artifact/launchd/daemon-count，但 `gateway_error_log` 的首轮 offset 行为仍会把 tail 中历史 401 与新的日志 mtime 混淆，导致 JC 看到 Opus 仍在飞书告警。
