@@ -4709,3 +4709,11 @@ JC 17:31 双命题:
 - 变更内容：执行每日收工，运行日报生成脚本，交叉核验 TEAM-STATUS、共享 inbox、raw 目录，并写入完整日志与小J日记。
 - 影响：保留 2026-06-09 COO 收工审计记录；员工静默按工作日证据口径记录为“当前未见同日输入落库，需继续核验”，未直接升级为异常。
 - 原因：定时任务要求每日生成收工复盘与日记，并验证输出文件。
+
+## [2026-06-11 01:35 CST] [Codex-CTO] [type:c] Mute Ogilvy Feishu gateway shutdown spam
+
+- 文件：`/Users/tangyuanjc/.hermes/profiles/ogilvy/config.yaml`
+- 改动：为奥格威 profile 增加 `platforms.feishu.gateway_restart_notification: false`，只关闭 Feishu lifecycle shutdown/restart home-channel 提示，不改 Hermes core，也不影响 default / coo gateway。
+- 影响：受控重启、launchd bounce 或 SIGTERM 不再向奥格威 Feishu 实验群刷 `Gateway shutting down` 提示；真实会话仍可正常通过 Feishu websocket 收发。
+- 验证：Hermes loader readback 显示 Feishu `gateway_restart_notification=False` 且 home channel / enabled 仍存在；对 `ai.hermes.gateway-ogilvy` 做真实 SIGTERM 验证，日志写入 `Shutdown notification suppressed for home channel: feishu has gateway_restart_notification=false`，未新增 `Sent shutdown notification`；随后 kickstart 后 Ogilvy PID 23425 running，Feishu connected，active_agents=0。
+- 原因：WS-460 launchd 维护窗口触发奥格威多次 SIGTERM，旧配置即使无活跃任务也向 home channel 发送 shutdown 提示，导致群内噪音。
