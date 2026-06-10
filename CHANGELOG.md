@@ -1,4 +1,17 @@
 
+## 2026-06-11 02:05 上海时间 - CPA puller stale/disk alert recovery
+
+- Files changed:
+  - `/Users/tangyuanjc/.openclaw/cpa-capture/puller.py`
+  - `/Users/tangyuanjc/.openclaw/cpa-capture/test_puller.py`
+  - `/Users/tangyuanjc/.openclaw/cpa-capture/run_puller.sh`
+  - `/Users/tangyuanjc/.openclaw/cpa-capture/com.openclaw.cpa-capture-puller.plist`
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.openclaw.cpa-capture-puller.plist`
+- What changed: recovered the CPA puller from repeated stale alerts by adding cursor fallback, bounded raw-log scrub/storage, metadata-only fallback on raw write failures, safer log rotation cleanup, and launchd env `CPA_CAPTURE_LIMIT=5`, `CPA_CAPTURE_TIMEOUT=180`, `CPA_CAPTURE_MAX_RAW_LOG_MB=1`.
+- Operational action: cold-migrated verified CPA log days through 2026-06-10 to `/Volumes/MacMini-HotSSD/cold/cpa-capture/data-logs/`, cleaned local pre-move duplicates after archive readback, and stopped non-launchd dry-run holders that were blocking `capture.lock`.
+- Verification: `75` CPA unit tests passed; `py_compile`, `bash -n`, and both plist lints passed; latest real launchd run completed `ok=true` with `new_rows=47`, `store_error_rows=0`; direct sentinel check for `primary_disk + cpa_puller` returned `[]`.
+- Reason: Opus-CSO Feishu health alerts were repeatedly firing for `cpa_puller_last_run_stale` and low primary disk space; this keeps the回传层 available and prevents raw-log backlog from taking down local agent infrastructure.
+
 ## 2026-06-10 21:00 上海时间 - [小J] add 2026-06-10 daily wrap
 
 - Files changed:
