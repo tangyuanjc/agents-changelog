@@ -4730,3 +4730,16 @@ JC 17:31 双命题:
 - 影响：受控重启、launchd bounce 或 SIGTERM 不再向奥格威 Feishu 实验群刷 `Gateway shutting down` 提示；真实会话仍可正常通过 Feishu websocket 收发。
 - 验证：Hermes loader readback 显示 Feishu `gateway_restart_notification=False` 且 home channel / enabled 仍存在；对 `ai.hermes.gateway-ogilvy` 做真实 SIGTERM 验证，日志写入 `Shutdown notification suppressed for home channel: feishu has gateway_restart_notification=false`，未新增 `Sent shutdown notification`；随后 kickstart 后 Ogilvy PID 23425 running，Feishu connected，active_agents=0。
 - 原因：WS-460 launchd 维护窗口触发奥格威多次 SIGTERM，旧配置即使无活跃任务也向 home channel 发送 shutdown 提示，导致群内噪音。
+
+## [2026-06-11 03:51 CST] [Codex-CTO] [type:c] CPA puller alert quieting and bounded export reads
+
+- 文件：
+  - `/Users/tangyuanjc/.openclaw/cpa-capture/puller.py`
+  - `/Users/tangyuanjc/.openclaw/cpa-capture/run_puller.sh`
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.openclaw.cpa-capture-puller.plist`
+  - `/Users/tangyuanjc/.bin/multica_runtime_offline_alert.py`
+  - `/Users/tangyuanjc/.config/multica-runtime-offline-alert.env`
+- 改动：重新 enable/bootstrap CPA LaunchAgent；为 CPA export response 增加 16MiB body cap 和总读取 deadline，避免慢速巨型 HTTPS response 长时间持有 `capture.lock`；wrapper/plist 增加 `CPA_CAPTURE_MAX_PAGES=5` 并传 `--max-pages`；D 线 sentinel 修正两个误报来源：只统计真实 `multica daemon start` 进程、运行中 launchd job 不因历史 LastExitStatus 非 0 告警；monitor 口径改为 CPA run summary 新鲜度，关闭 quiet-period `capture_lag`，去掉过期 `hotboard_lastgood` 默认页警。
+- 影响：Opus-CSO Feishu D线监控不再因 CPA quiet period、嵌入命令文本、运行中 job 的历史 status 或 5/11 hotboard lastgood 刷屏；CPA 单轮拉取被收在 5 页内，StartInterval=300 下不会因为 10 页慢 run 形成连锁 stale/lock 告警。
+- 验证：CPA 最新生产 run `run-20260611-034442.json` 27 秒完成，`ok=true`、`fetched_rows=25`、`new_rows=25`、`store_error_rows=0`；`capture.lock` 释放；`/System/Volumes/Data` 清缓存后约 22GiB free；完整 sentinel dry-run 返回 `all monitored daemons fresh; local health clear`；CPA 单测 `78 tests OK`，sentinel pytest `21 passed`，`py_compile`、`bash -n`、`plutil -lint`、`git diff --check` 通过。
+- 原因：上一轮只验证了 `primary_disk + cpa_puller_health` 子集，遗漏了完整 D线 monitor 的 artifact/capture/launchd/daemon count 口径；本次按截图复现完整告警链路后修正根因和误报源。
