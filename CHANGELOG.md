@@ -140,6 +140,17 @@
 - Status: 按 `received_daily_report` 登记。内容包括千川日常投放、整理天猫 AI 实战训练营课件知识点复用到抖音、重新梳理推广商品。
 - Verification: 已读回验证 raw、shared inbox、TEAM-STATUS 均含皮皮 2026-06-02 记录。
 
+## 2026-06-10 16:00:26 CST - 旺店通开放平台国内站直连修复
+
+- 文件变更：
+  - `/Users/tangyuanjc/.zprofile`
+  - `/Users/tangyuanjc/.zshenv`
+  - macOS network proxy bypass domains for `Ethernet` and `Wi-Fi`
+  - launchd user env `NO_PROXY/no_proxy`
+- 变更内容：将 `wangdian.cn` / `*.wangdian.cn` 加入本机国内站直连清单，避免 `open.wangdian.cn` 经过本地 Clash 代理返回 `502`。
+- 验证：`curl http://open.wangdian.cn/` 默认访问跳转到 `https://open.wangdian.cn/` 并返回 `200`，约 `0.27s`，不再落到 `127.0.0.1:7897`；Chrome 已打开“旺店通开放平台”。
+- 原因：旺店通开放平台是国内业务站点，应按国内站走直连/TUN DIRECT 路径。
+
 ## 2026-06-02 10:30:47 CST - Coze 安装包域名直连修复
 
 - 文件变更：
