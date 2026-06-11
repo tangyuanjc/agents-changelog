@@ -4753,3 +4753,13 @@ JC 17:31 双命题:
 - 影响：Opus-CSO Feishu D线监控不会在 monitor state 重建、dry-run 或日志被普通 warning 追加后，把旧的 Minimax 401 / AGENTS.md blocked 记录误报为“最近 10 分钟 auth/context failure”。真实新追加的 gateway auth/context failure 仍会触发。
 - 验证：新增/更新 pytest 复现空 offset 误扫旧 401 场景，完整 sentinel pytest `21 passed`；`python3 -m py_compile ~/.bin/multica_runtime_offline_alert.py` 和 `bash -n ~/.bin/multica-runtime-offline-alert.sh` 通过；真实 config + 全新临时 state dry-run 返回 `[2026-06-10T20:46:00Z] all monitored daemons fresh; local health clear`；真实 launchd kickstart 后 runs=998、last exit code=0，并在主 log 写入 `[2026-06-10T20:46:42Z] all monitored daemons fresh; local health clear`。
 - 原因：上一轮完整 D线复核覆盖了 CPA/disk/artifact/launchd/daemon-count，但 `gateway_error_log` 的首轮 offset 行为仍会把 tail 中历史 401 与新的日志 mtime 混淆，导致 JC 看到 Opus 仍在飞书告警。
+
+## [2026-06-11 18:46 CST] [Codex-CTO] [type:c] Transfer peer-gift skill to 四条人 workspace
+
+- Multica workspace:
+  - source `熵减法则` (`bc2619a5-b59e-4777-ab3a-699f91d37fc8`)
+  - target `四条人工作区` (`95fe92d1-84b4-40b6-bab5-5dc6fcbedc2c`)
+- What changed: copied the production `peer-gift` skill from 熵减法则 into 四条人工作区 as target skill `626f3e43-b786-4989-b686-09ecbb41fb7d`, preserving the source content and description.
+- Agent handoff: created 四条人 issue `WS-1` (`c64f0b09-ba93-46bd-81d5-1f642487c33b`) assigned to `俊杰的 Codex` (`289f3efa-f76d-43b2-bb74-cf3a3e4c93bd`) with learning instructions, dependency gaps, privacy boundaries, and comment-based acceptance criteria.
+- Verification: read back the target skill content from 四条人 workspace; read back `WS-1` with assignee type `agent`, assignee ID `289f3efa-f76d-43b2-bb74-cf3a3e4c93bd`, status `todo`, and target skill ID in the issue description.
+- Reason: JC asked to pass the 熵减法则 “礼物 Skill” to 俊杰 so his agent can learn and reuse the peer-gift architecture-diagram relationship workflow.
