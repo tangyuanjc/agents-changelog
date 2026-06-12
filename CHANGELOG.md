@@ -1,4 +1,12 @@
 
+## 2026-06-12 23:24 CST - Multica runtime / agent visibility sweep
+
+- Actor: Codex-CTO.
+- Change: Swept 4 visible Multica workspaces for agent/runtime visibility. Set 熵减法则 runtimes to `public`, confirmed all 熵减法则 agents are `workspace`, opened JC-owned runtimes in 小灵的朋友们, opened all runtimes in 乾宇三剑客 and 四条人工作区, and changed 乾宇三剑客 `公司服务端` agent from `private` to `workspace`.
+- Verification: Readback showed 熵减法则 `runtime_non_public=0`, 乾宇三剑客 `runtime_non_public=0`, 四条人工作区 `runtime_non_public=0`, and all visible workspaces `active_agent_non_workspace=0`.
+- Remaining: 小灵的朋友们 still has 17 non-JC-owned private runtimes; Multica API returned `403 you can only edit your own runtimes`, so owner/runtime-owner action is required there.
+- Reason: JC requested a full Multica runtime/agent permission sweep and opening public visibility where possible.
+
 ## 2026-06-12 21:01 CST - [小J] 每日收工日志与日记
 
 - 文件变更：
