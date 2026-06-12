@@ -1,4 +1,11 @@
 
+## 2026-06-12 23:40 CST - Re-private 小灵的朋友们 runtimes
+
+- Actor: Codex-CTO.
+- Change: Set all runtimes in Multica workspace 小灵的朋友们 (`dc0ddb30-517d-4c47-acf3-2d23598f243b`) back to `private`; this changed the 7 JC-owned runtimes that had been public, while the 17 non-JC-owned runtimes were already private.
+- Verification: Fresh readback from `multica runtime list --workspace-id dc0ddb30-517d-4c47-acf3-2d23598f243b --output json` showed `total=24`, `public=0`, `private=24`, `non_private=0`.
+- Reason: JC requested that all runtimes in 小灵的朋友们 be private.
+
 ## 2026-06-12 23:24 CST - Multica runtime / agent visibility sweep
 
 - Actor: Codex-CTO.
