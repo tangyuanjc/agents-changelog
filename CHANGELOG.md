@@ -4797,3 +4797,17 @@ JC 17:31 双命题:
 - Agent handoff: created 四条人 issue `WS-1` (`c64f0b09-ba93-46bd-81d5-1f642487c33b`) assigned to `俊杰的 Codex` (`289f3efa-f76d-43b2-bb74-cf3a3e4c93bd`) with learning instructions, dependency gaps, privacy boundaries, and comment-based acceptance criteria.
 - Verification: read back the target skill content from 四条人 workspace; read back `WS-1` with assignee type `agent`, assignee ID `289f3efa-f76d-43b2-bb74-cf3a3e4c93bd`, status `todo`, and target skill ID in the issue description.
 - Reason: JC asked to pass the 熵减法则 “礼物 Skill” to 俊杰 so his agent can learn and reuse the peer-gift architecture-diagram relationship workflow.
+
+## [2026-06-13 14:33 CST] [Codex-CTO] [type:c] WS-554 v3.0 ops closeout
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/cron/jobs.json`
+  - `/Users/tangyuanjc/.org/roles/REGISTRY.md`
+  - `/Users/tangyuanjc/.org/roles/cc-role.yaml`
+  - `/Users/tangyuanjc/.org/roles/oji-role.yaml`
+  - `chenziliang@100.70.33.96:/Users/chenziliang/.codex/AGENTS.md`
+- What changed: disabled only the empty CEO blackboard scan job `hermesceoscan01`; registered CC and Oji role manifests plus registry rows; aligned Oji's Codex injection file to the v3.0 execution-validation Role definition; corrected the registry ACL for `sentinel-role` to match its existing manifest.
+- Impact: removes the 30-minute empty CEO scheduler loop while preserving Hermes runtime and gateway; makes CC/Oji auditable as first-class Role content packages; gives Oji the current v3.0 boundary instead of the retired private-agent framing.
+- Verification: `jq` readback shows `hermesceoscan01.enabled=false`; `rolectl.py validate cc-role.yaml oji-role.yaml sentinel-role.yaml closing-role.yaml` returned `OK`; remote Oji `~/.codex/AGENTS.md` readback shows the v3.0 Role header and no old private-agent framing in the checked lines; `.org` roles commit `f408c48` pushed to `org-constitution`.
+- Boundary: did not edit `~/.org/AGENTS.md`; did not touch Hermes Core source; did not kill or restart Hermes gateway; did not expose secrets or private raw content.
+- Reason: WS-554 requested implementation of Opus-CSO v3.0 operations follow-through for scheduler removal, COO stale-pipeline escalation, Oji injection update, and Role registry landing.
