@@ -1,4 +1,14 @@
 
+
+## 2026-06-14 21:02:17 Sun CST｜[小J] 2026-06-14 daily wrap
+
+- Files changed:
+  - `workspace/daily-logs/2026-06-14.md`
+  - `workspace/journal/xiaoj-diary-2026-06-14.md`
+- What changed: 写入 2026-06-14 每日收工完整日志与小J日记，并按周末规则记录员工休息日状态。
+- Impact: COO 收工审计链补齐；员工静默未被误报为日报缺失或运营异常。
+- Reason: 执行每日收工 cron。
+
 ## 2026-06-13 21:03 CST — 小J每日收工
 
 - files changed: `workspace/daily-logs/2026-06-13.md`, `workspace/journal/xiaoj-diary-2026-06-13.md`
