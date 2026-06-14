@@ -4818,3 +4818,19 @@ JC 17:31 双命题:
 - Verification: `jq` readback shows `hermesceoscan01.enabled=false`; `rolectl.py validate cc-role.yaml oji-role.yaml sentinel-role.yaml closing-role.yaml` returned `OK`; remote Oji `~/.codex/AGENTS.md` readback shows the v3.0 Role header and no old private-agent framing in the checked lines; `.org` roles commit `f408c48` pushed to `org-constitution`.
 - Boundary: did not edit `~/.org/AGENTS.md`; did not touch Hermes Core source; did not kill or restart Hermes gateway; did not expose secrets or private raw content.
 - Reason: WS-554 requested implementation of Opus-CSO v3.0 operations follow-through for scheduler removal, COO stale-pipeline escalation, Oji injection update, and Role registry landing.
+
+## [2026-06-14 14:48 CST] [Codex-CTO] [type:c] WS-574 memory-layer P0 recovery
+
+- Files/state changed:
+  - `/Users/tangyuanjc/.gbrain/brain.pglite.backup.WS-574-20260614-143057`
+  - `/Users/tangyuanjc/.gbrain/local-embeddings-venv`
+  - `/Users/tangyuanjc/.gbrain/huggingface`
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.user.gbrain-local-embeddings.plist`
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.user.gbrain-cron.plist`
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.user.hindsight-ingest.plist`
+- What changed: created a fresh hot backup of `brain.pglite`; stopped the stale Python `http.server` on port 8765; moved the broken external-volume symlinks aside and copied the existing local-embeddings venv plus bge-m3 Hugging Face cache into `~/.gbrain`; bootstrapped/kickstarted GBrain embeddings, GBrain cron, and Hindsight ingest LaunchAgents.
+- Impact: GBrain embedding API is again a real local bge-m3-compatible service under launchd; Hindsight ingest is loaded and writing current company memory again. GBrain still has a catch-up backlog because the hourly cron has a 180s bounded embed window.
+- Verification: embedding smoke returned `model=text-embedding-3-large`, `dim=1536`; Hindsight `last_consolidated_at` advanced from `2026-05-15T03:06:05Z` to `2026-06-14T06:45:48Z` with `pending_operations=0` and `failed_operations=0`; GBrain stats moved from `Pages=1701, Embedded=1228, Timeline=825` to `Pages=1702, Embedded=1403, Timeline=1564`.
+- Remaining: GBrain has `1967 - 1403 = 564` chunks still unembedded; clearing it needs a low-peak catch-up window or a reviewed timeout/catch-up policy. Main disk is now low at about `6.9GiB` free after localizing the 4.3GiB bge-m3 cache.
+- Boundary: no cloud upload; Multica raw ingest stayed disabled by guardrail; no secrets or private raw content were written to the changelog.
+- Reason: WS-574 P0 requested restoring frozen Layer 4a/4b memory ingestion without changing the architecture skeleton.
