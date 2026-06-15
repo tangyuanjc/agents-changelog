@@ -1,4 +1,17 @@
 
+## 2026-06-15 23:40 CST - WS-549 ~/.org gitization closeout
+
+- Actor: Codex-CTO.
+- Files changed:
+  - `/Users/tangyuanjc/.org/.gitignore`
+  - `/Users/tangyuanjc/.org/README.md`
+  - `/Users/tangyuanjc/.org/AGENTS.md`
+  - `/Users/tangyuanjc/.org/scripts/safe-commit.sh`
+  - `/Users/tangyuanjc/agents-changelog/2026-06-15.md`
+- What changed: completed WS-549 closeout for the already-private `tangyuanjc/org-constitution` repo by adding README governance, top-of-AGENTS writer notice, stricter raw/credential/employee-private ignore guardrails, and a safe-commit shell expansion fix.
+- Verification: `~/.org` commits `5bc8363` and `c8aaa79` were pushed and read back on `origin/main`; `git status --short` is clean; metrics unit tests passed.
+- Reason: WS-531 WIKI pilot requires the constitution workspace to be auditable, clean, pushed, and protected from raw/private corpus leakage.
+
 ## 2026-06-15 21:01 CST - [小J] add 2026-06-15 daily wrap
 
 - Files changed:
