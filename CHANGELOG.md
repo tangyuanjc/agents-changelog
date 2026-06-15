@@ -4854,3 +4854,11 @@ JC 17:31 双命题:
 - Remaining: GBrain has `1967 - 1403 = 564` chunks still unembedded; clearing it needs a low-peak catch-up window or a reviewed timeout/catch-up policy. Main disk is now low at about `6.9GiB` free after localizing the 4.3GiB bge-m3 cache.
 - Boundary: no cloud upload; Multica raw ingest stayed disabled by guardrail; no secrets or private raw content were written to the changelog.
 - Reason: WS-574 P0 requested restoring frozen Layer 4a/4b memory ingestion without changing the architecture skeleton.
+
+## [2026-06-15 23:22 CST] [Codex-CTO] [type:c] Claude Code global Multica/Lark allowlist update
+
+- File changed: `/Users/tangyuanjc/.claude/settings.json`
+- What changed: appended five `permissions.allow` rules after the existing `Bash(multica issue status:*)`: `multica issue create`, `multica issue comment`, `multica issue assign`, `multica agent create`, and `lark-cli im +messages-send`.
+- Impact: JC's global Claude Code config can run the approved Multica issue/agent mutation commands and Lark message send command without separate permission prompts.
+- Verification: `python3 -m json.tool ~/.claude/settings.json` returned valid JSON; readback showed exactly the existing status rule plus the five newly appended allow entries.
+- Boundary: did not alter hooks, model, env, enabled plugins, notification settings, or any other `settings.json` section.
