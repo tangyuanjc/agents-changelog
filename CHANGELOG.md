@@ -4882,3 +4882,11 @@ JC 17:31 双命题:
 - Impact: JC's global Claude Code config can run the approved Multica issue/agent mutation commands and Lark message send command without separate permission prompts.
 - Verification: `python3 -m json.tool ~/.claude/settings.json` returned valid JSON; readback showed exactly the existing status rule plus the five newly appended allow entries.
 - Boundary: did not alter hooks, model, env, enabled plugins, notification settings, or any other `settings.json` section.
+
+## [2026-06-16 21:13 CST] [Codex-CTO] [type:c] WS-681 CSO Opus cross-workspace Multica access
+
+- Multica objects changed: `CSO Opus` agent in 熵减法则 (`0ee6063e-c9f0-48e9-ad49-4e8e21c4610b`) instructions only.
+- What changed: added a persistent `multica_owner` wrapper rule for JC Mac mini runtime. The wrapper unsets task-scoped daemon variables so `multica` falls back to JC's local owner profile for approved cross-workspace reads, instead of using another workspace-scoped `mat_` token.
+- Impact: when CSO Opus is invoked from Feishu/Multica and needs 四条人 workspace data, it has an explicit safe path for `workspace get`, `issue list`, and `agent list` while keeping bare `multica` behavior for 熵减法则.
+- Verification: CSO Opus runtime probe `WS-682` returned 四条人 `workspace name=四条人工作区`, `issue count=9`, `agent count=5`; bare `multica` still read 熵减法则 with `issue count=673`. Child probe was set `done`.
+- Boundary: no token value was printed or stored in agent custom env; `custom_env_key_count` remains `0`; no daemon restart and no Lark/Feishu secret changes.
