@@ -1,4 +1,15 @@
 
+## 2026-06-17 22:20:32 CST - 巨量引擎方舟字节 CDN 直连修复
+
+- 文件变更：
+  - `/Users/tangyuanjc/.zprofile`
+  - `/Users/tangyuanjc/.zshenv`
+  - macOS network proxy bypass domains for `Ethernet` and `Wi-Fi`
+  - launchd user env `NO_PROXY/no_proxy`
+- 变更内容：在已有 `oceanengine.com` 直连基础上，补充 `bytescm.com`、`bytetos.com`、`bytecdn.com`、`bytegoofy.com`、`byteadverts.com`、`bytetcc.com` 及通配子域，避免 `agent.oceanengine.com/admin/` 页面 JS/CSS/CDN 资源经过本地 Clash 代理出现 5-8 秒 TLS 失败或超时。
+- 验证：`agent.oceanengine.com/admin/` 主 HTML 默认返回 `200` 约 `0.17s`；关键 JS/CSS 资源默认返回 `200` 约 `0.04-0.35s`；强制走 `127.0.0.1:7897` 的同类资源仍复现 `SSL_ERROR_SYSCALL`；Chrome 打开后标题为“巨量引擎方舟”并跳转到登录页。
+- 原因：这是国内业务站点，主域已直连，但字节 CDN 资源域未覆盖会拖慢页面首屏。
+
 ## 2026-06-17 21:05 小J 每日收工日志与日记
 
 - 文件变更：
