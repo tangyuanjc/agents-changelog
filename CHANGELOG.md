@@ -1,4 +1,14 @@
 
+## 2026-06-17 21:05 小J 每日收工日志与日记
+
+- 文件变更：
+  - `workspace/daily-logs/2026-06-17.md`
+  - `workspace/journal/xiaoj-diary-2026-06-17.md`
+- 变更内容：执行 2026-06-17 每日收工，记录脚本成功、身份/TEAM-STATUS/inbox/raw 交叉核验结果，并写入小J日记。
+- 影响：形成当天 COO 收工审计记录；对外摘要保持证据边界，未将无对话直接定性为异常。
+- 原因：定时每日收工任务要求写完整日志与日记，并验证输出。
+
+
 ## 2026-06-17 14:37 CST - WS-701 daily brief decrypt timeout guard
 
 - Actor: Codex-CTO.
