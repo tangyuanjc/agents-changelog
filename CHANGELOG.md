@@ -1,4 +1,15 @@
 
+## 2026-06-17 23:14:38 CST - 抖音罗盘 ecombdstatic CDN 直连修复
+
+- 文件变更：
+  - `/Users/tangyuanjc/.zprofile`
+  - `/Users/tangyuanjc/.zshenv`
+  - macOS network proxy bypass domains for `Ethernet` and `Wi-Fi`
+  - launchd user env `NO_PROXY/no_proxy`
+- 变更内容：在已有 `jinritemai.com` 直连基础上，补充 `ecombdstatic.com` 及通配子域，避免抖音罗盘登录页 JS/CSS 资源经过本地 Clash 代理出现 7-10 秒慢路径或超时。
+- 验证：`compass.jinritemai.com/login` 主 HTML 默认返回 `200` 约 `0.14s`；`lf3/lf6-fe.ecombdstatic.com` 真实 JS/CSS 资源默认返回 `200` 约 `0.06-0.43s`；修复前同资源默认路径落到 `127.0.0.1:7897` 约 `7-8.6s`。
+- 原因：抖音罗盘主域已直连，但登录页资源域 `ecombdstatic.com` 未覆盖，导致首屏资源加载走慢代理路径。
+
 ## 2026-06-17 22:20:32 CST - 巨量引擎方舟字节 CDN 直连修复
 
 - 文件变更：
