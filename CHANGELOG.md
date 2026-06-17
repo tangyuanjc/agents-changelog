@@ -1,4 +1,15 @@
 
+## 2026-06-17 14:37 CST - WS-701 daily brief decrypt timeout guard
+
+- Actor: Codex-CTO.
+- Files changed on JC MacBook:
+  - `/Users/chenziliang/jc-pipeline/bin/daily-brief.sh`
+  - `/Users/chenziliang/jc-pipeline/skill-dist/daily-brief-skill/daily-brief.sh`
+- What changed: wrapped the WeChat vault `decrypt_all_dbs.py --mode incremental` call in a 300s timeout helper (`DECRYPT_TIMEOUT_SECONDS`, retry once) so a WeChat database lock cannot hang the whole daily-brief pipeline indefinitely.
+- Impact: if decrypt blocks or times out, the existing safe failure path runs: WeChat stays warning, `last_ok_wechat` is not advanced, and the next run covers the missed window instead of falsely marking success or blocking all other brief sources.
+- Verification: `bash -n` passed for both patched scripts; remote readback confirmed the new timeout helper in both files; Python timeout smoke returned `timeout-smoke=ok`; WS-701 was commented and closed after WS-702 had already produced the 2026-06-17 brief.
+- Reason: WS-701 showed `decrypt_all_dbs.py` stuck in `open()` with WeChat holding an exclusive database lock.
+
 ## 2026-06-16 21:00 小J每日收工
 
 - 文件：`workspace/daily-logs/2026-06-16.md`、`workspace/journal/xiaoj-diary-2026-06-16.md`
