@@ -1,4 +1,15 @@
 
+## 2026-06-17 23:36:40 CST - 抖音罗盘验证码链路直连修复
+
+- 文件变更：
+  - `/Users/tangyuanjc/.zprofile`
+  - `/Users/tangyuanjc/.zshenv`
+  - macOS network proxy bypass domains for `Ethernet` and `Wi-Fi`
+  - launchd user env `NO_PROXY/no_proxy`
+- 变更内容：在已有 `compass.jinritemai.com` 与 `ecombdstatic.com` 直连基础上，补充 `douyinec.com`、`douyinstatic.com`、`volccdn.com`、`ibytedapm.com`、`bytednsdoc.com`、`zijieapi.com` 及通配子域，避免抖音罗盘登录验证码/风控相关资源经过本地 Clash 代理出现 5-8 秒 TLS 失败或超时。
+- 验证：修复后 `lf-douyin-pc-web.douyinstatic.com`、`lf3-data.volccdn.com`、`lf3-static.bytednsdoc.com`、`verify.zijieapi.com` 默认路径均约 `0.09-0.46s` 返回且不再落到 `127.0.0.1:7897`；`cloudprint/ebill.douyinec.com` 默认路径约 `0.13-0.18s` 返回。
+- 原因：首屏资源修复后，登录验证码仍会拉取更多字节国内业务/风控域名；这些域未覆盖时会触发验证码侧 `网络环境较差[5110]`。
+
 ## 2026-06-17 23:14:38 CST - 抖音罗盘 ecombdstatic CDN 直连修复
 
 - 文件变更：
