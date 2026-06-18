@@ -4980,3 +4980,12 @@ JC 17:31 双命题:
 - Impact: when CSO Opus is invoked from Feishu/Multica and needs 四条人 workspace data, it has an explicit safe path for `workspace get`, `issue list`, and `agent list` while keeping bare `multica` behavior for 熵减法则.
 - Verification: CSO Opus runtime probe `WS-682` returned 四条人 `workspace name=四条人工作区`, `issue count=9`, `agent count=5`; bare `multica` still read 熵减法则 with `issue count=673`. Child probe was set `done`.
 - Boundary: no token value was printed or stored in agent custom env; `custom_env_key_count` remains `0`; no daemon restart and no Lark/Feishu secret changes.
+
+## [2026-06-19 02:38 CST] [Codex-CTO] [type:c] Browser channel boundary A2A distribution
+
+- File created: `/Users/tangyuanjc/Desktop/桌面 - JC的AI分身的Mac mini/Claude生成的md/2026-06-19_Codex浏览器协作边界说明_JC专用.html`.
+- What changed: produced a JC-style HTML handout explaining CLI/API/MCP vs Codex in-app Browser vs Chrome/CDP vs Computer Use, including Junjie/tangyuanJC Chrome profile boundaries and a short SOP for humans and agents.
+- Multica A2A: created employee-agent distribution issues `WS-788` through `WS-796` for 小龙的大龙, 文雅的白茶, 芳芳的澄川, 皮皮的小P, 奶思的猪猪, 泡泡的大C, 黄宁的橙子, 维欣的codex, and 欣欣的叶子; each issue includes the HTML attachment and inline agent rules.
+- Feishu human notice: sent group notice to `熵减法则-AI组织化` via existing Opus CSO bot channel; readback message IDs `om_x100b6c77e0c580a0b16b6a5be2523c4` (post) and `om_x100b6c77e0719ca8b288959094048c4` (HTML file).
+- Verification: final local HTML readback showed 351 lines and 18,089 bytes; Playwright smoke on desktop and 390px mobile width showed no horizontal overflow; Feishu group readback listed both the post and HTML file; Multica readback showed all nine issues with target `assignee_id`.
+- Boundary: Codex-specific `lark-codex` user lacked send scope and its bot was not in the group; fallback used the existing authorized Opus CSO bot. No tokens, cookies, private chats, or secrets were written to issues, Feishu, or changelog.
