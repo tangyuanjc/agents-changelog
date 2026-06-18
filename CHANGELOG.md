@@ -1,4 +1,17 @@
 
+## 2026-06-19 00:58 CST - Codex-CTO CDP proxy durable fix for Tmall monitor
+
+- Actor: Codex-CTO.
+- Files/state changed:
+  - `/Users/tangyuanjc/.claude/skills/web-access/scripts/cdp-proxy.mjs`
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.user.cdp-proxy.plist`
+  - `/Users/tangyuanjc/Desktop/2026-06-19_tmall-daily-by-day-2026-06-18-retry.html`
+  - `/Users/tangyuanjc/Desktop/tmall_2026-06-19_7day_evidence.png`
+- What changed: fixed the local CDP proxy to read Chrome's real `webSocketDebuggerUrl` from `/json/version` instead of hardcoding the old `/devtools/browser` path, then installed a minimal launchd wrapper for port 3456 so future browser-backed agents reuse a durable proxy instead of a loose node process.
+- Impact: Allen/CSO's earlier Tmall daily-monitor closeout was a partial misdiagnosis. JC does not need to grant a Chrome remote-debugging Allow prompt for this case; the broken layer was the local 3456 proxy. After the fix, Multica WS-768 rerun could read the logged-in Wanxiangtai page and generate a real 7-day recovery report instead of another SOP fallback.
+- Verification: `node --check` passed for `cdp-proxy.mjs`; `plutil -lint` passed for `com.user.cdp-proxy.plist`; `launchctl print gui/501/com.user.cdp-proxy` showed running; `curl http://127.0.0.1:3456/health` returned `connected=true` on Chrome port 9333; `/targets` listed Wanxiangtai and SYCM tabs; WS-768 rerun produced `/Users/tangyuanjc/Desktop/2026-06-19_tmall-daily-by-day-2026-06-18-retry.html` and evidence screenshot, and created Allen closing issue WS-785.
+- Boundary: did not change ad account settings, ROI targets, plans, creatives, cookies, tokens, or credentials; did not print or store secrets.
+
 
 ## 2026-06-18 21:00 CST - 小J daily wrap
 
