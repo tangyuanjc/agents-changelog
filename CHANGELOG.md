@@ -1,4 +1,17 @@
 
+## 2026-06-18 14:38 CST - WS-721/WS-722 data-pipeline login guards audit
+
+- Actor: Codex-CTO.
+- Files verified from prior local fixes:
+  - `/Users/tangyuanjc/.openclaw/workspace/skills/douyin-compass-product-card-feishu-gauss/scripts/login_qianchuan_target.mjs`
+  - `/Users/tangyuanjc/.codex/skills/qianchuan-beast-daily-sync/scripts/export_qianchuan_yesterday.py`
+  - `/Users/tangyuanjc/data-pipelines/scripts/refresh_compass_login.mjs`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/skills/douyin-compass-product-card-feishu-gauss/scripts/refresh_compass_login.mjs`
+- What changed: recorded the previously completed WS-721 and WS-722 local automation fixes: Qianchuan account selection now waits for the real `qianchuan.jinritemai.com` page with target `aavid=1844034638449865`, and Douyin Compass login refresh now saves state on authenticated `hasData=true` responses even when small-shop hot-rank `total=0`.
+- Verification on 2026-06-18: `node --test tests/*.test.mjs` in the Compass skill passed 12/12; `python3 -m unittest discover -s tests -p 'test_*.py'` in `qianchuan-beast-daily-sync` passed 12/12; `node --test tests/refresh_compass_login.test.mjs` in `data-pipelines` passed 4/4.
+- Remaining blockers: WS-721 still needs JC manual Qianchuan login/account selection to refresh `qianchuan-state.json`; WS-722 still needs JC manual Compass login in the launcher to refresh both `compass-state.json` copies. No cookies, tokens, or browser state values were printed.
+- Reason: the 2026-06-18 heartbeat found these persistent local automation changes were not yet represented in `agents-changelog`, so the audit trail is now explicit.
+
 ## 2026-06-17 23:36:40 CST - 抖音罗盘验证码链路直连修复
 
 - 文件变更：
