@@ -1,3 +1,12 @@
+## 2026-06-20 21:01 CST - 小J daily wrap
+
+- 文件变更：
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/daily-logs/2026-06-20.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-06-20.md`
+- 变更内容：执行 2026-06-20 每日收工；运行日报生成脚本；按周末规则核验 TEAM-STATUS、共享 inbox、raw；写入完整日志与小J日记。
+- 影响：保留 COO cron 当日审计记录；员工静默按周末休息日处理，不误报缺报或异常。
+- 原因：每日收工 cron 输出与日志沉淀。
+
 ## 2026-06-20 14:33 CST - WS-821 OpenCLI Browser Bridge default profile recovery
 
 - Actor: Codex-CTO.
