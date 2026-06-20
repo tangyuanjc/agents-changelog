@@ -1,3 +1,13 @@
+## 2026-06-20 14:33 CST - WS-821 OpenCLI Browser Bridge default profile recovery
+
+- Actor: Codex-CTO.
+- State changed:
+  - OpenCLI Browser Bridge default profile set to `ps6cdjtk` with `opencli profile use ps6cdjtk`.
+- What changed: restored an explicit default Browser Bridge profile after WS-821 showed Loop Radar Twitter source degradation and `opencli daemon status` reported connected profiles but no selected profile.
+- Verification: `opencli doctor` now shows daemon v1.8.3 OK, profile `ps6cdjtk` as default, connectivity OK, and the remaining Extension status as unstable; a read-only `opencli twitter search "AI since:2026-06-20" --limit 3 -f json` returned live Twitter results.
+- Remaining risk: the Chrome extension/service-worker still flaps, so Generator still needs a Phase 2 health gate that classifies source-degraded 0-hit runs separately from true 0-hit runs.
+- Boundary: did not restart Chrome, kill browser processes, inspect cookies, print secrets, or change any Twitter account state.
+
 ## 2026-06-19 21:00 CST - 小J daily wrap
 
 - Files changed:
