@@ -7,6 +7,16 @@
 - 影响：保留 COO cron 当日审计记录；员工静默按周末休息日处理，不误报缺报或异常。
 - 原因：每日收工 cron 输出与日志沉淀。
 
+## 2026-06-21 14:35 CST - WS-834 Loop Radar Generator durable autopilot guard
+
+- Actor: Codex-CTO.
+- State changed:
+  - Multica autopilot `3caf2921-e71b-478b-858a-6ad09c90326f` (`Loop Engineering Radar Daily Dispatcher · 每天 10:20 上海`) description.
+- What changed: persisted the WS-821/WS-834 fixes into the actual autopilot, not only the completed run workdir: Phase 2 now has Browser Bridge source-health gating; Phase 6 distinguishes source-degraded from true-zero; Phase 4 requires create/get/list verification before claiming a main issue exists; Phase 5 no longer calls unsupported `multica issue metadata set`.
+- Verification: `multica autopilot get 3caf2921-e71b-478b-858a-6ad09c90326f --output json` readback showed `source health gate`, `source-degraded`, mandatory `Phase 4 verified`, correct `.issues[]` parsing, and the CTO durable patch log.
+- Related Multica issues: WS-834 and WS-821 were both commented with the durable update evidence. WS-833 was separately moved to `blocked` because paopao runtime/host is offline.
+- Boundary: did not change trigger cadence, delete autopilots, restart Chrome, inspect cookies/tokens, or expose secrets.
+
 ## 2026-06-20 14:33 CST - WS-821 OpenCLI Browser Bridge default profile recovery
 
 - Actor: Codex-CTO.
