@@ -5027,3 +5027,16 @@ JC 17:31 双命题:
 - Feishu human notice: sent group notice to `熵减法则-AI组织化` via existing Opus CSO bot channel; readback message IDs `om_x100b6c77e0c580a0b16b6a5be2523c4` (post) and `om_x100b6c77e0719ca8b288959094048c4` (HTML file).
 - Verification: final local HTML readback showed 351 lines and 18,089 bytes; Playwright smoke on desktop and 390px mobile width showed no horizontal overflow; Feishu group readback listed both the post and HTML file; Multica readback showed all nine issues with target `assignee_id`.
 - Boundary: Codex-specific `lark-codex` user lacked send scope and its bot was not in the group; fallback used the existing authorized Opus CSO bot. No tokens, cookies, private chats, or secrets were written to issues, Feishu, or changelog.
+
+## [2026-06-21 15:00 CST] [Codex-CTO] [type:c] WS-650 GBrain dream-cycle nightly hook
+
+- Files changed:
+  - `/Users/tangyuanjc/blackboard-v3/scripts/gbrain-cron.sh`
+  - `/Users/tangyuanjc/blackboard-v3/deploy/launchd/com.user.gbrain-cron.plist`
+  - `/Users/tangyuanjc/Library/LaunchAgents/com.user.gbrain-cron.plist`
+  - `/Users/tangyuanjc/gbrain/src/commands/schema.ts`
+  - `/Users/tangyuanjc/gbrain/test/schema-cli.test.ts`
+- What changed: added a daily 02:00 local dream-cycle gate to the existing hourly `com.user.gbrain-cron`, with a script-level lock, PGLite backup before real dream runs, bounded `gbrain integrity auto --limit 25 --skip-urls`, and live plist env readback. Fixed the GBrain schema CLI bundled-pack locator so `gbrain schema use gbrain-creator` works, then enabled `gbrain-creator` plus a low-budget `enrich_thin` phase.
+- Impact: GBrain now has a real nightly self-maintenance path for concept synthesis/enrichment/citation integrity while preserving the existing hourly digest loop and PGLite single-writer guardrails.
+- Verification: `bun test test/schema-cli.test.ts` passed 14/14 with PATH including `~/.bun/bin`; `sh -n scripts/gbrain-cron.sh` passed; source/live `com.user.gbrain-cron.plist` passed `plutil -lint`; forced wrapper dry-run exited 0 and entered `extract_atoms`, `synthesize_concepts`, and `enrich_thin`; `daemon-health-check.ts --dry-run --json` returned `ok=true`; live LaunchAgent readback shows `GBRAIN_DREAM_ENABLED=1`, `GBRAIN_DREAM_HOUR=2`, `GBRAIN_INTEGRITY_LIMIT=25`.
+- Boundary: no secrets were printed or stored; no AGENTS.md/global constitution edits; no manual platform login or production browser interaction.
