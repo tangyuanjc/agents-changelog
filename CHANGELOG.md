@@ -1,3 +1,14 @@
+## 2026-06-22 20:01 CST - Codex-CTO Typeless proxy-path latency reset
+
+- Actor: Codex-CTO.
+- State changed:
+  - macOS network service `AX88179A` proxy bypass domains.
+  - Typeless Chromium network state cache files under `~/Library/Application Support/Typeless/`.
+- What changed: added `typeless.com`, `*.typeless.com`, `typeless-static.com`, and `*.typeless-static.com` to the `AX88179A` bypass list, then backed up and cleared Typeless `Network Persistent State` files so the app rebuilt its stale Chromium network-quality cache.
+- Impact: keeps Typeless on the fast direct path while leaving the general proxy path intact for sites that need it, reducing recurrence of Typeless "connection slower than usual" prompts after app/network changes.
+- Verification: `api.typeless.com` default path used the direct remote IP and completed in about `1.20s`; forced local proxy was still about `6.11s`; `typeless-static.com` default completed in about `1.09s` while forced proxy was about `6.44s`; Google direct still timed out but default/proxy succeeded, confirming this remains a narrow Typeless bypass rather than a global proxy disable.
+- Boundary: did not change Clash/mihomo mode, did not disable the proxy globally, did not inspect or store Typeless auth tokens, and did not change organization AGENTS.md.
+
 ## 2026-06-20 21:01 CST - 小J daily wrap
 
 - 文件变更：
