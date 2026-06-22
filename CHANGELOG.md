@@ -1,3 +1,12 @@
+# CHANGELOG
+
+## 2026-06-22 21:01 CST - 小J daily wrap
+
+- 文件变更：`workspace/daily-logs/2026-06-22.md`、`workspace/journal/xiaoj-diary-2026-06-22.md`
+- 变更内容：执行每日收工；记录 2026-06-22 日报脚本结果、身份/TEAM-STATUS/inbox/raw 交叉核验、简版复盘与小J日记。
+- 影响：为 COO workspace 留存当日运营审计证据；本日为周一，当前未见同日输入落库但未扩大定性为异常。
+- 原因：定时每日收工任务要求写入完整日志与日记并验证。
+
 ## 2026-06-22 20:01 CST - Codex-CTO Typeless proxy-path latency reset
 
 - Actor: Codex-CTO.
