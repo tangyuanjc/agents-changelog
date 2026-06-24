@@ -5131,3 +5131,13 @@ JC 17:31 双命题:
 - Multica: added CTO follow-up comment `56ebea1f-205e-479a-9422-4f0a3db3b72a` under `WS-952`.
 - Governance: changelog+push only; no `AGENTS.md` edit because this is covered by existing host-network three-layer validation and long-running process restart hygiene.
 - Boundary: no subscription URL, node credential, token, cookie, password, or secret env value was written.
+
+## [2026-06-25 04:36 CST] [Codex-CTO] [type:c] MacBook OG PATH bootstrap and FlClash baseline clarification
+
+- Host changed: `macbook-air` / `chenziliangdeMacBook-Air.local`.
+- What changed: added `/Users/chenziliang/.zshenv` with a minimal static PATH bootstrap for non-interactive zsh shells: `~/.local/bin`, local Node, Bun, and Homebrew. No proxy variables, token paths, brew eval, or nvm loading were added.
+- Why: MacBook interactive shells could run `codex-cli 0.130.0`, but non-interactive/direct execution could fail with `env: node: No such file or directory`, which could make future daemon/agent checks misdiagnose Codex CLI as unavailable.
+- Verification: `zsh -fc`, `zsh -lc`, and direct `~/.local/bin/codex --version` all returned `codex-cli 0.130.0`; `zsh -fc` proxy env grep returned empty.
+- Baseline clarification: JC manually enabled MacBook FlClash system proxy to `127.0.0.1:7890`; this is acceptable if intentional and live, while TUN-only remains a stricter low-dead-port-risk baseline. Mac mini currently differs because its FlClash prefs show `systemProxy=true` but live `scutil --proxy` is all off.
+- Governance: changelog+push only; no `AGENTS.md` edit because this is implementation hygiene and baseline clarification, not a new cross-agent rule.
+- Boundary: no subscription URL, node credential, token, cookie, password, or secret env value was written.
