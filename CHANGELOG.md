@@ -5108,3 +5108,13 @@ JC 17:31 双命题:
 - Follow-up: removed `/Applications/Clash Verge.app` from the MacBook application folder by moving it to `/Users/chenziliang/.Trash/Clash Verge.app.removed.20260625032907`; root helper cleanup remains a local-admin-password step.
 - Governance: this was a host-network-config implementation with future agent impact, so changelog+push only; no `AGENTS.md` edit because no new cross-agent rule was introduced.
 - Boundary: no subscription URL, node credential, token, cookie, or password was written to logs, memory, or changelog.
+
+## [2026-06-25 03:48 CST] [Codex-CTO] [type:c] FlClash cross-host network audit dispatch
+
+- MacBook cleanup verification: after JC ran the local sudo removal, SSH readback showed `/Applications/Clash Verge.app` missing, the old Clash Verge LaunchDaemon and privileged helper bundle missing, no clash-verge/verge-mihomo process, no `7897` sockets, system proxy disabled, DNS led by `223.5.5.5`, Tailscale `CorpDNS=false`, TUN route via `198.18.0.1` on `utun5`, and transparent GitHub curl `200` with local `198.18.0.1`.
+- Mac mini read-only scan: system proxy disabled, DNS led by `223.5.5.5`, Tailscale `CorpDNS=false`, TUN route via `198.18.0.1` on `utun4`, fake-ip and transparent curl passed for google/GitHub/Anthropic/Baidu/Codex upstream, forced `127.0.0.1:7890` passed, `7897` refused, and no old Clash app/helper process or files were present.
+- Open review risks: Mac mini still differs from the stricter MacBook baseline with `allow-lan=true`, `bind-address=*`, `dns.listen=0.0.0.0:1053`, FlClash prefs `systemProxy=true`/`stack=mixed`/`auto-route=false`, Ethernet disabled proxy port still storing `7897`, and an old launchd enabled override record with no live service.
+- A2A dispatched: created `WS-951` for CSO Opus to independently review Mac mini FlClash/TUN state and `WS-952` for OG on MacBook to independently review MacBook state plus compare against Mac mini; both are children of `WS-943`.
+- Human fallback: wrote a paste-ready MacBook Codex Desktop prompt at `/Users/tangyuanjc/Desktop/桌面 - JC的AI分身的Mac mini/Claude生成的md/2026-06-25_MacBook_CodexCTO_网络独立审查输入指令.md` and synced it to the same path on MacBook.
+- Governance: changelog+push only; no `AGENTS.md` edit because existing host-network three-layer validation rules already cover the case.
+- Boundary: no subscription URL, node credential, token, cookie, password, or secret env value was written.
