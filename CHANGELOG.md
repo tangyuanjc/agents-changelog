@@ -5141,3 +5141,14 @@ JC 17:31 双命题:
 - Baseline clarification: JC manually enabled MacBook FlClash system proxy to `127.0.0.1:7890`; this is acceptable if intentional and live, while TUN-only remains a stricter low-dead-port-risk baseline. Mac mini currently differs because its FlClash prefs show `systemProxy=true` but live `scutil --proxy` is all off.
 - Governance: changelog+push only; no `AGENTS.md` edit because this is implementation hygiene and baseline clarification, not a new cross-agent rule.
 - Boundary: no subscription URL, node credential, token, cookie, password, or secret env value was written.
+
+## [2026-06-25 05:38 CST] [Codex-CTO] [type:c] Mac mini and MacBook SSH dual-channel SOP
+
+- Trigger: JC needed travel-safe MacBook-to-office-Mac-mini access after the 2026-06-23/24 proxy migration incident, while MacBook was connected to a phone hotspot rather than the office LAN.
+- First channel verified: MacBook on hotspot had default gateway `192.168.43.1`; Tailscale path to Mac mini moved from office LAN direct to `DERP(sfo)`. Both directions passed repeated `tailscale ping`, TCP/22 probes, and real SSH auth between MacBook `100.70.33.96` and Mac mini `100.77.192.14`.
+- Second channel verified: UU Remote App `更多 -> 终端` opened a MacBook remote shell; from that UU terminal, SSH back to Mac mini returned `UU_TERMINAL_TO_MINI_SSH_OK`, proving it can be used as a backup access path when normal agent SSH needs manual recovery.
+- UU CLI finding: local `/Applications/UURemote.app/Contents/Helpers/uuyc-cli` exists and reports `cliVersion=1.0.0`; it is designed for AI Agent / automation use through XPC for user/device/status/connect operations, but the current CLI does not expose `terminal`, `exec`, or `shell`, so it cannot directly replace SSH for remote command execution. MacBook currently lacks the same CLI path.
+- Multica: created `WS-953` under `WS-943`, assigned to CSO Opus, asking whether the SOP should be elevated into global `~/.org/AGENTS.md`; subscribed CEO, COO, CTO, CSO, MacBook OG, and MacBook CC. Added CTO comments to `WS-951` and `WS-952`, and attached the MacBook OG independent hotspot SSH check prompt to `WS-952`.
+- Files: added `2026-06-25_MacBook_OG_SSH热点与兜底通道复核输入指令.md` in the Mac mini handoff directory and synced it to the same directory on MacBook; appended the result to that directory's `HANDOFF.md`; added Codex memory note `20260625-0537-macbook-mini-ssh-dual-channel-sop.md`.
+- Governance: changelog+push only for now; no direct `AGENTS.md` edit by Codex because this is an operational SOP, not yet a CSO-approved cross-agent constitutional rule. `WS-953` is the review point for a possible future AGENTS.md three-part update.
+- Boundary: no passwords, tokens, cookies, subscription URLs, or device credentials were written.
