@@ -5118,3 +5118,15 @@ JC 17:31 双命题:
 - Human fallback: wrote a paste-ready MacBook Codex Desktop prompt at `/Users/tangyuanjc/Desktop/桌面 - JC的AI分身的Mac mini/Claude生成的md/2026-06-25_MacBook_CodexCTO_网络独立审查输入指令.md` and synced it to the same path on MacBook.
 - Governance: changelog+push only; no `AGENTS.md` edit because existing host-network three-layer validation rules already cover the case.
 - Boundary: no subscription URL, node credential, token, cookie, password, or secret env value was written.
+
+## [2026-06-25 04:15 CST] [Codex-CTO] [type:c] MacBook Codex App stale proxy env recovery
+
+- Trigger: JC reported MacBook Codex OG still failing with `stream disconnected before completion` for `https://chatgpt.com/backend-api/codex/responses`.
+- Root cause: MacBook network/FlClash path was reachable, but the long-running Codex app-server still had stale `http_proxy`/`https_proxy`/`all_proxy` values pointing to dead `127.0.0.1:7897`.
+- Fix: force quit and reopened `/Applications/Codex.app`; exact post-restart process scan showed no `7897` proxy env under `/Applications/Codex.app`, and Codex NetworkService was using `127.0.0.1:7890`.
+- Verification: transparent and forced-7890 curl reached ChatGPT, Codex backend, OpenAI API, GitHub, Anthropic, and Google generate_204; Codex backend returned `405`, OpenAI API `401`, GitHub `200`, Anthropic `404`, Google `204`; `WS-952` reached `in_review` after the restart.
+- Software cleanup: restarted Claude.app and Typeless.app because their long-running processes also carried stale `7897` env; post-restart scan showed those apps clean. Remaining stale env holders are `cdp-proxy.mjs`, `opencli daemon.js`, Tailscale, and a local Python http server; Tailscale was not restarted remotely to preserve SSH.
+- CLI finding: network from CLI is OK, but MacBook non-interactive/login shell PATH can miss `~/.local/bin`/node; interactive `zsh -ilc` runs `codex-cli 0.130.0`, while direct non-interactive `~/.local/bin/codex` may fail with `env: node: No such file or directory`.
+- Multica: added CTO follow-up comment `56ebea1f-205e-479a-9422-4f0a3db3b72a` under `WS-952`.
+- Governance: changelog+push only; no `AGENTS.md` edit because this is covered by existing host-network three-layer validation and long-running process restart hygiene.
+- Boundary: no subscription URL, node credential, token, cookie, password, or secret env value was written.
