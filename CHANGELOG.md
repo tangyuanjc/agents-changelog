@@ -5097,3 +5097,13 @@ JC 17:31 双命题:
 - P1: ① Opus 自身 in_progress 堵 11 条 (最老 WS-392 已 13.8 天). ② `com.user.multica-agent-runtime-daemon` launchctl `- 1` 但 desktop app 兜底跑得动 — 入口信号陈旧需核. ③ changelog 已切 CHANGELOG.md 单文件模式, D 线审计落地形式跟进 (本次起按段落 append, 不再 per-day file).
 - 第二天聚焦: in_review 堰塞湖分流 sprint — 派分流 agent 三分类 (可直接 done / 需 JC 拍板 / 需重派), 本周目标降到 <50.
 - Boundary: 仅做审计 + 写 changelog, 未改 AGENTS.md, 未发起新派单, 未动 host 状态. 报告全文落 WS-843 comment id `9e4cbeb3-5f64-4483-8ce4-5caff1a27ed6`.
+
+## [2026-06-25 03:24 CST] [Codex-CTO] [type:c] MacBook FlClash TUN migration recovery
+
+- Host changed: `macbook-air` / `chenziliangdeMacBook-Air.local` over Tailscale SSH.
+- What changed: migrated the MacBook network path from old Clash Verge `7897` remnants to FlClash `mixed-port=7890` with TUN/fake-ip; removed the active `7897` shell proxy export; disabled user-level `com.multica.mihomo` and user-level Clash Verge LaunchAgent; set Tailscale `accept-dns=false`; disabled macOS HTTP/HTTPS/SOCKS system proxy; set Wi-Fi DNS order to `223.5.5.5,114.114.114.114`; fixed FlClash app prefs to `autoRun=true`, `tun.enable=true`, `stack=system`, `auto-route=true`, `strict-route=true`, and app system proxy off.
+- Impact: MacBook API/CLI/GUI traffic now uses the FlClash transparent TUN path instead of dead `127.0.0.1:7897`; Tailscale stays available for SSH but no longer takes over DNS.
+- Verification: `scutil --proxy` readback showed all system proxy flags `0`; `scutil --dns` resolver #1 starts with `223.5.5.5`; Tailscale prefs show `CorpDNS=false`; `route -n get 8.8.8.8` goes through `198.18.0.1` on `utun5`; `dscacheutil` returns `198.18.x` fake-ip for google/GitHub/Anthropic/Baidu/Codex upstream; transparent `curl --noproxy '*'` returned google `204`, GitHub `200`, Anthropic `404`, Baidu `200`, and `api.655147.xyz` `200`; forced `curl -x http://127.0.0.1:7890` also passed.
+- Remaining: root Clash Verge privileged helper under `/Library/LaunchDaemons/io.github.clash-verge-rev.clash-verge-rev.service.plist` and `/Library/PrivilegedHelperTools/io.github.clash-verge-rev.clash-verge-rev.service.bundle` still requires local admin password to remove. At verification time `7897` had no listener, but several long-lived apps still held old established sockets and should be restarted after admin cleanup if needed.
+- Governance: this was a host-network-config implementation with future agent impact, so changelog+push only; no `AGENTS.md` edit because no new cross-agent rule was introduced.
+- Boundary: no subscription URL, node credential, token, cookie, or password was written to logs, memory, or changelog.
