@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 2026-06-25 21:00 CST - 小J daily wrap
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/daily-logs/2026-06-25.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-06-25.md`
+- What changed: wrote 2026-06-25 COO daily wrap log and XiaoJ diary after running the daily report generator and authority-file cross-check.
+- Impact: preserves verified end-of-day operations evidence for the COO workspace; final user-facing output remains concise.
+- Reason: scheduled daily wrap cron requires durable log and diary files plus audit trail.
+
 ## 2026-06-24 21:02 CST - 小J daily wrap 2026-06-24
 
 - Files changed:
