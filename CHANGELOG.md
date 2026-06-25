@@ -5181,3 +5181,15 @@ JC 17:31 双命题:
 - Verification: `multica issue get` readback showed `WS-988` in progress and `WS-989`/`WS-990` assigned to the intended employee agents; Lark `messages-mget` read back the exact group message content.
 - Boundary: no VPN panel URL, SSH password, subscription URL, API key, token, cookie, or node credential was written to Multica, Feishu, changelog, memory, or handoff. Credential transfer is explicitly limited to JC private channels or target-machine local input.
 - Governance: changelog+push only; no `~/.org/AGENTS.md` edit because this is a scoped implementation SOP distribution, not a new constitutional rule.
+
+## [2026-06-26 01:15 CST] [Codex-CTO] [type:c] NetBird three-city Agent SSH overlay PoC planning
+
+- Trigger: JC asked CTO to continue until NetBird is deployed for Guangzhou/Hangzhou/Shenzhen company devices and agents, with Tailscale retained as the already verified Mac mini/MacBook channel.
+- Architecture decision: NetBird remains the primary organization overlay candidate; Tailscale stays as JC's current personal-device channel; Nebula is tracked as a later heterogeneous secondary path, not a cold standby installed only during incidents.
+- Multica: created/organized parent `WS-996` under `WS-943`, CSO review `WS-997`, and child work split `WS-1000` control-plane decision, `WS-1001` three-peer pilot, `WS-1002` three-city rollout, and `WS-1003` Nebula dual-path lab.
+- CSO review: `WS-997` returned `REVISE`: direction GO after mandatory guardrails: client `--disable-dns` plus no route/default-route behavior, explicit `ops-admins` membership, `ops-admins -> employee-laptops tcp/22`, quarantine deny-all with ops-only forensic SSH, MTU/utun validation, and Nebula dual-running at least one core device and one runner later.
+- Host boundary: read-only VPS inspection confirmed existing x-ui/VLESS production host `104.225.234.37` has port 80/443 coupled to Docker Caddy / HAProxy / Xray and should not be the default NetBird control plane.
+- Artifacts: updated `2026-06-26_NetBird三地Agent-SSH内网部署计划.md`, added `2026-06-26_NetBird控制面准备给JC.md`, appended the local `HANDOFF.md`, and added Codex memory note `20260626-0115-netbird-three-city-agent-ssh.md`.
+- Current blocker: no local NetBird config, no setup key/env, no logged-in cloud CLI/token, and no clean VM/domain selected yet. Client installation is intentionally blocked until `WS-1000` is unblocked.
+- Governance: changelog+memory+runbook only for PoC. No `~/.org/AGENTS.md` edit until PoC passes and at least two employee agents start using NetBird as a standing cross-region SSH path.
+- Boundary: no setup key, admin password, cloud token, VPN credential, cookie, or API key was written to Multica, Feishu, changelog, memory, or handoff.
