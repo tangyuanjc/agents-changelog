@@ -5204,3 +5204,13 @@ JC 17:31 双命题:
 - Multica: added `WS-1000` comment `61dc0af5-c7fe-460c-92c2-8e3726c26498`, `WS-1001` comments `eab27233-ba3d-487e-a6b2-0b75098246cc` and `e9aeef7f-6988-41c7-9253-cce631f362f7`.
 - Governance: still changelog+memory+handoff only; no `~/.org/AGENTS.md` edit until PoC graduates to standing cross-agent infrastructure.
 - Boundary: no NetBird setup key, token, admin password, cloud credential, VPN credential, cookie, or API key was written. No NetBird client was installed in this step.
+
+## [2026-06-26 01:42 CST] [Codex-CTO] [type:c] NetBird P2 intake/preflight and portable toolkit
+
+- Trigger: Continuing the NetBird rollout while `WS-1000` remains blocked on JC's private NetBird Cloud login/org/setup-key step; another runtime noted possible File Provider/dataless readability issues for the toolkit path.
+- Tooling: added `netbird-rollout/preflight-peer.sh`, `policy-matrix.md`, `city-peer-intake.md`, and `city-peer-intake.csv` to support no-secret Guangzhou/Hangzhou/Shenzhen peer nomination before distributing any setup key.
+- Portable package: created `netbird-rollout-20260626T0138.tar.gz` excluding evidence plus sha256 `72f94f418bca8739c3ac95f2131c4157bf4163ab9661c115e02ea2d22ac495a1`, so future runtimes can materialize the toolkit into their own workdir before execution.
+- Verification: Mac mini and MacBook both passed sha256/bash syntax checks and `preflight-peer.sh` smoke; both read back NetBird not installed and local TCP/22 reachable. No DNS/routes/FlClash/Tailscale state was changed.
+- Multica: added `WS-1001` comment `79057dba-2f01-480d-a94d-df1d866aa298` and `WS-1002` comment `fe4761f6-53b0-4e7b-9f6f-6217e7390e58`.
+- Governance: changelog+memory+handoff only; `WS-1002` stays backlog until Cloud setup key and P1 pilot pass.
+- Boundary: no setup key, token, admin password, cloud credential, VPN credential, cookie, or API key was written. NetBird was still not installed.
