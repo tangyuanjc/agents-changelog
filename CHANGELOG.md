@@ -5193,3 +5193,14 @@ JC 17:31 双命题:
 - Current blocker: no local NetBird config, no setup key/env, no logged-in cloud CLI/token, and no clean VM/domain selected yet. Client installation is intentionally blocked until `WS-1000` is unblocked.
 - Governance: changelog+memory+runbook only for PoC. No `~/.org/AGENTS.md` edit until PoC passes and at least two employee agents start using NetBird as a standing cross-region SSH path.
 - Boundary: no setup key, admin password, cloud token, VPN credential, cookie, or API key was written to Multica, Feishu, changelog, memory, or handoff.
+
+## [2026-06-26 01:30 CST] [Codex-CTO] [type:c] NetBird P1 rollout toolkit and MacBook sync
+
+- Trigger: Continuing the active NetBird three-city deployment goal after `WS-1000` selected NetBird Cloud but before JC completed Cloud login/org/setup-key creation.
+- Tooling: added local `netbird-rollout/` with `collect-baseline.sh`, `safe-up.sh`, `validate-ssh.sh`, and `README.md`. `safe-up.sh` uses `--setup-key-file` and forces `--disable-dns --disable-client-routes --disable-server-routes`; it does not enable exit node, default route, route advertisement, or DNS management.
+- Verification on Mac mini: `bash -n netbird-rollout/*.sh` passed; baseline smoke wrote evidence; `safe-up.sh --cloud` dry-run collected baseline and printed the guarded command without installing NetBird or changing DNS/routes/FlClash/Tailscale.
+- Browser state: CDP opened `https://app.netbird.io` and landed on `login.netbird.io`, so CTO cannot create the Cloud org/setup key until JC logs in privately.
+- MacBook sync: verified Tailscale DERP(sin), TCP/22, and real SSH auth to MacBook; synced the rollout toolkit, NetBird plan, JC control-plane instruction, and `HANDOFF.md`; MacBook `bash -n`, baseline smoke, and `safe-up.sh` dry-run all passed.
+- Multica: added `WS-1000` comment `61dc0af5-c7fe-460c-92c2-8e3726c26498`, `WS-1001` comments `eab27233-ba3d-487e-a6b2-0b75098246cc` and `e9aeef7f-6988-41c7-9253-cce631f362f7`.
+- Governance: still changelog+memory+handoff only; no `~/.org/AGENTS.md` edit until PoC graduates to standing cross-agent infrastructure.
+- Boundary: no NetBird setup key, token, admin password, cloud credential, VPN credential, cookie, or API key was written. No NetBird client was installed in this step.
