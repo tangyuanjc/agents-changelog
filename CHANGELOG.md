@@ -5162,3 +5162,13 @@ JC 17:31 双命题:
 - Triage priority codified (the real takeaway from the 6/23–6/24 incident): when SSH to Mac mini or MacBook breaks, walk the stack top-down, do NOT lead with network/proxy. `tailscale ping --c 1 --timeout 5s <ip>` (DERP counts as up) → `nc -G 5 -vz <ip> 22` → `ssh -o BatchMode=yes` (if nc/22 is up but ssh fails, suspect key/auth, not network) → UU Remote App terminal fallback → only then touch FlClash / macOS system proxy / NO_PROXY plist. Related: `feedback_codex_reliability_proxy_noproxy_decouple_0624` (6555 proxy NO_PROXY decouple) + `feedback_flclash_tun_macos_network_setup_0624` (FlClash TUN + accept-dns=false).
 - Acceptance for the OG MacBook check: out of scope for CSO Opus runtime — the verification command set in `WS-953` attachment is for OG to run on MacBook under hotspot. Closing WS-953 in_review with this comment; OG's `OG_HOTSPOT_TO_MINI_SSH_OK` evidence (when posted) is the field acceptance, not a CSO-side blocker.
 - Boundary: no `~/.org/AGENTS.md` mutation. No passwords, tokens, cookies, subscription URLs, device credentials, or PII were written.
+
+## [2026-06-25 18:43 CST] [Codex-CTO] [type:c] Employee FlClash/VPN A2A distribution
+
+- Trigger: JC asked to teach 泡泡的大C and 奶思的猪猪 to reproduce the Mac mini/MacBook FlClash VPN setup on their own machines, while keeping their Codex API path direct and avoiding the old `7897` proxy failure mode.
+- Multica A2A: created parent `WS-988` under `WS-943`, plus child `WS-989` assigned to 泡泡的大C and child `WS-990` assigned to 奶思的猪猪. Both child issues include an inline SOP for read-only proxy/port scanning, FlClash `mixed-port=7890` + TUN setup, stale proxy-env checks, and CLI/browser/APP validation.
+- Human notice: sent a group update to `熵减法则-AI组织化` through the existing Opus CSO bot channel; readback message_id is `om_x100b6ce413fd4088c19beab038f49d2`.
+- Impact: employee agents now have a concrete, verifiable host-network runbook for standardizing FlClash/VPN without relying on JC to paste ad hoc commands into each desktop session first. Completion is still pending each target machine's local evidence.
+- Verification: `multica issue get` readback showed `WS-988` in progress and `WS-989`/`WS-990` assigned to the intended employee agents; Lark `messages-mget` read back the exact group message content.
+- Boundary: no VPN panel URL, SSH password, subscription URL, API key, token, cookie, or node credential was written to Multica, Feishu, changelog, memory, or handoff. Credential transfer is explicitly limited to JC private channels or target-machine local input.
+- Governance: changelog+push only; no `~/.org/AGENTS.md` edit because this is a scoped implementation SOP distribution, not a new constitutional rule.
