@@ -1,5 +1,15 @@
 # CHANGELOG
 
+
+## 2026-06-29 21:00 CST - 小J daily wrap
+
+- Files changed:
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/daily-logs/2026-06-29.md`
+  - `/Users/tangyuanjc/.hermes/profiles/coo/workspace/journal/xiaoj-diary-2026-06-29.md`
+- What changed: 写入 2026-06-29 每日收工完整日志与小J日记，并记录脚本执行/权威文件核验结果。
+- Impact: 为 COO 每日运营复盘提供可审计记录；最终对外汇报仍保持简版。
+- Reason: 执行每日收工 cron。
+
 ## 2026-06-28 21:05 CST - 小J daily wrap
 - Files changed: `workspace/daily-logs/2026-06-28.md`, `workspace/journal/xiaoj-diary-2026-06-28.md`
 - What changed: wrote Sunday end-of-day COO wrap and XiaoJ diary after running `daily_report_generator.py` and cross-checking identity, TEAM-STATUS, shared inbox, and raw inbox authority.
