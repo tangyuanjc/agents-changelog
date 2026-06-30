@@ -5250,3 +5250,13 @@ JC 17:31 双命题:
 - Multica: added `WS-1001` comment `79057dba-2f01-480d-a94d-df1d866aa298` and `WS-1002` comment `fe4761f6-53b0-4e7b-9f6f-6217e7390e58`.
 - Governance: changelog+memory+handoff only; `WS-1002` stays backlog until Cloud setup key and P1 pilot pass.
 - Boundary: no setup key, token, admin password, cloud credential, VPN credential, cookie, or API key was written. NetBird was still not installed.
+
+## [2026-06-30 18:47 CST] [Codex-CTO] [type:c] Tencent Marvis App and community Marvis CLI installed on Mac mini
+
+- Trigger: JC asked Codex-CTO to use OpenCLI/GitHub/X research to install Tencent's new Marvis agent on both App and CLI surfaces.
+- App install: installed official Tencent Marvis from `https://marvis.qq.com/download/dmg` to `/Applications/Marvis.app`; the current DMG redirected to `marvis_1.0.10062_arm64_4000000002.dmg`.
+- App verification: DMG sha256 `c492b26af199746458509d3eb6ac2df603fdb9211b0bfdac53351fa131bf2f02`; Developer ID `Tencent Technology (Shenzhen) Company Limited (88L2Q4487U)`; Gatekeeper accepted/notarized; `codesign --verify --deep --strict` passed; runtime build readback was `version=1.0.10062`, `arch=arm64`, `buildTime=20260625183626`; process `Marvis` launched.
+- CLI install: no Tencent official Marvis CLI was found in official site/GitHub/X research. Installed the community GitHub project `shiwenxin123/Mavis` in an isolated Python 3.11 venv at `~/.local/share/marvis-cli/venv`, with shim `~/.local/bin/marvis`.
+- CLI verification: `marvis --help`, `marvis system info --json`, `marvis search /tmp/shiwenxin123-Mavis --mode name --keyword README --json`, `marvis project /tmp/shiwenxin123-Mavis --action scan --json`, and `marvis workflow templates --json` all returned successfully.
+- User action remaining: JC still needs to open Marvis and complete WeChat/QQ login plus local permissions in the GUI. The installed CLI must be treated as community/inspired-by-Tencent, not Tencent official, until Tencent ships an official CLI.
+- Boundary: no account token, cookie, QR login credential, Tencent account detail, or personal document content was written. The community CLI was smoke-tested only with read-only commands; cleanup/delete/workflow-run actions were intentionally not executed.
