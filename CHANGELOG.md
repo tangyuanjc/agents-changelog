@@ -5269,3 +5269,12 @@ JC 17:31 双命题:
 - CLI verification: `marvis --help`, `marvis system info --json`, `marvis search /tmp/shiwenxin123-Mavis --mode name --keyword README --json`, `marvis project /tmp/shiwenxin123-Mavis --action scan --json`, and `marvis workflow templates --json` all returned successfully.
 - User action remaining: JC still needs to open Marvis and complete WeChat/QQ login plus local permissions in the GUI. The installed CLI must be treated as community/inspired-by-Tencent, not Tencent official, until Tencent ships an official CLI.
 - Boundary: no account token, cookie, QR login credential, Tencent account detail, or personal document content was written. The community CLI was smoke-tested only with read-only commands; cleanup/delete/workflow-run actions were intentionally not executed.
+
+## [2026-07-01 14:45 CST] [Codex-CTO] [type:c] WS-1205 OpenClaw memory tick cron repaired
+
+- Trigger: `WS-1205` CSO follow-up found the prior `easyclaw` symlink repair was not durable; the live crontab still used `easyclaw agent` for diary/core-memory/team-memory ticks.
+- Change: updated the three user crontab memory tick lines to call `/opt/homebrew/bin/openclaw agent` directly, removing reliance on the `/opt/homebrew/bin/easyclaw` compatibility symlink.
+- Process guard: added an external `/usr/bin/perl -e 'alarm shift @ARGV; exec @ARGV' 1200 ...` watchdog around each OpenClaw tick because cron smoke proved `openclaw agent --timeout 300` can emit the tick result but leave the process alive.
+- Verification: crontab readback shows all three formal tick lines using the real OpenClaw path plus watchdog; temporary true-cron smoke triggered `DIARY_TICK`, `CORE_MEMORY_MAINTAIN_TICK`, and `TEAM_MEMORY_MAINTAIN_TICK`, each returned a concrete result instead of `easyclaw: command not found`.
+- Cleanup: removed temporary `WS1205_CRON_SMOKE` cron lines and killed only the smoke OpenClaw processes created during verification.
+- Boundary: no secrets, tokens, cookies, private message bodies, or credential paths were written. No global `AGENTS.md` change.
