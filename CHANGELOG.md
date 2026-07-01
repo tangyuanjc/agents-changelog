@@ -5288,6 +5288,13 @@ JC 17:31 双命题:
 - User action remaining: JC still needs to open Marvis and complete WeChat/QQ login plus local permissions in the GUI. The installed CLI must be treated as community/inspired-by-Tencent, not Tencent official, until Tencent ships an official CLI.
 - Boundary: no account token, cookie, QR login credential, Tencent account detail, or personal document content was written. The community CLI was smoke-tested only with read-only commands; cleanup/delete/workflow-run actions were intentionally not executed.
 
+## [2026-07-01 13:14 PDT] [Codex-CTO] [type:c] Marvis auto-start disabled on Mac mini
+
+- Trigger: JC asked to configure the newly installed Marvis App so it does not start automatically at login.
+- Change: set `auto_launch=false` in `~/Library/Application Support/com.tencent.mac.marvis/marvis-settings.json`; moved `~/Library/LaunchAgents/com.tencent.mac.marvis.app.plist` and `com.tencent.mac.marvis.daemon.plist` to `~/Library/LaunchAgents.disabled/` with suffix `disabled-20260701131112`.
+- Verification: read back `auto_launch => false`; `launchctl print gui/501/com.tencent.mac.marvis.app` and `.daemon` were not loaded; `pgrep -x Marvis` showed the app was not running after quit.
+- Boundary: did not uninstall Marvis, delete account data, alter the community CLI install, or record any Marvis runtime token/process argument.
+
 ## [2026-07-01 14:45 CST] [Codex-CTO] [type:c] WS-1205 OpenClaw memory tick cron repaired
 
 - Trigger: `WS-1205` CSO follow-up found the prior `easyclaw` symlink repair was not durable; the live crontab still used `easyclaw agent` for diary/core-memory/team-memory ticks.
