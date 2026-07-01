@@ -5287,3 +5287,11 @@ JC 17:31 双命题:
 - Region/language change: updated user-level macOS defaults to English (US), US locale/measurement/temperature/week/calendar preferences, and added static CLI defaults in `~/.zshenv`: `TZ=America/Los_Angeles`, `LANG=en_US.UTF-8`, and `LC_CTYPE=en_US.UTF-8`.
 - Verification: new shell readback showed `TZ=America/Los_Angeles`, `LANG=en_US.UTF-8`, `LC_CTYPE=en_US.UTF-8`, and Node saw `America/Los_Angeles`; current shell and current `~/.claude/settings.json` did not set `ANTHROPIC_BASE_URL`.
 - Boundary: system `/etc/localtime` still points to `Asia/Shanghai` because changing the OS time zone requires administrator access; no sudo password, API key, token, WeChat key, or group message body was printed or persisted.
+
+## [2026-07-01 01:45 PDT] [Codex-CTO] [type:c] Mac mini GUI/session locale follow-up after system timezone switch
+
+- Trigger: JC manually changed macOS Date & Time to Los Angeles/Pacific time and asked whether the Language & Region `GMT+8` preview meant another setting or reboot was required.
+- Verification: `/etc/localtime` now resolves to `America/Los_Angeles`; `date` returns `PDT -0700`; Node sees `America/Los_Angeles`; user defaults remain `AppleLanguages=en-US`, `AppleLocale=en_US`, US measurement, Fahrenheit, Sunday week start, and 12-hour clock.
+- Change: added `LC_ALL=en_US.UTF-8` to `~/.zshenv` and set current GUI launchd environment with `launchctl setenv TZ America/Los_Angeles`, `LANG/LC_CTYPE/LC_ALL en_US.UTF-8` so newly launched GUI apps inherit the aligned session environment.
+- Residual: existing Claude Desktop, Claude Code helper, WeChat, and System Settings processes were already running and still showed old `--lang=zh-CN` or cached settings. Full reboot, or at minimum quitting and reopening those apps, is required for process-level language/runtime cache to clear.
+- Boundary: no system clock/date was manually changed; automatic time remains the right choice. No secrets, tokens, WeChat keys, or chat contents were written.
