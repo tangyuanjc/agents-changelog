@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 2026-07-01 18:14 CST - Codex OpenCLI site-access default
+
+- Files changed:
+  - `/Users/tangyuanjc/.codex/instructions.md`
+  - `/Users/tangyuanjc/.codex/memories/extensions/ad_hoc/notes/20260701-181055-opencli-site-access-default.md`
+- What changed: recorded a Codex-local rule that WeChat Official Accounts, Twitter/X, GitHub, and other sites with OpenCLI adapters should be read through OpenCLI before falling back to generic curl/Jina/browser fetching.
+- Evidence: direct curl/Jina hit WeChat's verification page for `mp.weixin.qq.com/s/yLb4T2UC16ebKHApdBbgWw`, while `opencli --profile grdxeccp weixin download --url ...` successfully saved the article Markdown.
+- Governance: local Codex instruction + memory only; no `~/.org/AGENTS.md` edit because this is not yet an org-wide constitutional rule. If promoted across agents, Opus-CSO should own the global AGENTS.md update.
+
 
 ## 2026-06-30 21:01 CST - 小J daily wrap
 
