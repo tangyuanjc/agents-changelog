@@ -5278,3 +5278,12 @@ JC 17:31 双命题:
 - Verification: crontab readback shows all three formal tick lines using the real OpenClaw path plus watchdog; temporary true-cron smoke triggered `DIARY_TICK`, `CORE_MEMORY_MAINTAIN_TICK`, and `TEAM_MEMORY_MAINTAIN_TICK`, each returned a concrete result instead of `easyclaw: command not found`.
 - Cleanup: removed temporary `WS1205_CRON_SMOKE` cron lines and killed only the smoke OpenClaw processes created during verification.
 - Boundary: no secrets, tokens, cookies, private message bodies, or credential paths were written. No global `AGENTS.md` change.
+
+## [2026-07-01 16:28 CST] [Codex-CTO] [type:c] Mac mini Claude/WeChat local-region hardening and WeChat Assistant path repair
+
+- Trigger: JC asked Codex-CTO to compare local WeChat Assistant vs WeChat Vault for extracting today's `乾宇AI先锋` messages, read the WeChat article about Claude Code local-region signals, and align this Mac mini's region/language defaults with the US profile shown in the group screenshot.
+- WeChat result: `~/wechat-assistant` can locate and sync the `乾宇AI先锋` chat history, but current live extraction is blocked until JC refreshes the WeChat DB key with administrator password. `wechat-local-vault` is only a stale decrypted snapshot and cannot directly extract today's messages.
+- Config repair: corrected `~/wechat-assistant/config.yaml` from the old `Data/Documents/xwechat_files/.../db_storage` path to the current live `Data/Documents/app_data/xwechat_files/.../db_storage`; kept a local backup. No `all_keys.json` contents or chat message bodies were written.
+- Region/language change: updated user-level macOS defaults to English (US), US locale/measurement/temperature/week/calendar preferences, and added static CLI defaults in `~/.zshenv`: `TZ=America/Los_Angeles`, `LANG=en_US.UTF-8`, and `LC_CTYPE=en_US.UTF-8`.
+- Verification: new shell readback showed `TZ=America/Los_Angeles`, `LANG=en_US.UTF-8`, `LC_CTYPE=en_US.UTF-8`, and Node saw `America/Los_Angeles`; current shell and current `~/.claude/settings.json` did not set `ANTHROPIC_BASE_URL`.
+- Boundary: system `/etc/localtime` still points to `Asia/Shanghai` because changing the OS time zone requires administrator access; no sudo password, API key, token, WeChat key, or group message body was printed or persisted.
