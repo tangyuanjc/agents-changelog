@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2026-07-03 14:42 PDT] [Codex-CTO] [type:c] WS-1285 memory-axis self-check hardening
+
+- Trigger: `WS-1285` G6 required Codex to finish the GBrain/Hindsight memory-axis sync loop and update the existing daily self-check autopilot instead of creating a duplicate.
+- Change: made `~/.org/metrics/gbrain-memory-axis-sync.mjs` record transient GBrain capture/embed failures in `failed[]` without advancing successful state or returning a failed LaunchAgent exit; fixed the related NASA dashboard test to use a stable clock; added a regression for PGLite-lock capture failures.
+- Autopilot: updated existing Multica autopilot `177dba40-0eeb-4568-8ac8-0c549cecee2c` so daily checks must report `employee_boards.json.memory_axis`, import-gate failure counts, latest sync-log `failed[]`, and the memory-axis WatchPaths/exit code.
+- Verification: Node tests passed `17 pass / 0 fail`; Bun Hindsight/health tests passed `15 pass / 0 fail`; manual sync now exits 0 while logging current GBrain capture timeout; LaunchAgent `com.user.gbrain-memory-axis-sync` readback showed `last exit code = 0`.
+- Boundary: GBrain is still degraded at runtime (`memory_axis.gbrain.health_light` red and latest sync log has a failed employee-board capture); this is now explicit telemetry rather than a hidden daemon failure. No secrets or private source text were written.
+
 ## 2026-07-01 21:02 CST - 小J daily wrap
 
 - files changed:
