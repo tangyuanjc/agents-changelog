@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2026-07-05 14:32 PDT] [Codex-CTO] [type:c] WS-1031 Finder automation skill restored
+
+- Trigger: `[WS-1031](/WS/issues/WS-1031)` reported Finder/Computer Use automation failing with macOS Apple Events authorization error `-1743`.
+- Change: added local Codex skill `~/.codex/skills/finder` with a concise Finder/System Events workflow and deterministic `scripts/selftest.sh`.
+- Verification: direct `osascript` smoke could read the frontmost app and Finder startup disk; `bash ~/.codex/skills/finder/scripts/selftest.sh` returned `OK finder.selftest`; `quick_validate.py ~/.codex/skills/finder` returned `Skill is valid!`.
+- Failure mode: future `-1743` failures now return `AUTH_BLOCKER` with the exact macOS Automation permission path instead of silently failing.
+- Boundary: no global constitution edit, no TCC reset, no sudo/admin bypass, and no private file names, secrets, tokens, or Desktop contents were written.
+
 ## [2026-07-03 14:42 PDT] [Codex-CTO] [type:c] WS-1285 memory-axis self-check hardening
 
 - Trigger: `WS-1285` G6 required Codex to finish the GBrain/Hindsight memory-axis sync loop and update the existing daily self-check autopilot instead of creating a duplicate.
