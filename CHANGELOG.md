@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## [2026-07-05 14:32 PDT] [Codex-CTO] [type:c] WS-1031 Finder automation skill restored
+## [2026-07-05 14:32 PDT] [Codex-CTO] [type:c] Finder automation guardrail skill added
 
-- Trigger: `[WS-1031](/WS/issues/WS-1031)` reported Finder/Computer Use automation failing with macOS Apple Events authorization error `-1743`.
+- Trigger: heartbeat engineering scan surfaced a stale cross-context Finder automation repair note; current Multica readback did not contain a live Finder/-1743 issue, so no issue was commented or closed.
 - Change: added local Codex skill `~/.codex/skills/finder` with a concise Finder/System Events workflow and deterministic `scripts/selftest.sh`.
 - Verification: direct `osascript` smoke could read the frontmost app and Finder startup disk; `bash ~/.codex/skills/finder/scripts/selftest.sh` returned `OK finder.selftest`; `quick_validate.py ~/.codex/skills/finder` returned `Skill is valid!`.
 - Failure mode: future `-1743` failures now return `AUTH_BLOCKER` with the exact macOS Automation permission path instead of silently failing.
