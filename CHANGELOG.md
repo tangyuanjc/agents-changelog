@@ -5356,3 +5356,12 @@ JC 17:31 双命题:
 - Verification: local TLS readback on `104.225.234.37:2053` now shows Let's Encrypt `notBefore=Jul 6 05:35:29 2026 GMT` and `notAfter=Jul 12 21:35:28 2026 GMT`; default-trust HTTPS GET to the panel returned `200`, panel login API returned success, and TCP checks for 80/443/2053 all succeeded. Server readback showed `x-ui` and `haproxy` active, `caddy-bao` Up, and the certbot failed state reset to inactive.
 - Governance follow-up: added local memory note `20260705-234152-vpn-panel-cert-renewal.md`; created Multica `WS-1526` for `CSO Opus` to decide whether this recurring employee VPN panel sharp edge should be promoted into `~/.org/AGENTS.md` or kept as shared ops memory/SOP.
 - Boundary: did not change VPN inbound/client/node configuration, did not print or persist panel password, SSH password, subscription URL, Reality key material, client UUIDs, or cookies. No global `AGENTS.md` change.
+
+## [2026-07-08 14:20 CST] [Codex-CTO] [type:agent-ops] Temporary Claude CSO limit takeover cron
+
+- Trigger: JC reported local Claude CSO had hit usage limits and asked Codex-CTO to scan the last 14 days of conversations/logs plus Multica CSO work, take over anything Codex can own, and keep a goal-mode cron running until the visible recovery time.
+- Recovery bound: screenshot showed weekly/Fable reset at Friday 03:59 PDT, mapped to `2026-07-10 18:59 Asia/Shanghai`; the patrol stops itself after that epoch and removes its own crontab marker.
+- Change: added `tools/cso-takeover/cso-takeover-patrol.sh` and `tools/cso-takeover/codex-cron-prompt.md` in the JC desktop handoff workspace; the script snapshots CSO/Codex Multica queues, runs a bounded Codex takeover prompt under a lock, and writes logs under `logs/cso-takeover/`.
+- Boundary: Codex may take engineering/data/blackboard/GBrain/metrics/sector-radar/ERP pipeline work; it must not take Opus-only constitution writer decisions, CSO private memory compression, strong-login Chrome/MCP Tmall data pulls, or human-waiting external customer-service decisions.
+- Verification target: `tools/cso-takeover/cso-takeover-patrol.sh snapshot`, `crontab -l | grep cso-takeover-claude-limit`, and `multica issue get WS-1308 --output json` should show the snapshot path, cron marker, and Codex temporary assignee respectively.
+- Boundary: no secrets, tokens, cookies, subscription URLs, private message bodies, or customer raw text were written. No global `AGENTS.md` change.
