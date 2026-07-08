@@ -5365,3 +5365,22 @@ JC 17:31 双命题:
 - Boundary: Codex may take engineering/data/blackboard/GBrain/metrics/sector-radar/ERP pipeline work; it must not take Opus-only constitution writer decisions, CSO private memory compression, strong-login Chrome/MCP Tmall data pulls, or human-waiting external customer-service decisions.
 - Verification target: `tools/cso-takeover/cso-takeover-patrol.sh snapshot`, `crontab -l | grep cso-takeover-claude-limit`, and `multica issue get WS-1308 --output json` should show the snapshot path, cron marker, and Codex temporary assignee respectively.
 - Boundary: no secrets, tokens, cookies, subscription URLs, private message bodies, or customer raw text were written. No global `AGENTS.md` change.
+
+## [2026-07-08 15:59 CST] [Codex-CTO] [type:agent-ops] WS-1117 source CLI error redaction hardening
+
+- Trigger: During the temporary Claude CSO takeover, `WS-1117` still carried a CSO adversarial-review finding: `sourceErrorMessage` handled the original Lark/DWS stdout leak but still preserved private prefixes and unknown `* exit N:` payloads.
+- Change: committed `512730d` in local `~/blackboard-v3` to make `sourceErrorMessage` keep only the command/exit code for source CLI failures and drop structured WeChat payload prefixes; added regression tests for unknown CLI payloads and private prefixes.
+- Verification: `bun test scripts/collect-jc-observation-sources.test.ts` passed 12/12; full `bun test` passed 101/101; `bun build scripts/collect-jc-observation.ts --target=bun --outfile /tmp/collect-jc-observation-smoke.js` bundled successfully.
+- Multica: `WS-1117` will be closed with the new commit/test evidence; parent `WS-999` can continue review with the P1 privacy follow-up fixed rather than left as an unowned note.
+- Boundary: no source payloads, private chat text, customer data, tokens, cookies, or credentials were written. `~/blackboard-v3` has no configured git remote, so this is a local commit only.
+
+## [2026-07-08 01:00 PDT] [Codex-CTO] [type:agent-ops] Codex Dynamic Workflow skill enabled for complex tasks
+
+- Trigger: JC asked Codex-CTO to make Claude-style Dynamic Workflow usable inside Codex itself, with implicit use for complex tasks and common ignition phrases such as "从第一性原理出发，结合对抗式审查和 Dynamic Workflow..."。
+- Change: installed `scasella/claude-dynamic-workflows-codex` runner at `/Users/tangyuanjc/.codex/tools/codex-workflows-runner` from tag `v0.2.0` commit `99e4250`, and added Codex skill `/Users/tangyuanjc/.agents/skills/dynamic-workflow`.
+- Behavior: `dynamic-workflow` is allowed for implicit invocation on complex/open-ended/multi-phase tasks, first-principles requests, adversarial review, deep research, audits, migrations, bug hunts, and broad claim checking; explicit user phrases such as "不用 Dynamic Workflow", "普通模式", "单线程", or "别开 workflow" remain the disable switch.
+- Safety: discovery/review/research workers default to read-only; broad external writes, secret-bearing operations, account/admin changes, and issue/status mutation still require the write boundary to be clear or a human gate.
+- Verification target: `python3 /Users/tangyuanjc/.codex/skills/.system/skill-creator/scripts/quick_validate.py /Users/tangyuanjc/.agents/skills/dynamic-workflow`, `bash /Users/tangyuanjc/.agents/skills/dynamic-workflow/scripts/doctor`, and a read-only `hello.workflow.js --plan` smoke should pass.
+- Residual: runner health check reports Codex CLI `0.133.0` while the runner was verified against `0.135.0`; current handshake and plan smoke pass, but future app-server breakage should be handled by updating Codex/runner or regenerating schema.
+- Rollback: disable or remove `/Users/tangyuanjc/.agents/skills/dynamic-workflow`, or set `allow_implicit_invocation: false` in `/Users/tangyuanjc/.agents/skills/dynamic-workflow/agents/openai.yaml`; no Claude-side config is required.
+- Boundary: no token, cookie, API key, setup key, private subscription material, or raw credential was written. No global `AGENTS.md` change.
