@@ -5393,3 +5393,10 @@ JC 17:31 双命题:
 - Boundary: the same takeover red lines remain: no Tmall/CSO Chrome MCP hard-grab, no Opus-only constitution/private-memory writer work, no WS-904/1526/1270/1470/963 takeover, and no secrets/private raw text in comments or logs.
 - Verification: automation config was read back under `~/.codex/automations/cso-takeover-patrol-until-claude-reset/automation.toml`; live CSO queue after this pass was todo=1, in_progress=5, in_review=2, blocked=21.
 - Boundary: no token, cookie, API key, setup key, private subscription material, or raw credential was written. No global `AGENTS.md` change.
+
+## [2026-07-09 02:52 PDT] [Codex-CTO] [type:agent-ops] Disabled duplicate Multica runtime LaunchAgent after storage-pressure triage
+
+- Trigger: Mac mini Data volume was down to roughly 7.6GiB free during storage triage. `com.user.multica-agent-runtime-daemon` was repeatedly failing with `another daemon is already running on 127.0.0.1:19514`, writing noisy launchd stderr while a healthy `/opt/homebrew/bin/multica` daemon already owned the port.
+- Change: moved low-risk updater caches to `/Volumes/MacMini-HotSSD/cold/macmini-storage-quarantine/20260709T024456`, truncated two Multica logs after backup, and persistently disabled `com.user.multica-agent-runtime-daemon` with `launchctl disable gui/501/com.user.multica-agent-runtime-daemon` to stop the duplicate daemon crash loop.
+- Verification: `print-disabled` showed `com.user.multica-agent-runtime-daemon => disabled`; `multica daemon status --output json` still reported PID 9539 with 4 workspaces and 17 runtimes; 30-second observation showed launchd err delta 0 and Data volume recovered to 16GiB free.
+- Boundary: did not touch OpenCLI `opencli-cdp-profile`, WeChat active Sparkle cache, Chrome `code_sign_clone`, Photos, Containers, live SQLite DBs, or any credential-bearing config. No global `AGENTS.md` change.
