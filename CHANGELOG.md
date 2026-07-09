@@ -5384,3 +5384,12 @@ JC 17:31 双命题:
 - Residual: runner health check reports Codex CLI `0.133.0` while the runner was verified against `0.135.0`; current handshake and plan smoke pass, but future app-server breakage should be handled by updating Codex/runner or regenerating schema.
 - Rollback: disable or remove `/Users/tangyuanjc/.agents/skills/dynamic-workflow`, or set `allow_implicit_invocation: false` in `/Users/tangyuanjc/.agents/skills/dynamic-workflow/agents/openai.yaml`; no Claude-side config is required.
 - Boundary: no token, cookie, API key, setup key, private subscription material, or raw credential was written. No global `AGENTS.md` change.
+
+## [2026-07-09 01:15 PDT] [Codex-CTO] [type:agent-ops] Temporary CSO takeover heartbeat fallback
+
+- Trigger: JC reported the original Codex session `019f4050-1773-7713-bdd8-acb11fc18b3e` looked unhealthy during the temporary Claude CSO quota takeover. Transcript readback showed later goal turns producing only token-count heartbeats and no final/tool progress after the prior closeout.
+- Change: created Codex app heartbeat automation `cso-takeover-patrol-until-claude-reset` to continue the takeover in the current thread every 20 minutes until the screenshot recovery bound `2026-07-10 03:59 PDT / 18:59 Asia/Shanghai`.
+- Recovery guard: the heartbeat prompt explicitly reads the workspace `HANDOFF.md`, checks the existing crontab marker and queue counts, avoids resuming the broken session, and stops/cleans up once the recovery time is reached.
+- Boundary: the same takeover red lines remain: no Tmall/CSO Chrome MCP hard-grab, no Opus-only constitution/private-memory writer work, no WS-904/1526/1270/1470/963 takeover, and no secrets/private raw text in comments or logs.
+- Verification: automation config was read back under `~/.codex/automations/cso-takeover-patrol-until-claude-reset/automation.toml`; live CSO queue after this pass was todo=1, in_progress=5, in_review=2, blocked=21.
+- Boundary: no token, cookie, API key, setup key, private subscription material, or raw credential was written. No global `AGENTS.md` change.
