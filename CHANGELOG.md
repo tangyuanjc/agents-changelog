@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2026-07-10 18:06 CST] [Codex-CTO] [type:c] OpenAI Developer Docs MCP registered
+
+- Trigger: the employee-to-Codex context audit needed current official OpenAI prompting, Codex, dictation, and evaluation guidance; the bundled Codex manual helper failed because the current response omitted its expected `x-content-sha256` header.
+- Change: registered the official read-only MCP endpoint `openaiDeveloperDocs` at `https://developers.openai.com/mcp` in `~/.codex/config.toml` for future Codex tasks.
+- Verification: `codex mcp list` reads back `openaiDeveloperDocs` as enabled; the current already-open task could not hot-load the new tool, so this audit used official-domain web fallback.
+- Boundary: no bearer token, API key, employee transcript, private prompt text, or customer data was stored; no `~/.org/AGENTS.md` change.
+
 ## [2026-07-05 14:32 PDT] [Codex-CTO] [type:c] Finder automation guardrail skill added
 
 - Trigger: heartbeat engineering scan surfaced a stale cross-context Finder automation repair note; current Multica readback did not contain a live Finder/-1743 issue, so no issue was commented or closed.
