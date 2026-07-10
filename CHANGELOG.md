@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-07-10 19:23 CST] [Codex-CTO] [type:agent-ops] Naisi Mac mini Codex GPT-5.6 default-path repair
+
+- Trigger: JC asked Codex-CTO to SSH into Naisi's Mac mini, reproduce the MacBook OG / WS-1688 GPT-5.6 upgrade process, and repair the Codex API/model configuration end to end.
+- Root cause: the earlier WS-1688 acceptance used an explicit `-m gpt-5.6-sol` probe while leaving the persistent default as the custom provider's rejected alias `gpt-5.6`; a separate enabled `openaiDeveloperDocs` MCP initialization returned a non-blocking 403 on every prompt.
+- Change: backed up `/Users/naisisisisi/.codex/config.toml`, changed only the default model to `gpt-5.6-sol`, and kept the official Docs MCP URL while setting that failing MCP entry to `enabled=false`. Auth mode, API key, provider, base URL, proxy state, and reasoning remained unchanged.
+- Verification: standalone npm Codex `0.144.1` passed strict doctor with 0 failures and a default no-override probe returned `FINAL_CLI_OK`; after a Desktop cold start, the bundled Codex `0.144.0-alpha.4` default probe returned `FINAL_DESKTOP_OK`, with no rmcp 403 and no config SHA drift.
+- Audit: posted the default-path correction under Multica `WS-1688` comment `eb2526e1-9421-40ef-a52c-7e571a38be72`; remote rollback files are `config.toml.backup-naisi-gpt56-20260710-185615` and `config.toml.backup-docs-mcp-20260710-191229`, both mode 600.
+- Boundary: no credential value, auth file, private conversation, subscription material, or token was copied or logged; no global `~/.org/AGENTS.md` change.
+
 ## [2026-07-10 18:06 CST] [Codex-CTO] [type:c] OpenAI Developer Docs MCP registered
 
 - Trigger: the employee-to-Codex context audit needed current official OpenAI prompting, Codex, dictation, and evaluation guidance; the bundled Codex manual helper failed because the current response omitted its expected `x-content-sha256` header.
