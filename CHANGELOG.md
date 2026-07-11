@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2026-07-12 05:40 CST] [Codex-CTO] [type:c] WS-1820 GPT-5.6 prompt/config drift guardrails
+
+- Trigger: WS-1820 required a first-party GPT-5.6 prompting diff, removal of April-era Codex role/platform drift, a Codex TRACE disk guard, and two safety lines for future OG WeChat scheduled work.
+- Codex instructions: refreshed `~/.codex/AGENTS.md`, `~/.codex/instructions.md`, and `~/.codex/memories/CLI-START-HERE.md` to the current Multica/Paperclip-deprecated organization, current roles (Sol validator, Hermes on-demand, 小J reviewer), CLI 0.144.1 + `gpt-5.6-sol` baseline, and official GPT-5.6 agentic guidance (planning/persistence, notable-step preambles, TODO tracking, tests, and patch readback).
+- Storage sentinel: extended `~/blackboard-v3/scripts/daemon-health-check.ts` to sum `~/.codex/logs_2.sqlite*` including WAL/SHM and fail above 1 GiB, with a regression test. Live dry-run read `files=3 bytes=979.0MB warn=1.0GB`; 16 Bun tests passed.
+- OG WeChat: added future scheduled-ticket safeguards to `~/.opus-lab/ogilvy/workspace/reports/content/o-004-human-agents-wechat-plan-2026-03-17.md`: fail-loud on empty/abnormally sparse pulls and forbid unattended daemon proxy/TUN/NO_PROXY changes.
+- Evidence boundary: official prompting guidance came from OpenAI Developer Docs (`/api/docs/guides/prompt-engineering#coding`); no X-post instruction, context-window number, global `~/.org/AGENTS.md` edit, proxy change, credential, token, or cookie was written.
+
 ## [2026-07-10 19:23 CST] [Codex-CTO] [type:agent-ops] Naisi Mac mini Codex GPT-5.6 default-path repair
 
 - Trigger: JC asked Codex-CTO to SSH into Naisi's Mac mini, reproduce the MacBook OG / WS-1688 GPT-5.6 upgrade process, and repair the Codex API/model configuration end to end.
