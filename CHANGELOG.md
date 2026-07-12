@@ -5434,3 +5434,11 @@ JC 17:31 双命题:
 - Agent E2E: MacBook `codex-cli 0.144.1` reported `Logged in using ChatGPT`; a fresh GPT-5.6 Terra execution returned `CODEX_NETWORK_REPAIR_OK`. All inspected Codex/ChatGPT app-server processes were free of `http_proxy`, `https_proxy`, and `all_proxy` values.
 - Rollback: FlClash preference/config backups remain beside the originals with timestamps `20260711-210154` and `20260711-210348`. Do not use `kill -HUP FlClashCore` as a reload mechanism; use the app's apply/restart path or a full app cold start. The pinned backend must be revalidated if Multica changes infrastructure; it is not a permanent DNS substitute.
 - Boundary: no token, cookie, ChatGPT credential, VPN subscription URL, node credential, or private message body was printed or persisted. No global `AGENTS.md` change.
+
+## [2026-07-12 08:57 CST] [Codex-CTO] [type:agent-ops] WS-1828 gateway proxy identity classifier fix
+
+- Trigger: WS-1825's `gateway_body_rows_today` assertion fell to zero because every CPA capture event carried the local proxy account in `source_display`, which matched the internal-session `/tangyuanjc/i` pattern regardless of the real employee identity.
+- Change: commit `cc5f477` narrows `isInternalConversationEvent()` to the event-subject fields `keymap_employee` and `employee_primary`; proxy-layer `source_display`, `api_key_display`, and `auth_display` no longer participate in internal-session classification.
+- Regression: added paired proxy-identity cases proving a 文雅 event remains readable and reaches the 全域单品孵化 metric while an otherwise identical `JC本机` event remains excluded.
+- Verification: `node metrics/test_gateway_conversation_analysis.mjs` passed 6/6; the live 24-hour analyzer completed with `events_with_readable_body=181`, above the WS-1828 acceptance threshold of 100.
+- Boundary: no raw conversation body, token, cookie, API key, or credential was written to the changelog. No global `AGENTS.md` change.
