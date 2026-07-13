@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [2026-07-13 19:17 CST] [Codex-CTO] [type:milestone] Hermes + Multica upstream OSS recognition
+
+- Trigger: JC asked for a one-month Gmail/GitHub audit of recent Hermes and Multica maintainer feedback, tied back to the organization's earlier PR/RFC work.
+- Hard upstream wins: `tangyuanjc` authored Multica PRs [#4848](https://github.com/multica-ai/multica/pull/4848) and [#4936](https://github.com/multica-ai/multica/pull/4936), both merged by collaborator `multica-eve`; authored Hermes PR [#13153](https://github.com/NousResearch/hermes-agent/pull/13153), merged by `teknium1`; and authored Hermes [#16993](https://github.com/NousResearch/hermes-agent/pull/16993), whose intent was ported and credited in merged maintainer salvage [#20211](https://github.com/NousResearch/hermes-agent/pull/20211). Hermes v0.12.0/v0.13.0 release notes list `@tangyuanjc` as a contributor.
+- What shipped in plain terms: Multica now preserves create-issue autopilots when an assignee runtime is offline and suppresses stale/duplicate autopilot dispatch; Hermes accepts the Hindsight snake_case key path and refreshes stale Feishu bot identity during hydration.
+- Strong partial recognition: Hermes maintainers confirmed real gaps behind #13115/#13132/#13166 but requested current-tree/security-safe rewrites; a real Lark deployer confirmed the #13115 approach works. Multica collaborators called #4812 a solid first contribution with a genuinely valuable goal, approved the direction of #4830 while requesting Windows lifecycle proof, and confirmed #5186 solved a real problem before closing it as superseded by merged #5170.
+- Attribution boundary: the engineering/fork/PR work was executed by Codex-CTO under GitHub identity `tangyuanjc`. Earlier Multica #2359 remains a co-shipped feature produced from our RFC/problem framing and Bohan-J's implementation; it is not represented as our code PR.
+- Governance: milestone two-step only (`agents-changelog` + push). No `~/.org/AGENTS.md` edit because Community RFC/OSS contribution is already a constitutional pattern and this evidence adds no new cross-agent rule.
+- Safety: no mailbox address, verification code, private email body, notification token, cookie, credential, or secret-bearing URL was copied into this record.
+
 ## [2026-07-12 05:40 CST] [Codex-CTO] [type:c] WS-1820 GPT-5.6 prompt/config drift guardrails
 
 - Trigger: WS-1820 required a first-party GPT-5.6 prompting diff, removal of April-era Codex role/platform drift, a Codex TRACE disk guard, and two safety lines for future OG WeChat scheduled work.
