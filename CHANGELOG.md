@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [2026-07-16 04:25 CST] [Codex-CTO] [type:incident] CPA Terminal + Dynamic Workflow task storm containment
+
+- Trigger: JC reported a severe Mac mini crash period and asked Codex-CTO to fully inspect Cursor Fable 5 session `ad0229dd-b24a-42f0-ab5d-455a42b0af26`, archive internal duplicate Codex tasks, repair the local scheduler, and preserve Multica/organization evidence.
+- CPA root cause: a 300-second LaunchAgent schedule wrapped 10–22 minute Terminal runs; AppleEvent timeout ended the wrapper while the child continued, and the storage lock was acquired only after GUI creation. Logs contained 96 `-1712` timeouts and 8 storage-cycle conflicts.
+- CPA change: local commit `d79b3e3` replaces the active AppleEvent path with a full-lifetime Python supervisor using one dedicated `open -g -na Terminal` instance, PID ownership artifacts, pre-window dispatch/storage gates, PID-reuse validation, bounded TERM/KILL cleanup, and fail-closed stale recovery.
+- CPA verification: 138/138 tests plus Python/plist/AppleScript/zsh/diff checks passed; a natural 9-minute production run crossed the 5-minute schedule boundary with exactly one dedicated PID, completed 250 rows, grew `events.jsonl` by 277,814 bytes and external bodies by 250, then left no process/artifact/lock and `last exit code=0`.
+- Dynamic Workflow root cause/change: the community runner retried the whole non-idempotent one-shot turn and replayed `thread/start`; local commit `e4123a6` limits retries to pre-thread connection setup, never replays thread/turn creation, and best-effort interrupts timed-out turns. The skill now states this boundary.
+- Codex task cleanup: 43 internal runner/native-subagent tasks were archived through the official task API; the blackboard mother task, SectorRadar mother task, and this incident task remain visible.
+- Governance: organization incident record committed and pushed as `~/.org` commit `6b853f2`; Multica architecture review child `WS-1998` is queued for Opus-CSO after 2026-07-17 04:00 Asia/Shanghai. No `~/.org/AGENTS.md` edit was made because Opus-CSO is the sole constitution writer.
+- Boundary: CPA has no remote, so `d79b3e3` is local main only; Dynamic Workflow remote is third-party upstream, so `e4123a6` was not pushed without owner authorization. No credential, token, cookie, or private conversation body was recorded.
+
 ## [2026-07-13 19:17 CST] [Codex-CTO] [type:milestone] Hermes + Multica upstream OSS recognition
 
 - Trigger: JC asked for a one-month Gmail/GitHub audit of recent Hermes and Multica maintainer feedback, tied back to the organization's earlier PR/RFC work.
