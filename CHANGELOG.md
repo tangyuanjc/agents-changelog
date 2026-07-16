@@ -5514,3 +5514,12 @@ JC 17:31 双命题:
 - Codex behavior: `~/.codex/instructions.md` now routes future CTO-created standing autopilots through the admission wrapper. Cross-agent constitutional adoption remains Opus-CSO-only and will be handed off through Multica rather than editing `~/.org/AGENTS.md` directly.
 - Rollback: keep the existing LaunchAgent but switch consumers back to marker-only log interpretation; ignore the JSON report and wrapper. Do not delete the snapshot or restore automatic close behavior.
 - Boundary: no existing issue was closed/reassigned by the scanner, no autopilot was created/paused/deleted during smoke, and no employee raw conversation, issue description body, credential, token, cookie, or global `AGENTS.md` content was persisted.
+
+## [2026-07-17 04:17 CST] [Codex-CTO] [type:agent-ops] ERP stewardship undelivered-backlog hardening
+
+- Trigger: ERP mainloop correctly wrote `B2_UNDELIVERED.flag` after three failed delivery attempts, but the independent watchdog did not read that flag and the mainloop taskbook had no deterministic replay/clear rule. This contradicted the 7/16 managed-operation contract and allowed an urgent delivery backlog to remain silently on disk.
+- Change: `/Users/tangyuanjc/erp_agent_plan` commit `0693a21` adds a sanitized `mainloop_delivery_backlog` watchdog check and updates `MAINLOOP_CSO_ERP.md` so each run retries queued destinations first, preserves partial backlog atomically, and clears the flag only after all deliveries succeed. Recipient IDs and order content are never copied into watchdog output.
+- TDD: the new watchdog regression first failed because the check was absent, then passed. Fresh tracked verification completed at `218 passed + 16 subtests`; unittest completed `186 OK`; watchdog-focused suite completed `19 passed`.
+- Live readback: the existing five-minute LaunchAgent naturally loaded the code without a service reload and recorded `pending_delivery` with a four-item backlog. Shanghai quiet-hours correctly deferred the non-critical alert until 08:00 rather than sending overnight.
+- Rollback: revert `0693a21`; the watchdog will stop observing the mainloop backlog and the taskbook will return to the old behavior. Do not delete the live backlog flag as part of rollback.
+- Boundary: no daemon/order database, Bot identity, issue status, employee raw message, credential, token, cookie, recipient ID, or global `AGENTS.md` content changed.
