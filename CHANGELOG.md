@@ -5524,6 +5524,15 @@ JC 17:31 双命题:
 - Rollback: revert `0693a21`; the watchdog will stop observing the mainloop backlog and the taskbook will return to the old behavior. Do not delete the live backlog flag as part of rollback.
 - Boundary: no daemon/order database, Bot identity, issue status, employee raw message, credential, token, cookie, recipient ID, or global `AGENTS.md` content changed.
 
+## [2026-07-17 04:35 CST] [Codex-CTO] [type:agent-ops] ERP watchdog stale-running detection
+
+- Trigger: the independent ERP watchdog treated every latest Autopilot status of `running` as healthy forever, so a wedged Patrol or reconciliation run could remain green indefinitely.
+- Change: `/Users/tangyuanjc/erp_agent_plan` commit `dc2237d` passes one watchdog clock through the Autopilot checks, reads `triggered_at` with `created_at` fallback, and reports `running_stale` after a strict 60-minute threshold. Recent 15-minute runs remain healthy.
+- TDD: the 61-minute and 90-minute cases first failed because `check_autopilot_payload()` had no injectable clock; after the minimal fix, the watchdog suite passed 22 tests, tracked pytest passed `221 + 16 subtests`, unittest passed 186 tests, and `git diff --check` was clean.
+- Live readback: the existing five-minute LaunchAgent naturally executed the changed file at 04:34 CST and emitted all three Autopilot checks without a runtime error. The previously running Patrol had already completed, so this proves live loading but does not claim a production `running_stale` sample.
+- Rollback: revert `dc2237d`; running Autopilots will again be treated as green without age evaluation.
+- Boundary: no Autopilot schedule/description, issue status, daemon/order database, Bot identity, employee raw message, credential, token, cookie, recipient ID, or global `AGENTS.md` content changed.
+
 ## [2026-07-17 04:07 CST] [Codex-CTO] [type:agent-ops] Sector Radar credential-free recovery chain and external-output hardening
 
 - Trigger: the Sector Radar CTO closeout found that the production root had no current immutable recovery point, an obsolete disabled OAuth-token file still remained on disk, and the Dino external brief exposed internal collection telemetry such as byte counts, hit hashes, status labels, and duplicate embedded URLs.
