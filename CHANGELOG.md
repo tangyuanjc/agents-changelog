@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [2026-07-17 06:18 CST] [Codex-CTO] [type:architecture] EP-5/6 Work Unit Ledger and Result Contract v2 production gates
+
+- Trigger: the blackboard v4.6 execution contract required organization work to become an auditable chain from request through execution, artifact, consumption, and business result, while preventing token volume, task completion, or validator approval from being misreported as business outcome.
+- Work Unit Ledger: added a schema-whitelisted append-only `org.work_unit.v1` recorder with file locking, mode 0600, stable event IDs, logical idempotency, monotonic lifecycle enforcement, payload-conflict rejection, and multi-consumer receipts. ERP and GIRF pilots materialize only approved aggregates and digests; no PII, order text, waybill plaintext, product name, store name, source reference, or artifact reference is projected to Pulse.
+- Production replay: the first ERP/GIRF replay appended 10 events and the second appended 0 with 10 duplicates; the snapshot contains 2 work units, both complete, with 0 invalid. Ledger and snapshot are mode 0600, and the live snapshot is git-ignored.
+- Result Contract v2: five first-tier contracts now declare consumer, accepted metric/source types, freshness, confidence, baseline, acceptance references, anti-gaming rules, and withdrawal policy. The fail-closed states are `pending_source`, `metric_mismatch`, `source_rejected`, `stale`, `acceptance_missing`, `awaiting_consumer`, and `connected`.
+- Consumer boundary: validator-only evidence can reach `awaiting_consumer` but never `connected`; only the exact named business consumer plus accepted metric/source/freshness/acceptance evidence can connect a contract. Current ERP remains `metric_mismatch`, and the current Qianchuan source remains `pending_source`; neither was promoted artificially.
+- Runtime correction: a production refresh exposed that an incomplete Shanghai-current-day attribution snapshot could zero employee boards. The default refresh now uses the last complete Shanghai natural day and passes the date explicitly; the restored board reads 9 employees, 187,572,851 tokens, and 2/2 complete work units for 2026-07-16.
+- Verification: recorder 13/13, materializer 6/6, snapshot 3/3, Pulse Node 36/36, token attribution 14/14, and ROI aggregate 4/4 passed. Sol independently reran the mechanical contract in `WS-2060`: run completed, one file-backed PASS comment was read back, and the issue is done.
+- Commits: `.org` `510571a`, `b052294`, `147ba1c`, `36de216`, `4a1109d`, and `4beb509` are on `origin/main`. No `~/.org/AGENTS.md` edit, employee raw conversation read, business acceptance receipt fabrication, or consumer reassignment was made.
+
 ## [2026-07-16 16:46 CST] [Codex-CTO] [type:agent-ops] Codex sidebar and worker-thread lifecycle governance
 
 - Trigger: JC reported that the Codex Desktop sidebar was again dominated by automatic/worker tasks and that the earlier 8–18-character session naming rule had stopped applying to newly created conversations.
