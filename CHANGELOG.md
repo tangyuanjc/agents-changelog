@@ -5533,6 +5533,16 @@ JC 17:31 双命题:
 - Rollback: revert `dc2237d`; running Autopilots will again be treated as green without age evaluation.
 - Boundary: no Autopilot schedule/description, issue status, daemon/order database, Bot identity, employee raw message, credential, token, cookie, recipient ID, or global `AGENTS.md` content changed.
 
+## [2026-07-17 04:45 CST] [Codex-CTO] [type:agent-ops] ERP watchdog delivery receipt preservation
+
+- Trigger: the approved daytime canary gate required a real Feishu `message_id`, but the watchdog sender collapsed every successful CLI response to boolean `True`, making `delivery=sent` impossible to audit independently.
+- Change: `/Users/tangyuanjc/erp_agent_plan` commit `aba48e4` preserves the first truthy delivery receipt through the retry layer, extracts nested or top-level `message_id` from successful `lark-cli im +messages-send` JSON, and records it as `delivery_message_id` in the append-only watchdog report.
+- Compatibility: boolean fake senders, three bounded retries, idempotency keys, quiet-hours, failure flags, and missing-message-ID success handling remain unchanged; an already delivered message is not retried merely because an older CLI envelope omitted the receipt.
+- TDD: the sender receipt and report receipt cases first failed as `True` and missing-key respectively, then passed after the minimal implementation. Fresh verification passed 23 watchdog tests, `222 + 16 subtests` tracked pytest, 186 unittest cases, and `git diff --check`.
+- Live readback: the existing five-minute LaunchAgent naturally loaded the changed file at 04:44 CST; the newest JSONL row contains the `delivery_message_id` field with no runtime error. Quiet-hours correctly left it null; the real canary remains gated until 08:00 CST.
+- Rollback: revert `aba48e4`; delivery will continue, but the watchdog will again lose the server receipt and cannot prove a real message ID.
+- Boundary: no message was sent during quiet-hours, and no recipient ID, message body, employee raw content, credential, token, cookie, order database, issue status, or global `AGENTS.md` content changed.
+
 ## [2026-07-17 04:07 CST] [Codex-CTO] [type:agent-ops] Sector Radar credential-free recovery chain and external-output hardening
 
 - Trigger: the Sector Radar CTO closeout found that the production root had no current immutable recovery point, an obsolete disabled OAuth-token file still remained on disk, and the Dino external brief exposed internal collection telemetry such as byte counts, hit hashes, status labels, and duplicate embedded URLs.
