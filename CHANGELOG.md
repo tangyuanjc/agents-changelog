@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [2026-07-16 16:46 CST] [Codex-CTO] [type:agent-ops] Codex sidebar and worker-thread lifecycle governance
+
+- Trigger: JC reported that the Codex Desktop sidebar was again dominated by automatic/worker tasks and that the earlier 8–18-character session naming rule had stopped applying to newly created conversations.
+- Root cause: the 2026-07-01 title cleanup was a one-time index rewrite, not a creation-time rule; Dynamic Workflow and Multica created persistent Codex threads without closing their sidebar lifecycle, so prompt preambles such as web-access instructions became titles.
+- Cleanup: backed up live `~/.codex/state_5.sqlite` and `session_index.jsonl`, stored a 623-ID rollback manifest, then archived all 623 verified non-JC tasks through official `thread/archive`. Readback was `manifest_remaining=0`, `manifest_archived=623`, and `PRAGMA integrity_check=ok`; no thread or rollout was deleted.
+- Naming: preserved 25 genuine JC sessions in the July cohort and renamed six recent sessions with short “动作＋对象” titles. Added durable naming/lifecycle rules to `~/.codex/instructions.md` and `~/.codex/AGENTS.md`; `~/.org/AGENTS.md` was not modified.
+- Runner change: Dynamic Workflow now archives one-shot threads after turn finalization and sessionful threads on idempotent cleanup. Added the guarded `archive-current-thread.js` fallback for Multica assignment workdirs plus one-shot/session/helper/App Server contract tests.
+- Verification: full runner `npm test` exited 0; real canary returned `SIDEBAR_CANARY_OK`, and thread `019f6a17-664b-7580-9a04-b6c053d64c10` read back `archived=1`. Three real Multica assignment threads were also archived by the guarded helper.
+- Multica: posted evidence to closed architecture issue `WS-1998` in comment `f09d4a2b-17f7-4d25-9263-58619fa93d95` and created follow-up `WS-2018` for the producer-owned Multica Go lifecycle hook; the closed parent was not reopened.
+- Boundary: no periodic cleanup loop, direct live-SQLite archive write, credential, token, cookie, or private conversation body was introduced.
+
 ## [2026-07-16 04:25 CST] [Codex-CTO] [type:incident] CPA Terminal + Dynamic Workflow task storm containment
 
 - Trigger: JC reported a severe Mac mini crash period and asked Codex-CTO to fully inspect Cursor Fable 5 session `ad0229dd-b24a-42f0-ab5d-455a42b0af26`, archive internal duplicate Codex tasks, repair the local scheduler, and preserve Multica/organization evidence.
