@@ -5493,3 +5493,12 @@ JC 17:31 双命题:
 - Live verification: the production LaunchAgent restarted through `metrics/deploy/restart-pulse-dashboard.sh`; all eight routes returned 200; local and authenticated public browser consumers both rendered `实时结果 1/10 · 合规记录 2/10` with zero console warnings/errors. The live API reported hard=2, live=1, stale=2, blind=7, a valid 10-segment invariant, and matching legacy aliases.
 - Rollback: installed consumers can continue reading `resultCoverage/resultLive/resultStale/resultBlindSpot` during the compatibility window; rollback may switch UI reads back to those aliases but must not restore the ambiguous `result_coverage_*` suppression reason.
 - Boundary: no result eligibility algorithm, employee performance logic, raw employee conversation text, credentials, cookies, tokens, or global `AGENTS.md` content changed.
+
+## [2026-07-17 03:20 CST] [Codex-CTO] [type:agent-ops] Lineage-aware judge admission gate
+
+- Trigger: the v4.6 CTO audit proved that CTO Codex and 验收官 Sol share the same `gpt-5.6-sol` model and Codex runtime, so Codex output routed to Sol could not be represented as cross-lineage review.
+- Change: added `~/.org/metrics/judge_lineage_router.py` and its tests. The gate resolves the latest completed producer run, compares agent/model/runtime lineage, rejects same-lineage review, abstains when model/runtime evidence is missing, routes only mechanically reviewable cross-model+runtime work, and reserves high-risk work for CSO.
+- Consumer: the Sol acceptance autopilot description now requires the router exit gate before mechanical review. Real smoke issue `WS-2052` was consumed by Sol's production runtime and closed only after all three gate cases matched.
+- Verification: 8/8 unit tests and Python compilation passed; live cases returned WS-2045 mechanical exit 2 `reject_same_lineage`, WS-2037 mechanical exit 0 `route`, and WS-2037 high-risk exit 3 `reserved_for_cso`. WS-2045/WS-2037 received no smoke-window comments or status changes.
+- Rollback: remove the router invocation marker from the Sol autopilot description and fall back to CSO manual routing; do not silently treat same-model/runtime review as independent.
+- Boundary: no global `AGENTS.md`, issue content, employee raw conversation, credentials, tokens, cookies, or reviewer write ACL changed.
