@@ -7,7 +7,7 @@
 - Cleanup: backed up live `~/.codex/state_5.sqlite` and `session_index.jsonl`, stored a 623-ID rollback manifest, then archived all 623 verified non-JC tasks through official `thread/archive`. Readback was `manifest_remaining=0`, `manifest_archived=623`, and `PRAGMA integrity_check=ok`; no thread or rollout was deleted.
 - Naming: preserved 25 genuine JC sessions in the July cohort and renamed six recent sessions with short “动作＋对象” titles. Added durable naming/lifecycle rules to `~/.codex/instructions.md` and `~/.codex/AGENTS.md`; `~/.org/AGENTS.md` was not modified.
 - Runner change: Dynamic Workflow now archives one-shot threads after turn finalization and sessionful threads on idempotent cleanup. Added the guarded `archive-current-thread.js` fallback for Multica assignment workdirs plus one-shot/session/helper/App Server contract tests.
-- Verification: full runner `npm test` exited 0; real canary returned `SIDEBAR_CANARY_OK`, and thread `019f6a17-664b-7580-9a04-b6c053d64c10` read back `archived=1`. Three real Multica assignment threads were also archived by the guarded helper.
+- Verification: full runner `npm test` exited 0; real canary returned `SIDEBAR_CANARY_OK`, and thread `019f6a17-664b-7580-9a04-b6c053d64c10` read back `archived=1`. Six post-snapshot Multica assignment/reviewer threads were also archived by the guarded helper; final July non-user visibility was 0.
 - Multica: posted evidence to closed architecture issue `WS-1998` in comment `f09d4a2b-17f7-4d25-9263-58619fa93d95` and created follow-up `WS-2018` for the producer-owned Multica Go lifecycle hook; the closed parent was not reopened.
 - Boundary: no periodic cleanup loop, direct live-SQLite archive write, credential, token, cookie, or private conversation body was introduced.
 
