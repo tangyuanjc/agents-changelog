@@ -5562,3 +5562,12 @@ JC 17:31 双命题:
 - Consumer: 验收官 Sol consumed the exact dashboard artifact on `WS-2056`, recorded `consumed` and `outcome` with `result_ref=multica:WS-2056`, verified all eight Pulse routes, posted a file-backed result comment, and closed the issue; the run completed without modifying product code.
 - Rollback: stop consuming the new lifecycle fields and restore the old three-row renderer if necessary, but do not rewrite or delete append-only telemetry and do not relabel loaded traces as execution.
 - Boundary: no employee raw conversation, credential, token, cookie, issue body corpus, global `AGENTS.md`, or automatic skill adoption/promotion was written. Lifecycle evidence is telemetry, not business ROI.
+
+## [2026-07-17 05:02 CST] [Codex-CTO] [type:agent-ops] Sector Radar origin-aware natural-run receipts
+
+- Trigger: Sector Radar had no machine receipt separating launchd natural runs from manual canaries, so a manual Vault 4/4 could be mistaken for platform-promotion evidence.
+- Change: `sector-radar/bin/daily-hard-signals.sh` now uses one EXIT handler that preserves the original pipeline exit, cleans the daily lock/cache, and appends a fail-closed platform run receipt. Receipt failure is logged but never replaces the pipeline result; dry-run and an explicit receipt-disable flag do not write production evidence.
+- Origin boundary: manual remains the default. `daily-hard-signals-launchd.applescript` now injects `SECTOR_RADAR_RUN_ORIGIN=launchd`; the readiness state machine separately rejects launchd receipts outside the LA 17:00-19:30 natural window or without all four exact Vault sync lines.
+- TDD: the receipt integration first failed for the missing contract, then proved that a fake receipt writer exiting 42 leaves a successful daily pipeline at exit 0, logs `platform readiness receipt failed`, records manual origin and business date, and is not invoked during dry-run.
+- Verification: shell syntax and AppleScript compilation passed; `python3 bin/test-platform-readiness.py` passed 11/11; the full `bash bin/test-daily-hard-signals.sh` suite exited 0 with `ok - daily-hard-signals tests passed`.
+- Boundary: no paid account, login state, cookie, token, weekly delivery behavior, launch schedule, global `AGENTS.md`, or existing natural-run history was changed.
