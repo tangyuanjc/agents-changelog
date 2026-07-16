@@ -5572,6 +5572,16 @@ JC 17:31 双命题:
 - Verification: shell syntax and AppleScript compilation passed; `python3 bin/test-platform-readiness.py` passed 11/11; the full `bash bin/test-daily-hard-signals.sh` suite exited 0 with `ok - daily-hard-signals tests passed`.
 - Boundary: no paid account, login state, cookie, token, weekly delivery behavior, launch schedule, global `AGENTS.md`, or existing natural-run history was changed.
 
+## [2026-07-17 05:22 CST] [Codex-CTO] [type:agent-ops] Sector Radar fail-closed platform readiness surface
+
+- Trigger: platform-promotion evidence remained scattered across GBrain, Multica, snapshots, paid-window records, citations, disk, weekly delivery, Vault and test receipts; waiting time gates could be confused with failures, while a current dataless Vault was not represented in the machine verdict.
+- Change: `sector-radar/bin/platform-readiness.py` now refreshes a sanitized live-evidence document and evaluates one readiness state. It stores only statuses, reason codes, counts, stable IDs and hashes; GBrain result bodies and Multica issue bodies are discarded. W30 hash/approver validation, WS-1543 status, citation count, paid-window state, snapshot verification, disk space, current Vault readability, regression receipt and natural-run streaks are separate gates.
+- Watchdog/UI: the existing watchdog runs `refresh-live → evaluate`; only failed gates enter alerts, while waiting gates remain progress-only. The daily Markdown/HTML status now shows passed/failed/waiting counts, Vault two-run progress, 30-day progress and counted citations.
+- Adversarial fix: the first Vault collector calculated SHA before checking the File Provider dataless flag, which could hydrate a file and hide the failure. A RED ordering test reproduced this; the collector now checks dataless first and hashes only files that were already readable.
+- Verification: platform state-machine tests passed 22/22; watchdog and loop-batch suites passed; shell syntax and Python compilation passed. Production refresh/evaluate reported passed=5, failed=2, waiting=6 without raw-body leakage.
+- Current blockers: Data volume free space was 9.324GiB against a 25GiB contract and all four latest Vault logs were dataless at refresh time. W30 delivery, WS-1543 independent verdict, counted citation, regression receipt and 2/30 natural-day gates remain waiting. GBrain combined-query recall varied between 4/5 and 5/5 across live refreshes and remains a stability debt.
+- Boundary: no paid login, cookie, token, issue body, GBrain result body, weekly push, schedule, global `AGENTS.md`, or historical run receipt was changed.
+
 ## [2026-07-17 05:17 CST] [Codex-CTO] [type:agent-ops] Evidence-derived Role runtime state and sentinel production mount
 
 - Trigger: all four portable Role manifests were still `phase0`; Phase-1 mount code existed, but no machine state distinguished desired, mounted, consumer, outcome, freshness, or source drift. Agent `idle/working` and runtime `online` could therefore be misread as Role health.
