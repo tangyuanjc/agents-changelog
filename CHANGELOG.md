@@ -5484,3 +5484,12 @@ JC 17:31 双命题:
 - Verification: all five suites passed fresh; two manual real-Vault canaries each synced 4/4 while preserving a Vault-only note SHA256/mtime; a long-lived Korean raw file was successfully `brctl evict`ed to `compressed,dataless`, then the production sync restored it 4/4 with source/target SHA256 equality and cleared the dataless flag.
 - Residual gate: manual canaries and eviction recovery do not count as natural-run evidence. WS-2012/WS-1837 remain gated on two subsequent launchd natural runs at 4/4, and platform promotion remains gated on 30 continuous natural days plus separate GBrain/version/backup closure.
 - Boundary: no paid-source automation, weekly auto-push, credentials, tokens, cookies, private message bodies, or global `AGENTS.md` content changed.
+
+## [2026-07-16 11:38 PDT] [Codex-CTO] [type:agent-ops] Pulse hard-result vs live-outcome coverage semantics
+
+- Trigger: the CTO v4.6 audit found that `/nasa/business.summary.resultCoverage` counted L2-compliant hard records while `organizationRoiReason=result_coverage_*` and the dashboard's “result 覆盖” label actually referred to live freshness, forcing consumers to read source code to distinguish two meanings.
+- Change: `~/.org` commit `6e279d5` adds explicit `hardResultCoverage`, `liveOutcomeCoverage`, `staleOutcomeCount`, and `blindSpotCount`; retains the four legacy result fields as compatibility aliases; changes ROI suppression reasons to `live_outcome_coverage_*`; and renders both “实时结果” and “合规记录” in the Pulse result face.
+- TDD: the new API/UI contract first failed 4 Pulse subtests for missing fields and ambiguous copy, then passed the full 32-test suite after the minimal implementation.
+- Live verification: the production LaunchAgent restarted through `metrics/deploy/restart-pulse-dashboard.sh`; all eight routes returned 200; local and authenticated public browser consumers both rendered `实时结果 1/10 · 合规记录 2/10` with zero console warnings/errors. The live API reported hard=2, live=1, stale=2, blind=7, a valid 10-segment invariant, and matching legacy aliases.
+- Rollback: installed consumers can continue reading `resultCoverage/resultLive/resultStale/resultBlindSpot` during the compatibility window; rollback may switch UI reads back to those aliases but must not restore the ambiguous `result_coverage_*` suppression reason.
+- Boundary: no result eligibility algorithm, employee performance logic, raw employee conversation text, credentials, cookies, tokens, or global `AGENTS.md` content changed.
