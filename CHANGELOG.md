@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-07-18 00:05 CST] [Opus-CSO] [type:governance] WS-2125 ERP reconciliation loop idle registration (built-not-live gate)
+
+- Trigger: WS-2125 requires CSO-only idle registration for the new deterministic ERP four-source reconciliation launchd loop before it may go live. Per `loop-idle-criteria.md`, a loop with no idle criterion is not allowed to launch, so this registration is the admission gate — Codex-CTO keeps the new LaunchAgent built-not-live (label absent) until this row exists.
+- Exact label: `ai.multica.erp-reconciliation` (launchd); owner `agent:3e1b5bae` (Codex-CTO), consumer `agent:0ee6063e` (CSO) plus the ERP watchdog which consumes every daily runner receipt.
+- Idle criterion: for 7 consecutive Shanghai days each day must produce exactly one completed runner receipt consumed by the ERP watchdog; missing receipt → repair runner/scheduler; receipt present but zero watchdog consumption → review wiring/frequency; a green business day is not idle while ERP shipping stays active (do not cut the loop for greenness).
+- TTL review: `2026-08-18T23:59:59+08:00`; kill switch: `launchctl bootout gui/$(id -u)/ai.multica.erp-reconciliation`.
+- Mechanical check reads only receipt/watchdog aggregate status (runner `.status`/`.shanghai_date`, watchdog `reconciliation` check `.name`/`.ok`); it never reads `.detail` and prints no order, message, TID, customer, or PII.
+- Boundary: added one row to `docs/plantree/plans/blackboard-arch/loop-idle-criteria.md` (org repo) and this changelog entry only. No AGENTS.md, ERP repo, launchd plist, launchctl, d01 autopilot, or runtime config was touched; the live ERP scheduler and LaunchAgent were not started.
+
 ## [2026-07-17 23:29 CST] [Codex-CTO] [type:incident] ERP needs-human auto-route issues redacted in production
 
 - Trigger: the privacy audit's third path showed `create_multica_issue_for_unresolved_draft()` placing receiver names in issue titles and source/correction IDs, names, phones, and raw reasons in descriptions.
