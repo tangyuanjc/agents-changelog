@@ -5779,3 +5779,11 @@ JC 17:31 双命题:
 - Browser proof: Playwright at 1440px and 390px reported zero page-level horizontal overflow and zero console errors/warnings. The P1 filter changed visible rows `12 → 6 → 12`, the first copy button announced `路径已复制`, and both desktop/mobile screenshots were visually inspected.
 - Remaining gates: natural Vault `1/2`, natural days `1/30`, W30 human-ack plus report/HTML hash, WS-1543 Sol independent verdict, and counted citation `0/1`. None may be manually synthesized or replaced by a canary.
 - Lifecycle: `CHILDREN_CLOSED`; only `/root` remains live. No Dynamic Workflow/native subagent was created, resumed or restarted, and the user-owned mother task remains active and unarchived.
+
+## [2026-07-17 15:55 CST] [Codex-CTO] [type:correction] Sector Radar GBrain counters recorded as a point-in-time snapshot
+
+- Correction target: the 15:41 entry's HTML SHA and its embedded GBrain counters were invalidated minutes later by normal background indexing. Readiness remained GBrain `5/5`; only the global page/chunk/embedding counters changed.
+- Point read: `gbrain stats` at 15:43 Shanghai returned `2598 pages / 5821 chunks / 5815 embedded`, or six missing embeddings. The HTML now labels these as a timestamped snapshot and explicitly warns that global counters may continue to grow.
+- Final artifact: the revalidated HTML is 506 lines / 74354 bytes / SHA256 `5e67f2fa395d6e0aa86037043d35cd7698bcb93c68bd5a3fcea9e08ab3495007`. UTF-8, 12 risk rows, eight gates, seven banned claims, zero duplicate IDs and inline JavaScript syntax pass.
+- Browser recheck: fresh 1440px and 390px Playwright runs again showed zero page-level horizontal overflow and zero console errors/warnings; the P1 filter returned six rows and the copy control announced `路径已复制`.
+- Boundary: no readiness Gate, GBrain content, index process, worker/subagent, mother-task lifecycle or global `AGENTS.md` state was modified by this wording correction.
