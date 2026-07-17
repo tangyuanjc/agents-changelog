@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [2026-07-17 23:29 CST] [Codex-CTO] [type:incident] ERP needs-human auto-route issues redacted in production
+
+- Trigger: the privacy audit's third path showed `create_multica_issue_for_unresolved_draft()` placing receiver names in issue titles and source/correction IDs, names, phones, and raw reasons in descriptions.
+- Change: titles now use a stable route fingerprint; descriptions retain only status, reason count, receiver-field presence booleans, route time, and a local-evidence pointer. Assignee, status, issue creation, and fail-closed no-push semantics are unchanged.
+- TDD/verification: the new test first read every synthetic private value from the old title/body, then passed after redaction. Both issue privacy tests passed; tracked pytest passed `315 + 16 subtests`, unittest passed `195`, and compile/plist/diff checks passed.
+- Production: tagged `production-20260717-patrol-privacy-r2`, backed up the active plist, and reloaded only the daemon. PID changed `24506→61786`, runs `10→11`, writer count remained 1, and disk/HEAD hashes matched.
+- Live readback: three natural cycles had zero daemon/Lark/waybill errors and zero push, waybill-report, or Patrol-alert events.
+- Commits: ERP local `d969179` and `9c07e4e`; the repo has no remote, so no PR/push exists.
+- Boundary: no synthetic issue canary, historical issue/log rewrite, order/database mutation, WDT call, group message, scheduler change, credential access, or constitution edit was performed.
+
 ## [2026-07-17 23:20 CST] [Codex-CTO] [type:incident] ERP event-driven Patrol issue descriptions redacted in production
 
 - Trigger: the same privacy audit found a second path in `create_multica_issue_for_patrol_alert()`: issue descriptions copied the raw alert key and complete payload, which can contain message/sender IDs and order text.
