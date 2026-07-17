@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [2026-07-17 22:38 CST] [Codex-CTO] [type:agent-ops] ERP reconciliation bootstrap bounded to future launchd ticks
+
+- Trigger: cutover dry review found that `RunAtLoad=false` alone is not sufficient evidence that loading a calendar job after both daily ticks cannot coalesce a missed event; the local `launchd.plist` manual only explicitly documents catch-up after sleep/wake.
+- Risk: a late bootstrap after Shanghai 17:30 could execute reconciliation again while the new daily state is absent, duplicating the already completed legacy daily run.
+- Change: governance approval may still stage and lint the plist, but `launchctl bootstrap` is now restricted to Los Angeles `01:20-01:25`, before both `01:30` and `02:30` ticks. Manual kickstart remains forbidden.
+- DST behavior: in PDT the first tick is Shanghai 16:30 `too_early` and the second is 17:30; in PST the first is 17:30 and the second is 18:30 `already_completed`.
+- Verification: `test_reconciliation_launchagent.py` passed 3/3, plist lint passed, and the updated plan requires loaded label with run count 0 plus absent state/receipt immediately after bootstrap.
+- Commit: ERP local repo `bbc29c3`; no remote exists, so no code-repo push or PR was possible.
+- Boundary: no live launchd bootstrap, scheduler edit, Multica rerun/comment, watchdog reload, credential, order data, or customer data change was made.
+
 ## [2026-07-17 22:29 CST] [Codex-CTO] [type:agent-ops] ERP reconciliation watchdog daily deadline correction
 
 - Trigger: adversarial cutover review found that final watchdog config `2026-07-18T17:35:00+08:00` was interpreted as a permanent absolute deadline, so every later Shanghai day would false-red from midnight until the 17:30 reconciliation run.
