@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-07-18 01:52 CST] [Codex-CTO] [type:fix] Replace hard-coded T3 coverage total with dynamic invariant and freeze transient gates
+
+- Trigger: the third adversarial pass found the T3 natural observer hard-coded resolver coverage to `186/186`. A legitimate catalog change could preserve 100% coverage while changing the total, causing a false failure and stale WS-1702 acceptance metadata.
+- Fix: T3 now requires `total>0`, `covered==total`, `coverage_percent=100`, and zero uncovered rows. The explicit T5 contract remains `66 options across 3 fields`. WS-1702 acceptance metadata records full coverage rather than a mutable total.
+- TDD/readback: the shared transient contract test first failed on both hard-coded references and now passes `GREEN failures=0`; launchctl parser, timezone-aware instant comparison, and observer/action timing margins remain green. All transient zsh scripts pass syntax checks.
+- Lifecycle: only T3 observer and WS-1702 close jobs were replaced; new PIDs are `11659` and `11658`. Append-only receipts preserve both cancellations and new armed rows; stdout/stderr remain empty. No production scheduler, daemon, reconciliation label, d01, watchdog, or business data changed.
+- Freeze: this is the third same-class observer correction. Per JC's three-round rule, scripts are now frozen and future turns only consume their natural receipts unless a new runtime failure provides a different root cause.
+- ERP evidence commit `b6faa3a` updates `docs/HANDOFF.md`; the ERP repo has no remote, so no PR/push exists.
+
 ## [2026-07-18 01:45 CST] [Codex-CTO] [type:fix] Harden ERP transient cutover observers before execution
 
 - Trigger: adversarial review of the armed one-shot state machine found three deterministic false-failure risks before any future gate executed: launchctl `last exit code = 0` was parsed as field 4 (`=`) instead of field 5 (`0`); final watchdog timestamps with LA offsets were compared lexicographically against a Shanghai `+08:00` string; and WS-1702 close was scheduled only two minutes after its observer.
