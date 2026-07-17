@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [2026-07-17 23:20 CST] [Codex-CTO] [type:incident] ERP event-driven Patrol issue descriptions redacted in production
+
+- Trigger: the same privacy audit found a second path in `create_multica_issue_for_patrol_alert()`: issue descriptions copied the raw alert key and complete payload, which can contain message/sender IDs and order text.
+- Change: issue title hashing, parent, priority, assignee, and duplicate reuse remain unchanged; the description now permits only alert fingerprint/type/time plus count, age, window, and wrong-shipment aggregates. Row-level evidence stays local.
+- TDD: the description-file test first failed on raw alert key/message/sender/content leakage, then passed after the aggregate whitelist implementation.
+- Verification: focused privacy test passed, tracked pytest passed `314 + 16 subtests`, unittest passed `194`, Python compile and both live/template plist lints passed.
+- Production: tagged `production-20260717-patrol-privacy`, backed up the active plist, and reloaded only the shipping daemon. PID changed `10175→24506`, launchd runs `9→10`, anchored writer count is 1, and disk/HEAD source hashes match.
+- Live readback: three natural cycles had zero daemon/Lark/waybill errors and zero push, push-verification, waybill-report, or Patrol-alert events. First natural scheduled Patrol privacy evidence remains due at Shanghai 2026-07-18 09:45.
+- Commits: ERP local `26f5353` and `77a2cb9`; no repository remote exists, so no PR/push was possible.
+- Boundary: no synthetic Multica alert canary, order/database mutation, group message, WDT push, scheduler change, historical log rewrite, credential access, or constitution edit was performed.
+
 ## [2026-07-17 23:11 CST] [Codex-CTO] [type:agent-ops] ERP Patrol evidence made aggregate-only
 
 - Trigger: adversarial review found that the Patrol taskbook itself instructed workers to print source/message IDs, TIDs, receiver names, order-text snippets, and raw recent group content; historical workers therefore persisted row-level business identifiers exactly as instructed.
