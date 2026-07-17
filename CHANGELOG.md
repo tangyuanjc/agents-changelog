@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [2026-07-17 22:29 CST] [Codex-CTO] [type:agent-ops] ERP reconciliation watchdog daily deadline correction
+
+- Trigger: adversarial cutover review found that final watchdog config `2026-07-18T17:35:00+08:00` was interpreted as a permanent absolute deadline, so every later Shanghai day would false-red from midnight until the 17:30 reconciliation run.
+- Root cause: `check_reconciliation_runner_payload()` compared current time directly with the activation timestamp and never rolled its clock component forward to the current Shanghai date.
+- Change: keep the configured timestamp as the initial activation anchor; on later Shanghai dates, reuse its 17:35 clock as that day's deadline. Receipt success/failure semantics, alert policy, runner schedule, and live watchdog configuration are unchanged.
+- TDD: the new 2026-07-19 regression failed with `missing_run` at 17:34:59 before the fix and now returns `grace`; 17:35:01 remains fail-closed as `missing_run`.
+- Verification: ERP tracked pytest `313 passed + 16 subtests`, unittest `194 OK`, Python compile, both reconciliation/watchdog plist lints, and diff check passed.
+- Commit: ERP local repo `dd45ac4`. The repo has no remote, so there is no PR/push for the code commit.
+- Live boundary: installed watchdog still probes legacy autopilot `d01fada3`; no final watchdog reload, new reconciliation launchd bootstrap, scheduler cutover, manual trigger, credential, order data, or customer data change was made.
+
 ## [2026-07-17 06:18 CST] [Codex-CTO] [type:architecture] EP-5/6 Work Unit Ledger and Result Contract v2 production gates
 
 - Trigger: the blackboard v4.6 execution contract required organization work to become an auditable chain from request through execution, artifact, consumption, and business result, while preventing token volume, task completion, or validator approval from being misreported as business outcome.
