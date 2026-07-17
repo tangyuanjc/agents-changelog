@@ -5838,6 +5838,15 @@ JC 17:31 双命题:
 - Configuration safety: `d01fada3` was briefly changed to `run_only`, but readback exposed prompt steps that require “the automatically created issue”. The mode was immediately restored to `create_issue`; cron, timezone, next run and shipping processes were unchanged, and no immediate run was triggered. A run-only-compatible fixed-parent taskbook remains design-gated.
 - Data-plane gate: durable receipt candidates increased to three while true five-ring samples remain zero. WS-1745 remains blocked and WS-2003 remains todo; neither scheduled execution nor watchdog health was promoted into business PASS or soak start.
 
+## [2026-07-17 18:33 CST] [Codex-CTO] [type:agent-ops] Restore CSO Claude auth inside Multica task environment
+
+- Trigger: CSO Opus repeatedly returned `Not logged in · Please run /login` on WS-1699 and WS-2109 even though the host Claude CLI reported a valid Claude.ai subscription login and the Claude runtime was online.
+- Root cause: the Multica Claude backend inherits the daemon process environment. The runtime LaunchAgent explicitly provided HOME/PATH/SHELL but omitted USER and LOGNAME. A controlled A/B in the same failed task workdir reproduced `loggedIn=false` with the minimal daemon environment and restored `loggedIn=true` by adding only USER and LOGNAME.
+- Narrow repair: CSO Opus had no existing custom environment. Its audited agent custom_env now contains exactly the two non-sensitive identity keys USER and LOGNAME. No token, account, credential file, model, runtime binding, daemon process, LaunchAgent or other agent was changed.
+- Live proof: a fresh WS-2109 retry crossed the previous auth boundary and no longer returned `Not logged in`. The new response was a Claude extra-usage reset notice for 03:50 Los Angeles time, proving provider authentication succeeded while exposing a separate temporary quota gate.
+- Evidence routing: file-backed retry comment `86ddceb9-60af-4a8d-a2ad-4725c0d52f05` remains signed as JC acting through Codex-CTO, not as human adjudication. The next retry is deferred until the stated reset rather than replaying against an exhausted quota.
+- Boundary: no Claude account identifiers, organization identifiers, token values, order details, customer data, alternate Claude runtime, new agent, global `AGENTS.md`, ERP daemon or autopilot schedule changed.
+
 ## [2026-07-17 18:10 CST] [Codex-CTO] [type:agent-ops] Sector Radar isolates inherited sensitive launch environment
 
 - Adversarial finding: the GUI launchd domain carries a Codex-wide sensitive environment injection. Sector Radar's public-weekly job already overrode the relevant `OPENAI_*` variables with explicit empty strings, but daily, watchdog and semiweekly did not, so project child processes could inherit the global values.
