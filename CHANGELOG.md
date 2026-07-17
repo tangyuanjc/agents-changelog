@@ -5758,3 +5758,13 @@ JC 17:31 双命题:
 - Repair: S1 now keeps signed age and requires `0 <= age_seconds <= 600`; it validates the JSON payload and check list shape and ignores non-object check entries. Invalid shape becomes a caught `ValueError`, preserving the existing `UNKNOWN_B1` contract.
 - Verification: both focused regressions pass; the live latest watchdog line still evaluates `GREEN/healthy`; Git-tracked tests plus the new regression pass `230 + 16 subtests`. The full Patrol was not manually triggered, so the next natural 18:00 Shanghai run remains the worker-level canary.
 - Boundary: Patrol still cannot probe GUI launchd, restart the daemon or declare B2 from S1. No production daemon, LaunchAgent, order database, Lark target, issue state, credential or global `AGENTS.md` changed.
+
+## [2026-07-17 15:21 CST] [Codex-CTO] [type:agent-ops] ERP local validation now remains human-correctable
+
+- Trigger: post-hotfix aggregate monitoring found two drafts labeled `push_failed`. Both had the same local validation reason: missing/invalid receiver address. WDT had not been called, and the order ledger already classified them as `needs_human`.
+- Root cause: `push_trades_with_ledger` correctly returned `push_blocked=true`, but `FeishuShippingDaemon._confirm_draft()` handled only pushed and push-unverified responses before falling through to `push_failed`. The draft state therefore contradicted the ledger and removed the normal correction path.
+- TDD repair: a daemon integration regression first reproduced `push_failed` with zero WDT calls. Commit `218673c` adds the minimal `push_blocked → needs_human` branch. Full verification passed `231 tests + 16 subtests` and `192` unittest cases.
+- Production proof: shipping daemon PID changed `19566 → 13710`; the new process kept one anchored writer and completed three consecutive cycles with zero general, Lark CLI and waybill errors. Immutable tag `production-20260717-needs-human-status` points to `218673c`.
+- Data repair: both SQLite databases were backed up and passed quick-check. An exact predicate matched two rows and only changed their draft status from `push_failed` to `needs_human`. Ledger local state remains `needs_human`, source-message idempotency remains failed, and no automatic WDT re-push is possible.
+- Governance: deploy manifest carries the PID/hash/test/backup/readback record; WS-1742 received a file-backed follow-up and remains `in_progress` for natural gates.
+- Boundary: no order payload, customer identity, mobile, address, TID, credential or Lark identifier was logged; no Bot/profile cutover, WDT push, global `AGENTS.md`, unrelated LaunchAgent or issue status changed.
