@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2026-07-18 01:45 CST] [Codex-CTO] [type:fix] Harden ERP transient cutover observers before execution
+
+- Trigger: adversarial review of the armed one-shot state machine found three deterministic false-failure risks before any future gate executed: launchctl `last exit code = 0` was parsed as field 4 (`=`) instead of field 5 (`0`); final watchdog timestamps with LA offsets were compared lexicographically against a Shanghai `+08:00` string; and WS-1702 close was scheduled only two minutes after its observer.
+- TDD: `/tmp/test_erp_transient_observer_time.zsh` first failed on the launchctl parser and offset comparison, then on the two-minute dependency margin. It now passes with `failures=0`, also enforcing pair-observer→cutover >=5 minutes and cutover→final-watchdog observer >=10 minutes.
+- Fix: pair/final observers now parse launchctl field 5; final watchdog uses timezone-aware `datetime.fromisoformat()` instant comparison; WS-1702 close moved from Shanghai 10:12 to 10:20.
+- Lifecycle: only the three affected sleeping transient jobs were booted out and resubmitted. New PIDs are pair=`896`, final watchdog=`894`, WS-1702 close=`4375`; cancellation and replacement are append-only in aggregate receipt JSONL. Bootstrap, T3 observer, cutover action, d01, production runner, and watchdog control planes were untouched.
+- ERP evidence commit `9d3b9f1` updates `docs/HANDOFF.md`; the ERP repo has no remote, so no PR/push exists.
+
 ## [2026-07-18 01:24 CST] [Codex-CTO] [type:config] Arm fail-closed ERP reconciliation cutover state machine
 
 - Trigger: the reviewed deterministic runner is staged but its production proof spans future Shanghai gates (09:10 T3/T5, 09:45 Patrol, 16:20 safe bootstrap, 17:30 local run, 17:31 fallback, 18:00 Patrol, and a later natural watchdog interval). The Codex task surface has no durable thread wakeup tool, so one-shot transient launchd jobs now preserve the evidence chain without manual triggers.
