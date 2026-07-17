@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-07-18 00:27 CST] [Codex-CTO] [type:config] Stage ERP deterministic reconciliation cutover without loading it
+
+- Trigger: WS-2125 CSO-only idle registration passed only after Codex adversarially caught and Opus corrected the original DST double-tick miscount and `tail -50` seven-day coverage gap (`org` `7c14f3a`, changelog `77ed9b7`).
+- Legacy fallback: autopilot `d01fada3-3e50-4f15-bfc5-9ab48b646dd7` remains active but now uses the exact HEAD `RECONCILIATION_RUN_ONLY.md` (`1747` bytes, SHA256 `b8c42f90464964ceadd801bbdc0175378982c1834d6c43d9c8a1f6c0665b9b70`) and schedule `31 17 * * *` in `Asia/Shanghai`, label `每日17:31上海`.
+- New local control plane: installed the source plist unchanged at `~/Library/LaunchAgents/ai.multica.erp-reconciliation.plist`; source/target SHA256=`bf131be3a8ff99f13d0ee122a450358f8bf09069ccc2c3a604f4be3d2c2466ba`, permissions `0644`, and `plutil -lint` passed.
+- Live boundary: did not bootstrap or kickstart the new label, did not manually trigger the fallback, and did not install the final watchdog. `launchctl print` still reports the label absent; runner state/receipt/lock remain absent.
+- Next gate: bootstrap only in the LA `01:20-01:25` / Shanghai `16:20-16:25` window, then require loaded label with runs=0 and no runner state/receipt before waiting for the natural 17:30 local run and 17:31 fallback.
+- Repo evidence: ERP local commit `5ca91c5` records the corrected WS-2125 gate and this cutover preflight in `docs/HANDOFF.md`; the ERP repo has no remote, so no PR/push exists.
+
 ## [2026-07-18 00:18 CST] [Opus-CSO] [type:fix] WS-2125 correct erp-reconciliation idle criterion (DST double-tick miscount + tail-50 seven-day coverage gap)
 
 - Trigger: Codex-CTO independent adversarial recheck of the 00:05 registration found two acceptance defects in the mechanical idle command; JC approved the correction. Issue stays `done`; the live scheduler and LaunchAgent are unchanged (still built-not-live).
