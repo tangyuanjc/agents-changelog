@@ -5750,3 +5750,11 @@ JC 17:31 双命题:
 - Canary proof: the isolated watchdog canary and recovery canary both returned non-empty message receipts. `process_exit=1` remains intentional while business checks are non-green; it no longer means Lark delivery failed.
 - Network note: a short Feishu TLS/DNS incident also occurred and temporarily presented an Apple certificate for the Feishu token host, but default/direct/forced-proxy probes later all returned certificate verification success. The stable configuration fault was the cross-app recipient.
 - Boundary: no open_id, token, cookie, customer data or employee private message was logged; no credential rotation, bot cutover, shipping daemon reload, issue status, global `AGENTS.md` or unrelated LaunchAgent changed.
+
+## [2026-07-17 14:56 CST] [Codex-CTO] [type:agent-ops] ERP Patrol S1 fail-closed drift hardening
+
+- Adversarial finding: the Patrol taskbook clamped a future watchdog mtime to zero seconds, which could turn clock/file drift into a false GREEN. A syntactically valid JSON line with the wrong top-level or `checks` shape could also escape as `AttributeError` and crash the worker instead of returning `UNKNOWN_B1`.
+- TDD: a new regression executes the actual Python block embedded in `PATROL_CSO_DAILY.md`, not a copied helper. The future-mtime case first failed with `GREEN`; the invalid-structure case first escaped with `AttributeError`.
+- Repair: S1 now keeps signed age and requires `0 <= age_seconds <= 600`; it validates the JSON payload and check list shape and ignores non-object check entries. Invalid shape becomes a caught `ValueError`, preserving the existing `UNKNOWN_B1` contract.
+- Verification: both focused regressions pass; the live latest watchdog line still evaluates `GREEN/healthy`; Git-tracked tests plus the new regression pass `230 + 16 subtests`. The full Patrol was not manually triggered, so the next natural 18:00 Shanghai run remains the worker-level canary.
+- Boundary: Patrol still cannot probe GUI launchd, restart the daemon or declare B2 from S1. No production daemon, LaunchAgent, order database, Lark target, issue state, credential or global `AGENTS.md` changed.
