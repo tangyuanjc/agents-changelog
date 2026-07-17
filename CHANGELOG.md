@@ -5828,6 +5828,16 @@ JC 17:31 双命题:
 - Data-plane progress: the first natural order with the new durable push-result receipt has appeared, but the aggregate remains one receipt candidate and zero complete five-ring samples. No order identifier or customer data was inspected or logged.
 - Remaining control-plane debt: `d01fada3` still needs an explicitly approved `create_issue → run_only` mode change and a future scheduled canary. No manual reconciliation, issue claim, autopilot trigger, bot cutover, T1/T2 start, soak start, credential, global `AGENTS.md` or shipping-daemon process was changed in this repair.
 
+## [2026-07-17 18:18 CST] [Codex-CTO] [type:correction] ERP scheduled gate completed; watchdog now correlates issue and heartbeat evidence
+
+- Correction target: the 17:48 entry accurately described the interim false green, but the scheduled create-issue worker was eventually claimed. Trigger 17:30:09 produced a reconciliation heartbeat/report at 17:48:15 and the Multica run completed at 17:51:15; the initial backlog delay was about 18 minutes rather than a permanent non-execution.
+- Business result: the four-source aggregate was 18 total, 10 built, five shipped, eight stuck, 13 disagreements and zero wrong-shipment detections. WS-2097 created high-priority triage child WS-2109, but the CSO Claude runtime immediately returned `Not logged in`, so the discrepancies remain unconsumed.
+- Watchdog refinement: the one-line `issue_created` fail-closed repair was intentionally superseded because it would remain red after the created issue produced valid business output. ERP commit `a324f57` now treats issue creation as consumed only when the reconciliation heartbeat timestamp is between the run trigger and watchdog `now`; missing, stale, future or unparsable evidence stays red.
+- Verification: three correlation regressions, 28 watchdog tests and the Git-tracked ERP suite pass `250 tests + 16 subtests`. Natural watchdog cycles first reported the pending issue, then recovered after the fresh heartbeat; the final Multica run status also became `completed`.
+- Run-only comparison: Patrol scheduled at 18:00:13 in `run_only` mode, completed at 18:06:56 without an issue, consumed the hardened S1 taskbook and reported S1 GREEN while preserving an overall B1 verdict for real downstream observations.
+- Configuration safety: `d01fada3` was briefly changed to `run_only`, but readback exposed prompt steps that require “the automatically created issue”. The mode was immediately restored to `create_issue`; cron, timezone, next run and shipping processes were unchanged, and no immediate run was triggered. A run-only-compatible fixed-parent taskbook remains design-gated.
+- Data-plane gate: durable receipt candidates increased to three while true five-ring samples remain zero. WS-1745 remains blocked and WS-2003 remains todo; neither scheduled execution nor watchdog health was promoted into business PASS or soak start.
+
 ## [2026-07-17 18:10 CST] [Codex-CTO] [type:agent-ops] Sector Radar isolates inherited sensitive launch environment
 
 - Adversarial finding: the GUI launchd domain carries a Codex-wide sensitive environment injection. Sector Radar's public-weekly job already overrode the relevant `OPENAI_*` variables with explicit empty strings, but daily, watchdog and semiweekly did not, so project child processes could inherit the global values.
