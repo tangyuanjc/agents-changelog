@@ -5923,3 +5923,10 @@ JC 17:31 双命题:
 - TDD hardening: children and comment queries now accept only known response envelopes; unknown envelopes return query failure. Update/comment/metadata writes require a nonempty JSON acknowledgement even when CLI exit is zero. Existing daily issues are always refreshed with the latest aggregate description, while the date marker still suppresses duplicate comments.
 - Verification: four regressions failed against the former behavior and now pass; the router suite passes 16/16 and the production tracked ERP suite passes `311 + 16 subtests`. Production Python compilation and diff checks pass.
 - Boundary: production HEAD contains the fix, but the deterministic LaunchAgent remains unloaded, runner state/receipt remain absent, live watchdog and old scheduler are unchanged, and WS-2125 remains the activation gate.
+
+## [2026-07-17 22:15 CST] [Codex-CTO] [type:correction] ERP route metadata writes recover one transient failure
+
+- Adversarial finding: after an explicit daily-child create, a transient failure between the two date/kind metadata writes could leave a half-identified issue. The next fallback would correctly fail closed on the incomplete identity but could not self-heal.
+- Narrow repair: each metadata key now receives at most two attempts because setting the same key/value is idempotent. Create and comment operations remain non-replayed, and all identity-conflict and unknown-result gates remain unchanged.
+- Verification: the new regression first returned `metadata_failed`, then passed with one create and three metadata calls. Router tests pass 17/17; the production tracked suite passes `312 + 16 subtests`; Python compilation and diff checks pass.
+- Live boundary: no live issue write, scheduler change, launchd bootstrap or watchdog cutover occurred. WS-2125 remains the sole activation gate.
