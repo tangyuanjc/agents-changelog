@@ -5798,3 +5798,12 @@ JC 17:31 双命题:
 - Verification: merged tracked pytest passed `246 + 16 subtests`; current checkout unittest discovery, including preserved local tests, passed `193`; system Python 3.9 compilation passed. Deploy evidence is recorded in the ERP manifest and HANDOFF.
 - Remaining natural gates: the next real order must populate the new push receipt before a true five-ring sample exists. The 17:30 reconciliation and 18:00 Patrol remain scheduled-only evidence; soak has not started.
 - Boundary: no order, TID, customer data, Lark identifier, credential, bot cutover, manual reconciliation, manual mainloop run, global `AGENTS.md` or issue status changed.
+
+## [2026-07-17 16:33 CST] [Codex-CTO] [type:agent-ops] ERP watchdog contains external probe timeouts
+
+- Natural production discovery: after the contract-hardening merge, the 5-minute ERP watchdog loaded the new ledger parser but an unrelated `multica autopilot runs` probe exceeded 15 seconds. `subprocess.TimeoutExpired` escaped the shared subprocess boundary and killed the one-shot watchdog before it could write a report.
+- TDD repair: a regression first reproduced the uncaught timeout. ERP commit `273c19a` now converts probe timeout into return code 124 with a bounded error string, so autopilot, launchctl, process and Lark probes fail closed as health checks instead of terminating the guardian.
+- Verification: watchdog tests pass 25/25; the tracked suite passes `247 + 16 subtests`; current checkout unittest discovery passes `193`; system Python 3.9 compilation passes.
+- Live proof: a controlled smoke wrote a new watchdog report, then the next natural 5-minute cycle also wrote JSONL. Launchd returned to the normal not-running state for a one-shot task; `last exit=1` reflects the still-failed reconciliation check, while stderr mtime stayed at the historical crash and gained no new traceback.
+- Immutable deployment tag: `production-20260717-contract-hardening-r2`. The shipping daemon was not reloaded by this follow-up and remained one writer on the existing PID.
+- Boundary: no alert retry storm, timeout increase, manual reconciliation, order data, credential, Lark target, global `AGENTS.md` or issue status changed.
