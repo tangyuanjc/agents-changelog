@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [2026-07-17 23:11 CST] [Codex-CTO] [type:agent-ops] ERP Patrol evidence made aggregate-only
+
+- Trigger: adversarial review found that the Patrol taskbook itself instructed workers to print source/message IDs, TIDs, receiver names, order-text snippets, and raw recent group content; historical workers therefore persisted row-level business identifiers exactly as instructed.
+- Root cause: S2/S3 used row-level SQL, S8 printed message content, and the B1 contract explicitly requested per-order details and manual WDT/waybill handling.
+- Change: S2/S3 now emit only status counts, over-threshold counts, and maximum age; S8 emits only message/confirmation/guidance-bounce/complaint counts. Per-order WDT/waybill work remains exclusively owned by the production daemon.
+- Privacy contract: future Patrol stdout, `patrol_cso_log.jsonl`, and B1 issue comments may not contain source/message IDs, TIDs, names, phones, addresses, products, or raw text.
+- TDD/verification: the privacy regression failed on the old S2 query before the change; taskbook tests passed 4/4, live aggregate/synthetic S8 smokes passed, tracked pytest passed `314 + 16 subtests`, unittest passed `194`, and compile/plist/diff checks passed.
+- Live wiring: Patrol autopilot `7ba10974` remains active at Shanghai 09:45/18:00 and its 382-byte description strictly references the checked-in taskbook, so no autopilot update or manual trigger was required.
+- Commits: ERP local `f86d515` and `6b14f29`; the repo has no remote, so no PR/push exists. Historical runtime logs were preserved rather than rewritten or deleted.
+- Boundary: no production database/order mutation, group message, WDT call, daemon reload, scheduler change, credential access, or global constitution edit was performed.
+
 ## [2026-07-17 23:00 CST] [Codex-CTO] [type:incident] ERP remaining local-validation draft state reconciled
 
 - Trigger: live aggregate audit found one residual draft still displayed as `push_failed` while the same source was already fail-closed as ledger `needs_human`, idempotency `failed`, and `push_blocked=true`.
