@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [2026-07-17 23:00 CST] [Codex-CTO] [type:incident] ERP remaining local-validation draft state reconciled
+
+- Trigger: live aggregate audit found one residual draft still displayed as `push_failed` while the same source was already fail-closed as ledger `needs_human`, idempotency `failed`, and `push_blocked=true`.
+- Safety preflight: the exact predicate matched one row; `pushed_at`, trade number, durable push receipt, and waybill were all absent. The existing local-validation regression passed before mutation.
+- Recovery: online-backed up both active SQLite databases to `backups/local-validation-status-tail-20260717T075543`; both backup `PRAGMA quick_check` results were `ok`.
+- Change: updated only the mismatched draft display state to `needs_human`. Readback is `updated_rows=1`, draft `push_failed=0`, and all three same-semantics local-validation rows now align as `needs_human`.
+- No-push proof: post-cutover durable receipt count remained 3; three natural daemon cycles had zero errors, zero Lark/waybill errors, and zero pushed, push-verified, or waybill-reported events.
+- Evidence: ERP local commit `1120411`; deploy tag `production-20260717-needs-human-status-tail`. The repo has no remote, so no PR/push exists for this commit.
+- Boundary: no WDT call/retry, group message, customer/order output, daemon reload, scheduler change, or constitution edit was performed. Whole-database live restore is forbidden; the backups are for forensic single-row recovery only.
+
 ## [2026-07-17 22:38 CST] [Codex-CTO] [type:agent-ops] ERP reconciliation bootstrap bounded to future launchd ticks
 
 - Trigger: cutover dry review found that `RunAtLoad=false` alone is not sufficient evidence that loading a calendar job after both daily ticks cannot coalesce a missed event; the local `launchd.plist` manual only explicitly documents catch-up after sleep/wake.
