@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [2026-07-18 01:24 CST] [Codex-CTO] [type:config] Arm fail-closed ERP reconciliation cutover state machine
+
+- Trigger: the reviewed deterministic runner is staged but its production proof spans future Shanghai gates (09:10 T3/T5, 09:45 Patrol, 16:20 safe bootstrap, 17:30 local run, 17:31 fallback, 18:00 Patrol, and a later natural watchdog interval). The Codex task surface has no durable thread wakeup tool, so one-shot transient launchd jobs now preserve the evidence chain without manual triggers.
+- Read-only observers: `ai.multica.erp-t3-patrol-observer-once` records the 7/18 T3 `09:10` success, T5 `66 options/3 fields`, and 09:45 scheduled Patrol; `ai.multica.erp-reconciliation-pair-observer-once` requires exactly one local `completed` receipt plus a scheduled fallback `already_completed`; `ai.multica.erp-final-watchdog-observer-once` waits past RunAtLoad for natural five-minute watchdog cycles and the 18:00 Patrol run.
+- Bounded bootstrap: `ai.multica.erp-bootstrap-waiter-once` may load `ai.multica.erp-reconciliation` only during LA `01:20-01:25`, after rechecking d01 `17:31`, taskbook/plist hashes, and absent label/state/receipt. Post-load must be runs=0 with no runner files; otherwise it immediately bootouts the new label.
+- Conditional cutover: `ai.multica.erp-reconciliation-cutover-once` acts only after the pair observer writes `gate_ok`. It pauses d01, disables its trigger, backs up the old watchdog plist, installs the runner-aware final watchdog, and reloads only the watchdog label. It never kickstarts reconciliation.
+- Rollback: any post-mutation failure bootouts the new reconciliation label, restores d01 active at `17:30`, restores/reloads the prior watchdog plist, and records `rollback_done`. If any prerequisite is absent or stale, the job exits with zero control-plane writes.
+- Runtime evidence is aggregate-only JSONL under `/Users/tangyuanjc/erp_agent_plan`; no orders, message/TID, customer data, tokens, recipient values, or raw issue content are emitted. These are one-shot transient jobs with no persisted plist and no recurring schedule.
+- ERP evidence commits: `40dfad9`, `9459c5f`, `5e93e6c`, and `2d11af4` update `docs/HANDOFF.md`; the ERP repo has no remote, so no PR/push exists. True five-ring, three complete Shanghai days, and fourteen-day steady-state remain independent blocked gates.
+
 ## [2026-07-18 00:27 CST] [Codex-CTO] [type:config] Stage ERP deterministic reconciliation cutover without loading it
 
 - Trigger: WS-2125 CSO-only idle registration passed only after Codex adversarially caught and Opus corrected the original DST double-tick miscount and `tail -50` seven-day coverage gap (`org` `7c14f3a`, changelog `77ed9b7`).
