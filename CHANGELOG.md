@@ -5740,3 +5740,13 @@ JC 17:31 双命题:
 - Live readback: bounded T5-only sync returned `succeeded`, 66 options and three fields; all three server-side option searches returned 66/66. The updated T3 plist was backed up and reloaded; RunAtLoad exited 0 through the same-day scheduled skip and did not query WDT.
 - Verification: Git-tracked pytest passed 228 tests plus 16 subtests; unittest discovery passed 191; both affected plists linted cleanly. Bare recursive pytest remains an invalid command in this dirty repo because preserved backup trees contain duplicate test module names; no backup was deleted or modified.
 - Boundary: no shipping daemon reload, bot cutover, natural-order acceptance claim, customer data, share token, credential, global `AGENTS.md` content or T1/T2 status was changed. The first natural automated T3-to-T5 post-sync remains tomorrow's Shanghai 09:10 canary.
+
+## [2026-07-17 14:31 CST] [Codex-CTO] [type:agent-ops] ERP watchdog app-scoped Lark recipient repair
+
+- Trigger: the independent ERP watchdog and 10:15 mainloop delivery path were unhealthy even though the `cto-codex-multica` bot token was ready. A direct, redacted reproduction returned Feishu error `99992361 open_id cross app`.
+- Root cause: the watchdog reused a user `open_id` created by a different Lark application. Open IDs are application-scoped, so retries could never make the `cto-codex-multica` bot deliver to that stale identifier.
+- Repair: under the `cto-codex-multica` user identity, contact lookup uniquely resolved the active self user `熵减法则-Jc`; its app-scoped identifier was written to the repo and live watchdog plist without exposing the value. The bot profile, daemon, shipping profile, Base, mainloop schedule and recipient person did not change.
+- Production proof: both plists linted, the resolved recipient fingerprints match, watchdog tests passed 23/23, and the reloaded LaunchAgent produced `delivery=sent` with a real message receipt while clearing `ERP_WATCHDOG_UNDELIVERED.flag`.
+- Canary proof: the isolated watchdog canary and recovery canary both returned non-empty message receipts. `process_exit=1` remains intentional while business checks are non-green; it no longer means Lark delivery failed.
+- Network note: a short Feishu TLS/DNS incident also occurred and temporarily presented an Apple certificate for the Feishu token host, but default/direct/forced-proxy probes later all returned certificate verification success. The stable configuration fault was the cross-app recipient.
+- Boundary: no open_id, token, cookie, customer data or employee private message was logged; no credential rotation, bot cutover, shipping daemon reload, issue status, global `AGENTS.md` or unrelated LaunchAgent changed.
