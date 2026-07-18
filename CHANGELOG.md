@@ -6138,6 +6138,13 @@ JC 17:31 双命题:
 - Corrected rule: `run_only` removes automatic issue creation but does not remove the LLM agent loop. A Multica run-only autopilot is not eligible as a one-minute mechanical hot fallback unless a natural run proves bounded tool-start and completion latency. Queue status or `running` is never execution evidence.
 - Promotion boundary: 2026-07-18 is not a complete green day. WS-1745 remains blocked; true five-ring remains `0/3`. Manual trigger, rerun, observer rearm or retroactive receipt acceptance is prohibited. A deterministic non-LLM fallback architecture requires JC approval and a new untouched natural-day validation before any cutover.
 
+## [2026-07-18 18:54 CST] [Codex-CTO] [type:correction] ERP Patrol core also cannot depend on a run-only LLM loop
+
+- Natural evidence: the 18:00 Shanghai Patrol run was triggered on schedule and picked by the CTO runtime at 18:01. Its Codex app-server then produced zero messages and zero tool calls for 45 minutes; the daemon idle watchdog force-stopped it at 18:46 and the run ended failed without any Patrol output or S1/S2 verdict.
+- Shared root cause: both the 17:31 fallback and 18:00 Patrol used Multica `run_only`, but `run_only` still starts a full agent/model execution. Removing issue creation does not make the workload deterministic, bounded or mechanical.
+- Corrected architecture boundary: the minute-SLA fallback and the Patrol core checks must execute through non-LLM deterministic runners with local receipts. LLM agents may consume red/ambiguous results for explanation or adjudication, but their queue, reasoning and tool-start latency cannot be a prerequisite for heartbeat, safety gate or cutover evidence.
+- Current safety: the 17:30 local truth-v3 result remains valid and green, but the day is not a complete green day. WS-1745 stays blocked, cutover remains frozen, the legacy fallback remains active and the old watchdog remains installed. Implementation of deterministic fallback plus Patrol core requires JC approval and a fresh natural-day validation.
+
 ## [2026-07-18 14:02 CST] [Codex-CTO] [type:fix] Sector Radar isolates every Python entry and bounds recovery I/O
 
 - Natural incident: the LA 17:30 Sector Radar daily job was genuinely started by a calendar `xpc_event`, but it remained stuck for more than one hour in the first `today_id()` Python launch before collection, Vault sync or run-receipt code. No daily/Vault log or receipt advanced. The exact project process tree was terminated by PID/PPID/comm guard without touching other Python, Apps, Colima, Multica or system services; the day remains strict natural `0/2` and strict days `0/30` with no kickstart or retroactive receipt.
