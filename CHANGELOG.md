@@ -6211,3 +6211,11 @@ JC 17:31 双命题:
 - The fourteen-day steady-state and 2026-08-01 contract review currently exist only as mainloop prose. There is no deterministic evaluator for automation rate, waybill-return coverage, manual-actor/employee-action proxies, or a real delivery-receipt contract for the review.
 - WS-1745 now preserves the full order in durable metadata: 2026-07-19 natural chain, evidence-bound collector, WS-1742 close, hardened WS-1744 Bot cutover, three complete Shanghai days, staged T1/T2 completion, final fourteen-day steady-state evidence and the 2026-08-01 review delivery receipt.
 - The parent remains blocked. No test, text reminder, caller-supplied PASS row or issue status can substitute for these gates, and no Bot, T1, T2, soak, new loop, schedule, runtime or business action was started.
+
+## [2026-07-19 17:38 CST] [Codex-CTO] [type:fix] MacBook Multica recovers from a stale FlClash hosts pin
+
+- Root cause: MacBook FlClash persisted `patchClashConfig.hosts.api.multica.ai=52.42.136.65`; the stale IP timed out during TLS while current authoritative DNS addresses returned `GET /health` 200. The same pin blocked Multica Desktop login, workspace sync, WebSocket wakeups and every local runtime heartbeat.
+- Minimal repair: after a mode-700/600 private backup, FlClash exited normally; only the single stale hosts entry was removed, with no replacement IP. FlClash was cold-started through the App path. No Core signal, `SIGHUP`, token reset, endpoint swap or reinstall occurred.
+- Live network proof: both preference and generated config read back with the pin absent; default and forced `127.0.0.1:7890` Multica health returned 200, GitHub returned 200, OpenAI returned 401 at endpoint, system proxy stayed disabled and TUN routing returned on `utun7`.
+- Multica proof: Desktop cold start restored the existing JC session and launched the bundled v0.4.4 daemon. Four workspaces synchronized, task-wakeup WebSocket connected, and the server reports all 12 active MacBook Claude/Codex/Kimi runtimes online, including OG Codex runtime `6ccb5f5e-e0af-45d5-9c1d-f498731f612c`.
+- Boundary: the additional private `Grok Build` profile remains offline because `multica-grok-acp` is not installed on the MacBook. That is an uninstalled capability, not residual network failure, and requires a separately authorized installation/source decision.
