@@ -6197,3 +6197,10 @@ JC 17:31 双命题:
 - The disabled cutover taskbook is not activation-ready: it hard-codes the 2026-07-16 window, retains stale WS-1751 gating, instructs a result comment to expose a real Lark message receipt identifier, and uses the obsolete 48-hour observation rule instead of the current three-complete-Shanghai-day contract.
 - WS-1744 now records the safe order: 2026-07-19 deterministic natural chain, WS-1742 close, in-place taskbook hardening, in-place future one-shot trigger update and readback, atomic Bot cutover, then the three-day clock. No duplicate autopilot may be created.
 - Production was untouched: the shipping daemon remains the single writer at PID 99232, the installed plist still matches the canonical live-mini SHA-256 `455ddee7...b3c`, and no Bot, T1, T2, soak, Lark send, launchd reload or business run was started.
+
+## [2026-07-19 13:06 CST] [Codex-CTO] [type:fix] ERP T1 and T2 gates reflect the current dependency order
+
+- T0/WS-1698 and T3/WS-1699 are both done, making the only 2026-07-10 T1/T2 blocker comments stale. Their completion is not treated as authorization to start reconstruction work.
+- WS-1700 remains backlog and now explicitly waits for the 2026-07-19 deterministic natural chain, WS-1742 close, WS-1744 atomic Bot cutover and three complete Shanghai days proven from deterministic evidence. Its existing acceptance remains at least 90% gold parsing automation, zero semantic wrong pushes, 13/13 query-negative rejection, the seven-day repaired baseline, at least three no-send/no-push live-shadow days, PATROL visibility and CSO approval.
+- WS-1701 remains backlog and now explicitly waits for T1 implementation, shadow acceptance, cutover and stabilization. Its migration gates remain illegal-state rejection, green dry-run migration and rollback, 100% terminal coverage of the fixed T0 52-row cleanup selection and three consecutive WDT manual-order recapture days.
+- Only Multica metadata and file-backed comments changed. No Bot, T1, T2, soak, database mutation, cleanup SQL, dual-write or production run was started.
