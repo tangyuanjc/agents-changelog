@@ -6204,3 +6204,10 @@ JC 17:31 双命题:
 - WS-1700 remains backlog and now explicitly waits for the 2026-07-19 deterministic natural chain, WS-1742 close, WS-1744 atomic Bot cutover and three complete Shanghai days proven from deterministic evidence. Its existing acceptance remains at least 90% gold parsing automation, zero semantic wrong pushes, 13/13 query-negative rejection, the seven-day repaired baseline, at least three no-send/no-push live-shadow days, PATROL visibility and CSO approval.
 - WS-1701 remains backlog and now explicitly waits for T1 implementation, shadow acceptance, cutover and stabilization. Its migration gates remain illegal-state rejection, green dry-run migration and rollback, 100% terminal coverage of the fixed T0 52-row cleanup selection and three consecutive WDT manual-order recapture days.
 - Only Multica metadata and file-backed comments changed. No Bot, T1, T2, soak, database mutation, cleanup SQL, dual-write or production run was started.
+
+## [2026-07-19 13:09 CST] [Codex-CTO] [type:fix] ERP parent now retains every machine-verifiable health gate
+
+- The three-day `erp_control_plane_acceptance.py` surface has no production producer, its ledger is absent and its current `record` command accepts caller-supplied natural/PASS verdicts. It cannot start or close the green-day clock until a deterministic evidence-bound collector replaces self-attestation.
+- The fourteen-day steady-state and 2026-08-01 contract review currently exist only as mainloop prose. There is no deterministic evaluator for automation rate, waybill-return coverage, manual-actor/employee-action proxies, or a real delivery-receipt contract for the review.
+- WS-1745 now preserves the full order in durable metadata: 2026-07-19 natural chain, evidence-bound collector, WS-1742 close, hardened WS-1744 Bot cutover, three complete Shanghai days, staged T1/T2 completion, final fourteen-day steady-state evidence and the 2026-08-01 review delivery receipt.
+- The parent remains blocked. No test, text reminder, caller-supplied PASS row or issue status can substitute for these gates, and no Bot, T1, T2, soak, new loop, schedule, runtime or business action was started.
