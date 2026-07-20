@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [2026-07-21 01:48 CST] [Codex-CTO] [type:fix] Harden Tmall Loop marketing session truth and same-run repair dispatch
+
+- Trigger: 天猫 Loop v3.2 W1 required Alimama/DMP to stop reporting half-dead business sessions as green, retire the ambiguous legacy login script, and enter the Multica repair loop during the failed collection run instead of waiting only for the 12:05 fallback.
+- State truth: verified login identity plus business `login_required` now normalizes to `business_session_expired`; every live business status other than `verified` fails closed, while slider/SMS/risk blockers retain priority. Historical false-green state is defensively normalized without changing the original run date or collector exit.
+- Single recovery path: the only authorized human command is `cd /Users/tangyuanjc/data-pipelines && ./run_alimama.sh --bootstrap --headed`. The legacy script exits closed, DMP bootstrap exits 64, and direct collector bootstrap requires the Alimama wrapper sentinel before any browser or output/state directory can start.
+- Same-run repair: a shared atomic state helper invokes the existing filtered Multica reporter only for recoverable login blockers. Reporter failure never replaces the collector/effective exit, never writes notification data back over `last_run`, and raw log tails are omitted from issue descriptions.
+- Concurrency and dedupe: non-dry-run issue resolution holds an independent `flock` across marker reread, active-status check, create, and marker write; marker/report JSON uses flush + fsync + `os.replace`. Active issues are reused only for the same complete `pipeline + incident class` set, so blocker renames within one login incident reuse while new pipelines or different incident classes cannot be silently swallowed.
+- Dry-run safety: Alimama/DMP wrapper dry-runs do not write last-run state or trigger reporter. Live canaries confirmed both last-run SHA256/mtime/inode values stayed unchanged; reporter dry-run left marker, report, and lock state unchanged.
+- Verification: Node 35/35 and Python 23/23 passed, all Node/Python/Bash static checks exited 0, and the frozen review snapshot independently passed the same 35/35 + 23/23. Fresh spec review passed and fresh code-quality re-review approved.
+- Delivery boundary: `/Users/tangyuanjc/data-pipelines` is not a Git checkout, so no code commit, PR, or push exists there. WS-2223 carries the implementation evidence; JC扫码恢复 and CSO live success readback remain the independent credential-bound gate.
+
 ## [2026-07-20 23:05 CST] [Codex-CTO] [type:fix] Recover Dynamic Workflow worker threads after runner crashes
 
 - Trigger: JC again found internal automation workers crowding out important Codex Desktop conversations. The 7/16 fix only archived workers when normal `finally` cleanup ran; budget stops, killed runners, and crash races could still strand threads.
