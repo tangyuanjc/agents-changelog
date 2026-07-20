@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-07-21 02:52 CST] [Codex-CTO] [type:fix] G9 board refresh no longer false-fails at fixed wrapper timeouts
+
+- Trigger: the 7/18–7/20 scheduled G9 runs all reported `completed` only after manually decomposing the authoritative `gateway-conversation-analysis.mjs --refresh-board` command. The outer wrapper killed real 2–5 minute board builds after 30 seconds, while stale attribution could also exceed the builder's 120 second subprocess limit.
+- Fix: `--refresh-board` now calls the existing `materializeEmployeeBoards()` in-process, preserving its Shanghai target-date and snapshot freshness rules. When attribution is stale, G9 injects the existing metadata-only Python refresher with a bounded 600-second fail-closed timeout; non-zero exits still abort the run and stale output is never accepted.
+- Privacy boundary: no employee raw conversation was manually replayed for validation. The live canary invoked only the board refresh helper; the full G9 persistence proof remains the next natural scheduled run.
+- Verification: the new regression was observed RED on missing exports and GREEN after the minimal implementation. Focused G9 tests passed `19/19`; the current complete MJS suite passed `91/91`; isolation validator returned `ok=true`; Pulse remained non-degraded with skill gate `enforcing`.
+- Live readback: the metadata-only board refresh completed exit 0 in `46.29s`, crossing the old 30-second failure boundary without command decomposition. The next scheduled run must no longer report the wrapper timeout or a manual split before persistence is labelled closed.
+- Boundary: no `~/.org/AGENTS.md` edit, employee raw scan, Result Contract receipt, Skill Candidate event, business outcome, Autopilot trigger, or unrelated dirty file was created or modified.
+
 ## [2026-07-21 01:48 CST] [Codex-CTO] [type:fix] Harden Tmall Loop marketing session truth and same-run repair dispatch
 
 - Trigger: 天猫 Loop v3.2 W1 required Alimama/DMP to stop reporting half-dead business sessions as green, retire the ambiguous legacy login script, and enter the Multica repair loop during the failed collection run instead of waiting only for the 12:05 fallback.
