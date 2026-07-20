@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2026-07-21 05:27 CST] [Codex-CTO] [type:fix] Point Loop-1 skill telemetry assertion at trace counts
+
+- Trigger: WS-2062 was still blocked after daemon trace writing recovered because the consumer assertion read `coverage.skill.events`, which measures CPA request attribution to skills, not whether daemon skill telemetry exists.
+- Fix: `blackboard-v3/scripts/consumer-assertions.ts` now prefers `employee_boards.skill_trace_stats.events` for `skill_telemetry_events`, while retaining `coverage.skill.events` as a backward-compatible fallback and evidence field.
+- TDD: added a regression where `skill_trace_stats.events=136` and `coverage.skill.events=0`; it failed before the fix and passed after the minimal implementation. Focused `consumer-assertions.test.ts` passed `10/10`.
+- Live smoke: dry-run against current metrics returned `skill_telemetry_events=PASS`, `skill_trace_stats.events=4027`, `coverage.skill.events=0`; remaining overall FAIL is `gateway_body_rows_today`, a separate chain.
+- Boundary: no daemon restart, no raw CPA body read, no secrets, no employee raw transcript, no unrelated dirty files, and no global constitution edit.
+
 ## [2026-07-21 03:45 CST] [Codex-CTO] [type:fix] Make Tmall Loop offline evidence deterministic and credential-safe
 
 - Trigger: 天猫 Loop v3.2 W2 required the existing Alimama corpus to stop treating endpoint names, historical schema declarations, or gross metrics as proof of SKU-level net-transaction data.
