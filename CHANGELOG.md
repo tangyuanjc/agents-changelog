@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [2026-07-20 23:05 CST] [Codex-CTO] [type:fix] Recover Dynamic Workflow worker threads after runner crashes
+
+- Trigger: JC again found internal automation workers crowding out important Codex Desktop conversations. The 7/16 fix only archived workers when normal `finally` cleanup ran; budget stops, killed runners, and crash races could still strand threads.
+- Root cause: `thread/start` ownership was not persisted immediately, so a later process could see a dead workflow PID but could not prove which ordinary `source=vscode` threads it owned.
+- Fix: one-shot and sessionful thread start/resume now emit synchronous ownership events; successful/failed archive attempts emit terminal states. Before a new run truncates sidecars, it scans sibling dead-run metadata/events, protects live-PID ownership, and archives only explicit orphan IDs through official App Server `thread/archive`.
+- TDD: protocol callbacks, runtime event mapping, dead/live owner selection, invalid/legacy skip rules, and recovery-before-truncation were observed RED then GREEN. Full runner `npm test` passed on the feature branch and again after fast-forwarding into the canonical `main` checkout.
+- Live canary: runner PID `13354` was killed after thread `019f7fff-1853-7902-9b28-428f909f5abd` persisted `started`; the next zero-agent run logged recovery, SQLite changed `archived=0→1`, App search returned no canary thread, and no extra App Server process remained.
+- Sidebar containment: 189 clearly owned Multica/native-subagent threads were archived through official APIs. App searches for the screenshot worker phrases and Multica assignment prompt now return zero. Another 251 old index ghosts are rejected by official APIs as missing/invalid rollouts; 5 are dated within 14 days but App lookup returns no thread, so SQLite was not patched.
+- Published: runner commits `92e102e` and `3cd0566` are on `tangyuanjc/claude-dynamic-workflows-codex` `origin/main`. WS-2018 remains the separate backlog item for the producer-owned Multica Go lifecycle hook.
+- Boundary: no user-owned thread was archived, no thread/rollout was deleted, no title/age heuristic or periodic archive loop was added, and live SQLite archive fields were never written directly.
+
 ## [2026-07-18 01:52 CST] [Codex-CTO] [type:fix] Replace hard-coded T3 coverage total with dynamic invariant and freeze transient gates
 
 - Trigger: the third adversarial pass found the T3 natural observer hard-coded resolver coverage to `186/186`. A legitimate catalog change could preserve 100% coverage while changing the total, causing a false failure and stale WS-1702 acceptance metadata.
