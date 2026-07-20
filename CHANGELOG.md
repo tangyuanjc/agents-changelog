@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-07-21 05:51 CST] [Codex-CTO] [type:fix] Make Qianchuan retry/backfill survive timeout and replay dates
+
+- Trigger: WS-2185 showed the 2026-07-19 Qianchuan puller stopped after three fast timeout attempts and never entered slow lane; the later manual replay also failed because the exporter reused the relative `昨天` shortcut for a non-yesterday target date.
+- Fix: `run_qianchuan.sh` now sources a dedicated retry policy helper so retryable timeout/network/date-control failures continue past the quick retry budget into slow backoff while respecting total attempts. It also accepts `QIANCHUAN_TARGET_DATE` and passes an explicit `--date` to the exporter for bounded replays.
+- Fix: the fixed Qianchuan exporter now supports `--date`; when the requested date is not Shanghai-yesterday, it skips the relative date shortcut and selects the target calendar cell range directly.
+- TDD: added regression coverage for retryable timeout slow-lane promotion, runner target-date wiring, exporter `--date`, and replay-date shortcut bypass. Skill tests passed `24/24 + 16/16 + 2/2`; data-pipelines Qianchuan tests passed `22/22`; shell syntax and `py_compile` passed.
+- Live proof: bounded replay for `QIANCHUAN_TARGET_DATE=2026-07-19` completed exit 0 on attempt 1, generated 7 XLSX exports, appended 33 rows, gate returned ready with zero candidates, and the daily report read back `READY · 数据源 7/7`.
+- Boundary: no credential, cookie, token, raw browser state, or full private page artifact was copied into comments/changelog; no global constitution edit; `/Users/tangyuanjc/data-pipelines` and the local Qianchuan skill directory are not Git checkouts, so there is no repo PR for these file changes.
+
 ## [2026-07-21 05:27 CST] [Codex-CTO] [type:fix] Point Loop-1 skill telemetry assertion at trace counts
 
 - Trigger: WS-2062 was still blocked after daemon trace writing recovered because the consumer assertion read `coverage.skill.events`, which measures CPA request attribution to skills, not whether daemon skill telemetry exists.
