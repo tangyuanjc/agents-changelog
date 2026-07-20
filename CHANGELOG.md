@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [2026-07-21 03:45 CST] [Codex-CTO] [type:fix] Make Tmall Loop offline evidence deterministic and credential-safe
+
+- Trigger: 天猫 Loop v3.2 W2 required the existing Alimama corpus to stop treating endpoint names, historical schema declarations, or gross metrics as proof of SKU-level net-transaction data.
+- Evidence inventory: the scanner observes 30 runs / 82 JSON, excludes 2 explicit dry-run runs / 4 JSON, and freezes 28 runs / 78 JSON by path, size and SHA-256. The row corpus is limited to 3 verified runs / 15 report JSON; metadata files never contribute business rows.
+- Contract truth: 23,105 direct objects classify as `both_verified=0`, `both_unverified=0`, `id_only=232`, `metric_only=211`, `pseudo_candidate=3`, and `neither=22659`; net-field evidence is zero. New outputs therefore publish `tmall_data_contract.v1` with `metricBasis=unverified`, and `itemId` is never promoted to `skuId`.
+- Persistence boundary: persisted URLs contain origin + pathname only; safe query selectors are structured separately. Request and response metadata hash only sanitized projections plus shape, never raw low-entropy sensitive bodies. Authorization schemes, JWTs, cookie headers, Taobao token/cookie aliases, QR payloads and SMS codes fail closed across request, response, aggregation and final-write gates.
+- Determinism: manifest/evidence artifacts carry stable corpus and result hashes; verification rebuilds the selected frozen corpus and rejects drift without letting later runs silently change the inventory.
+- Fresh verification: Node tests pass `52/52`, Python tests pass `46/46`, Node/Python/Bash static checks pass under fail-fast execution, and artifact verification returns `valid=true`. Independent W2-B/W2-C spec and quality reviews are PASS/APPROVED.
+- Delivery boundary: `/Users/tangyuanjc/data-pipelines` is not a Git checkout, so no code PR exists there. WS-2224 remains `in_review` for the required CSO cross-lineage gate; W3 remains credential-bound to JC scan and live CSO readback.
+
 ## [2026-07-21 03:21 CST] [Codex-CTO] [type:fix] Separate post-admission loop bypasses from legacy contract debt
 
 - Trigger: the EP-2 completion audit found that constitutional delivery was being mistaken for enforcement. Live WIP is `285` against threshold `25`, admission is closed, and the 52-loop inventory has only `1 ready / 51 contract_missing`; two member-created loops appeared after hr29 section 3 became effective without registered contracts.
