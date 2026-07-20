@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-07-21 03:21 CST] [Codex-CTO] [type:fix] Separate post-admission loop bypasses from legacy contract debt
+
+- Trigger: the EP-2 completion audit found that constitutional delivery was being mistaken for enforcement. Live WIP is `285` against threshold `25`, admission is closed, and the 52-loop inventory has only `1 ready / 51 contract_missing`; two member-created loops appeared after hr29 section 3 became effective without registered contracts.
+- Fix: the WIP scanner now marks only post-effective-date missing contracts as `post_admission_bypass` and exposes `post_admission_bypass_count` in the JSON report, append-only alert log and CLI summary. Legacy missing contracts remain blocked but are not relabelled as new violations.
+- TDD: a fixture with one legacy missing loop, one post-gate missing loop and one post-gate registered loop failed on the absent field, then passed after the minimal detector. WIP/admission/A2A Python tests pass `42/42`; the complete MJS suite remains `91/91`.
+- Production readback: `current_wip=285`, `admission=closed`, `loop_contract_blocked=51`, `post_admission_bypass=2`, `auto_close=false`. The two aggregate rows are one active and one paused, both member-created and contract-missing; no title, description or private content is emitted in the audit report.
+- Architecture consequence: local wrappers, Codex instructions and employee A2A runbooks are a live core but cannot make Multica UI/API/CLI create non-bypassable. Closure requires a workspace/server create guard accepting only a valid `org.loop_contract.v1` or auditable approved exception reference.
+- Boundary: no Autopilot was paused, created, deleted or backfilled; no legacy contract was guessed; no issue was auto-closed; `~/.org/AGENTS.md` was not modified.
+
 ## [2026-07-21 02:52 CST] [Codex-CTO] [type:fix] G9 board refresh no longer false-fails at fixed wrapper timeouts
 
 - Trigger: the 7/18–7/20 scheduled G9 runs all reported `completed` only after manually decomposing the authoritative `gateway-conversation-analysis.mjs --refresh-board` command. The outer wrapper killed real 2–5 minute board builds after 30 seconds, while stale attribution could also exceed the builder's 120 second subprocess limit.
