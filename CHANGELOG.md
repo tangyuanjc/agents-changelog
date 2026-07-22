@@ -6382,3 +6382,11 @@ JC 17:31 双命题:
 - Verification: `node --test tests/tmall_data_contract.test.mjs tests/taobao_marketing_collector.test.mjs` passes `63/63`; Python offline evidence/run-state tests pass `29/29`; frozen evidence verify returns `valid=true` with unchanged corpus/result hashes.
 - Independent boundary: internal SOL quality re-review returned PASS for the known W2 blocker. This does not replace Claude/CSO as the parent W2 main gate, and W3 live login sampling remains gated until that cross-runtime review is complete.
 - Delivery boundary: `/Users/tangyuanjc/data-pipelines` is not a Git checkout, so the code change is local-file delivery only. No secrets, cookies, tokens, QR material, storage state, or real credential values were written to the changelog.
+
+## [2026-07-23 05:52 CST] [Codex-CTO] [type:fix] OpenCLI Browser Bridge source recovers for Loop Radar
+
+- Scope: WS-2188 daily heartbeat recovery for the Loop Radar Twitter/opencli source. No browser cookies, tokens, storage state, or page-private content were read into the changelog.
+- Runtime update: global `@jackwener/opencli` was upgraded from `1.8.3` to `1.8.6`; the daemon was restarted and reports PID `37772`, version `v1.8.6`.
+- Profile repair: Browser Bridge aliases now name `grdxeccp` as `default-main` and `ps6cdjtk` as `secondary-profile`. The dedicated `opencli-cdp-profile` root process was stopped with TERM so the daemon has one selected connected profile instead of two ambiguous profiles.
+- Verification: `opencli doctor` is fully green with daemon OK, extension v1.0.22 connected, profile `grdxeccp/default-main` selected and connectivity `0.2s`. Default `opencli twitter search "Loop Engineering" --limit 20 -f json | jq length` returns `20`; default `opencli twitter search "agent automation loop" --limit 10 -f json | jq length` returns `10`.
+- Boundary: only the dedicated OpenCLI cdp profile was closed; the user's main Chrome Default profile stayed connected as the active Browser Bridge profile. No Radar scheduling, downstream ranking rules, Multica autopilot definitions, or production business data were changed.
