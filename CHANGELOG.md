@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-07-23 23:53 CST] [Codex-CTO] [type:fix] Restore Weixin new-key attribution in CPA leaderboard
+
+- Trigger: Weixin's Feishu handoff proved the new isolated credential passed both CLI and Desktop canaries, and CPA live events already contained 37 requests / 3,775,888 tokens under masked label `jc...5Q`; the daily leaderboard still showed zero because its suffix map only knew the retired `WX` identity.
+- TDD: extended the rotated-key regression with `WX + 5Q`; the old implementation failed with only one request / 50 tokens for Weixin, then passed after the minimal mapping change. The leaderboard suite now passes 3/3 and Python compile passes.
+- Fix: added `5Q -> 维欣` to `~/.bin/cpa-tokens-leaderboard.py`; added a secret-free suffix/display mapping to the private CPA keymap so future events resolve `keymap_employee=维欣` without printing or persisting the full credential in governance artifacts.
+- Live readback: private keymap resolves the masked event to employee `维欣`, status `confirmed`, suffix `5q`; leaderboard `--dry-run` now includes Weixin with 3,775,888 tokens. No group post was sent and the production snapshot was not overwritten.
+- Attribution boundary: the historical Wenya-Weixin shared pool remains disputed and excluded from personal totals. Post-rotation in-flight events on the old key are not reassigned by time alone; machine evidence remains a separate auditable signal.
+- Boundary: no raw employee conversation body, full key, token, cookie, old event-ledger rewrite, Feishu group send, or constitution edit.
+
 ## [2026-07-21 05:51 CST] [Codex-CTO] [type:fix] Make Qianchuan retry/backfill survive timeout and replay dates
 
 - Trigger: WS-2185 showed the 2026-07-19 Qianchuan puller stopped after three fast timeout attempts and never entered slow lane; the later manual replay also failed because the exporter reused the relative `昨天` shortcut for a non-yesterday target date.
