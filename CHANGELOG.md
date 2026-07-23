@@ -6418,3 +6418,12 @@ JC 17:31 双命题:
 - Verification: focused ERP release tests pass `98`; tracked pytest passes `877 + 20 subtests`; tracked unittest passes `206`; Python compile, plist lint, self-hash, Git diff and frozen 2026-07-19 provenance checks pass. Live WIP admission is eligible and the legacy fallback reads active/run-only with one enabled `31 17 * * * Asia/Shanghai` trigger.
 - Launchd activation: `ai.multica.erp-feedback-upgrade-once` is loaded as mode 0600 with source/installed SHA-256 `0ffb20b2f3e699007db74066a5107adccba980f9ae2730543f8ed7ca2667d0d1`, `RunAtLoad=false`, `KeepAlive=false`, `runs=0` and no last exit. Calendar ticks map from Los Angeles 01:20/01:27/01:34 to Shanghai 16:20/16:27/16:34. No kickstart was used.
 - Safety boundary: the four legacy ERP services and installed hashes remain unchanged and quiescent, the legacy Autopilot remains active, all three dated observers are absent, and all 2026-07-24 upgrade/business receipts remain absent. No ERP business execution, Lark send, raw shipping-message read or synthetic acceptance evidence occurred; the next proof must come from the natural 16:20-18:12 Shanghai window.
+
+## [2026-07-24 02:35 CST] [Codex-CTO] [type:policy] Codex human HTML delivery becomes dual-end and bot-isolated
+
+- Local policy: `~/.codex/instructions.md` now requires long human-facing analysis, audits, plans and reports to default to single-file HTML while leaving short answers and status updates in chat.
+- Delivery contract: every final HTML must appear in Codex Desktop and be sent to JC P2P through the dedicated `lark-codex` application named `Codex`; Opus/CSO and other agent bots are explicitly forbidden as substitutes.
+- Inbound parity: HTML supplied by JC for review or forwarding follows the same mirror rule. Duplicate delivery is suppressed by `thread_id + SHA-256`, so unchanged bytes are not resent within the same task.
+- Completion gate: dual-end delivery is complete only after Feishu returns a `message_id` and the sent-file hash matches the desktop artifact. Missing scope, missing P2P or CLI failure remains an explicit incomplete delivery; Chrome or another bot is not a silent fallback.
+- Privacy boundary: credential, key, cookie, raw employee conversation and private-evidence scans run before send. Secret-bearing artifacts must be redacted or blocked even when the destination is JC P2P.
+- Governance boundary: this is a Codex-local rule tracked by Multica WS-2355. The organization-wide constitutional rule remains reserved for Opus-CSO and was not written into `~/.org/AGENTS.md`.
