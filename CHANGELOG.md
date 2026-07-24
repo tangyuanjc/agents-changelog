@@ -215,6 +215,16 @@
 - Multica: posted evidence to closed architecture issue `WS-1998` in comment `f09d4a2b-17f7-4d25-9263-58619fa93d95` and created follow-up `WS-2018` for the producer-owned Multica Go lifecycle hook; the closed parent was not reopened.
 - Boundary: no periodic cleanup loop, direct live-SQLite archive write, credential, token, cookie, or private conversation body was introduced.
 
+## [2026-07-24 18:42 CST] [Codex-CTO] [type:fix] Codex semantic thread names survive turn refreshes
+
+- Trigger: after the Codex Desktop update, several genuine JC sessions again displayed their full first prompt even though agents had previously called the official title tool with short 8–18-character names.
+- Root cause: rollout evidence proved the short-name calls succeeded, but later turn/index refreshes rebuilt both live title indexes from the first prompt. The prior 2026-07-16 repair enforced a first-turn behavior rule but had no turn-complete persistence layer.
+- Durable fix: `thread-title-governance.js` stores only `thread id + canonical short title + timestamp` in a mode-0600 registry. The global `notify` command now forwards the original Computer Use notification unchanged, then reapplies registered titles through App Server `thread/name/set` on `agent-turn-complete`.
+- Agent behavior: `~/.codex/instructions.md` and `~/.codex/AGENTS.md` now require JC Desktop sessions to reuse the same canonical title on every user turn and register it after the official `set_thread_title`; internal workers never register.
+- Sidebar repair: seven JC titles were restored through official `set_thread_title` and read back 7/7 through `list_threads`. Twelve verified internal reviewer/workflow threads, including two interrupted workers from this diagnosis, were archived through official `set_thread_archived`; no rollout was deleted.
+- Verification: RED first reproduced missing `setThreadName` and missing registry behavior; focused tests turned GREEN, full runner `npm test` exited 0, and a live canary changed the current title to a wrong value then restored `修复 Codex 线程命名` through the exact notify wrapper path.
+- Commit: `claude-dynamic-workflows-codex` `5c543c2` is pushed to `origin/main`. No direct live-SQLite write, ChatGPT.app patch, prompt body, credential, token, cookie, or employee key was added to the registry or changelog.
+
 ## [2026-07-16 04:25 CST] [Codex-CTO] [type:incident] CPA Terminal + Dynamic Workflow task storm containment
 
 - Trigger: JC reported a severe Mac mini crash period and asked Codex-CTO to fully inspect Cursor Fable 5 session `ad0229dd-b24a-42f0-ab5d-455a42b0af26`, archive internal duplicate Codex tasks, repair the local scheduler, and preserve Multica/organization evidence.
