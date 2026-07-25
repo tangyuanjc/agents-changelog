@@ -6437,3 +6437,29 @@ JC 17:31 双命题:
 - Completion gate: dual-end delivery is complete only after Feishu returns a `message_id` and the sent-file hash matches the desktop artifact. Missing scope, missing P2P or CLI failure remains an explicit incomplete delivery; Chrome or another bot is not a silent fallback.
 - Privacy boundary: credential, key, cookie, raw employee conversation and private-evidence scans run before send. Secret-bearing artifacts must be redacted or blocked even when the destination is JC P2P.
 - Governance boundary: this is a Codex-local rule tracked by Multica WS-2355. The organization-wide constitutional rule remains reserved for Opus-CSO and was not written into `~/.org/AGENTS.md`.
+
+## [2026-07-24 05:40 CST] [Codex-CTO] [type:fix] Hindsight DB log-disk recovery avoids future unbounded container logs
+
+- Incident: WS-2343 showed Hindsight DB recovery-loop risk from Docker disk exhaustion. Live readback proved the DB itself was small, while the `hindsight-company-db` json-file log was 7.5G due repeated `schemas_with_pending_work()` missing-function errors.
+- Live repair: installed a local-compatible `public.schemas_with_pending_work()` helper that returns `NULL` for the default `public` schema and tenant schema names for `tenant_%`; truncated only the DB container JSON log. No business data was deleted and no container was restarted.
+- Durable config: `deploy/hindsight/docker-compose.yaml` now sets `json-file` log rotation to `20m x 3` for DB and app containers, and `vectorchord-init` applies `deploy/hindsight/init-poller-helper.sql` on future starts.
+- Verification: Hindsight `/health` is healthy, stats show `pending_operations=0` and `failed_operations=0`, Docker container root free space recovered to 11G/20G, and a post-fix observation window produced no new `schemas_with_pending_work()` errors.
+- Boundary: the active containers still have their existing Docker LogConfig until a separately authorized compose recreate; the immediate recurrence path is stopped by the helper function. The blackboard-v3 checkout has no git remote, so there was no push target.
+
+## [2026-07-24 05:46 CST] [Codex-CTO] [type:verification] Loop-1 assertion runner produces real fail output and triage issues
+
+- WS-2306 readback: the Multica run failed due model capacity, while the local `blackboard-v3` working tree already contains the intended Loop-1 assertion changes for GBrain state rebaseline, split memory-axis consistency checks, and GBrain/Hindsight semantic health checks.
+- Tests: `bun test scripts/consumer-assertions.test.ts` passes 17/17 with coverage for frozen GBrain state, minimum daily growth, red semantic FAIL, health-light consistency, and yellow WARN diagnostics.
+- Live gate: `bun scripts/consumer-assertions.ts --create-triage --json` outputs `overall_status=FAIL` for 2026-07-24 with 12 assertions, 4 FAIL, 1 CANT_VERIFY, and machine report `/Users/tangyuanjc/blackboard-v3/output/assertions/2026-07-24.json`.
+- Triage: runner-created WS-2356, WS-2357, WS-2358; two runner create calls returned `exit 1`, so WS-2360 and WS-2361 were manually created with the same parent, assignee and priority using the report evidence.
+- Canary dry-run: `bun scripts/m3-canary-maintenance.ts --dry-run` returns `ok=true`, `currentMonday=2026-07-20`, `delete_count=0`, `keep_count=3`, and no verification offenders.
+- Boundary: the JSON report remains the unmodified runner output and still records 3 created issues plus 2 errors. Manual补建 is documented in WS-2306/HANDOFF rather than rewritten into machine output.
+
+## [2026-07-25 15:39 CST] [Codex-CTO] [type:fix] Hindsight source coverage adopts WS-2344 employee baseline
+
+- WS-2340/WS-2344 caliber: Hindsight employee `source_coverage` is now measured against the nine-person employee roster excluding worker agents. 艾伦 is not an employee-business-segment sample; 维欣 remains the single in-roster employee without a business segment.
+- Code path: `~/.org/metrics/memory-axis-health.mjs` now separates source-coverage employees from profile-recall employees and sets the current authorized coverage threshold to `0.889`, making `8/9` a non-degrading baseline instead of an `8/10` false red.
+- Regression: `~/.org/metrics/test_memory_axis_health.mjs` covers the WS-2344 baseline, verifies 艾伦 is excluded from employee coverage and recall probes, and verifies 维欣 remains `source_missing`.
+- Live readback: `refresh-employee-boards-pipeline.mjs` generated `employee_boards.json` with `source_coverage=8/9 rate=0.889 degraded=false`, `profile_recall=7/8`, `failed_operations=0`, and Hindsight `health_light=🟢`.
+- Verification: `node --test ~/.org/metrics/test_memory_axis_health.mjs` passes 16/16; `/Users/tangyuanjc/.bun/bin/bun test scripts/consumer-assertions.test.ts` passes 22/22; read-only consumer assertions show both Hindsight memory-axis checks PASS.
+- Boundary: no global constitution/AGENTS file was edited, no secrets or private transcript content were recorded, and the remaining GBrain semantic FAIL is an independent line.
