@@ -6463,3 +6463,12 @@ JC 17:31 双命题:
 - Live readback: `refresh-employee-boards-pipeline.mjs` generated `employee_boards.json` with `source_coverage=8/9 rate=0.889 degraded=false`, `profile_recall=7/8`, `failed_operations=0`, and Hindsight `health_light=🟢`.
 - Verification: `node --test ~/.org/metrics/test_memory_axis_health.mjs` passes 16/16; `/Users/tangyuanjc/.bun/bin/bun test scripts/consumer-assertions.test.ts` passes 22/22; read-only consumer assertions show both Hindsight memory-axis checks PASS.
 - Boundary: no global constitution/AGENTS file was edited, no secrets or private transcript content were recorded, and the remaining GBrain semantic FAIL is an independent line.
+
+## [2026-07-27 05:45 CST] [Codex-CTO] [type:fix] Loop-1 create-triage stops following task-scoped HOME into temp
+
+- WS-1830 regression: `consumer-assertions.ts --create-triage` could still place Multica description files under task-scoped `/tmp/multica-task-*` when `HOME` was rewritten, causing the CLI workspace file-safety check to reject automatic triage.
+- Code path: `/Users/tangyuanjc/blackboard-v3/scripts/consumer-assertions.ts` now derives the default blackboard repo from the script location via `import.meta.url`; explicit `blackboardRepo` config remains authoritative.
+- Regression: `scripts/consumer-assertions.test.ts` now simulates task-scoped HOME and asserts Multica issue-create cwd plus `--description-file` are inside the real repo root, not the temporary HOME.
+- Verification: targeted regression passed; full `/Users/tangyuanjc/.bun/bin/bun test scripts/consumer-assertions.test.ts` passed 23/23; dry-run smoke produced one controlled triage target and no errors.
+- Live proof: controlled `--create-triage --inject-fail skill_telemetry_events` created WS-2446 with `triage.errors=[]`; the validation issue was immediately commented and cancelled because the failure was artificial.
+- Boundary: no assertion thresholds, triage policy, global constitution, secrets, production daemon, or live business credentials were changed. The `blackboard-v3` checkout already had unrelated dirty changes and no git remote, so code delivery is local verified patch rather than pushed repo commit.
