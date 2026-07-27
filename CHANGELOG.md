@@ -6501,5 +6501,6 @@ JC 17:31 双命题:
 - Migration: stopped the manual `ws1275-trace` process PID 95709, bootstrapped the launchd label, then corrected the user launchd domain by clearing inherited OpenAI env keys and rebootstraping this label. No secret values were recorded.
 - Config: updated `~/.config/multica-runtime-offline-alert.env` to document three intentional Multica daemon processes and set `MULTICA_RUNTIME_ALERT_EXPECTED_DAEMON_COUNT=3`.
 - Verification: `plutil -lint` passed; `launchctl print gui/$(id -u)/com.user.multica-agent-runtime-daemon.ws1275-trace` showed `state=running`, `runs=2`, `pid=82430`, and `last exit code=0`; SIGTERM canary restarted PID 81588 to PID 82430 in 1s.
+- Post-comment readback: launchd later showed `runs=3`, stable `pid=90444` across a 20s sample, empty stdout/stderr logs, and `openai_env_present=false`; this is expected KeepAlive ownership, not an extra daemon.
 - Health smoke: live process readback shows exactly three `multica daemon start` processes; `find_multica_daemon_count_findings(..., expected_count=3)` returned `daemon_count_findings=0`; alert dry-run exited 0 with only unrelated transient suppressed findings.
 - Boundary: no global constitution/AGENTS file, Multica credentials, business data, or non-ws1275 production daemon label was modified.
