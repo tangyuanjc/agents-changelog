@@ -6493,3 +6493,13 @@ JC 17:31 双命题:
 - Verification: crontab readback has zero daydream/diary/core-memory/team-memory matches. Immediate post-drain swap contracted from about 21.0G/22.5G to 14.2G/15.4G without reboot; active page churn and disk I/O remain under observation before declaring full recovery.
 - Rollback: exact pre/post files are `~/.openclaw/backups/crontab-before-memory-ticks-retire-20260728T005209CST.txt` and `crontab-after-memory-ticks-retire-20260728T005209CST.txt`.
 - Boundary: no current Hermes 小J profile, Multica task, FlClash, Colima/Hindsight, Codex, Claude, Node, global AGENTS, or business data was modified.
+
+## [2026-07-28 05:36 CST] [Codex-CTO] [type:fix] Put ws1275-trace Multica daemon under launchd
+
+- WS-2394 / WS-2393 root cause: the `ws1275-trace` Multica daemon was running as a manual PPID=1 process and lacked launchd ownership, so its cross-workspace runtime carrier had no durable restart contract.
+- Change: installed `~/Library/LaunchAgents/com.user.multica-agent-runtime-daemon.ws1275-trace.plist` with `RunAtLoad`, `KeepAlive`, `ThrottleInterval=15`, explicit profile args, and logs under `~/.log/`.
+- Migration: stopped the manual `ws1275-trace` process PID 95709, bootstrapped the launchd label, then corrected the user launchd domain by clearing inherited OpenAI env keys and rebootstraping this label. No secret values were recorded.
+- Config: updated `~/.config/multica-runtime-offline-alert.env` to document three intentional Multica daemon processes and set `MULTICA_RUNTIME_ALERT_EXPECTED_DAEMON_COUNT=3`.
+- Verification: `plutil -lint` passed; `launchctl print gui/$(id -u)/com.user.multica-agent-runtime-daemon.ws1275-trace` showed `state=running`, `runs=2`, `pid=82430`, and `last exit code=0`; SIGTERM canary restarted PID 81588 to PID 82430 in 1s.
+- Health smoke: live process readback shows exactly three `multica daemon start` processes; `find_multica_daemon_count_findings(..., expected_count=3)` returned `daemon_count_findings=0`; alert dry-run exited 0 with only unrelated transient suppressed findings.
+- Boundary: no global constitution/AGENTS file, Multica credentials, business data, or non-ws1275 production daemon label was modified.
