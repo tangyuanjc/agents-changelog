@@ -6482,3 +6482,14 @@ JC 17:31 双命题:
 - Verification: OpenClaw durable running tasks remained 0 before both termination stages. Initial post-drain sampling reduced swap-in from roughly 1,675-4,787 pages/s to roughly 78-588 pages/s; 21 separate orphan `openclaw-agent` processes remain outside daydream ownership.
 - Rollback: exact pre/post crontabs are stored under `~/.openclaw/backups/` as `crontab-before-daydream-retire-20260727T234612CST.txt` and `crontab-after-daydream-retire-20260727T234612CST.txt`.
 - Boundary: FlClash, Colima/Hindsight, Codex, Claude, Node, the three WS-1205 memory ticks, global AGENTS, and private business data were not modified.
+
+## [2026-07-28 00:57 CST] [Codex-CTO] [type:fix] Retire superseded 小J OpenClaw memory tick crons
+
+- Runtime authority: live process readback shows 小J's current body is the Hermes `coo` profile gateway; Multica reports `COO 小J` idle. The legacy OpenClaw workspace has zero durable running tasks.
+- Governance: diary/core-memory/team-memory were repaired on 2026-07-01 under WS-1205 CSO follow-up, but JC's later 2026-07-02 decision superseded them by stopping 小J's standing cron role after the COO retirement.
+- Change: removed only the three tick comments and execution lines from the user crontab. `memory_verify`, `farm decay`, the Opus notification/monitor jobs, and the Claude memory-headroom check were preserved.
+- Leak proof: 21 PPID=1 `openclaw-agent` processes had start minutes exactly matching PDT 14:30, 19:00, and 19:10 across seven days, proving the external watchdog ended wrappers but leaked child agents. All 21 matched PID, parent, command, and start-time ownership; TERM was ignored, so survivors were revalidated before KILL. Final OpenClaw/OpenClaw-agent counts are 0/0.
+- Adjacent cleanup: terminated three 2-3 day recursive Home grep process groups after confirming two shared Multica workdirs were deleted and the remaining workdir's WS-2393 issue was done.
+- Verification: crontab readback has zero daydream/diary/core-memory/team-memory matches. Immediate post-drain swap contracted from about 21.0G/22.5G to 14.2G/15.4G without reboot; active page churn and disk I/O remain under observation before declaring full recovery.
+- Rollback: exact pre/post files are `~/.openclaw/backups/crontab-before-memory-ticks-retire-20260728T005209CST.txt` and `crontab-after-memory-ticks-retire-20260728T005209CST.txt`.
+- Boundary: no current Hermes 小J profile, Multica task, FlClash, Colima/Hindsight, Codex, Claude, Node, global AGENTS, or business data was modified.
