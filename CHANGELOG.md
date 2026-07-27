@@ -6472,3 +6472,13 @@ JC 17:31 双命题:
 - Verification: targeted regression passed; full `/Users/tangyuanjc/.bun/bin/bun test scripts/consumer-assertions.test.ts` passed 23/23; dry-run smoke produced one controlled triage target and no errors.
 - Live proof: controlled `--create-triage --inject-fail skill_telemetry_events` created WS-2446 with `triage.errors=[]`; the validation issue was immediately commented and cancelled because the failure was artificial.
 - Boundary: no assertion thresholds, triage policy, global constitution, secrets, production daemon, or live business credentials were changed. The main `blackboard-v3` checkout already had unrelated dirty changes and no git remote, so the clean code artifact is local commit `c64749c` on branch `codex/ws-1830-create-triage-root-20260726T214537Z` rather than a pushed PR.
+
+## [2026-07-27 23:50 CST] [Codex-CTO] [type:fix] Retire leaked legacy 小J OpenClaw daydream cron
+
+- Provenance: `~/.openclaw/workspace` is the legacy 小J COO profile. Its 2026-03-28 memory records `tools/daydream.sh` as a self-created weekly reflection mechanism; there is no evidence that Opus-CSO originated it. Opus later repaired the broken `easyclaw` command, which restored execution but did not create the mechanism.
+- Governance: Opus-CSO migrated 小J from OpenClaw to Hermes on 2026-04-09, and the current constitution records JC's 2026-07-02 decision that 小J's five standing cron jobs are stopped. The still-live user crontab entry was therefore a migration ghost.
+- Change: removed only the `daydream.sh` comment and `0 4,9 * * *` entry from the user crontab. Preserved diary/core-memory/team-memory because their live entries have separate WS-1205/CSO-follow-up provenance and need an explicit supersession audit.
+- Recovery: dynamically resolved 15 dedicated daydream process groups and verified every member was limited to `sh`, `bash`, `openclaw`, or `openclaw-agent`. TERM closed the shell parents; the children ignored TERM, so the same ownership-pinned groups were revalidated before KILL. Final readback: daydream processes 0 and `openclaw` 0.
+- Verification: OpenClaw durable running tasks remained 0 before both termination stages. Initial post-drain sampling reduced swap-in from roughly 1,675-4,787 pages/s to roughly 78-588 pages/s; 21 separate orphan `openclaw-agent` processes remain outside daydream ownership.
+- Rollback: exact pre/post crontabs are stored under `~/.openclaw/backups/` as `crontab-before-daydream-retire-20260727T234612CST.txt` and `crontab-after-daydream-retire-20260727T234612CST.txt`.
+- Boundary: FlClash, Colima/Hindsight, Codex, Claude, Node, the three WS-1205 memory ticks, global AGENTS, and private business data were not modified.
