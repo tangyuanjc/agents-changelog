@@ -6523,3 +6523,12 @@ JC 17:31 双命题:
 - Codex proof: a fresh default-path `codex exec` used `gpt-5.6-sol` with the custom provider and returned `NAISI_API_OK`; a later fresh doctor run reported provider reachability `ok`. One earlier 3-second doctor timeout is retained as evidence of the remaining Wi-Fi jitter rather than rewritten as provider failure.
 - Backups: the FlClash preference backup ends in `20260728T1750CST`; the database backup ends in `20260728T1827CST`. No secrets, subscription payloads, node names, API keys, cookies, or employee conversations are recorded here.
 - Remaining boundary: this restores the durable software route but does not repair the physical AP/radio. A local Wi-Fi reassociation or wired Ethernet is still recommended; remote Wi-Fi teardown was intentionally not attempted without passwordless sudo or an onsite recovery channel.
+
+## [2026-07-28 18:41 CST] [Codex-CTO] [type:fix] Grant the active Multica background CLI Full Disk Access and restore launchd ownership
+
+- Root cause: the Full Disk Access row for the signed Multica desktop app did not cover the active background executable at `~/.local/libexec/multica-fork/multica`; the fork had a separate denied TCC identity and generated repeated macOS permission prompts.
+- Permission repair: the exact fork executable now has `kTCCServiceSystemPolicyAllFiles auth_value=2`. The signed Multica desktop app, Codex desktop app, Claude desktop/CLI identities and Cursor desktop identity remain enabled.
+- Runtime repair: an old manually daemonized fork still owned `127.0.0.1:19514`, forcing the main KeepAlive job into repeated bind failures. After path-and-port validation, only that stale PID was terminated and launchd took ownership with a new PID.
+- Verification: both `com.user.multica-agent-runtime-daemon` and `.ws1275-trace` read back `state=running` with new PIDs and `KeepAlive=true`; together with the Multica desktop daemon, the intentional process count remains three. `multica daemon status` reports the new main PID, expected version and registered agent providers.
+- CLI boundary: Codex, Cursor Agent and Grok CLI run under an FDA-enabled responsible host (`Terminal`, Multica or their desktop app). Generic `node`, `bash` and `python` were intentionally not granted machine-wide FDA merely to create cosmetic per-CLI rows.
+- Safety: no TCC database write/reset, app re-signing, generic interpreter permission expansion, business-data access, token output or credential persistence occurred.
