@@ -6504,3 +6504,12 @@ JC 17:31 双命题:
 - Post-comment readback: launchd later showed `runs=3`, stable `pid=90444` across a 20s sample, empty stdout/stderr logs, and `openai_env_present=false`; this is expected KeepAlive ownership, not an extra daemon.
 - Health smoke: live process readback shows exactly three `multica daemon start` processes; `find_multica_daemon_count_findings(..., expected_count=3)` returned `daemon_count_findings=0`; alert dry-run exited 0 with only unrelated transient suppressed findings.
 - Boundary: no global constitution/AGENTS file, Multica credentials, business data, or non-ws1275 production daemon label was modified.
+
+## [2026-07-28 09:33 CST] [Codex-CTO] [type:fix] Sector Radar runtime admits only four canonical OS directories
+
+- Incident: the natural 2026-07-28 daily run was a real launchd `xpc_event` with pipeline exit 0 and four successful sector copies, but an empty mojibake `*-OS` directory was treated as a fifth sector and forced Vault global status 1. The failed run remains immutable and reset strict natural progress.
+- Runtime change: `classify-daily-signals.sh` and `sync-to-vault.sh` now enumerate only 个人涂抹驱蚊、头皮护理、男士理容、韩妆. Unknown `*-OS` directories are preserved in place but cannot enter classification state or the Vault Gate.
+- TDD: two regressions were observed RED before the minimal fixes. Focused loop/daily tests pass; full Sector Radar regression passes 13/13 and readiness unit tests pass 52/52 with executable manifest `7b5c51dc988f7b0da0c7e5ba294d3aba4a640721fa6f060d29e01734668b1052`.
+- Recovery: immutable snapshot `20260728T092614+0800` matches the executable manifest, passes all five restore checks, excludes `.secrets`, and preserves the unknown directory for forensics.
+- Live truth: fresh readiness is 9 passed / 1 failed / 3 waiting with `promotion_ready=false`; Data remains below the survival threshold, citation remains 0/1, and strict natural progress is 0/2 and 0/30. No App was force-quit, Colima stopped, live data deleted, or failed receipt backfilled.
+- Governance: WS-1837 and WS-2012 received file-backed repair/readiness comments and remain `in_review`; no new Gate passed, so the CTO HTML and heartbeat were left unchanged. No global constitution/AGENTS file or secrets were modified.
