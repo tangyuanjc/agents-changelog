@@ -6532,3 +6532,13 @@ JC 17:31 双命题:
 - Verification: both `com.user.multica-agent-runtime-daemon` and `.ws1275-trace` read back `state=running` with new PIDs and `KeepAlive=true`; together with the Multica desktop daemon, the intentional process count remains three. `multica daemon status` reports the new main PID, expected version and registered agent providers.
 - CLI boundary: Codex, Cursor Agent and Grok CLI run under an FDA-enabled responsible host (`Terminal`, Multica or their desktop app). Generic `node`, `bash` and `python` were intentionally not granted machine-wide FDA merely to create cosmetic per-CLI rows.
 - Safety: no TCC database write/reset, app re-signing, generic interpreter permission expansion, business-data access, token output or credential persistence occurred.
+
+## [2026-07-29 07:09 CST] [Codex-CTO] [type:feature] Install the organization signal line content-blind scheduler disabled by default
+
+- Scope: WS-2552 / Draft PR #20 installs `com.entropy.org-signal-line.producer` as the single scheduler for the new organization signal line, using a 300-second content-blind tick and an Asia/Shanghai 08:30-08:44 execution window.
+- Deployment: immutable release `cc0f05e6359c63a7` under `~/Library/Application Support/org-signal-line/producer/releases/`, atomic `current` symlink, 0600 plist/log/files and 0700 private directories.
+- Safety: the production feature flag remains absent. RunAtLoad emitted only bounded `DISABLED`, attempted no runner, and exited 0; production execution is not yet enabled.
+- Hardening: stale lock recovery now contains child process groups, binds owners to PID plus process-start identity, recovers only valid stale/dead reclaim guards, and rejects path-unsafe owner tokens.
+- Review and tests: Godel fresh code-quality review passed at `a7e31473e02a8bdab9c519b48e66dd86d6460a4f`; the full suite passed 131/131 with MJS, JSON and diff checks clean.
+- Uniqueness boundary: no matching Multica producer autopilot or Cursor schedule/automation exists. Four legacy AIHOT website labels remain separate and untouched; their secret-bearing plist was not inspected.
+- Remaining gate: organization-group G4 canary, production runner/rollback, and three natural live days are still required before `TRANSPORT_OPERATIONAL`.
