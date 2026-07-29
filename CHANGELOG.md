@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [2026-07-29 21:43 CST] [Codex-CTO] [type:feature] Add bounded Codex × ChatGPT Pro review Skill
+
+- Trigger: JC selected the B design for one-sentence `这个任务带 Pro 干。` activation. Ordinary tasks remain single-brain unless the user explicitly requests Pro participation.
+- Skill: added `~/.agents/skills/codex-pro-pair/` with concise trigger instructions, UI metadata, a standard-library helper, deterministic OpenCLI fixture, and black-box regression suite. No daemon, cron, launchd job, automatic mirror, project upload, or constitution edit was added.
+- Authority boundary: Codex freezes objective/scope/acceptance, authors the minimum outbound summary, decides every adoption, and retains local edit/deploy/test authority. Web Pro receives one narrow role/question and cannot directly trigger machine changes; the flow stops after one main review plus one evidence correction.
+- Egress and identity: raw files, conversations, memory, AGENTS, HANDOFF, diffs, and full logs cannot be attached. The helper scans the authored package, verifies the authorized ChatGPT work account through a one-way fingerprint, switches to Pro, and persists only mode-0600 state/response evidence.
+- Binding and recovery: each turn binds task, nonce, contract/outbound digests, canonical conversation ID/URL, and turn. Canonical transcript round-trip rejects old-message conversations, changed prompts, wrong adjacent replies, temporary URLs, and generating snapshots. Lost receipts enter ambiguous state and can only use read-only reconciliation; automatic resend is forbidden.
+- Verification: TDD grew from one missing-helper RED baseline to 13/13 passing tests covering concurrent isolation, drift, egress, account/cookie fallback, wrong IDs/URLs, fast/error paths, first/second-turn reconciliation, generating rejection, idempotency, and the two-turn cap. `py_compile` and the official Skill validator pass.
+- Live canary: one persistent Pro conversation completed both bounded turns. Both long-running ask receipts became ambiguous; both were recovered from the same canonical transcript without a duplicate ask. Final state is `complete`, turn 2, two history entries, and a third continue is mechanically rejected with `TURN_LIMIT`.
+- Residual boundary: Pro's final verdict remains `CONDITIONAL`. OpenCLI exposes no complete paginated account-history contract, so first-turn recovery cannot prove a matching candidate is globally unique across all history; if multiple exact candidates are observed, the helper must remain ambiguous rather than choose one. No account value, credential, private context, or raw Pro transcript is recorded here.
+
 ## [2026-07-29 17:43 CST] [Codex-CTO] [type:fix] Repair Pipi Codex strict config and EasyTier live path
 
 - Trigger: Pipi reported that her own agents had repaired Browser Use, but live readback showed the 7/28 self-edit added an unsupported `computer_use` config section, the strict GPT canary failed before request dispatch, EasyTier was absent from the Mac mini peer table, and the Codex relay listener was down.
