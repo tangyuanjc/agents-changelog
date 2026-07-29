@@ -6574,3 +6574,14 @@ JC 17:31 双命题:
 - Review and verification: fresh independent spec and code-quality reviewers both passed after adversarial repair; full suite passed 206/206 with all MJS syntax, config/schema JSON and diff checks clean.
 - Git evidence: org-constitution commit `34306240cba3c8b94d5448687b4bd5b3383a0c6a`; PR #20 head and remote branch read back at the same SHA.
 - Safety: feature flag remains absent; no recipient value was read, no production runner executed, and no Feishu message or canary replay occurred. Parent status remains `BUILT_NOT_LIVE` pending recipient/readback/UNKNOWN reconciliation and later gates.
+
+## [2026-07-29 13:41 CST] [Codex-CTO] [type:fix] Seal organization-signal transport identity and authoritative readback
+
+- Scope: WS-2552 / Draft PR #20 binds each daily winner to domain-separated recipient and publisher SHA-256 fingerprints while keeping raw Feishu recipient identifiers inside the production adapter boundary.
+- Confirmation truth: send stdout creates only a durable candidate. `CONFIRMED` now requires authoritative readback of the same candidate when present, exact sender app and destination, `post` message type, full post JSON equality, bounded attempt window, and explicit `deleted=false` / `updated=false`.
+- UNKNOWN recovery: candidate message IDs cannot drift, clear, delete or be replaced; candidate-bearing and candidate-free UNKNOWN rows cannot return to a sendable state, and getter validation remains fail closed after trigger bypass.
+- Retry boundary: generic nonzero `lark-cli` exits remain UNKNOWN because dispatch absence is unproven. Only explicit process-start failures such as ENOENT/EACCES/EPERM may seal `PRE_DISPATCH_REJECTION` and retry only that destination.
+- State integrity: delivery identity, attempts, destination projections and CONFIRMED receipts are immutable across UPDATE, DELETE and INSERT OR REPLACE paths; confirmation is atomically bound to run, destination, message and receipt projections.
+- Review and verification: final-byte spec and adversarial code-quality reviews both passed; full suite passed 231/231, all MJS/JSON/diff checks passed, and a synthetic `lark-cli --dry-run` proved exact POST/chat_id/post/full-body/proof shape with no send.
+- Git evidence: org-constitution commit `82f46ee1dd8b2eca3a44de0cf94e111c77ac4d75`; local HEAD, remote branch and Draft PR #20 head all read back at the same SHA.
+- Safety and remaining gate: feature flag remains absent; no real recipient was read, no production runner executed, and no message/canary was sent or replayed. Parent remains `BUILT_NOT_LIVE` pending cross-day recovery, dual-destination isolation, rollback/scheduler, input-boundary hardening and fresh Claude-family G4 acceptance.
