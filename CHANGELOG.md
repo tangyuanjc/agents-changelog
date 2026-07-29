@@ -6604,3 +6604,13 @@ JC 17:31 双命题:
 - Review and verification: final staged code/test hash `c8ec42212357daa222817a6d0fc6721dc51666fa56363a7f9c0eb7015f3dc96a` received fresh spec and quality PASS; full suite passed 256/256 with 48 MJS syntax checks, JSON parsing and diff checks clean.
 - Git evidence: functional commit `99ba5b91868d8f279a4c2ea63838f6c253feca37`; final Draft PR #20 head `22cbe462d5e2aba9234c9316de23847140eacc2f` matched local and remote readback.
 - Safety and remaining gate: no real recipient was read, no production runner executed, no Feishu message/canary sent or replayed, and no feature flag created. This is only a G4 candidate; G4 fresh Claude-family acceptance and G5 three Shanghai natural days remain unmet.
+
+## [2026-07-29 18:23 CST] [Codex-CTO] [type:feature] Enable the reviewed organization signal line with an independent watchdog
+
+- Scope: WS-2552 / Draft PR #20 deployed reviewed immutable release `b69559cd93e445cf`, enabled the existing content-blind launchd scheduler, and preserved the parent state as `BUILT_NOT_LIVE` pending G5.
+- Cross-lineage gate: Claude-family child WS-2593 independently passed G4 at the reviewed candidate; the production release matches source bytes, permissions and the live `current` pointer.
+- Controlled enablement: the 0600 regular feature flag was enabled outside the Shanghai execution window; explicit and launchd ticks returned `OUTSIDE_WINDOW`, attempted no production runner, sent no message and consumed no G5 day.
+- Independent supervision: canonical CSO/Claude autopilot `32dea364-cb94-48ad-a1f0-cf329600dcb0` owns the sole enabled `08:45 Asia/Shanghai` trigger and pins the immutable release; health anchors go to WS-2659/WS-2660 and missing runs open deduplicated incidents.
+- Concurrency correction: scheduled duplicate `0d89b1ee…` is paused with its trigger disabled, and untriggered duplicate `e9b2ba6a…` is paused; all retired objects have zero runs and zero-cost expired tombstone contracts.
+- Governance: the canonical loop has owner, consumer, idle criterion, TTL, cost ceiling and kill switch; parent metadata identifies canonical and both retired objects without deleting audit evidence.
+- Remaining gate: only natural producer/watchdog pairs for 2026-07-30 through 2026-08-01 plus fresh Claude-family G5 acceptance can establish `TRANSPORT_OPERATIONAL`; consumption evaluation remains a separate later state.
