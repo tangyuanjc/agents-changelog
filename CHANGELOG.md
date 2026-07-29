@@ -6552,3 +6552,13 @@ JC 17:31 双命题:
 - Verification: full suite passed 145/145; MJS syntax, config/schema JSON and diff checks passed. A live read-only smoke merged 46 canonical events and recorded only the event-set SHA-256.
 - Git evidence: org-constitution commit `9d9d670`; feature flag remains absent, scheduler remains disabled, and no Feishu message or production runner was triggered.
 - Remaining gate: wire this reader into `bin/production-run.mjs`, persist duplicate suppression, prove partial-destination recovery and segment rollback, then obtain CSO/Claude G4 re-acceptance before any G5 claim.
+
+## [2026-07-29 10:07 CST] [Codex-CTO] [type:fix] Atomically claim one organization-signal decision per Shanghai day
+
+- Scope: WS-2552 / Draft PR #20 now commits the source and decision manifests, run, both destination projections, bounded cross-line dedup events, and one daily decision claim in a single `BEGIN IMMEDIATE` transaction.
+- Concurrency: two production callers can no longer persist or publish competing same-day decisions; the loser leaves no orphan run, manifest, destination, or event rows and resumes from the database winner.
+- Integrity: claimed run and manifest parents are immutable, getters revalidate hashes, indexes, parent lineage, verdict semantics and kept counts, and SQL triggers fail closed on nullable or inconsistent claim states.
+- Inventory binding: a decision manifest must be an exact bounded projection of its sealed source inventory; hash-valid forged inventories are rejected at commit, trigger, getter and legacy-backfill boundaries.
+- Legacy recovery: migration backfill validates candidates in application code, skips malformed or forged newer rows, and claims the newest fully valid fallback without rewriting historical rows.
+- Review and tests: independent spec and code-quality reviews both passed after two adversarial repair waves; the fresh full suite passed 180/180 with all MJS syntax, JSON parsing and diff checks clean.
+- Safety: the production feature flag remains absent, the scheduler remains disabled, and no production runner, recipient lookup, Feishu send or live canary replay occurred.
