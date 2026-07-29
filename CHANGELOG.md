@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2026-07-29 17:43 CST] [Codex-CTO] [type:fix] Repair Pipi Codex strict config and EasyTier live path
+
+- Trigger: Pipi reported that her own agents had repaired Browser Use, but live readback showed the 7/28 self-edit added an unsupported `computer_use` config section, the strict GPT canary failed before request dispatch, EasyTier was absent from the Mac mini peer table, and the Codex relay listener was down.
+- Config fix: backed up the current Windows `config.toml`, removed only the unsupported three-line section, preserved the Browser/Chrome/Computer Use plugin and runtime settings, and aligned the model to the organization baseline `gpt-5.6-sol` with reasoning effort unchanged.
+- Live proof: strict ephemeral canary returned `PIPI_GPT56_SOL_OK_20260729-170900`; the fresh Desktop UIA surface reads `5.6 Sol` and current Browser native-pipe state. A real unsent five-character employee draft was detected by hash-only metadata and was not read or overwritten, so a fresh Desktop Browser task remains explicitly unverified.
+- Network fix: EasyTier network-name and secret hashes matched the organization; restarting the existing `EasyTierMC` task restored its adapter, route and peer convergence. Mac mini readback shows `mc-pipi / 10.20.20.7`, zero loss and SSH port 22 reachable; the reverse relay restored `127.0.0.1:17890` on Pipi.
+- Boundary: no API key, EasyTier secret, draft text, cookie or browser session content was persisted; CLI cannot substitute for the Desktop Browser surface because its separate `node_repl` could not complete the interactive-session pipe handshake.
+
 ## [2026-07-23 23:53 CST] [Codex-CTO] [type:fix] Restore Weixin new-key attribution in CPA leaderboard
 
 - Trigger: Weixin's Feishu handoff proved the new isolated credential passed both CLI and Desktop canaries, and CPA live events already contained 37 requests / 3,775,888 tokens under masked label `jc...5Q`; the daily leaderboard still showed zero because its suffix map only knew the retired `WX` identity.
