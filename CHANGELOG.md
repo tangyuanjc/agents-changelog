@@ -6625,3 +6625,12 @@ JC 17:31 双命题:
 - Concurrency correction: scheduled duplicate `0d89b1ee…` is paused with its trigger disabled, and untriggered duplicate `e9b2ba6a…` is paused; all retired objects have zero runs and zero-cost expired tombstone contracts.
 - Governance: the canonical loop has owner, consumer, idle criterion, TTL, cost ceiling and kill switch; parent metadata identifies canonical and both retired objects without deleting audit evidence.
 - Remaining gate: only natural producer/watchdog pairs for 2026-07-30 through 2026-08-01 plus fresh Claude-family G5 acceptance can establish `TRANSPORT_OPERATIONAL`; consumption evaluation remains a separate later state.
+
+## [2026-07-30 04:52 CST] [Codex-CTO] [type:feature] Distribute the bounded Codex + Pro pair skill to the Four Men workspace
+
+- Workspace entry: created the workspace-visible `Codex-CTO` agent in `四条人工作区`, bound to the current online Codex runtime with `gpt-5.6-sol` / high reasoning and zero custom environment keys.
+- Capability package: imported `codex-pro-pair` as a native Multica skill with its UI metadata, deterministic helper and regression fixtures, then read back the complete file inventory.
+- Target assignments: added the enabled skill to `幽灵小秘` and `菲尔德` without replacing their existing skill assignments.
+- A2A delivery: opened `WS-31` for Junjie and `WS-32` for Field, each assigned to the exact target agent and carrying the same five-file ZIP attachment; local ZIP SHA-256 is `e930ae0c9690b1f8db34ed4b25d145e4da6a2e5481a009edc2d8b3709fc9c4f9`.
+- Safety: the package excludes account configuration, cookies, tokens, state, conversations and raw organization context; target agents must not configure or call a ChatGPT account until their human owner explicitly approves the current account.
+- Current truth: both installation runs are queued because the target Codex runtimes are offline. Native skill assignment and A2A delivery are complete; target-machine installation remains unverified until each issue returns path, permissions, mtime and 13-test evidence.
