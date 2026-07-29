@@ -6542,3 +6542,13 @@ JC 17:31 双命题:
 - Review and tests: Godel fresh code-quality review passed at `a7e31473e02a8bdab9c519b48e66dd86d6460a4f`; the full suite passed 131/131 with MJS, JSON and diff checks clean.
 - Uniqueness boundary: no matching Multica producer autopilot or Cursor schedule/automation exists. Four legacy AIHOT website labels remain separate and untouched; their secret-bearing plist was not inspected.
 - Remaining gate: organization-group G4 canary, production runner/rollback, and three natural live days are still required before `TRANSPORT_OPERATIONAL`.
+
+## [2026-07-29 08:28 CST] [Codex-CTO] [type:feature] Add the fail-closed Grok 72-hour publication reader
+
+- Scope: WS-2552 / Draft PR #20 adds a read-only B4 reader pinned to the authoritative Grok morning and noon Multica ledgers and an internal 72-hour window; callers cannot redirect it to arbitrary sources or widen the window.
+- Safety: only agent-authored publication comments from each active autopilot assignee are accepted; returned evidence contains canonical event metadata and bounded counters, never comment bodies or credentials.
+- Process containment: the shared runner now validates timer/output limits before spawn, caps combined output at 8 MiB, bounds invalid UTF-8 decoding, and terminates POSIX process groups with SIGTERM→SIGKILL even when the leader exits before descendants.
+- TDD and review: regressions covered source overrides, invalid limits, ignored signals, UTF-8 expansion, inherited pipes and leader-close escape; fresh spec and code-quality reviewers both passed after the process-tree fixes.
+- Verification: full suite passed 145/145; MJS syntax, config/schema JSON and diff checks passed. A live read-only smoke merged 46 canonical events and recorded only the event-set SHA-256.
+- Git evidence: org-constitution commit `9d9d670`; feature flag remains absent, scheduler remains disabled, and no Feishu message or production runner was triggered.
+- Remaining gate: wire this reader into `bin/production-run.mjs`, persist duplicate suppression, prove partial-destination recovery and segment rollback, then obtain CSO/Claude G4 re-acceptance before any G5 claim.
