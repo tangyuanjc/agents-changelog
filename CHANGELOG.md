@@ -6562,3 +6562,15 @@ JC 17:31 双命题:
 - Legacy recovery: migration backfill validates candidates in application code, skips malformed or forged newer rows, and claims the newest fully valid fallback without rewriting historical rows.
 - Review and tests: independent spec and code-quality reviews both passed after two adversarial repair waves; the fresh full suite passed 180/180 with all MJS syntax, JSON parsing and diff checks clean.
 - Safety: the production feature flag remains absent, the scheduler remains disabled, and no production runner, recipient lookup, Feishu send or live canary replay occurred.
+
+## [2026-07-29 11:29 CST] [Codex-CTO] [type:fix] Seal organization-signal decisions to their exact runtime lineage
+
+- Scope: WS-2552 / Draft PR #20 upgrades claimable decisions to `org.signal.decision_manifest.v2` with embedded configuration, Cursor classifier and Grok publication snapshots; lineage-free v1 decisions remain readable history but cannot become daily winners.
+- Configuration truth: the production registry, production config and selection schema are sealed as versioned assets; runtime registry/schema/model must match the snapshot, and same-day recovery continues using the database winner even after current configuration advances.
+- Provenance truth: Cursor provider/model/version/authenticated identity fingerprint/attempt count and all three snapshot hashes are bound across manifest, run metadata, JavaScript getter/commit validation and the SQLite claim trigger.
+- Grok truth: the fixed morning/noon autopilot and ledger contracts, assignee fingerprints, comment hashes, canonical event occurrences, counts, 72-hour bounds, canonical ordering and source fetch time form one replayable closed snapshot.
+- Async hardening: entry clock/config/source and dependency results are copied at trust boundaries, preventing hash-valid A-to-B mutation across fetch/classifier/reader awaits; dedup summaries are derived only from sealed snapshot counts.
+- Recovery and integrity: forged lineage, contradictory dedup replay, split source inventory, stale snapshots, trigger bypass and newer malformed legacy candidates fail closed without replacing the valid winner.
+- Review and verification: fresh independent spec and code-quality reviewers both passed after adversarial repair; full suite passed 206/206 with all MJS syntax, config/schema JSON and diff checks clean.
+- Git evidence: org-constitution commit `34306240cba3c8b94d5448687b4bd5b3383a0c6a`; PR #20 head and remote branch read back at the same SHA.
+- Safety: feature flag remains absent; no recipient value was read, no production runner executed, and no Feishu message or canary replay occurred. Parent status remains `BUILT_NOT_LIVE` pending recipient/readback/UNKNOWN reconciliation and later gates.
