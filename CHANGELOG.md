@@ -6634,3 +6634,12 @@ JC 17:31 双命题:
 - A2A delivery: opened `WS-31` for Junjie and `WS-32` for Field, each assigned to the exact target agent and carrying the same five-file ZIP attachment; local ZIP SHA-256 is `e930ae0c9690b1f8db34ed4b25d145e4da6a2e5481a009edc2d8b3709fc9c4f9`.
 - Safety: the package excludes account configuration, cookies, tokens, state, conversations and raw organization context; target agents must not configure or call a ChatGPT account until their human owner explicitly approves the current account.
 - Current truth: both installation runs are queued because the target Codex runtimes are offline. Native skill assignment and A2A delivery are complete; target-machine installation remains unverified until each issue returns path, permissions, mtime and 13-test evidence.
+
+## [2026-07-30 05:40 CST] [Codex-CTO] [type:fix] Fail closed the WS-2595 employee-consumption trust boundary
+
+- Scope: PR #24 commit `426780c` closes the WS-2616 adversarial BLOCK without changing the organization constitution or deploying to production.
+- Signer boundary: caller-supplied `employee:*` actors no longer qualify as human acknowledgement; malformed refs are rejected, and business-action consumption requires an allowlisted producer plus live/artifact evidence and an artifact chain.
+- Anti-greenwashing: claim-level validity is no longer broadcast to every co-owner; only the owner with a matching human receipt is credited, and all three fixed-denominator score numerators are capped at `8/8`.
+- Test identity: `tangyuanjc` now canonicalizes to `JC` before daily tokens, rolling windows and employee-agent aggregation, keeping JC-local activity out of the employee North Star.
+- Verification: Python `26/26` and Node `43/43` passed with py_compile and diff checks clean; a privacy-safe replay of the 22-row live ledger produced four complete chains, zero invalid chains and kept Qianchuan provisional.
+- Boundary: PR #24 remains open and requires fresh WS-2616 adversarial re-review before merge or deployment; no ticket status, live dashboard, employee machine or Feishu destination was changed.
