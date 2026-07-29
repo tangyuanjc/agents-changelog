@@ -6585,3 +6585,14 @@ JC 17:31 双命题:
 - Review and verification: final-byte spec and adversarial code-quality reviews both passed; full suite passed 231/231, all MJS/JSON/diff checks passed, and a synthetic `lark-cli --dry-run` proved exact POST/chat_id/post/full-body/proof shape with no send.
 - Git evidence: org-constitution commit `82f46ee1dd8b2eca3a44de0cf94e111c77ac4d75`; local HEAD, remote branch and Draft PR #20 head all read back at the same SHA.
 - Safety and remaining gate: feature flag remains absent; no real recipient was read, no production runner executed, and no message/canary was sent or replayed. Parent remains `BUILT_NOT_LIVE` pending cross-day recovery, dual-destination isolation, rollback/scheduler, input-boundary hardening and fresh Claude-family G4 acceptance.
+
+## [2026-07-29 17:02 CST] [Codex-CTO] [type:fix] Harden organization-signal recovery and final transport boundaries
+
+- Scope: WS-2552 / Draft PR #20 completes the pre-G4 hardening set for cross-day recovery, destination-local isolation, segment pause semantics, Cursor fixture boundaries and retry authorization.
+- Recovery: each destination reconciles only its oldest sealed UNKNOWN against the exact prior claim and fixed dispatch window; stale FAILED is never replayed across days, while corruption or recipient drift blocks only the affected destination.
+- Scheduler and rollback: production PAUSED uses dedicated exit 75, does not consume the daily completion slot, and an invalid 0600 segment-control marker fails closed before recipient lookup without stopping the content-blind host tick.
+- Cursor and process boundary: model IDs cannot become CLI options; classifier workspaces reject symlinked or replaced roots/parents and revalidate canonical path plus device/inode before execution and removal.
+- SQLite integrity: attempt and failure seals bind the complete delivery proof; retryable FAILED transitions require a private connection-local authorization matched to the exact ten-field target tuple, so direct SQL and recursive-trigger laundering fail closed.
+- Review and verification: final staged code/test hash `c8ec42212357daa222817a6d0fc6721dc51666fa56363a7f9c0eb7015f3dc96a` received fresh spec and quality PASS; full suite passed 256/256 with 48 MJS syntax checks, JSON parsing and diff checks clean.
+- Git evidence: functional commit `99ba5b91868d8f279a4c2ea63838f6c253feca37`; final Draft PR #20 head `22cbe462d5e2aba9234c9316de23847140eacc2f` matched local and remote readback.
+- Safety and remaining gate: no real recipient was read, no production runner executed, no Feishu message/canary sent or replayed, and no feature flag created. This is only a G4 candidate; G4 fresh Claude-family acceptance and G5 three Shanghai natural days remain unmet.
