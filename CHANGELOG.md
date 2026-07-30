@@ -6663,3 +6663,13 @@ JC 17:31 双命题:
 - Verification: all three repositories passed 14/14; the first real pushes blocked and emitted three live Lark alerts, while the second pushes passed with `security gate passed: 2 commit(s)`.
 - Remote readback: PR #1 is `MERGEABLE` and `hr36a-security-gate / security-gate=SUCCESS` at data `af42a53`, ERP `9bda0b8`, and sector `0b4a262`.
 - Boundary: all three PRs remain open, branch protection/required-check configuration is unverified, and the post-review heads were not inspected by Pro; Grok temporary review and later CSO re-verification remain required.
+
+## [2026-07-31 05:40 CST] [Codex-CTO] [type:fix] Accept ERP daemon writers from reviewed release worktrees
+
+- Scope: WS-2513 fixes the ERP watchdog writer probe that blocked the combined WS-2513/WS-2532 release after cutover.
+- Root cause: `_collect_daemon_check` built its `pgrep` pattern from the production-root checkout, so the same reviewed daemon running from an approved release worktree was deterministically counted as zero writers.
+- Fix: the probe now matches the exact daemon basename and `--push` across checkout paths; the launchctl PID command, single-writer, push flag and safety-margin checks remain fail-closed.
+- Regression: focused coverage proves one release-worktree writer is healthy while simultaneous production-root and release-worktree writers are counted as two and rejected.
+- Verification: the clean PR branch passed 2/2 focused tests and static checks; the local combined release candidate passed 116/116 watchdog tests and 281/281 integrated tests.
+- Git evidence: `erp_agent_plan` PR #3 is open and mergeable at `ba342c9`; the disconnected local production-candidate history carries the same fix at `b67ecca`.
+- Production boundary: no launchd reload, kickstart, kill, plist install or live artifact change occurred. A new approved window is still required for the single combined reload, writer readback and kill-drill.
