@@ -6643,3 +6643,14 @@ JC 17:31 双命题:
 - Test identity: `tangyuanjc` now canonicalizes to `JC` before daily tokens, rolling windows and employee-agent aggregation, keeping JC-local activity out of the employee North Star.
 - Verification: Python `26/26` and Node `43/43` passed with py_compile and diff checks clean; a privacy-safe replay of the 22-row live ledger produced four complete chains, zero invalid chains and kept Qianchuan provisional.
 - Boundary: PR #24 remains open and requires fresh WS-2616 adversarial re-review before merge or deployment; no ticket status, live dashboard, employee machine or Feishu destination was changed.
+
+## [2026-07-30 10:22 CST] [Codex-CTO] [type:fix] Bound hr36a Pro reviews to one repository and hardened transcript reconciliation
+
+- Scope: WS-2699 adds the hr36a GitHub-connector discipline to `sol-pro-review`, `codex-pro-pair`, and `~/solpro-context-pack/hr36a-private-code-review-and-gate-sop.md`; no constitution file was changed.
+- Connector boundary: each review names one frozen SHA in one of the three approved private repositories. The accepted account capability remains `All repositories`, but account/organization discovery is forbidden and the absolute repository denylist wins after normalization.
+- Evidence boundary: a valid archive now requires canonical URL, exact work-account and Pro assertions, connector tool trajectory, repository-specific file facts, a visible thinking marker, verdict, and unverified items. Same-model Pro output remains advisory and cannot sign independent acceptance.
+- Fourth-repository gate: any non-default repository requires exact JC approval bound to the same task and repository, expires with that task, and can never override the absolute denylist.
+- Transcript fix: OpenCLI `detail` returns rendered user text without Markdown backticks. Reconciliation now normalizes only that known rendering artifact plus the existing trailing UI expansion label; all other text changes, message-count drift, wrong roles, generating responses, nonce/ID/hash/turn drift still fail closed.
+- TDD: the new rendering regression failed first with `TRANSCRIPT_MISMATCH`; after the minimal fix, a paired text-mutation negative test remained blocked and the complete codex-pro-pair suite passed 22/22.
+- Live proof: the existing data-pipelines STATUS review was reconciled without resend at conversation `6a6aae6f-44c0-83ea-92dd-61f3476e5257`, state `complete`, turn 1, verdict `PASS`; it reviewed only the Codex-authored 33-line card summary and is not code acceptance.
+- Review artifacts: three connector-backed code reviews are archived under `~/sol-reviews/review-hr36a-p1-*-20260730.md`; all three verdicts are `BLOCK`, so their findings must be routed to follow-up work rather than presented as fixed.
