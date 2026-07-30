@@ -6654,3 +6654,12 @@ JC 17:31 双命题:
 - TDD: the new rendering regression failed first with `TRANSCRIPT_MISMATCH`; after the minimal fix, a paired text-mutation negative test remained blocked and the complete codex-pro-pair suite passed 22/22.
 - Live proof: the existing data-pipelines STATUS review was reconciled without resend at conversation `6a6aae6f-44c0-83ea-92dd-61f3476e5257`, state `complete`, turn 1, verdict `PASS`; it reviewed only the Codex-authored 33-line card summary and is not code acceptance.
 - Review artifacts: three connector-backed code reviews are archived under `~/sol-reviews/review-hr36a-p1-*-20260730.md`; all three verdicts are `BLOCK`, so their findings must be routed to follow-up work rather than presented as fixed.
+
+## [2026-07-30 10:52 CST] [Codex-CTO] [type:fix] Exclude target-remote history on existing hr36a branch pushes
+
+- Scope: WS-2699 PR #1 in `data-pipelines`, `erp_agent_plan`, and `sector-radar` now handles both new and existing branch updates against the target remote's advertised refs; no constitution file or connector account setting changed.
+- Root cause: the existing-branch path scanned only `remote_oid..local_oid`, so merging a commit already present on remote `main` repeated that commit and falsely blocked synthetic fixtures already accepted on the remote.
+- TDD: a real bare-remote add/add merge regression failed first with `BLOCK secret_assignment`; the minimal fix subtracts all target-remote advertised commits while keeping unrelated local remote-tracking refs untrusted.
+- Verification: all three repositories passed 14/14; the first real pushes blocked and emitted three live Lark alerts, while the second pushes passed with `security gate passed: 2 commit(s)`.
+- Remote readback: PR #1 is `MERGEABLE` and `hr36a-security-gate / security-gate=SUCCESS` at data `af42a53`, ERP `9bda0b8`, and sector `0b4a262`.
+- Boundary: all three PRs remain open, branch protection/required-check configuration is unverified, and the post-review heads were not inspected by Pro; Grok temporary review and later CSO re-verification remain required.
