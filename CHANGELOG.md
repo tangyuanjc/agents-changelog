@@ -6673,3 +6673,12 @@ JC 17:31 双命题:
 - Verification: the clean PR branch passed 2/2 focused tests and static checks; the local combined release candidate passed 116/116 watchdog tests and 281/281 integrated tests.
 - Git evidence: `erp_agent_plan` PR #3 is open and mergeable at `ba342c9`; the disconnected local production-candidate history carries the same fix at `b67ecca`.
 - Production boundary: no launchd reload, kickstart, kill, plist install or live artifact change occurred. A new approved window is still required for the single combined reload, writer readback and kill-drill.
+
+## [2026-07-31 05:50 CST] [Codex-CTO] [type:ops] Pause the superseded Multica Tmall daily autopilot
+
+- Scope: WS-2042 / WS-2725 removes the duplicate scheduling risk from the superseded Multica autopilot without deleting its audit trail or touching the advertising backend.
+- Reversible control: autopilot `18fd5f33-614b-4c1f-8ec1-246c0690a533` changed from `active` to `paused`; its sole schedule trigger `b2c703da-f2da-49fc-be76-391b98899814` changed from `enabled=true` to `enabled=false`.
+- Readback: the API confirms both controls. It still retains the previously computed `next_run_at` value, so future verification must use actual fire history rather than interpreting that cached field as authorization.
+- Ticket correction: WS-2042 is `blocked`, because the replacement Codex automation still lacks stable ID/status, Shanghai 10:10 schedule, first fresh receipt, and two distinct natural schedule-day proofs.
+- Sweeper correction: WS-2725 is done after recording that a completed diagnostic run is not equivalent to completed delivery.
+- Safety: no autopilot was deleted or manually triggered, no production process was bounced, and no advertising account write was attempted.
