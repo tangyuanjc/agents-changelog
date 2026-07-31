@@ -6682,3 +6682,13 @@ JC 17:31 双命题:
 - Ticket correction: WS-2042 is `blocked`, because the replacement Codex automation still lacks stable ID/status, Shanghai 10:10 schedule, first fresh receipt, and two distinct natural schedule-day proofs.
 - Sweeper correction: WS-2725 is done after recording that a completed diagnostic run is not equivalent to completed delivery.
 - Safety: no autopilot was deleted or manually triggered, no production process was bounced, and no advertising account write was attempted.
+
+## [2026-08-01 05:38 CST] [Codex-CTO] [type:fix] Persist and harden the ERP post-cutover cycle gate
+
+- Scope: WS-2513 PR #5 replaces the one-off shell gate that caused the July 31 combined release to roll back after counting a startup audit event as a daemon cycle.
+- Root cause: the inline gate counted the first three new JSONL records, including `llm_shadow_matches`; jq then treated the absent `errors` field as a failed cycle.
+- Fix: `ops/releases/validate_daemon_cycles.py` counts only records with a valid non-negative integer `errors` field, ignores startup/audit records, waits for a bounded number of real summaries, and fails closed on malformed JSON, invalid values, nonzero errors, or timeout.
+- Privacy: successful output is restricted to timestamp and aggregate cycle fields; raw messages, recipients, order identifiers, and arbitrary log fields are never echoed.
+- Verification: 12 focused tests passed, including the exact startup-event regression and CLI exit codes; a read-only smoke against the current production log shape selected three real summaries and returned `result=pass`.
+- Baseline note: the repository-wide suite on `origin/main` remains incomplete because historical source and fixture paths are absent there; unrelated collection failures and 152 fixture-path failures were not modified.
+- Git evidence: commit `830b771` is pushed as open, mergeable PR #5. No daemon reload, launchd mutation, kill-drill, replay, or production artifact replacement occurred; review, merge, refreeze, and a new approved window remain required.
