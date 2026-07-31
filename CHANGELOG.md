@@ -6692,3 +6692,12 @@ JC 17:31 双命题:
 - Verification: 12 focused tests passed, including the exact startup-event regression and CLI exit codes; a read-only smoke against the current production log shape selected three real summaries and returned `result=pass`.
 - Baseline note: the repository-wide suite on `origin/main` remains incomplete because historical source and fixture paths are absent there; unrelated collection failures and 152 fixture-path failures were not modified.
 - Git evidence: commit `830b771` is pushed as open, mergeable PR #5. No daemon reload, launchd mutation, kill-drill, replay, or production artifact replacement occurred; review, merge, refreeze, and a new approved window remain required.
+
+## [2026-08-01 06:00 CST] [Codex-CTO] [type:ops] Schedule the approved WS-2513/WS-2532 release window
+
+- Scope: after PR #5 merged at `5ef6dda`, a Multica `run_only` one-shot was scheduled for the CSO-approved 2026-08-01 20:30-23:30 Asia/Shanghai production window.
+- Control: autopilot `1185b2d5-b780-4e64-a1bd-9979b1315a35` uses trigger `e309da71-9d9d-4dc6-b9cd-1878f0d2eee0`; the worker must pause itself immediately after admission so the annual cron cannot recur.
+- Execution gate: the worker must read the latest issue thread and prior release runs, verify exact merged-main provenance, rerun offline checks, and refuse production writes outside the approved window.
+- Production sequence: one combined reload, three valid summary cycles through the repository validator, fresh sanitized replay evidence, dual-host single-writer readback, controlled kill-drill, recovery evidence, and all HC-7 fields.
+- Fail-closed boundary: any failed gate requires the recorded rollback and independent readback; the worker may not patch a new gate defect inside the window, weaken checks, expose private replay input, or claim the prior replay hash as fresh evidence.
+- Preflight handoff: cancelled task `72ab1391-d59c-4fb8-b9cf-e04b079f20c6` left a clean local candidate `8538ead` with 291/291 focused tests, but no remote push; the scheduled worker must independently resolve provenance and security-gate evidence before deployment.
