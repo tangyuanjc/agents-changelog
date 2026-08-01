@@ -6701,3 +6701,12 @@ JC 17:31 双命题:
 - Production sequence: one combined reload, three valid summary cycles through the repository validator, fresh sanitized replay evidence, dual-host single-writer readback, controlled kill-drill, recovery evidence, and all HC-7 fields.
 - Fail-closed boundary: any failed gate requires the recorded rollback and independent readback; the worker may not patch a new gate defect inside the window, weaken checks, expose private replay input, or claim the prior replay hash as fresh evidence.
 - Preflight handoff: cancelled task `72ab1391-d59c-4fb8-b9cf-e04b079f20c6` left a clean local candidate `8538ead` with 291/291 focused tests, but no remote push; the scheduled worker must independently resolve provenance and security-gate evidence before deployment.
+
+## [2026-08-01 09:02 CST] [Codex-CTO] [type:fix] Harden the org signal line Cursor output contract
+
+- Scope: WS-2552 commit `0ba6259` changes only the Cursor classifier adapter, its regressions and the durable project handoff; publisher, state, scheduler and destination identities are unchanged.
+- Production failure: the 08:43 Shanghai controlled run failed closed as `CLASSIFIER_INVALID_OUTPUT`, with zero decision claims, deliveries and message IDs; the line was restored to exact `paused\n`.
+- Root cause: Cursor returned one valid JSON object behind a short narration, while the prompt omitted exact consumer-domain and verified-`decide` constraints.
+- Fix: accept only one balanced JSON object with at most 512 bytes of non-JSON framing; reject multiple objects, oversized framing and malformed boundaries; both prompts now require exact `consumption_control_domain` and verification-gated `decide`.
+- Verification: RED reproduced the framing/prompt gaps; focused tests passed 22/22, the full suite passed 287/287, and a no-publisher real Cursor smoke classified the sealed source on attempt 1 with five valid selections.
+- Boundary: no real production signal was sent. A new immutable release remains paused until the next Shanghai daily window; Goal completion still requires dual delivery, authoritative readback, idempotent skip and Claude-family acceptance.
