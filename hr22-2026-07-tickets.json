@@ -1,0 +1,2762 @@
+{
+ "泡泡的大C": [
+  {
+   "identifier": "WS-2739",
+   "title": "泡泡 2026-07-31 工作日报（本机 + Multica）",
+   "status": "in_review",
+   "created_at": "2026-07-31T09:30:17Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2713",
+   "title": "[日报] 泡泡 2026-07-30｜天猫投放实操与本机 Grounded 复盘",
+   "status": "in_review",
+   "created_at": "2026-07-30T09:30:00Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2712",
+   "title": "[天猫投放监控日报] 2026-07-29 · 正式线",
+   "status": "blocked",
+   "created_at": "2026-07-30T07:07:04Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2679",
+   "title": "A2A-泡泡Agent-协助皮皮Windows-FLClash配置",
+   "status": "todo",
+   "created_at": "2026-07-29T11:30:04Z",
+   "creator_type": "member",
+   "creator_id": "673507f8-c051-4e93-8d89-28710cbe4692"
+  },
+  {
+   "identifier": "WS-2667",
+   "title": "ChatCut 必装验收：泡泡",
+   "status": "blocked",
+   "created_at": "2026-07-29T10:08:58Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2647",
+   "title": "[日报] 泡泡 2026-07-29｜本机 + Multica 工作实录",
+   "status": "in_review",
+   "created_at": "2026-07-29T09:30:12Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2643",
+   "title": "[天猫投放监控日报] 2026-07-28 · 正式线",
+   "status": "blocked",
+   "created_at": "2026-07-29T07:07:15Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2522",
+   "title": "[日报] 泡泡 2026-07-28｜grounded 工作复盘",
+   "status": "blocked",
+   "created_at": "2026-07-28T09:30:16Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2510",
+   "title": "[天猫投放监控日报] 2026-07-27 结算日（正式线）",
+   "status": "blocked",
+   "created_at": "2026-07-28T07:07:20Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2469",
+   "title": "[日报] 泡泡 2026-07-27｜实战工作复盘",
+   "status": "blocked",
+   "created_at": "2026-07-27T09:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2464",
+   "title": "[天猫投放监控日报] 2026-07-26｜正式线",
+   "status": "blocked",
+   "created_at": "2026-07-27T07:07:17Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2432",
+   "title": "[日报] 泡泡 2026-07-26 工作复盘",
+   "status": "done",
+   "created_at": "2026-07-26T09:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2407",
+   "title": "[日报] 泡泡 2026-07-25｜实证工作日志",
+   "status": "done",
+   "created_at": "2026-07-25T09:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2375",
+   "title": "[日报] 泡泡 2026-07-24 工作实录",
+   "status": "blocked",
+   "created_at": "2026-07-24T09:30:15Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2372",
+   "title": "天猫万相台正式投放线监控日报｜结算日 2026-07-23",
+   "status": "done",
+   "created_at": "2026-07-24T07:07:18Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2326",
+   "title": "[日报] 泡泡 2026-07-23 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-23T09:30:04Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2323",
+   "title": "[天猫投放监控日报] 2026-07-22 · 正式线",
+   "status": "done",
+   "created_at": "2026-07-23T07:07:07Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2286",
+   "title": "[日报] 泡泡 2026-07-22 工作复盘",
+   "status": "done",
+   "created_at": "2026-07-22T09:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2280",
+   "title": "天猫万相台正式线监控日报｜结算日 2026-07-21",
+   "status": "cancelled",
+   "created_at": "2026-07-22T07:07:17Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2250",
+   "title": "[日报] 泡泡 2026-07-21 工作实绩",
+   "status": "blocked",
+   "created_at": "2026-07-21T09:30:02Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2248",
+   "title": "[天猫投放监控日报] 2026-07-20 结算日 · 正式线",
+   "status": "done",
+   "created_at": "2026-07-21T07:07:06Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2203",
+   "title": "[日报] 泡泡 2026-07-20｜本机 + Multica 实证",
+   "status": "blocked",
+   "created_at": "2026-07-20T09:30:06Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2194",
+   "title": "[天猫投放监控日报] 2026-07-19 正式线取数与登记",
+   "status": "done",
+   "created_at": "2026-07-20T07:07:11Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2167",
+   "title": "[日报] 泡泡 2026-07-19 工作汇总",
+   "status": "in_progress",
+   "created_at": "2026-07-19T09:30:06Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2136",
+   "title": "[补跑日报] 泡泡 2026-07-18｜grounded 工作复盘",
+   "status": "done",
+   "created_at": "2026-07-18T09:30:06Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2096",
+   "title": "[日报] 泡泡 2026-07-17 工作实录",
+   "status": "backlog",
+   "created_at": "2026-07-17T09:30:04Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2094",
+   "title": "[天猫投放监控日报] 2026-07-16 · 正式线",
+   "status": "done",
+   "created_at": "2026-07-17T07:07:07Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-2079",
+   "title": "[WS-2076 Drill] 员工机 A2A loop admission request",
+   "status": "done",
+   "created_at": "2026-07-17T05:24:10Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-2020",
+   "title": "[日报] 泡泡 2026-07-16 工作实录",
+   "status": "backlog",
+   "created_at": "2026-07-16T09:30:01Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1973",
+   "title": "[日报] 泡泡 2026-07-15 工作日报（CSO）",
+   "status": "done",
+   "created_at": "2026-07-15T09:30:01Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1936",
+   "title": "[日报] 泡泡 2026-07-14 工作实录",
+   "status": "done",
+   "created_at": "2026-07-14T09:30:00Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1879",
+   "title": "[日报] 泡泡 2026-07-13 · 今日证据收集与日报",
+   "status": "done",
+   "created_at": "2026-07-13T09:30:03Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1845",
+   "title": "[日报] 泡泡 2026-07-12 Grounded 工作复盘",
+   "status": "done",
+   "created_at": "2026-07-12T09:30:02Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1800",
+   "title": "[ACK] 泡泡的大C：读取 WS-1789 FlClashCore 事故通告",
+   "status": "done",
+   "created_at": "2026-07-11T13:39:48Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1775",
+   "title": "泡泡 2026-07-11 Grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-11T09:30:02Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1718",
+   "title": "[日报] 泡泡 2026-07-10 工作日报给 CSO Opus",
+   "status": "done",
+   "created_at": "2026-07-10T09:30:02Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1676",
+   "title": "[Daily Brief] 泡泡 2026-07-10 由 Loop Dispatcher 触发",
+   "status": "cancelled",
+   "created_at": "2026-07-10T02:27:13Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1665",
+   "title": "[网络·CSO派泡泡大C] 三开关修复执行 (无sudo·同奶思款·收口泡泡线最后一块)",
+   "status": "done",
+   "created_at": "2026-07-09T19:40:07Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1662",
+   "title": "[网络·CSO派泡泡大C·只读] 修复回归复验 (泡泡报'没让输密码'需机器实证)",
+   "status": "done",
+   "created_at": "2026-07-09T19:34:55Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1648",
+   "title": "[日报] 泡泡 2026-07-09 工作日报",
+   "status": "done",
+   "created_at": "2026-07-09T09:30:06Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1623",
+   "title": "生成泡泡 2026-07-08 工作日报",
+   "status": "done",
+   "created_at": "2026-07-08T09:30:07Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1615",
+   "title": "对比审计：奶思 vs 泡泡 Codex/CPA token 消耗差异",
+   "status": "done",
+   "created_at": "2026-07-08T07:58:14Z",
+   "creator_type": "member",
+   "creator_id": "8e014732-ec3e-48ea-81d3-04bc3fd6aae7"
+  },
+  {
+   "identifier": "WS-1596",
+   "title": "[Daily Brief] 泡泡 2026-07-08 由 Loop Dispatcher 触发",
+   "status": "cancelled",
+   "created_at": "2026-07-08T05:40:58Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1587",
+   "title": "[WS-1586 smoke] employee Codex multica issue get",
+   "status": "done",
+   "created_at": "2026-07-08T01:58:11Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1580",
+   "title": "[网络·CSO派泡泡大C·只读急] FlClash 就绪度探测 (决定拔root daemon是否安全, 在家不在局域网)",
+   "status": "done",
+   "created_at": "2026-07-07T12:15:54Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1566",
+   "title": "生成泡泡 2026-07-07 工作日报",
+   "status": "done",
+   "created_at": "2026-07-07T09:30:08Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1564",
+   "title": "泡泡 MacBook VPN/FlClash 慢网只读诊断：核对双 runtime + system proxy drift",
+   "status": "done",
+   "created_at": "2026-07-07T08:42:17Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1555",
+   "title": "[Daily Brief] 泡泡 2026-07-07 由 Loop Dispatcher 触发",
+   "status": "cancelled",
+   "created_at": "2026-07-07T02:23:45Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1534",
+   "title": "2026-07-06 泡泡工作日报给 CSO Opus",
+   "status": "done",
+   "created_at": "2026-07-06T09:30:04Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1513",
+   "title": "[Daily Brief] 泡泡 2026-07-06 由 Loop Dispatcher 触发",
+   "status": "cancelled",
+   "created_at": "2026-07-06T02:25:29Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1483",
+   "title": "[日报取证] 泡泡 2026-07-05 本机与 Multica 工作复盘",
+   "status": "in_review",
+   "created_at": "2026-07-05T09:30:04Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1455",
+   "title": "[Daily Brief] 泡泡 2026-07-05 由 Loop Dispatcher 触发",
+   "status": "backlog",
+   "created_at": "2026-07-05T02:23:25Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1426",
+   "title": "[日报] 泡泡 2026-07-04｜grounded 补录（无当日执行痕迹）",
+   "status": "in_review",
+   "created_at": "2026-07-04T09:30:08Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1415",
+   "title": "[Daily Brief] 泡泡 2026-07-04 由 Loop Dispatcher 触发",
+   "status": "backlog",
+   "created_at": "2026-07-04T02:23:13Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1391",
+   "title": "[日报] 泡泡 2026-07-03 工作日报",
+   "status": "done",
+   "created_at": "2026-07-03T09:30:01Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1385",
+   "title": "泡泡机器网络自检：保留 FlClash/FIClash，清理旧代理端口并确保 Codex 直连",
+   "status": "blocked",
+   "created_at": "2026-07-03T06:40:59Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1353",
+   "title": "2026-07-02 泡泡工作日报（给 CSO Opus）",
+   "status": "done",
+   "created_at": "2026-07-02T09:30:03Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1343",
+   "title": "[误派已撤回·请忽略] Record & Replay 泡泡候选任务",
+   "status": "cancelled",
+   "created_at": "2026-07-02T08:32:35Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1340",
+   "title": "[误派已撤回·请忽略] Record & Replay 泡泡试点任务",
+   "status": "cancelled",
+   "created_at": "2026-07-02T08:29:03Z",
+   "creator_type": "member",
+   "creator_id": "e787ee89-9ff9-4744-a9df-d787da53bb7b"
+  },
+  {
+   "identifier": "WS-1243",
+   "title": "日报：泡泡 2026-07-01 工作痕迹总结",
+   "status": "done",
+   "created_at": "2026-07-01T09:30:06Z",
+   "creator_type": "agent",
+   "creator_id": "fab683d8-96f6-43c3-9b52-2f17bb776179"
+  },
+  {
+   "identifier": "WS-1231",
+   "title": "[Loop Radar Fan-out] 2026-07-01 → 泡泡的大C 读 Top 5 大白话 + 自评 Loop",
+   "status": "done",
+   "created_at": "2026-07-01T02:32:31Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1228",
+   "title": "[Daily Brief] 泡泡 2026-07-01 由 Loop Dispatcher 触发",
+   "status": "done",
+   "created_at": "2026-07-01T02:25:20Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  }
+ ],
+ "奶思的猪猪": [
+  {
+   "identifier": "WS-2747",
+   "title": "奶思 2026-07-31 Grounded 工作日报",
+   "status": "in_review",
+   "created_at": "2026-07-31T09:30:31Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2720",
+   "title": "[日报] 奶思 2026-07-30",
+   "status": "todo",
+   "created_at": "2026-07-30T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2684",
+   "title": "A2A-奶思核实并交接官方FlClash0.8.93-Windows-amd64绿色ZIP-仅非敏感附件",
+   "status": "in_review",
+   "created_at": "2026-07-29T12:10:35Z",
+   "creator_type": "member",
+   "creator_id": "673507f8-c051-4e93-8d89-28710cbe4692"
+  },
+  {
+   "identifier": "WS-2683",
+   "title": "A2A-奶思核对既有私密通道并向皮皮本机交付有效FlClash配置-票面仅状态",
+   "status": "in_review",
+   "created_at": "2026-07-29T12:05:26Z",
+   "creator_type": "member",
+   "creator_id": "673507f8-c051-4e93-8d89-28710cbe4692"
+  },
+  {
+   "identifier": "WS-2682",
+   "title": "A2A-奶思-官方FlClash0.8.93-Windows安装包交接-仅非敏感附件",
+   "status": "in_review",
+   "created_at": "2026-07-29T11:44:29Z",
+   "creator_type": "member",
+   "creator_id": "673507f8-c051-4e93-8d89-28710cbe4692"
+  },
+  {
+   "identifier": "WS-2680",
+   "title": "A2A-奶思Agent-协助皮皮Windows-FLClash配置",
+   "status": "in_review",
+   "created_at": "2026-07-29T11:30:11Z",
+   "creator_type": "member",
+   "creator_id": "673507f8-c051-4e93-8d89-28710cbe4692"
+  },
+  {
+   "identifier": "WS-2663",
+   "title": "ChatCut 必装验收：奶思",
+   "status": "blocked",
+   "created_at": "2026-07-29T10:08:46Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2654",
+   "title": "奶思 2026-07-29 工作日报（Multica + 本机实绩）",
+   "status": "in_review",
+   "created_at": "2026-07-29T09:30:28Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2529",
+   "title": "[日报] 奶思 2026-07-28 Grounded 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-28T09:30:28Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2476",
+   "title": "[日报] 奶思 2026-07-27｜工作复盘",
+   "status": "blocked",
+   "created_at": "2026-07-27T09:30:29Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2439",
+   "title": "[日报] 奶思 2026-07-26｜本机痕迹与 Multica 黑板核证",
+   "status": "blocked",
+   "created_at": "2026-07-26T09:30:27Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2414",
+   "title": "[日报] 奶思 2026-07-25",
+   "status": "todo",
+   "created_at": "2026-07-25T09:30:26Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2382",
+   "title": "[日报] 奶思 2026-07-24 grounded 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-24T09:30:25Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2333",
+   "title": "[日报] 奶思 2026-07-23 Grounded 工作记录",
+   "status": "done",
+   "created_at": "2026-07-23T09:30:17Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2294",
+   "title": "[日报] 奶思 2026-07-22 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-22T09:30:23Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2257",
+   "title": "[日报] 奶思 2026-07-21 工作实录",
+   "status": "done",
+   "created_at": "2026-07-21T09:30:16Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2210",
+   "title": "[日报] 奶思 2026-07-20 工作实绩复盘",
+   "status": "done",
+   "created_at": "2026-07-20T09:30:22Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2174",
+   "title": "[日报] 奶思 2026-07-19 Grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-19T09:30:21Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2143",
+   "title": "[日报] 奶思 2026-07-18 Grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-18T09:30:20Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2118",
+   "title": "[L4·换脑] 达人邀约双状态闭环(收口WS-1392)",
+   "status": "blocked",
+   "created_at": "2026-07-17T12:38:58Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2117",
+   "title": "[L3·换脑] 快手日报加归因段(异动日回答谁缺席)",
+   "status": "blocked",
+   "created_at": "2026-07-17T12:38:54Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2104",
+   "title": "[日报] 奶思 2026-07-17 实证工作日报",
+   "status": "backlog",
+   "created_at": "2026-07-17T09:30:20Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-2061",
+   "title": "[EP-7 v2 Pilot] 奶思本地 Skill Candidate receipt（raw 不出机）",
+   "status": "done",
+   "created_at": "2026-07-16T22:51:45Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2028",
+   "title": "[工作日报] 奶思 2026-07-16｜Multica + 本机实迹",
+   "status": "done",
+   "created_at": "2026-07-16T09:30:16Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1981",
+   "title": "奶思 2026-07-15 工作日报（真实痕迹核验）",
+   "status": "done",
+   "created_at": "2026-07-15T09:30:11Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1944",
+   "title": "[日报] 奶思 2026-07-14｜真实工作痕迹汇总",
+   "status": "done",
+   "created_at": "2026-07-14T09:30:12Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1887",
+   "title": "奶思 2026-07-13 工作日报｜直播手卡、翻译插件、达人邀约与 X 封禁排查",
+   "status": "done",
+   "created_at": "2026-07-13T09:30:15Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1853",
+   "title": "[日报] 奶思 2026-07-12 工作日报（CSO Opus）",
+   "status": "done",
+   "created_at": "2026-07-12T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1824",
+   "title": "[WS-1820 daemon Mac] 奶思机替代升级备份安全 diff",
+   "status": "done",
+   "created_at": "2026-07-11T21:44:32Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1823",
+   "title": "[WS-1820 daemon Mac] 奶思机 config/TRACE 只读取证",
+   "status": "done",
+   "created_at": "2026-07-11T21:37:40Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1799",
+   "title": "[ACK] 奶思的猪猪：读取 WS-1789 FlClashCore 事故通告",
+   "status": "done",
+   "created_at": "2026-07-11T13:38:45Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1782",
+   "title": "[日报] 奶思 2026-07-11｜快手日报与台风客服兜底",
+   "status": "done",
+   "created_at": "2026-07-11T09:30:11Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1773",
+   "title": "台风巴威 · 客服兜底 (猪猪+奶思, 21:00 硬截止)",
+   "status": "blocked",
+   "created_at": "2026-07-11T08:10:31Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1770",
+   "title": "[台风巴威] 奶思+奶思的猪猪 客服话术+主动通知+评分监控",
+   "status": "blocked",
+   "created_at": "2026-07-11T08:07:58Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1724",
+   "title": "[日报] 奶思 2026-07-10 工作复盘",
+   "status": "done",
+   "created_at": "2026-07-10T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1663",
+   "title": "[网络·CSO派奶思猪猪·只读] 7/7 修复稳态复验 (重启后自动接管验证)",
+   "status": "done",
+   "created_at": "2026-07-09T19:35:05Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1654",
+   "title": "[日报] 奶思 2026-07-09 工作痕迹复盘",
+   "status": "done",
+   "created_at": "2026-07-09T09:30:18Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1629",
+   "title": "[日报] 奶思 2026-07-08 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-08T09:30:21Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1588",
+   "title": "[WS-1586 smoke] employee Codex multica issue get retry",
+   "status": "done",
+   "created_at": "2026-07-08T02:05:07Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1578",
+   "title": "[网络·CSO派奶思猪猪] FlClash 三开关修复执行 (autoRun/autoLaunch/silentLaunch→true, 带备份gate回滚)",
+   "status": "done",
+   "created_at": "2026-07-07T11:23:20Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1577",
+   "title": "[网络·CSO派奶思猪猪] FlClash 启动行为配置只读采集 (autoRun/autoLaunch 三件套验证)",
+   "status": "done",
+   "created_at": "2026-07-07T11:16:55Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1572",
+   "title": "生成奶思 2026-07-07 工作日报",
+   "status": "done",
+   "created_at": "2026-07-07T09:30:19Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1565",
+   "title": "奶思 Mac mini VPN/FlClash 慢网只读诊断：7890/TUN 未接管 + curl 死代理",
+   "status": "done",
+   "created_at": "2026-07-07T08:43:01Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1540",
+   "title": "奶思 2026-07-06 工作日报",
+   "status": "done",
+   "created_at": "2026-07-06T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1525",
+   "title": "[网络架构只读采集·CSO] 奶思机代理配置对照本机基线 (纯只读·不改配置)",
+   "status": "done",
+   "created_at": "2026-07-06T06:29:18Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1489",
+   "title": "[日报] 奶思 2026-07-05 工作日报取证汇总",
+   "status": "done",
+   "created_at": "2026-07-05T09:30:16Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1432",
+   "title": "[日报] 奶思 2026-07-04 工作痕迹汇总",
+   "status": "done",
+   "created_at": "2026-07-04T09:30:21Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1396",
+   "title": "[日报] 奶思 2026-07-03 工作日报给 CSO Opus",
+   "status": "done",
+   "created_at": "2026-07-03T09:30:11Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1383",
+   "title": "奶思机器网络自检：保留 FlClash/FIClash，国内与 Codex API 直连",
+   "status": "done",
+   "created_at": "2026-07-03T06:40:59Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1362",
+   "title": "同步 skill：抖音达人每日18点100邀约自动化",
+   "status": "blocked",
+   "created_at": "2026-07-02T10:08:22Z",
+   "creator_type": "member",
+   "creator_id": "8e014732-ec3e-48ea-81d3-04bc3fd6aae7"
+  },
+  {
+   "identifier": "WS-1359",
+   "title": "[日报] 奶思 2026-07-02 工作日报给 CSO Opus",
+   "status": "done",
+   "created_at": "2026-07-02T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1351",
+   "title": "[误派已撤回·请忽略] Record & Replay GIRF检查候选Skill",
+   "status": "cancelled",
+   "created_at": "2026-07-02T08:39:44Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1350",
+   "title": "[误派已撤回·请忽略] Record & Replay 达播数据候选Skill",
+   "status": "cancelled",
+   "created_at": "2026-07-02T08:39:43Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1349",
+   "title": "[误派已撤回·请忽略] Record & Replay 达人筛选候选Skill",
+   "status": "cancelled",
+   "created_at": "2026-07-02T08:39:43Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1342",
+   "title": "[误派已撤回·请忽略] Record & Replay 奶思候选任务",
+   "status": "cancelled",
+   "created_at": "2026-07-02T08:32:25Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1341",
+   "title": "[误派已撤回·请忽略] Record & Replay 奶思试点任务",
+   "status": "cancelled",
+   "created_at": "2026-07-02T08:29:04Z",
+   "creator_type": "member",
+   "creator_id": "e787ee89-9ff9-4744-a9df-d787da53bb7b"
+  },
+  {
+   "identifier": "WS-1317",
+   "title": "WS-1289 target proof: auto-image-space-upload on 奶思 machine",
+   "status": "done",
+   "created_at": "2026-07-02T05:14:44Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1249",
+   "title": "[日报] 奶思 2026-07-01 工作日报",
+   "status": "done",
+   "created_at": "2026-07-01T09:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "658293f2-3205-49af-9e7b-29e8ed05583c"
+  },
+  {
+   "identifier": "WS-1232",
+   "title": "[Loop Radar Fan-out] 2026-07-01 → 奶思的猪猪 读 Top 5 大白话 + 自评 Loop",
+   "status": "done",
+   "created_at": "2026-07-01T02:32:32Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  }
+ ],
+ "皮皮的小P": [
+  {
+   "identifier": "WS-2741",
+   "title": "[日报] 皮皮 2026-07-31｜助播退款率归因、4视频拆解、话术量化",
+   "status": "in_review",
+   "created_at": "2026-07-31T09:30:24Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2714",
+   "title": "[日报] 皮皮 2026-07-30｜直播复盘与18.53万测算、ChatCut三条视频、千川自动抓取",
+   "status": "in_review",
+   "created_at": "2026-07-30T09:30:05Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2677",
+   "title": "皮皮-Windows-FLClash-VPN-安装与A2A验收",
+   "status": "in_review",
+   "created_at": "2026-07-29T11:25:38Z",
+   "creator_type": "member",
+   "creator_id": "673507f8-c051-4e93-8d89-28710cbe4692"
+  },
+  {
+   "identifier": "WS-2664",
+   "title": "ChatCut 必装验收：皮皮",
+   "status": "in_progress",
+   "created_at": "2026-07-29T10:08:48Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2648",
+   "title": "[日报] 皮皮 2026-07-29｜谢婷婷双场复盘、HTML交付与C盘诊断",
+   "status": "in_review",
+   "created_at": "2026-07-29T09:30:19Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2544",
+   "title": "[Result Contract] 皮皮真实消费 7/27 千川 ROI claim",
+   "status": "in_review",
+   "created_at": "2026-07-28T10:59:07Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-2523",
+   "title": "[日报] 皮皮 2026-07-28｜直播复盘固化、实收利润与千川补抓修复",
+   "status": "blocked",
+   "created_at": "2026-07-28T09:30:22Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2470",
+   "title": "[日报] 皮皮 2026-07-27｜Multica 常驻修复、合盖不断线与千川补报",
+   "status": "blocked",
+   "created_at": "2026-07-27T09:30:21Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2433",
+   "title": "[日报] 皮皮 2026-07-26｜千川 ROI 7/7 与素材覆盖缺口",
+   "status": "blocked",
+   "created_at": "2026-07-26T09:30:20Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2408",
+   "title": "[日报] 皮皮 2026-07-25（grounded 工作复盘）",
+   "status": "in_review",
+   "created_at": "2026-07-25T09:30:19Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2376",
+   "title": "[日报] 皮皮 2026-07-24 Grounded 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-24T09:30:20Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2327",
+   "title": "[日报] 皮皮 2026-07-23 工作实绩核查与汇总",
+   "status": "blocked",
+   "created_at": "2026-07-23T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2287",
+   "title": "[日报] 皮皮 2026-07-22 工作实绩与卡点",
+   "status": "done",
+   "created_at": "2026-07-22T09:30:18Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2251",
+   "title": "[日报] 皮皮 2026-07-21｜视频音频交付与背景音乐 Skill 固化",
+   "status": "blocked",
+   "created_at": "2026-07-21T09:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2234",
+   "title": "[L5·Preflight] 权威Base+freshness+join+sample只读核查",
+   "status": "backlog",
+   "created_at": "2026-07-20T21:03:20Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2233",
+   "title": "[L2·Follow-up] 五闸机械validator+两条真实视频回归",
+   "status": "backlog",
+   "created_at": "2026-07-20T21:02:09Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2204",
+   "title": "[日报] 皮皮 2026-07-20｜五闸固化与千川数据卡点",
+   "status": "blocked",
+   "created_at": "2026-07-20T09:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2168",
+   "title": "[日报] 皮皮 2026-07-19｜千川数据源 0/7 → 7/7 与本机无活动核查",
+   "status": "done",
+   "created_at": "2026-07-19T09:30:12Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2137",
+   "title": "[日报] 皮皮 2026-07-18｜抖音罗盘、千川 ROI 与队列过期",
+   "status": "done",
+   "created_at": "2026-07-18T09:30:12Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2116",
+   "title": "[L2·换脑] 拆解口径硬门禁五闸→standard-short-video-analysis SKILL.md",
+   "status": "done",
+   "created_at": "2026-07-17T12:38:48Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2098",
+   "title": "[日报] 皮皮 2026-07-17｜无进展（R1a 静默闸）",
+   "status": "done",
+   "created_at": "2026-07-17T09:30:11Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-2046",
+   "title": "[皮皮] 6月达人数据 11 条『成交<千川成交』归属疑点收口 (agent-loop 型任务)",
+   "status": "in_review",
+   "created_at": "2026-07-16T17:07:59Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2022",
+   "title": "[日报] 皮皮 2026-07-16｜本机痕迹与 Multica 黑板核验",
+   "status": "backlog",
+   "created_at": "2026-07-16T09:30:07Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1975",
+   "title": "[日报编制] 皮皮 2026-07-15 工作日报（Browser 管理员升级）",
+   "status": "done",
+   "created_at": "2026-07-15T09:30:06Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1960",
+   "title": "皮皮 Browser 被禁用：资格门禁、网络刷新与 Windows 客户端修复",
+   "status": "blocked",
+   "created_at": "2026-07-14T12:28:11Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1938",
+   "title": "[日报编制] 皮皮 2026-07-14 工作日报",
+   "status": "done",
+   "created_at": "2026-07-14T09:30:05Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1881",
+   "title": "生成皮皮 2026-07-13 工作日报给 CSO Opus",
+   "status": "done",
+   "created_at": "2026-07-13T09:30:07Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1847",
+   "title": "[日报] 皮皮 2026-07-12 工作日报（千川 ROI）",
+   "status": "done",
+   "created_at": "2026-07-12T09:30:06Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1807",
+   "title": "[ACK·员工补齐] 皮皮的小P - Multica：读取 WS-1789 FlClashCore 事故通告",
+   "status": "done",
+   "created_at": "2026-07-11T18:47:43Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1777",
+   "title": "[日报] 皮皮 2026-07-11｜千川 ROI 2.17 与本机无活动核查",
+   "status": "in_review",
+   "created_at": "2026-07-11T09:30:06Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1719",
+   "title": "[日报] 皮皮 2026-07-10 工作日报（给 CSO Opus）",
+   "status": "done",
+   "created_at": "2026-07-10T09:30:06Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1649",
+   "title": "WS-1649: 皮皮 2026-07-09 工作日报",
+   "status": "done",
+   "created_at": "2026-07-09T09:30:12Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1624",
+   "title": "[日报取证] 皮皮 2026-07-08 工作日报",
+   "status": "done",
+   "created_at": "2026-07-08T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1567",
+   "title": "Daily report: Pipi 2026-07-07",
+   "status": "done",
+   "created_at": "2026-07-07T09:30:12Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1535",
+   "title": "[日报] 皮皮 2026-07-06 工作日报",
+   "status": "done",
+   "created_at": "2026-07-06T09:30:08Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1484",
+   "title": "[日报] 皮皮 2026-07-05",
+   "status": "done",
+   "created_at": "2026-07-05T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1427",
+   "title": "[日报] 皮皮 2026-07-04｜千川 2/7 与本机记录缺口（补做）",
+   "status": "in_review",
+   "created_at": "2026-07-04T09:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1397",
+   "title": "[网络事故 followup] 皮皮 确认代理是禁开机自启还是只停 service",
+   "status": "done",
+   "created_at": "2026-07-03T09:30:34Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1392",
+   "title": "WS-1392: 生成皮皮 2026-07-03 工作日报",
+   "status": "done",
+   "created_at": "2026-07-03T09:30:05Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1382",
+   "title": "皮皮机器网络自检：无外网需求则撤销代理，确保 Codex API 直连",
+   "status": "done",
+   "created_at": "2026-07-03T06:40:58Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1354",
+   "title": "生成皮皮 2026-07-02 工作日报",
+   "status": "done",
+   "created_at": "2026-07-02T09:30:08Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1316",
+   "title": "WS-1289 target proof: auto-image-space-upload on 皮皮 machine",
+   "status": "done",
+   "created_at": "2026-07-02T05:14:30Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1244",
+   "title": "[日报] 皮皮 2026-07-01 工作日报",
+   "status": "done",
+   "created_at": "2026-07-01T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "2c182e9c-b8c5-41c2-8160-0b79b4d1420d"
+  },
+  {
+   "identifier": "WS-1233",
+   "title": "[Loop Radar Fan-out] 2026-07-01 → 皮皮的小P 读 Top 5 大白话 + 自评 Loop",
+   "status": "done",
+   "created_at": "2026-07-01T02:32:35Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  }
+ ],
+ "文雅的白茶": [
+  {
+   "identifier": "WS-2742",
+   "title": "[日报] 文雅 2026-07-31 工作痕迹汇总",
+   "status": "in_review",
+   "created_at": "2026-07-31T09:30:25Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2715",
+   "title": "文雅 2026-07-30 工作日报",
+   "status": "in_review",
+   "created_at": "2026-07-30T09:30:06Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2649",
+   "title": "[日报] 文雅 2026-07-29 grounded 工作日报",
+   "status": "in_review",
+   "created_at": "2026-07-29T09:30:20Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2524",
+   "title": "[日报] 文雅 2026-07-28 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-28T09:30:23Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2471",
+   "title": "[日报] 文雅 2026-07-27 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-27T09:30:23Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2434",
+   "title": "[日报] 文雅 2026-07-26",
+   "status": "done",
+   "created_at": "2026-07-26T09:30:22Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2409",
+   "title": "[日报] 文雅 2026-07-25",
+   "status": "done",
+   "created_at": "2026-07-25T09:30:21Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2377",
+   "title": "[日报] 文雅 2026-07-24 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-24T09:30:21Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2328",
+   "title": "[日报] 文雅 2026-07-23 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-23T09:30:11Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2288",
+   "title": "[日报] 文雅 2026-07-22 工作日报",
+   "status": "done",
+   "created_at": "2026-07-22T09:30:19Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2252",
+   "title": "[日报] 文雅 2026-07-21 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-21T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2205",
+   "title": "文雅 2026-07-20 grounded 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-20T09:30:16Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2169",
+   "title": "[日报] 文雅 2026-07-19",
+   "status": "done",
+   "created_at": "2026-07-19T09:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2138",
+   "title": "[日报] 文雅 2026-07-18",
+   "status": "done",
+   "created_at": "2026-07-18T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2099",
+   "title": "文雅 2026-07-17 工作日报",
+   "status": "backlog",
+   "created_at": "2026-07-17T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-2023",
+   "title": "[日报] 文雅 2026-07-16 工作日报",
+   "status": "backlog",
+   "created_at": "2026-07-16T09:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1976",
+   "title": "[日报] 文雅 2026-07-15 工作日报",
+   "status": "done",
+   "created_at": "2026-07-15T09:30:07Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1945",
+   "title": "文雅最终修复：本人上下文安装 imagegen 兜底并启用 SSH",
+   "status": "blocked",
+   "created_at": "2026-07-14T09:31:48Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1939",
+   "title": "[日报] 文雅 2026-07-14 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-14T09:30:07Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1935",
+   "title": "文雅生图持久化修复：管理员SSH + base64自动恢复兜底",
+   "status": "blocked",
+   "created_at": "2026-07-14T09:03:29Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1933",
+   "title": "文雅生图故障：补SSH公钥 + imagegen工具链取证与修复",
+   "status": "blocked",
+   "created_at": "2026-07-14T08:46:29Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1882",
+   "title": "[日报] 文雅 2026-07-13｜本机 + Multica 实证汇总",
+   "status": "done",
+   "created_at": "2026-07-13T09:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1848",
+   "title": "[日报] 文雅 2026-07-12",
+   "status": "done",
+   "created_at": "2026-07-12T09:30:07Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1804",
+   "title": "[ACK·员工补齐] 文雅的白茶：读取 WS-1789 FlClashCore 事故通告",
+   "status": "done",
+   "created_at": "2026-07-11T18:47:36Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1778",
+   "title": "[日报] 文雅 2026-07-11",
+   "status": "done",
+   "created_at": "2026-07-11T09:30:07Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1720",
+   "title": "[日报] 文雅 2026-07-10 工作日报",
+   "status": "done",
+   "created_at": "2026-07-10T09:30:07Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1650",
+   "title": "[日报] 文雅 2026-07-09 工作日报",
+   "status": "done",
+   "created_at": "2026-07-09T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1625",
+   "title": "[日报] 文雅 2026-07-08 工作日报",
+   "status": "done",
+   "created_at": "2026-07-08T09:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1568",
+   "title": "[日报] 文雅 2026-07-07 工作日报",
+   "status": "done",
+   "created_at": "2026-07-07T09:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1536",
+   "title": "[日报] 文雅 2026-07-06 工作日报",
+   "status": "done",
+   "created_at": "2026-07-06T09:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1485",
+   "title": "[日报] 文雅 2026-07-05",
+   "status": "done",
+   "created_at": "2026-07-05T09:30:11Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1428",
+   "title": "[日报] 文雅 2026-07-04",
+   "status": "done",
+   "created_at": "2026-07-04T09:30:17Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1355",
+   "title": "文雅 2026-07-02 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-02T09:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1245",
+   "title": "[日报] 文雅 2026-07-01 grounded work diary",
+   "status": "done",
+   "created_at": "2026-07-01T09:30:11Z",
+   "creator_type": "agent",
+   "creator_id": "c7d98ea9-e5d0-42df-becd-cdcc76d38562"
+  },
+  {
+   "identifier": "WS-1236",
+   "title": "[Loop Radar Fan-out] 2026-07-01 → 文雅的白茶 读 Top 5 大白话 + 自评 Loop",
+   "status": "done",
+   "created_at": "2026-07-01T02:32:42Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  }
+ ],
+ "黄宁的橙子": [
+  {
+   "identifier": "WS-2748",
+   "title": "[日报] 黄宁 2026-07-31",
+   "status": "in_review",
+   "created_at": "2026-07-31T09:35:03Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-2655",
+   "title": "[日报] 黄宁 2026-07-29",
+   "status": "in_review",
+   "created_at": "2026-07-29T09:40:12Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-2530",
+   "title": "[日报] 黄宁 2026-07-28",
+   "status": "blocked",
+   "created_at": "2026-07-28T09:35:00Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-2478",
+   "title": "[日报] 黄宁 2026-07-27",
+   "status": "blocked",
+   "created_at": "2026-07-27T09:34:41Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-2383",
+   "title": "[日报] 黄宁 2026-07-24",
+   "status": "blocked",
+   "created_at": "2026-07-24T09:34:48Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-2335",
+   "title": "[日报] 黄宁 2026-07-23",
+   "status": "done",
+   "created_at": "2026-07-23T09:34:31Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-2295",
+   "title": "[日报] 黄宁 2026-07-22",
+   "status": "done",
+   "created_at": "2026-07-22T09:33:26Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1983",
+   "title": "[日报] 黄宁 2026-07-15",
+   "status": "done",
+   "created_at": "2026-07-15T09:35:11Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1951",
+   "title": "黄宁最终诊断：本人上下文启用 SSH 并验证真实用户原生 imagegen",
+   "status": "blocked",
+   "created_at": "2026-07-14T09:57:03Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1947",
+   "title": "[日报] 黄宁 2026-07-14",
+   "status": "done",
+   "created_at": "2026-07-14T09:36:31Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1934",
+   "title": "黄宁生图故障：启用SSH + imagegen工具链取证与修复",
+   "status": "blocked",
+   "created_at": "2026-07-14T08:46:32Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1890",
+   "title": "[日报] 黄宁 2026-07-13",
+   "status": "done",
+   "created_at": "2026-07-13T09:38:51Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1808",
+   "title": "[ACK·员工补齐] 黄宁的橙子：读取 WS-1789 FlClashCore 事故通告",
+   "status": "done",
+   "created_at": "2026-07-11T18:47:45Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1732",
+   "title": "[WS-1714取证] 5分钟定位黄宁机 fork staging 与实际 binary",
+   "status": "blocked",
+   "created_at": "2026-07-10T10:04:30Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1726",
+   "title": "[WS-1714恢复] 用 detached one-shot 完成黄宁 Multica fork 换装",
+   "status": "in_review",
+   "created_at": "2026-07-10T09:37:33Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1716",
+   "title": "[WS-1714远端终验] 黄宁机弹框验证 + Codex 0.144.1/GPT-5.6 探针",
+   "status": "backlog",
+   "created_at": "2026-07-10T08:51:30Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1712",
+   "title": "[WS-1690收尾] DESKTOP-ORSLCSS 部署 fork 并回报验证证据",
+   "status": "blocked",
+   "created_at": "2026-07-10T08:43:01Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1645",
+   "title": "[日报] 黄宁 2026-07-09",
+   "status": "done",
+   "created_at": "2026-07-09T08:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "08a3672c-de21-4b0d-95d6-16cd12fce2d8"
+  },
+  {
+   "identifier": "WS-1616",
+   "title": "[日报] 黄宁 2026-07-08",
+   "status": "done",
+   "created_at": "2026-07-08T08:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "08a3672c-de21-4b0d-95d6-16cd12fce2d8"
+  },
+  {
+   "identifier": "WS-1593",
+   "title": "[CSO 派·对抗审查] 黄宁的橙子 quarantine 完全解除验证 (max=6 后, 20 min)",
+   "status": "blocked",
+   "created_at": "2026-07-08T04:41:44Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1563",
+   "title": "[日报] 黄宁 2026-07-07",
+   "status": "done",
+   "created_at": "2026-07-07T08:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "08a3672c-de21-4b0d-95d6-16cd12fce2d8"
+  },
+  {
+   "identifier": "WS-1532",
+   "title": "[日报] 黄宁 2026-07-06",
+   "status": "done",
+   "created_at": "2026-07-06T08:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "08a3672c-de21-4b0d-95d6-16cd12fce2d8"
+  },
+  {
+   "identifier": "WS-1482",
+   "title": "[日报] 黄宁 2026-07-05",
+   "status": "done",
+   "created_at": "2026-07-05T08:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "08a3672c-de21-4b0d-95d6-16cd12fce2d8"
+  },
+  {
+   "identifier": "WS-1425",
+   "title": "[日报] 黄宁 2026-07-04",
+   "status": "done",
+   "created_at": "2026-07-04T08:30:15Z",
+   "creator_type": "agent",
+   "creator_id": "08a3672c-de21-4b0d-95d6-16cd12fce2d8"
+  },
+  {
+   "identifier": "WS-1390",
+   "title": "[日报] 黄宁 2026-07-03",
+   "status": "done",
+   "created_at": "2026-07-03T08:30:06Z",
+   "creator_type": "agent",
+   "creator_id": "08a3672c-de21-4b0d-95d6-16cd12fce2d8"
+  },
+  {
+   "identifier": "WS-1315",
+   "title": "WS-1289 target proof: auto-image-space-upload on 黄宁 machine",
+   "status": "done",
+   "created_at": "2026-07-02T05:14:14Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1230",
+   "title": "[Loop Radar Fan-out] 2026-07-01 → 黄宁的橙子 读 Top 5 大白话 + 自评 Loop",
+   "status": "done",
+   "created_at": "2026-07-01T02:32:29Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  }
+ ],
+ "芳芳的澄川": [
+  {
+   "identifier": "WS-2746",
+   "title": "[日报] 芳芳 2026-07-31｜真实工作痕迹汇总",
+   "status": "in_review",
+   "created_at": "2026-07-31T09:30:29Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2719",
+   "title": "[日报] 芳芳 2026-07-30｜真实工作痕迹汇总",
+   "status": "in_review",
+   "created_at": "2026-07-30T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2653",
+   "title": "[日报] 芳芳 2026-07-29 工作证据核验",
+   "status": "in_review",
+   "created_at": "2026-07-29T09:30:24Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2528",
+   "title": "[日报] 芳芳 2026-07-28 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-28T09:30:27Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2493",
+   "title": "[WS-2489证据] 芳芳消费 ERP person-day artifact",
+   "status": "done",
+   "created_at": "2026-07-27T23:19:30Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-2475",
+   "title": "[日报] 芳芳 2026-07-27｜本机与 Multica 实证汇总",
+   "status": "blocked",
+   "created_at": "2026-07-27T09:30:27Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2438",
+   "title": "[日报] 芳芳 2026-07-26 真实工作痕迹汇总",
+   "status": "blocked",
+   "created_at": "2026-07-26T09:30:26Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2413",
+   "title": "[日报] 芳芳 2026-07-25",
+   "status": "todo",
+   "created_at": "2026-07-25T09:30:24Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2381",
+   "title": "[日报] 芳芳 2026-07-24 工作实绩",
+   "status": "blocked",
+   "created_at": "2026-07-24T09:30:24Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2332",
+   "title": "[日报] 芳芳 2026-07-23 工作复盘",
+   "status": "done",
+   "created_at": "2026-07-23T09:30:15Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2324",
+   "title": "[乾宇天猫面板] 恢复 10.20.20.5:8030 本机服务",
+   "status": "done",
+   "created_at": "2026-07-23T08:06:03Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2319",
+   "title": "[固定队列] 奶思发货缺单号催办",
+   "status": "in_review",
+   "created_at": "2026-07-23T04:19:02Z",
+   "creator_type": "member",
+   "creator_id": "8e014732-ec3e-48ea-81d3-04bc3fd6aae7"
+  },
+  {
+   "identifier": "WS-2302",
+   "title": "恢复乾宇天猫面板 8030 EasyTier 热转发",
+   "status": "done",
+   "created_at": "2026-07-22T11:14:18Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2293",
+   "title": "[日报] 芳芳 2026-07-22 工作复盘（真实痕迹）",
+   "status": "done",
+   "created_at": "2026-07-22T09:30:22Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2256",
+   "title": "芳芳 2026-07-21 工作日报（证据核验）",
+   "status": "done",
+   "created_at": "2026-07-21T09:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2209",
+   "title": "[日报] 芳芳 2026-07-20｜真实工作痕迹与 Multica 汇总",
+   "status": "blocked",
+   "created_at": "2026-07-20T09:30:20Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2183",
+   "title": "在芳芳机开 EasyTier 端口转发窗口: 10.20.20.5:8030 -> 10.10.11.30:80 (乾宇天猫面板)",
+   "status": "done",
+   "created_at": "2026-07-19T14:04:13Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2177",
+   "title": "WS 只读探测: 芳芳机 DESKTOP-1E7PR5D 到乾宇内网 10.10.11.30 的可达性与网络拓扑",
+   "status": "done",
+   "created_at": "2026-07-19T09:56:04Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2173",
+   "title": "[日报] 芳芳 2026-07-19 工作实录",
+   "status": "done",
+   "created_at": "2026-07-19T09:30:19Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2142",
+   "title": "[日报] 芳芳 2026-07-18 工作日报（本机+Multica）",
+   "status": "done",
+   "created_at": "2026-07-18T09:30:18Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2113",
+   "title": "[ERP分诊][B类][2026-07-17] 7个常规异常待人工终判",
+   "status": "blocked",
+   "created_at": "2026-07-17T10:26:49Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-2103",
+   "title": "整理芳芳 2026-07-17 grounded 工作日报",
+   "status": "backlog",
+   "created_at": "2026-07-17T09:30:18Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-2027",
+   "title": "[日报] 芳芳 2026-07-16 工作日报（本机+Multica证据）",
+   "status": "done",
+   "created_at": "2026-07-16T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1980",
+   "title": "[日报] 芳芳 2026-07-15 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-15T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1943",
+   "title": "[日报] 芳芳 2026-07-14 工作证据汇总",
+   "status": "done",
+   "created_at": "2026-07-14T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1924",
+   "title": "MC1112系列订单出库情况核对（4.14-7.14）",
+   "status": "blocked",
+   "created_at": "2026-07-14T03:15:03Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1886",
+   "title": "[日报] 芳芳 2026-07-13 工作证据汇总",
+   "status": "done",
+   "created_at": "2026-07-13T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1852",
+   "title": "[日报] 芳芳 2026-07-12 工作痕迹核验日报",
+   "status": "done",
+   "created_at": "2026-07-12T09:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1806",
+   "title": "[ACK·员工补齐] 芳芳的澄川：读取 WS-1789 FlClashCore 事故通告",
+   "status": "todo",
+   "created_at": "2026-07-11T18:47:41Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1781",
+   "title": "[日报] 芳芳 2026-07-11",
+   "status": "todo",
+   "created_at": "2026-07-11T09:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1772",
+   "title": "台风巴威 · 发货链应对 (澄川+芳芳, 18:00 前)",
+   "status": "todo",
+   "created_at": "2026-07-11T08:10:26Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1769",
+   "title": "[台风巴威] 芳芳+澄川 联系极狼仓+豁免申请+订单隔离",
+   "status": "todo",
+   "created_at": "2026-07-11T08:07:56Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1723",
+   "title": "[日报] 芳芳 2026-07-10 工作日报（证据版）",
+   "status": "done",
+   "created_at": "2026-07-10T09:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1653",
+   "title": "[日报] 芳芳 2026-07-09 grounded 工作日报",
+   "status": "in_review",
+   "created_at": "2026-07-09T09:30:17Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1628",
+   "title": "生成芳芳 2026-07-08 工作日报",
+   "status": "done",
+   "created_at": "2026-07-08T09:30:18Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1571",
+   "title": "[日报] 芳芳 2026-07-07 工作痕迹汇总",
+   "status": "done",
+   "created_at": "2026-07-07T09:30:17Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1539",
+   "title": "[日报] 芳芳 2026-07-06 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-06T09:30:11Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1488",
+   "title": "[日报] 芳芳 2026-07-05 grounded work report",
+   "status": "done",
+   "created_at": "2026-07-05T09:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1431",
+   "title": "[日报] 芳芳 2026-07-04 工作日报给 CSO Opus",
+   "status": "done",
+   "created_at": "2026-07-04T09:30:20Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1395",
+   "title": "[日报] 芳芳 2026-07-03 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-03T09:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1358",
+   "title": "[日报] 芳芳 2026-07-02 工作日报",
+   "status": "done",
+   "created_at": "2026-07-02T09:30:12Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1248",
+   "title": "[日报] 芳芳 2026-07-01 工作日报整理",
+   "status": "done",
+   "created_at": "2026-07-01T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "46c1e778-be11-40fd-8f6b-6435f9509192"
+  },
+  {
+   "identifier": "WS-1234",
+   "title": "[Loop Radar Fan-out] 2026-07-01 → 芳芳的澄川 读 Top 5 大白话 + 自评 Loop",
+   "status": "done",
+   "created_at": "2026-07-01T02:32:38Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  }
+ ],
+ "小龙的大龙": [
+  {
+   "identifier": "WS-2745",
+   "title": "[日报] 小龙 2026-07-31：邀约100/100，回复登记受限",
+   "status": "in_review",
+   "created_at": "2026-07-31T09:30:28Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2718",
+   "title": "[日报] 小龙 2026-07-30：发布登记2条、邀约100/100、寄样1人",
+   "status": "in_review",
+   "created_at": "2026-07-30T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2665",
+   "title": "ChatCut 必装验收：小龙",
+   "status": "blocked",
+   "created_at": "2026-07-29T10:08:51Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2652",
+   "title": "[日报] 小龙 2026-07-29：本机与 Multica 工作实录",
+   "status": "in_review",
+   "created_at": "2026-07-29T09:30:24Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2527",
+   "title": "[日报] 小龙 2026-07-28：邀约100/100与达人库批量登记",
+   "status": "blocked",
+   "created_at": "2026-07-28T09:30:26Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2474",
+   "title": "[日报] 小龙 2026-07-27：C盘深度清理释放12.73GB",
+   "status": "blocked",
+   "created_at": "2026-07-27T09:30:27Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2437",
+   "title": "[日报] 小龙 2026-07-26",
+   "status": "cancelled",
+   "created_at": "2026-07-26T09:30:25Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2412",
+   "title": "[日报] 小龙 2026-07-25",
+   "status": "todo",
+   "created_at": "2026-07-25T09:30:24Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2380",
+   "title": "[日报] 小龙 2026-07-24",
+   "status": "done",
+   "created_at": "2026-07-24T09:30:24Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2331",
+   "title": "[日报] 小龙 2026-07-23",
+   "status": "done",
+   "created_at": "2026-07-23T09:30:15Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2292",
+   "title": "[日报] 小龙 2026-07-22 工作实绩汇总",
+   "status": "done",
+   "created_at": "2026-07-22T09:30:21Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2255",
+   "title": "[日报] 小龙 2026-07-21：Grok CLI 安装验证与验收卡点",
+   "status": "done",
+   "created_at": "2026-07-21T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2208",
+   "title": "[日报] 小龙 2026-07-20 工作实录",
+   "status": "blocked",
+   "created_at": "2026-07-20T09:30:20Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2172",
+   "title": "[日报] 小龙 2026-07-19",
+   "status": "cancelled",
+   "created_at": "2026-07-19T09:30:18Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2141",
+   "title": "[日报] 小龙 2026-07-18",
+   "status": "cancelled",
+   "created_at": "2026-07-18T09:30:18Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2102",
+   "title": "[日报] 小龙 2026-07-17：达人寄样、100条邀约与回复登记",
+   "status": "backlog",
+   "created_at": "2026-07-17T09:30:17Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-2026",
+   "title": "[日报] 小龙 2026-07-16 工作日报",
+   "status": "done",
+   "created_at": "2026-07-16T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1979",
+   "title": "[日报] 小龙 2026-07-15 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-15T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1942",
+   "title": "[日报] 小龙 2026-07-14 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-14T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1885",
+   "title": "[日报] 小龙 2026-07-13 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-13T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1851",
+   "title": "[日报] 小龙 2026-07-12 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-12T09:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1803",
+   "title": "[ACK·员工补齐] 小龙的大龙：读取 WS-1789 FlClashCore 事故通告",
+   "status": "done",
+   "created_at": "2026-07-11T18:47:33Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1780",
+   "title": "[日报] 小龙 2026-07-11",
+   "status": "todo",
+   "created_at": "2026-07-11T09:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1722",
+   "title": "[日报] 小龙 2026-07-10 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-10T09:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1652",
+   "title": "[日报] 小龙 2026-07-09 grounded work log",
+   "status": "done",
+   "created_at": "2026-07-09T09:30:17Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1627",
+   "title": "[日报] 小龙 2026-07-08 grounded work report",
+   "status": "done",
+   "created_at": "2026-07-08T09:30:18Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1570",
+   "title": "[日报] 小龙 2026-07-07 工作日报生成",
+   "status": "done",
+   "created_at": "2026-07-07T09:30:17Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1538",
+   "title": "[日报] 小龙 2026-07-06 grounded work log",
+   "status": "done",
+   "created_at": "2026-07-06T09:30:11Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1487",
+   "title": "[日报] 小龙 2026-07-05",
+   "status": "todo",
+   "created_at": "2026-07-05T09:30:14Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1430",
+   "title": "[日报] 小龙 2026-07-04",
+   "status": "todo",
+   "created_at": "2026-07-04T09:30:20Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1398",
+   "title": "[网络事故 followup] 小龙 确认代理是禁开机自启还是只停 service",
+   "status": "done",
+   "created_at": "2026-07-03T09:30:36Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  },
+  {
+   "identifier": "WS-1394",
+   "title": "[日报] 小龙 2026-07-03 工作日报",
+   "status": "done",
+   "created_at": "2026-07-03T09:30:09Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1384",
+   "title": "小龙机器网络自检：无外网需求则撤销代理，确保 Codex API 直连",
+   "status": "done",
+   "created_at": "2026-07-03T06:40:59Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1357",
+   "title": "[日报] 小龙 2026-07-02 工作日报",
+   "status": "done",
+   "created_at": "2026-07-02T09:30:12Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1247",
+   "title": "[日报] 小龙 2026-07-01 工作日报",
+   "status": "done",
+   "created_at": "2026-07-01T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "7aa3873c-029d-4f54-a82f-010712f55ec9"
+  },
+  {
+   "identifier": "WS-1237",
+   "title": "[Loop Radar Fan-out] 2026-07-01 → 小龙的大龙 读 Top 5 大白话 + 自评 Loop",
+   "status": "done",
+   "created_at": "2026-07-01T02:32:45Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  }
+ ],
+ "欣欣的叶子": [
+  {
+   "identifier": "WS-2744",
+   "title": "[日报] 欣欣 2026-07-31 工作日报（grounded）",
+   "status": "in_review",
+   "created_at": "2026-07-31T09:30:27Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2717",
+   "title": "[日报] 欣欣 2026-07-30",
+   "status": "todo",
+   "created_at": "2026-07-30T09:30:08Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2666",
+   "title": "ChatCut 必装验收：欣欣",
+   "status": "in_progress",
+   "created_at": "2026-07-29T10:08:56Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2657",
+   "title": "恢复欣欣 Windows 组织 SSH 公钥登录",
+   "status": "in_review",
+   "created_at": "2026-07-29T09:44:55Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-2651",
+   "title": "[日报] 欣欣 2026-07-29｜本机痕迹 + Multica 黑板",
+   "status": "in_review",
+   "created_at": "2026-07-29T09:30:22Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2526",
+   "title": "[工作日报] 欣欣 2026-07-28（本机+Multica 证据）",
+   "status": "blocked",
+   "created_at": "2026-07-28T09:30:24Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2473",
+   "title": "[日报] 欣欣 2026-07-27（本机 + Multica 证据）",
+   "status": "blocked",
+   "created_at": "2026-07-27T09:30:24Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2436",
+   "title": "[日报] 欣欣 2026-07-26（证据回溯）",
+   "status": "in_review",
+   "created_at": "2026-07-26T09:30:24Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2411",
+   "title": "[日报] 欣欣 2026-07-25（无进展·R1a）",
+   "status": "done",
+   "created_at": "2026-07-25T09:30:22Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2379",
+   "title": "[日报] 欣欣 2026-07-24 grounded 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-24T09:30:22Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2330",
+   "title": "[日报] 欣欣 2026-07-23 grounded 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-23T09:30:13Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2291",
+   "title": "[日报] 欣欣 2026-07-22｜本机与 Multica 实证汇总",
+   "status": "done",
+   "created_at": "2026-07-22T09:30:20Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2254",
+   "title": "[日报] 欣欣 2026-07-21 Grounded 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-21T09:30:12Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2207",
+   "title": "[日报] 欣欣 2026-07-20 Grounded 工作日报",
+   "status": "blocked",
+   "created_at": "2026-07-20T09:30:17Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2171",
+   "title": "[日报] 欣欣 2026-07-19 工作日报（证据汇总）",
+   "status": "done",
+   "created_at": "2026-07-19T09:30:15Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2140",
+   "title": "[日报] 欣欣 2026-07-18 工作日报（证据汇总）",
+   "status": "done",
+   "created_at": "2026-07-18T09:30:15Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2101",
+   "title": "[日报] 欣欣 2026-07-17 grounded 工作证据汇总",
+   "status": "backlog",
+   "created_at": "2026-07-17T09:30:15Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-2025",
+   "title": "[日报] 欣欣 2026-07-16 工作日报",
+   "status": "done",
+   "created_at": "2026-07-16T09:30:11Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1978",
+   "title": "[日报] 欣欣 2026-07-15 工作日报（寄样登记与黑板复核）",
+   "status": "done",
+   "created_at": "2026-07-15T09:30:08Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1941",
+   "title": "[日报] 欣欣 2026-07-14 工作日报（证据汇总）",
+   "status": "done",
+   "created_at": "2026-07-14T09:30:08Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1906",
+   "title": "[WS-1690扩展] 欣欣机 LAPTOP-PR9FOK1Q 从 0.2.32 升级组织基线",
+   "status": "backlog",
+   "created_at": "2026-07-13T12:33:11Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1884",
+   "title": "[日报] 欣欣 2026-07-13｜本机痕迹 + Multica 黑板",
+   "status": "done",
+   "created_at": "2026-07-13T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1850",
+   "title": "[日报] 欣欣 2026-07-12",
+   "status": "done",
+   "created_at": "2026-07-12T09:30:08Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1805",
+   "title": "[ACK·员工补齐] 欣欣的叶子：读取 WS-1789 FlClashCore 事故通告",
+   "status": "done",
+   "created_at": "2026-07-11T18:47:38Z",
+   "creator_type": "member",
+   "creator_id": "f5fd9e24-1ad9-4cf3-bc24-985bac6420ff"
+  },
+  {
+   "identifier": "WS-1779",
+   "title": "[日报] 欣欣 2026-07-11｜无进展（R1a 静默闸）",
+   "status": "done",
+   "created_at": "2026-07-11T09:30:08Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1721",
+   "title": "[日报] 欣欣 2026-07-10 工作实录与产出汇总",
+   "status": "done",
+   "created_at": "2026-07-10T09:30:08Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1651",
+   "title": "WS-1651: 欣欣 2026-07-09 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-09T09:30:15Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1626",
+   "title": "[日报] 欣欣 2026-07-08 工作日报给 CSO Opus",
+   "status": "done",
+   "created_at": "2026-07-08T09:30:16Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1569",
+   "title": "[日报] 欣欣 2026-07-07 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-07T09:30:15Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1537",
+   "title": "[日报] 欣欣 2026-07-06 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-06T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1486",
+   "title": "[日报] 欣欣 2026-07-29",
+   "status": "in_review",
+   "created_at": "2026-07-05T09:30:12Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1429",
+   "title": "[日报] 欣欣 2026-07-04（证据回溯：无可证实新增）",
+   "status": "in_review",
+   "created_at": "2026-07-04T09:30:18Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1386",
+   "title": "欣欣机器网络恢复与自检：先恢复 runtime/mesh，再撤销无需求代理",
+   "status": "blocked",
+   "created_at": "2026-07-03T06:41:00Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1356",
+   "title": "[日报] 欣欣 2026-07-02 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-02T09:30:10Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1319",
+   "title": "WS-1289 target proof: auto-image-space-upload on 欣欣 machine",
+   "status": "done",
+   "created_at": "2026-07-02T05:14:58Z",
+   "creator_type": "agent",
+   "creator_id": "3e1b5bae-e458-4f5f-a0e3-033c2bdf3a38"
+  },
+  {
+   "identifier": "WS-1246",
+   "title": "[日报] 欣欣 2026-07-01 grounded 工作日报",
+   "status": "done",
+   "created_at": "2026-07-01T09:30:12Z",
+   "creator_type": "agent",
+   "creator_id": "33903c19-cd69-4356-b3f4-fea40b38a938"
+  },
+  {
+   "identifier": "WS-1235",
+   "title": "[Loop Radar Fan-out] 2026-07-01 → 欣欣的叶子 读 Top 5 大白话 + 自评 Loop",
+   "status": "done",
+   "created_at": "2026-07-01T02:32:40Z",
+   "creator_type": "agent",
+   "creator_id": "0ee6063e-c9f0-48e9-ad49-4e8e21c4610b"
+  }
+ ]
+}
