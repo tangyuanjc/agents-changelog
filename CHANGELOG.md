@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2026-08-02 19:47 CST] [Codex-CTO] [type:agent-ops] Upgrade local Codex CLI to stable 0.146.0
+
+- Trigger: JC asked whether the Mac mini Codex CLI was current and explicitly authorized an upgrade when it was not.
+- Upgrade: built-in `codex update` used the existing npm-global installation path and moved `@openai/codex` from `0.144.1` to the official stable `latest` tag `0.146.0`; no alpha/beta package or third-party plugin was installed.
+- Preservation: SHA-256 readback for `~/.codex/config.toml` and `~/.codex/agents/luna-worker.toml` is unchanged. The main default remains `gpt-5.6-sol` + `xhigh`, `multi_agent=true`, and the custom Luna worker remains `gpt-5.6-luna` + `max`.
+- Verification: fresh `codex --version`, global npm tree, and registry `dist-tags.latest` all read `0.146.0`; the model catalog still exposes Luna through `max`. Dynamic Workflow doctor returned `state: ready`, then the two-agent read-only `hello.workflow.js` returned exact `pong` and schema-constrained `Paris` under the upgraded CLI.
+- Residual: the Dynamic Workflow runner bindings were verified against Codex `0.144.0`, so doctor emits a version warning on `0.146.0`; the post-upgrade real workflow passes, making this warning non-blocking. Regenerate App Server bindings only if a future call actually fails.
+
 ## [2026-07-29 21:43 CST] [Codex-CTO] [type:feature] Add bounded Codex × ChatGPT Pro review Skill
 
 - Trigger: JC selected the B design for one-sentence `这个任务带 Pro 干。` activation. Ordinary tasks remain single-brain unless the user explicitly requests Pro participation.
