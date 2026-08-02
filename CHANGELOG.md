@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-08-02 23:49 CST] [Codex-CTO] [type:ops] Retire the missed WS-2513 release one-shot after runtime outage
+
+- Scope: the CSO-approved WS-2513/WS-2532 production window on 2026-08-01 was not replayed after expiry; this entry records the durable scheduler and ticket correction only.
+- Failure evidence: one-shot run `36b65b61-c737-4721-9dbd-d5eb3a3c7466` fired at 20:30:14 Asia/Shanghai and failed at 20:45:53 with `runtime went offline`; `started_at` was empty, so no production worker was admitted.
+- Reversible control: autopilot `1185b2d5-b780-4e64-a1bd-9979b1315a35` is `paused` and schedule trigger `e309da71-9d9d-4dc6-b9cd-1878f0d2eee0` is disabled. The audit objects remain intact and cannot recur through the retained annual cron.
+- Ticket correction: WS-2513 remains `blocked`; stale metadata that still awaited the expired window now records release-not-executed/runtime-offline and waits for a new CSO-approved full window. File-backed comment `dce94537-381a-4edc-915e-f838055112ba` is attached to the original batch-window thread.
+- Recovery readback: the Mac mini Multica daemon was not restarted; Claude, Hermes, Codex, OpenClaw, Cursor and Grok Build later registered online through their own recovery probes.
+- Safety: no out-of-window reload, kill-drill, replay, plist/artifact replacement, issue closure or autopilot deletion was performed; merged PR and preflight tests are not represented as production delivery.
+
 ## [2026-08-02 19:47 CST] [Codex-CTO] [type:agent-ops] Upgrade local Codex CLI to stable 0.146.0
 
 - Trigger: JC asked whether the Mac mini Codex CLI was current and explicitly authorized an upgrade when it was not.
