@@ -6755,3 +6755,20 @@ JC 17:31 双命题:
 - Relay proof: `/v1/models` returned 33 models including `grok-4.5`; a direct authenticated chat returned `DIRECT_CPA_OK`.
 - CLI proof: a fresh headless process returned `POST_FIX_CPA_OK`; a real interactive TUI showed `Logged in with API key`, returned `INTERACTIVE_CPA_OK`, and exited cleanly with `/exit`.
 - Boundary: the old SuperGrok `auth.json` was not restored or deleted, historical `~/.grok/sessions` remained intact, and unrelated Grok MCP/skill compatibility warnings were not bundled into this fix.
+
+## [2026-08-03 05:35 CST] [Codex-CTO] [type:ops] Persist the WS-2868 host storage safeguards and deployment boundary
+
+- Scope: WS-2868 / PR #6281 delivered host-side storage safeguards after three recent memory-and-disk saturation incidents; no organization constitution file was changed.
+- Source control boundary: PR #6281 is open with green CI. Its Multica daemon admission endpoint is not merged or deployed, and the running daemon was not restarted while active work remained.
+- Live host controls: the unused WS-2512 shadow observer is disabled; the 25/18 GiB two-level guard, single-owner retention/GC path and capacity sampler are installed on the host.
+- Data-loss boundary: the production-lineage canary passed with a nested three-file fixture, but archival remains dry-run with `archive_enabled=false`, `delete_source=false`, zero archived workspaces and no source deletion.
+- Capacity truth: Cursor was inventoried read-only and the 48-72 hour growth window is incomplete, so remaining-days capacity stays `INCONCLUSIVE`.
+- Verification: 40 Python fault/transaction/capacity tests, the daemon package and complete `cmd/multica` test binary passed; PR CI and three adversarial reviews passed.
+
+## [2026-08-03 05:36 CST] [Codex-CTO] [type:fix] Pace the Xinxin Codex relay while its target host is offline
+
+- Scope: changed only `~/Library/LaunchAgents/com.jc.xinxin-codex-relay.plist`; no relay payload, credential, destination or organization rule changed.
+- Failure mode: the relay is healthy enough to launch, but the target host remains unreachable over SSH and exits 255 after connection timeout.
+- Mitigation: set `ThrottleInterval=300` so launchd spaces retries by five minutes instead of repeatedly hammering an offline target.
+- Live readback: launchd reports `minimum runtime = 300`, `KeepAlive=true`, `RunAtLoad=true` and the service in scheduled-retry state; the latest stderr window still contains only connection timeouts.
+- Remaining boundary: this reduces retry pressure but does not restore delivery. The target machine or network path must return before a real end-to-end relay smoke can pass.
