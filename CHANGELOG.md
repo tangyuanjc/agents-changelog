@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [2026-08-03 02:48 CST] [Codex-CTO] [type:fix] Restore Grok 4.5's official 500K context window on the CPA route
+
+- Trigger: after the local Grok CLI moved from SuperGrok subscription authentication to the CPA OpenAI-compatible relay, the TUI showed `256K` instead of the previous `500K` context window.
+- Root cause: the CPA `/v1/models` response identifies `grok-4.5` but publishes no context metadata, while the custom Grok model block had no explicit `context_window`; Grok therefore used its local `256000` fallback for display and compaction.
+- Source of truth: xAI's current public model catalog declares `grok-4.5.maxPromptLength=500000`; neither the relay response nor xAI's catalog supports a larger 1M/2M value for this model.
+- Minimal fix: added only `context_window = 500000` to `[model."grok-4.5"]` in `~/.grok/config.toml`. The CPA base URL, model ID, credential environment pointer, historical sessions, rollback backup, and disabled SuperGrok auth remain unchanged.
+- TDD and live verification: the pre-change assertion failed because the value was absent; the post-change assertion passed. A new isolated Grok session returned `GROK_CONTEXT_SMOKE_OK`, and its `signals.json` read `contextWindowTokens=500000`.
+- Runtime boundary: two Grok TUI processes started before the edit still hold the old 256K startup snapshot and must be normally exited/resumed to reload 500K. They were not force-terminated because Terminal UI control is safety-blocked and both sessions contain user work.
+- Safety: no API key, token, client credential, auth backup, session transcript, or ephemeral model cache was modified or recorded.
+
 ## [2026-08-03 00:06 CST] [Codex-CTO] [type:agent-ops] Restore the Sol xhigh main-agent boundary after local config drift
 
 - Trigger: the weekly cross-channel audit found `~/.codex/config.toml` at `gpt-5.6-sol` + `max`, conflicting with JC's explicit boundary that Max belongs to the Luna child while the main Codex session remains Sol + xhigh.
