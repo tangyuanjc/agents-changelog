@@ -6718,3 +6718,13 @@ JC 17:31 双命题:
 - Fix: accept only one balanced JSON object with at most 512 bytes of non-JSON framing; reject multiple objects, oversized framing and malformed boundaries; both prompts now require exact `consumption_control_domain` and verification-gated `decide`.
 - Verification: RED reproduced the framing/prompt gaps; focused tests passed 22/22, the full suite passed 287/287, and a no-publisher real Cursor smoke classified the sealed source on attempt 1 with five valid selections.
 - Boundary: no real production signal was sent. A new immutable release remains paused until the next Shanghai daily window; Goal completion still requires dual delivery, authoritative readback, idempotent skip and Claude-family acceptance.
+
+## [2026-08-02 21:15 CST] [Codex-CTO] [type:fix] Stabilize Grok CLI authentication through the CPA relay
+
+- Scope: repaired the local Grok Build CLI switch from the expired SuperGrok session to the existing CPA OpenAI-compatible relay; no API key value, OAuth token, session transcript or organization constitution was written here.
+- Root cause: the failing TUI process predated the channel switch and retained the old authentication state; the new TOML model tables also used unquoted dotted names, so Grok ignored the `grok-4.5` and `grok-4.3` overrides with two config warnings.
+- Fix: quoted both dotted model table names, kept the existing relay endpoint and `OPENAI_API_KEY` source, preserved the disabled SuperGrok auth backups, terminated only the stale Grok PID, and tightened `~/.grok/config.toml` from mode 0644 to 0600 because it contains an MCP client credential.
+- Config proof: the dedicated RED check failed with `config_warning_count=2`; after the minimal edit, `grok inspect --json` reports zero config warnings and identifies `Grok 4.5 (CPA)` as the active model.
+- Relay proof: `/v1/models` returned 33 models including `grok-4.5`; a direct authenticated chat returned `DIRECT_CPA_OK`.
+- CLI proof: a fresh headless process returned `POST_FIX_CPA_OK`; a real interactive TUI showed `Logged in with API key`, returned `INTERACTIVE_CPA_OK`, and exited cleanly with `/exit`.
+- Boundary: the old SuperGrok `auth.json` was not restored or deleted, historical `~/.grok/sessions` remained intact, and unrelated Grok MCP/skill compatibility warnings were not bundled into this fix.
