@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2026-08-03 00:06 CST] [Codex-CTO] [type:agent-ops] Restore the Sol xhigh main-agent boundary after local config drift
+
+- Trigger: the weekly cross-channel audit found `~/.codex/config.toml` at `gpt-5.6-sol` + `max`, conflicting with JC's explicit boundary that Max belongs to the Luna child while the main Codex session remains Sol + xhigh.
+- Minimal fix: changed only `model_reasoning_effort` from `max` to `xhigh`; `model=gpt-5.6-sol` and `multi_agent=true` were preserved.
+- Child boundary: `~/.codex/agents/luna-worker.toml` remains `gpt-5.6-luna` + `max` with bounded delegation, no scope expansion, no architecture decisions, explicit validation reporting, and fail-back-to-parent instructions.
+- Verification: `codex --version` and the global npm tree both read `0.146.0`; Codex's own feature loader reports `multi_agent stable=true`; direct config readback reports Sol + xhigh and Luna + max.
+- Safety: no Multica agent, workspace, organization-dispatch configuration, constitution file, third-party plugin, or employee-machine model was changed.
+
 ## [2026-08-02 23:49 CST] [Codex-CTO] [type:ops] Retire the missed WS-2513 release one-shot after runtime outage
 
 - Scope: the CSO-approved WS-2513/WS-2532 production window on 2026-08-01 was not replayed after expiry; this entry records the durable scheduler and ticket correction only.
