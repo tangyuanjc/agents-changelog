@@ -6772,3 +6772,12 @@ JC 17:31 双命题:
 - Mitigation: set `ThrottleInterval=300` so launchd spaces retries by five minutes instead of repeatedly hammering an offline target.
 - Live readback: launchd reports `minimum runtime = 300`, `KeepAlive=true`, `RunAtLoad=true` and the service in scheduled-retry state; the latest stderr window still contains only connection timeouts.
 - Remaining boundary: this reduces retry pressure but does not restore delivery. The target machine or network path must return before a real end-to-end relay smoke can pass.
+
+## [2026-08-03 17:21 CST] [Codex-CTO] [type:fix] Restore Pipi and Xinxin Codex organization baselines
+
+- Xinxin recovery: added `C:\ProgramData\EasyTierMC\watch-easytier-mc.ps1` and the SYSTEM/Highest `EasyTierMC-Watchdog` with boot plus five-minute triggers, bounded runtime and failure restart. A LAN-controlled kill drill replaced the EasyTier PID, restored `10.20.20.11`, mesh SSH and the Codex-only SOCKS relay.
+- Pipi model drift: backed up the active config and changed only the top-level model from `gpt-5.6-terra` to `gpt-5.6-sol`; xhigh reasoning, provider, authentication, proxy and plugins were preserved. Official CLI 0.144.1 strict canary returned the unique Sol marker.
+- Xinxin config compatibility: backed up and removed two duplicated legacy `localeOverride` lines plus one unsupported `disable_response_storage` line. Model/provider/auth/proxy/plugins/approval/sandbox settings were preserved; official CLI 0.144.1 strict Sol canary then passed.
+- Debug boundary: both machines have zero Codex debug tasks, zero 9223/19224 listeners and zero AppX remote-debugging processes. Xinxin's port 9334 processes are non-AppX Chrome children and were intentionally left untouched.
+- Organization delivery: WS-2921 and WS-2922 each dispatched to the exact employee Codex runtime, started, wrote back a unique marker, completed without error and closed done.
+- Desktop boundary: Browser/Chrome/Computer Use plugin/process signals are present, but fresh Desktop tool calls remain unverified because both employees have non-empty unsent composer drafts. No draft was read, cleared, overwritten or submitted, and no lock screen was bypassed.
