@@ -6781,3 +6781,12 @@ JC 17:31 双命题:
 - Debug boundary: both machines have zero Codex debug tasks, zero 9223/19224 listeners and zero AppX remote-debugging processes. Xinxin's port 9334 processes are non-AppX Chrome children and were intentionally left untouched.
 - Organization delivery: WS-2921 and WS-2922 each dispatched to the exact employee Codex runtime, started, wrote back a unique marker, completed without error and closed done.
 - Desktop boundary: Browser/Chrome/Computer Use plugin/process signals are present, but fresh Desktop tool calls remain unverified because both employees have non-empty unsent composer drafts. No draft was read, cleared, overwritten or submitted, and no lock screen was bypassed.
+
+## [2026-08-03 18:11 CST] [Codex-CTO] [type:fix] Register Xinxin Computer Use from the current Codex AppX bundle
+
+- Scope: installed only `computer-use@openai-bundled` on `LAPTOP-PR9FOK1Q`; the existing Browser and Chrome registrations, API/provider/model, auth, relay listener, Chrome 9334 process and employee draft were not changed.
+- Source of truth: the plugin came from the currently installed Codex AppX marketplace and now matches its `26.727.51351` manifest; Browser, Chrome and Computer Use each read back exactly once and enabled.
+- Failure boundary: the first attempt stopped before `plugin add` because the existing Chrome cache has a broken `latest` junction. The repair preserved that pre-existing state and replaced whole-tree copy with a config backup plus exact cleanup of only a newly created Computer Use cache on failure.
+- Rollback: the valid pre-install config backup is `C:\Users\YEE\.codex\repair-backups\xinxin-computer-use-20260803-181012\config.toml`; the earlier `180702` directory is an incomplete copy artifact and is not a complete plugin rollback.
+- Verification: the official CLI install returned installed=1/enabled=true/version `26.727.51351`; a fresh three-plugin test returned `pass=true` with all versions equal to the current AppX manifests.
+- Desktop boundary: the running app has not been cold-started through a durable `CodexDesktopOrgRelay` task, and no fresh Browser/Chrome/Computer Use Desktop call has passed. A real employee draft remains present, so the restart and tool canaries stay blocked rather than being reported complete.
