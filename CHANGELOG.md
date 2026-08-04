@@ -6798,3 +6798,12 @@ JC 17:31 双命题:
 - Safety: the signal segment remained at exact `paused\n` throughout the change; no out-of-window replay or supplemental send was attempted, and the host launchd scheduler remained loaded.
 - New target proof: exact-name search resolved one intended chat, Cursor bot membership was present, and the production runtime read the updated Keychain entry successfully; the sanitized recipient fingerprint changed from `cdef7d768a0963490f8919c9a4cb04650b4694033abf9b9c22f3c37598f8170f` to `45d7f8aa942c139d86f9ae68ef3b356e6cfbf28df89b22c8382aa2be6abaff91`.
 - Delivery boundary: the prior private-message, content/receipt, idempotency and repause evidence remains valid, but the Goal stays `WAITING_NEXT_DAILY_WINDOW` until a fresh Shanghai window sends to the corrected group and receives independent readback.
+
+## [2026-08-05 05:55 CST] [Codex-CTO] [type:fix] Make org signal delivery readback recover by immutable message ID
+
+- Scope: WS-2968 / org-constitution PR #40 replaces the private-message search and group-message list recovery paths with Cursor bot `im +messages-mget` against the sealed candidate message ID.
+- Fix: both destinations now require exactly one bot-identity message and validate the candidate ID, sender app, destination chat or P2P type, `post` payload, full content, deletion/edit flags and sealed attempt time window before the existing atomic `CONFIRMED / READBACK / MATCHED` transition.
+- Fail-closed behavior: malformed, empty, ambiguous, drifted or unproven readback remains `UNKNOWN`; candidate-free UNKNOWN never calls a read API and is never replayed.
+- Verification: the clean full suite passed 289/289, focused publisher/production/state tests passed 114/114, all `src/bin/test/*.mjs` passed `node --check`, four config/schema JSON files parsed, and independent review found no introduced correctness issue.
+- Source evidence: commits `b330e0d` and `dfdd5e9` are pushed on `agent/cto/ws-2968-mget-readback`; stacked PR #40 targets `agent/cto/ws-2552-org-signal-line`.
+- Production boundary: no immutable redeploy, unpause, production runner, Feishu send or replay occurred; the segment remains exact `paused\n`, and live recovery acceptance waits for the next explicitly authorized Shanghai window.
