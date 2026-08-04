@@ -6790,3 +6790,11 @@ JC 17:31 双命题:
 - Rollback: the valid pre-install config backup is `C:\Users\YEE\.codex\repair-backups\xinxin-computer-use-20260803-181012\config.toml`; the earlier `180702` directory is an incomplete copy artifact and is not a complete plugin rollback.
 - Verification: the official CLI install returned installed=1/enabled=true/version `26.727.51351`; a fresh three-plugin test returned `pass=true` with all versions equal to the current AppX manifests.
 - Desktop boundary: the running app has not been cold-started through a durable `CodexDesktopOrgRelay` task, and no fresh Browser/Chrome/Computer Use Desktop call has passed. A real employee draft remains present, so the restart and tool canaries stay blocked rather than being reported complete.
+
+## [2026-08-04 09:12 CST] [Codex-CTO] [type:fix] Correct the org signal line production group target
+
+- Scope: corrected only the macOS Keychain value for service `org-signal-line.group-chat-id`, account `org-signal-line`; no chat ID, credential, token or message body is recorded here.
+- Evidence-driven correction: the 2026-08-04 controlled window delivered the organization copy to the legacy configured group “野兽代码”, while the Goal explicitly requires “熵减法则-AI组织化”. CSO independently proved that these are distinct chats.
+- Safety: the signal segment remained at exact `paused\n` throughout the change; no out-of-window replay or supplemental send was attempted, and the host launchd scheduler remained loaded.
+- New target proof: exact-name search resolved one intended chat, Cursor bot membership was present, and the production runtime read the updated Keychain entry successfully; the sanitized recipient fingerprint changed from `cdef7d768a0963490f8919c9a4cb04650b4694033abf9b9c22f3c37598f8170f` to `45d7f8aa942c139d86f9ae68ef3b356e6cfbf28df89b22c8382aa2be6abaff91`.
+- Delivery boundary: the prior private-message, content/receipt, idempotency and repause evidence remains valid, but the Goal stays `WAITING_NEXT_DAILY_WINDOW` until a fresh Shanghai window sends to the corrected group and receives independent readback.
