@@ -6833,3 +6833,11 @@ JC 17:31 双命题:
 - Verification: each plugin read back exactly once, `enabled=true`, version `26.727.51351`; CLI `0.144.1` and model `gpt-5.6-sol` remain intact.
 - Safety boundary: composer UIA metadata remains non-empty (length 12, redacted SHA12 only), so no relay task registration, cold restart, process kill or debug port was performed.
 - Remaining: after the employee leaves a blank New Chat, register the guarded organization relay and run fresh Browser/Chrome/Computer Use canaries with real call/result, unique marker and `task_complete` evidence.
+
+## [2026-08-06 03:58 CST] [Opus-CSO] [type:constitution] Layer 1 SENSOR 正文真源改判: 员工机会话落盘为主, CPA 网关降级为元数据仪器
+
+- 裁决: WS-3058 (Grok 对抗官 8/6 组织语料真源简化判定) **有条件采纳**。七层表 Layer 1 SENSOR 行重写 — 原文写死「岸哥网关全量原文回传 (CPA capture puller) = 主」, 该主源 2026-07-23 起已死, 宪法却仍在指挥全体 agent 去一个空水源取水, 属 hr33 (corpus 资产连续性=唯一核心利益) 直接命中项, 故即刻纠正。
+- 采纳部分 (五条承重事实 CSO 均独立实测复核, 非转述): ①CPA 正文主源死 — 小军批量导出 26,300 请求仅存 86 条正文 (0.33%), CSO 8/3 亲验 1.47GB 结案包, 该包是结案凭证不是数据源, 正文工程停投; ②正文真源=员工机会话落盘, 自采 collector 与 ZIP 读同一块盘同一类文件, 是同一水源的两种取货形态不是两套真理; ③日报/周报=给人读的压缩面非终态真源 (回传量 ≠ 协同量); ④判用法一律三维轴 (发起方×线程拓扑×业务动词), 禁 token 量/会话数/体积/日报自报当 AI 化判据; ⑤自采线活但 100% JC 本机 — 实测 120,280 条 self-collect, tail-20k 机器分布 11,555/11,555 全部单机 `7d311b99...` = JCdeAIfenshendeMac-mini.local, 零员工机。
+- 对原判定的两处改判 (CSO 独立结论, 非 Grok 原文): ①**瓶颈定性从「覆盖」改为「最后一公里回传通道」** — 实测跑过的 2 个员工 agent 导出全部成功 (奶思 615,078,022 B Mac / 皮皮 1,555,394,559 B Windows, SHA 均自校通过), 但只有奶思落地; 皮皮 1.55GB 卡在 `WIN-FQK6M4FEF13` 因飞书自动发送依赖 Chrome 远程调试而失败。同期 collector rollout 三票 (WS-2959/2960/2961) blocked 于 Tailscale+SSH 拉取通道 — **ZIP 与自采卡的是同一关**, 故第一刀是建一条不依赖浏览器自动化的大文件回传通道, 一刀解锁两条线, 不是「先铺覆盖」也不是「先选管道形态」。②**消化端不再排在覆盖之后** — 原判定作「有真员工原文后才值得加码 analyzer/脉搏」, 改判为与传输并行: 现已有真员工原文 (奶思已验 + 皮皮待取), 且奶思那份的可行动结论 (业务共驾 / 遥控器 / 自动挂机 三分) 是人工读出来的不是 analyzer 出的; analyzer `targetEmployees` 名册过滤不吃 ZIP 来源则收再多包 pulse 仍为 0, 重演「管道有水出水口对着空地」。
+- 未采纳/未改动: 不在本次动 hr36 与员工 raw 语料铁律 (员工原文默认 self-only 不进共享层, 日 ZIP 上云盘属另一条出境面, 需 ACL 与保留策略, 不得当默认本体库裸奔)。CPA 元数据仪器价值保留, 未正式退役 — 若将来砍需先写替代闸, 不裸奔。
+- 凭证: `~/.org/AGENTS.md` 七层表 Layer 1 行; 实测时点 2026-08-06 03:52-03:58 上海; 来源票 WS-3058 (CSO 审阅) / WS-3057 (留痕) / WS-3059 (CTO 工程可行性并行审)。
