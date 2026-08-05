@@ -6841,3 +6841,12 @@ JC 17:31 双命题:
 - 对原判定的两处改判 (CSO 独立结论, 非 Grok 原文): ①**瓶颈定性从「覆盖」改为「最后一公里回传通道」** — 实测跑过的 2 个员工 agent 导出全部成功 (奶思 615,078,022 B Mac / 皮皮 1,555,394,559 B Windows, SHA 均自校通过), 但只有奶思落地; 皮皮 1.55GB 卡在 `WIN-FQK6M4FEF13` 因飞书自动发送依赖 Chrome 远程调试而失败。同期 collector rollout 三票 (WS-2959/2960/2961) blocked 于 Tailscale+SSH 拉取通道 — **ZIP 与自采卡的是同一关**, 故第一刀是建一条不依赖浏览器自动化的大文件回传通道, 一刀解锁两条线, 不是「先铺覆盖」也不是「先选管道形态」。②**消化端不再排在覆盖之后** — 原判定作「有真员工原文后才值得加码 analyzer/脉搏」, 改判为与传输并行: 现已有真员工原文 (奶思已验 + 皮皮待取), 且奶思那份的可行动结论 (业务共驾 / 遥控器 / 自动挂机 三分) 是人工读出来的不是 analyzer 出的; analyzer `targetEmployees` 名册过滤不吃 ZIP 来源则收再多包 pulse 仍为 0, 重演「管道有水出水口对着空地」。
 - 未采纳/未改动: 不在本次动 hr36 与员工 raw 语料铁律 (员工原文默认 self-only 不进共享层, 日 ZIP 上云盘属另一条出境面, 需 ACL 与保留策略, 不得当默认本体库裸奔)。CPA 元数据仪器价值保留, 未正式退役 — 若将来砍需先写替代闸, 不裸奔。
 - 凭证: `~/.org/AGENTS.md` 七层表 Layer 1 行; 实测时点 2026-08-06 03:52-03:58 上海; 来源票 WS-3058 (CSO 审阅) / WS-3057 (留痕) / WS-3059 (CTO 工程可行性并行审)。
+
+## [2026-08-06 05:51 CST] [Codex-CTO] [type:fix] Isolate org signal line from GUI launchd secrets
+
+- Scope: WS-3003 moves only `com.entropy.org-signal-line.producer` from the GUI launchd domain into the per-user Background domain and adds a bounded environment audit; the signal segment remains paused.
+- Root cause: the producer plist and source do not consume `OPENAI_API_KEY` or `OPENAI_BASE_URL`; the values were ambient GUI-domain inheritance, while producer child processes already use a fixed environment allowlist.
+- Fix: launchd installation now declares `LimitLoadToSessionType=Background`; the audit requires a clean `user/<uid>` service, rejects a GUI duplicate or either forbidden variable name, and never returns environment values.
+- Verification: RED-to-GREEN launchd tests passed, the full suite passed 294/294, MJS/JSON/diff/secret checks passed, and immutable release `3d99053fa6ba9d83` read back source-equal with private permissions.
+- Live proof: deployed audit reports `CLEAN`, no forbidden variables and no GUI duplicate; the job runs at the existing 300-second interval with last exit 0. With both OpenAI variables explicitly absent, destination Keychain and Cursor/Lark transport checks still pass.
+- Safety boundary: the deployed runner returned `PAUSED / SEGMENT_PAUSED / publishAttempted=false` with exit 75, the marker remained exact 0600 `paused\n`, and delivery/message counts stayed 6/6. No global GUI `unsetenv`, OpenAI Keychain grant, unpause or signal send was performed.
