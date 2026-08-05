@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-08-05 20:38 CST] [Codex-CTO] [type:fix] Deploy CPA invalid-day exclusion into token rolling windows
+
+- Trigger: WS-3008 was returned from review because PR #42 remained open and the deployed attribution generator still let the permanently invalid 2026-08-04 capture day silently dilute 7/30-day rankings.
+- Fix: merged `tangyuanjc/org-constitution` PR #42 as merge commit `d8fcd1b`; invalid Shanghai dates from the capture quality manifest remain visible in daily audit snapshots but are filtered from every rolling event stream.
+- Contract: each rolling window now publishes canonical `valid_days` and `excluded_dates` while retaining `included_day_count`; the static ranking HTML labels `排除日` and `有效日`, and employee-board normalization preserves the same metadata downstream.
+- TDD and review: new Python and Node contract tests were observed RED then GREEN; 22 attribution/aggregate tests and 42 NASA dashboard tests passed. An independent pre-merge review found no Critical, Important, or Minor issues. One unrelated pre-existing ERP recovery fixture remains red and was reproduced before the follow-up production edit.
+- Production readback: the 2026-08-04 snapshot is `invalid`, keeps 42 audit events, and has zero 1-day rolling tokens. The 2026-08-05 7-day window excludes 08-04 with 6 valid days; the 30-day window excludes 07-20 and 08-04 with 28 valid days. Both generated HTML reports and the live employee board carry the automatic labels/metadata.
+- Preservation and safety: the dirty production checkout was not pulled, stashed, reset, or overwritten. The merged hunks were applied around unrelated stale-cache work; `build-employee-boards.mjs` matches remote main and the Python delta versus remote main contains only that pre-existing work. No credential, raw request body, conversation text, employee judgment, or invalid-day performance inference was recorded.
+
 ## [2026-08-03 02:48 CST] [Codex-CTO] [type:fix] Restore Grok 4.5's official 500K context window on the CPA route
 
 - Trigger: after the local Grok CLI moved from SuperGrok subscription authentication to the CPA OpenAI-compatible relay, the TUI showed `256K` instead of the previous `500K` context window.
