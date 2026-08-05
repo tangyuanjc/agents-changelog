@@ -6799,6 +6799,15 @@ JC 17:31 双命题:
 - New target proof: exact-name search resolved one intended chat, Cursor bot membership was present, and the production runtime read the updated Keychain entry successfully; the sanitized recipient fingerprint changed from `cdef7d768a0963490f8919c9a4cb04650b4694033abf9b9c22f3c37598f8170f` to `45d7f8aa942c139d86f9ae68ef3b356e6cfbf28df89b22c8382aa2be6abaff91`.
 - Delivery boundary: the prior private-message, content/receipt, idempotency and repause evidence remains valid, but the Goal stays `WAITING_NEXT_DAILY_WINDOW` until a fresh Shanghai window sends to the corrected group and receives independent readback.
 
+## [2026-08-05 08:34 CST] [Codex-CTO] [type:fix] Deploy candidate-ID mget readback under pause
+
+- Scope: WS-2968 replaces permission-dependent private search and group-history list confirmation with bot candidate-message mget for both organization-signal destinations; candidate-free or non-unique evidence remains UNKNOWN and cannot resend.
+- Proof surface: confirmation still requires the sealed candidate, sender app, destination/P2P binding, post type, unedited/undeleted state, full content hash and attempt window before atomic `CONFIRMED / READBACK / MATCHED`.
+- Verification: an independent review found no Critical, Important or Minor issues; publisher tests passed 20/20, focused transport/production/state tests 114/114, and the full suite 289/289 with syntax, JSON and diff checks clean.
+- Deploy: committed bytes were installed as immutable release `c3c6ee5a82ed3c6f`; source, release and `current` fingerprints match, private permissions and plist lint passed, and the paused runner returned exit 75 with no publish attempt.
+- Live boundary: the fresh 2026-08-05 window was admitted twice, but both runs failed closed before any decision claim or delivery at the unrelated Grok published-reader autopilot lookup. No message or candidate ID was created and no retry/replay crossed the publisher boundary.
+- Containment: the exact 0600 `paused\n` marker was restored after each attempt. Live candidate-mget and same-sealed idempotency evidence remain blocked until the production reader context is diagnosed and a later authorized fresh window is available.
+
 ## [2026-08-05 05:55 CST] [Codex-CTO] [type:fix] Make org signal delivery readback recover by immutable message ID
 
 - Scope: WS-2968 / org-constitution PR #40 replaces the private-message search and group-message list recovery paths with Cursor bot `im +messages-mget` against the sealed candidate message ID.
