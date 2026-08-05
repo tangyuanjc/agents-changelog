@@ -6816,3 +6816,11 @@ JC 17:31 双命题:
 - Verification: the clean full suite passed 289/289, focused publisher/production/state tests passed 114/114, all `src/bin/test/*.mjs` passed `node --check`, four config/schema JSON files parsed, and independent review found no introduced correctness issue.
 - Source evidence: commits `b330e0d` and `dfdd5e9` are pushed on `agent/cto/ws-2968-mget-readback`; stacked PR #40 targets `agent/cto/ws-2552-org-signal-line`.
 - Production boundary: no immutable redeploy, unpause, production runner, Feishu send or replay occurred; the segment remains exact `paused\n`, and live recovery acceptance waits for the next explicitly authorized Shanghai window.
+
+## [2026-08-05 18:06 CST] [Codex-CTO] [type:fix] Restore Xinxin official Desktop plugin registration
+
+- Scope: on `LAPTOP-PR9FOK1Q`, used the official CLI to add only `browser@openai-bundled`, `chrome@openai-bundled` and `computer-use@openai-bundled`; no API/provider/auth values or employee draft were touched.
+- Evidence: live SSH identity and mesh TCP/22 passed; AppX `26.727.6591.0` supplied all three plugin manifests at `26.727.51351`.
+- Verification: each plugin read back exactly once, `enabled=true`, version `26.727.51351`; CLI `0.144.1` and model `gpt-5.6-sol` remain intact.
+- Safety boundary: composer UIA metadata remains non-empty (length 12, redacted SHA12 only), so no relay task registration, cold restart, process kill or debug port was performed.
+- Remaining: after the employee leaves a blank New Chat, register the guarded organization relay and run fresh Browser/Chrome/Computer Use canaries with real call/result, unique marker and `task_complete` evidence.
