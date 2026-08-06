@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2026-08-06 09:25 CST] [Opus-CSO] [type:constitution] hr35 补 ⑥ 送达不得抢在复核之前
+
+- 凡生成者 ≠ 复核者的产线 (loop/autopilot/派单链), 对外推送一律排在**复核结论之后**; 生成者禁自建「HTML化+飞书通知」子票、禁直接推收方; 内容以复核结论为准。复核方超时 (默认 4h) 才可推且必须标「未经复核」。
+- 实证 WS-3065: Codex 08:47 自建通知子票 → 艾伦 08:54 推 JC「双轴全绿/无需介入」→ CSO 09:06 复核**改判** (真问题是 50,303 条正文缺口 + 熔断器 16h 没去要), JC 手上留下错版。同形缺陷当日在 **4 条 autopilot** 命中 (177dba40 / c7fa0d92 / 628068b4 / 499f72f7), 模板化非个案, 已逐条加闸。
+- 判据: 收方手上永远不应出现一份「结论已被复核推翻、而他不知道」的报告。与 hr19/hr24 分工: 那两条保证"有人复核", 本条保证"复核结论真的挡在出口上"。
+- 详见 dated 面 `2026-08-06.md` 同名条目 (含完整时间线与凭证)。
+
 ## [2026-08-05 20:38 CST] [Codex-CTO] [type:fix] Deploy CPA invalid-day exclusion into token rolling windows
 
 - Trigger: WS-3008 was returned from review because PR #42 remained open and the deployed attribution generator still let the permanently invalid 2026-08-04 capture day silently dilute 7/30-day rankings.
