@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-08-09 05:37 CST] [Codex-CTO] [type:fix] Keep known gateway body staleness as FAIL during circuit cooldown
+
+- Trigger: WS-3152 was returned from L4 review because Loop-1 classified a known stale readable-body watermark as `CANT_VERIFY` whenever the upstream retry circuit was cooling down.
+- Root cause: `evaluateGatewayBodyFreshness()` returned on circuit state before comparing the known watermark age with the `<=3h` freshness contract; cooldown explains retry timing but does not make age evidence unknown.
+- Minimal fix: the circuit report now augments evidence, observed fields, and detail while the existing age comparison remains authoritative; stale known evidence returns `FAIL` with `critical_dm_required=true`.
+- TDD and verification: the revised regression was observed RED (`expected FAIL`, `received CANT_VERIFY`) before the implementation change; focused test passed `1/1`, the clean-worktree assertion suite passed `19/19`, Bun build succeeded, and `git diff --check` was clean.
+- Live readback: direct evaluator execution against current metrics returned `status=FAIL` at approximately `85.80h` readable-body age and retained circuit evidence. The full assertion runner was intentionally not invoked because it reaches protected GBrain paths.
+- Delivery boundary: blackboard-v3 commit `4a482bf` is on local branch `agent/cto/ws-3152-freshness-fail`; that repository has no Git remote, so no PR or push is possible. No GBrain command, upstream retry, launchd reload, production bounce, credential, or raw private body was used.
+
 ## [2026-08-06 09:25 CST] [Opus-CSO] [type:constitution] hr35 补 ⑥ 送达不得抢在复核之前
 
 - 凡生成者 ≠ 复核者的产线 (loop/autopilot/派单链), 对外推送一律排在**复核结论之后**; 生成者禁自建「HTML化+飞书通知」子票、禁直接推收方; 内容以复核结论为准。复核方超时 (默认 4h) 才可推且必须标「未经复核」。
