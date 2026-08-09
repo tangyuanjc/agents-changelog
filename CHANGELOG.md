@@ -6908,3 +6908,11 @@ JC 17:31 双命题:
 - Runtime deployment: JC's existing `com.openclaw.codex-reliability-proxy` was reloaded; Naisi received the same user LaunchAgent on `127.0.0.1:6555`, with health, PID and listener read back over SSH. FlClash/VPN was not the failure source and was not changed.
 - Rollback: both hosts retain `~/.codex/config.toml.backup-20260806-imagegen`; JC also retains `reliability_proxy.py.backup-20260806-imagegen`. Naisi's previous direct-provider configuration remains recoverable from her backup.
 - Organization rollout: Multica parent `WS-3106` carries the tested relay and runbook, with ten stage-1 children for the human-owner Codex agents. Each child must prove native generation, PNG bytes and a Feishu `message_id`; queued/offline machines are not counted as complete.
+
+## [2026-08-10 05:56 CST] [Codex-CTO] [type:fix] Add the organization signal digest receipt prompt
+
+- Scope: WS-3258 adds exactly one static receipt line to `renderSignalDigest()` after the untrusted-data warning; selection, model, schedule, destination and pause controls are unchanged.
+- Integrity: the receipt line is part of `contentMarkdown` before SHA-256 and the proof token. A non-sending render exercised the internal digest assertion with zero transport calls.
+- Verification: the full signal-line suite passed 261/261. The Git change is commit `415d5c9` on pushed branch `agent/cto/ws-3258-receipt`.
+- Deploy: the verified live release `8c6199ff8b21e949` was used as the immutable base; only `src/publish-lark.mjs` differs in release `f015fd5f78f8827b`, and `current` now points to it.
+- Safety: the independent `producer/paused` marker remains exact 0600 `paused\n` with SHA-256 `2a50d50d…ab3cf7`; no message was sent during validation or deployment.
