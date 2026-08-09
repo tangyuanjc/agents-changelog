@@ -1,5 +1,27 @@
 # CHANGELOG
 
+
+## 2026-08-10 · Cursor 默认模型 → composer-2.5
+
+- **CLI**: `~/.cursor/cli-config.json` model/selectedModel = `composer-2.5`（原 grok-4.5 high）
+- **Multica**: agent `c8dd9931` Cursor Agent `--model composer-2.5`
+- **backup**: `~/.cursor/cli-config.json.bak-composer25-20260810-011001`
+- **核实**: `cursor-agent --list-models` 显示 `composer-2.5 (current)`
+
+
+
+## 2026-08-09 · Codex 端移除 Superpowers
+
+- **动作**: 从 Codex CLI/Desktop 共享家目录卸掉 Superpowers 常驻技能（保留归档可回滚）
+- **原因**: GPT-5.6 Sol 下强制 `using-superpowers` 每会话起跳 + 技能预算挤占，负 ROI；JC 确认后执行
+- **改动**:
+  - 删除 `~/.agents/skills/superpowers` 符号链接
+  - 移走 `~/.codex/superpowers`、`~/.codex/skills/brainstorming`、`.tmp/plugins/plugins/superpowers`
+  - 归档: `~/.codex/backups_state/superpowers-removed-20260809-231137/`
+- **未动**: Claude Code 官方插件 `superpowers@6.2.0`
+- **回滚**: 把归档目录内 `superpowers-repo` 移回 `~/.codex/superpowers`，并重建 `~/.agents/skills/superpowers -> .../skills` 链接
+
+
 ## [2026-08-09 05:37 CST] [Codex-CTO] [type:fix] Keep known gateway body staleness as FAIL during circuit cooldown
 
 - Trigger: WS-3152 was returned from L4 review because Loop-1 classified a known stale readable-body watermark as `CANT_VERIFY` whenever the upstream retry circuit was cooling down.
