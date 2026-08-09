@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [2026-08-10 05:42 CST] [Codex-CTO] [type:fix] Preserve digit-prefixed ERP product aliases through parsing
+
+- Trigger: WS-3237 was returned from CSO production-behavior review because three newly managed aliases still reached `needs_human` even though direct alias-index lookup succeeded.
+- Root cause: `PRODUCT_ROW_PREFIX_RE` treated the row-number delimiter as optional, so a bare leading `0` in a product alias was removed before exact lookup.
+- Minimal fix: leading digits are now stripped only when followed by `.`, `、`, `)`, or whitespace. Exact managed aliases, ambiguity handling, confirmation logic, and daemon routing are unchanged.
+- TDD: the behavior-level `parse_order_message` regression was observed RED at `5 failed, 1 passed`, then GREEN at `6/6`; existing numbered `3.` product rows remain covered.
+- Related verification: the candidate parser passed 123 production parser/order-flow/daemon tests. Full managed-alias behavior improved from 39/46 to 42/46, clearing all three WS-3237 mismatches while leaving the four declared historical mismatches visible.
+- Delivery: commit `4ea1dcf`, PR `tangyuanjc/erp_agent_plan#11`; hr36a security gate passed after correctly blocking and removing a synthetic personal-data literal from the first push attempt.
+- Production boundary: no dirty production file, daemon reload, employee message, or order was changed. Deployment remains gated to the approved Shanghai 20:30-23:30 window.
+
 
 ## 2026-08-10 · Cursor 默认模型 → composer-2.5
 
