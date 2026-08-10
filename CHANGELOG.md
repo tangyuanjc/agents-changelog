@@ -6916,3 +6916,11 @@ JC 17:31 双命题:
 - Verification: the full signal-line suite passed 261/261. The Git change is commit `415d5c9` on pushed branch `agent/cto/ws-3258-receipt`.
 - Deploy: the verified live release `8c6199ff8b21e949` was used as the immutable base; only `src/publish-lark.mjs` differs in release `f015fd5f78f8827b`, and `current` now points to it.
 - Safety: the independent `producer/paused` marker remains exact 0600 `paused\n` with SHA-256 `2a50d50d…ab3cf7`; no message was sent during validation or deployment.
+
+## [2026-08-10 10:04 CST] [Codex-CTO] [type:fix] Collapse repeated G9 conversation clues and preserve match evidence
+
+- Scope: WS-3290 changes only the G9 gateway conversation producer and its regression suite; the decision ledger, reviewer separation and board result-data boundary remain unchanged.
+- Fix: matching now parses the request JSON and scans only `input[]` messages whose role is `user` or `assistant`; `developer`, `system`, `tool`, API subrequests and response sections are excluded. Every clue carries `match_role`, `match_offset` and `match_input_index`.
+- Deduplication: repeated `/v1/responses` rounds now share a stable clue per conversation identity + employee + segment + metric; `prompt_cache_key` is primary, the first user fingerprint is the fallback, and repeats accumulate in `occurrence_count`.
+- Replay safety: added exact Shanghai-day `--replay YYYY-MM-DD` plus side-effect-free `--dry-run`; dry-run takes no queue lock and writes no board, analysis or ledger files.
+- Verification: commit `bd4059a`; the synthetic 190-round regression collapses to 8 clues, the actual 190 request batch collapses to 7 with occurrence sum 190, and the ticket command returns 2 clues (all role/offset/count contracts true). Producer, consumer and lock tests pass 35/35.
