@@ -6,8 +6,8 @@
 - Contract: Final Generator autopilot `2e6bb4a2` now records activity and daily-report boundaries separately, labels block ② as “截至定稿”, discloses `late_submitted`, renders late employees as `submitted(逾期·上海时刻提交)`, and restricts §4 organization themes to comments at or before `report_window_end`.
 - Schedule: active autopilot `2ee73925` creates `[日报] 维欣 {{date}}` daily at 17:54 Asia/Shanghai and is registered in `loop_contracts.json` plus the loop-idle ledger. Read-after-create delay exposed an untriggered duplicate `48f52188`; it was paused immediately and retained only as a zero-run retired tombstone.
 - Helper: `daily_report_reconciliation.py` now emits the live/explicit observation boundary, Shanghai report-window end, 9-person effective denominator, late-submission timestamps/status, and a `late_submitted` summary count without downgrading a real late report to missing.
-- Verification: 61 report/activity/token tests and 29 admission/registry tests passed. Real 2026-08-10 replay at both `2026-08-11T01:31Z` and `02:00Z` returned `submitted=6 / form_only=1 / missing=2`, with 黄宁 disclosed as the single 09:30 Shanghai late submission.
-- Delivery: org-constitution commit `d2d3353`, stacked PR `#55` (base PR `#45`); no production code merge was claimed. The live contract and active 17:54 schedule were read back from Multica.
+- Verification: 62 report/activity/token tests and 29 admission/registry tests passed, including a scheduled-title match proving a `[日报] 维欣` issue leaves the organization-side no-ticket path. Real 2026-08-10 replay at both `2026-08-11T01:31Z` and `02:00Z` returned `submitted=6 / form_only=1 / missing=2`, with 黄宁 disclosed as the single 09:30 Shanghai late submission.
+- Delivery: org-constitution commits `d2d3353` + `9002d34`, stacked PR `#55` (base PR `#45`); no production code merge was claimed. The live contract and active 17:54 schedule were read back from Multica.
 
 ## [2026-08-10 05:42 CST] [Codex-CTO] [type:fix] Preserve digit-prefixed ERP product aliases through parsing
 
