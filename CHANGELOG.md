@@ -6924,3 +6924,12 @@ JC 17:31 双命题:
 - Deduplication: repeated `/v1/responses` rounds now share a stable clue per conversation identity + employee + segment + metric; `prompt_cache_key` is primary, the first user fingerprint is the fallback, and repeats accumulate in `occurrence_count`.
 - Replay safety: added exact Shanghai-day `--replay YYYY-MM-DD` plus side-effect-free `--dry-run`; dry-run takes no queue lock and writes no board, analysis or ledger files.
 - Verification: commit `bd4059a`; the synthetic 190-round regression collapses to 8 clues, the actual 190 request batch collapses to 7 with occurrence sum 190, and the ticket command returns 2 clues (all role/offset/count contracts true). Producer, consumer and lock tests pass 35/35.
+
+## [2026-08-11 10:07 CST] [Codex-CTO] [type:fix] Restore independent report-day runtime snapshots
+
+- Root cause: WS-3232 removed the 18:00 provisional report, which had also been the only same-day runtime snapshot writer; next-day finalization therefore observed a different time window.
+- Implementation: WS-3387 / org-constitution PR #53 adds standalone `runtime_snapshot_capture.py` and launchd label `com.user.runtime-snapshot-capture`; the job does not call the activity report generator.
+- Time contract: launchd fires at both LA 02:03 and 03:03, while the command admits only Shanghai 18:xx. This maps to 03:03 during PDT and 02:03 during PST without changing the host timezone.
+- Immutability: both scheduled capture and the WS-3232 finalization fallback publish through an atomic create-if-absent path; an existing report-day file wins and is never replaced.
+- Verification: 42 focused tests pass, the plist lints, and an isolated live capture returned 25 agents / 43 runtimes with source `captured-live-scheduled`.
+- Production boundary: source and plist were staged byte-identically under `~/.local/libexec/org-metrics/` and `~/Library/LaunchAgents/`, but the job was intentionally not bootstrapped before the CSO-only loop-idle registry row; WS-3390 owns that governance registration.
