@@ -6950,3 +6950,12 @@ JC 17:31 双命题:
 - Report fix: all five material sources require their identity fields, core spend/revenue/ROI fields and at least 20 columns. Contract-invalid or failed sources do not count toward `source_total`; two or more consecutive zero-row days emit an explicit `consecutive_material_zero_rows` warning.
 - Verification: daily report tests passed 12/12; exporter policy 35/35, failure 19/19 and append 2/2 passed; related plan gate 8/8, decision ledger 6/6 and pipeline wiring 7/7 passed. The historical 2026-08-11 one-column workbook now exits 1 with `WorkbookContractError` while the 2026-07-24 23-column workbook passes with 22 rows.
 - Production: the verified daily script is deployed at `/Users/tangyuanjc/data-pipelines/scripts/generate_qianchuan_daily.py`; the exporter is deployed at `/Users/tangyuanjc/.codex/skills/qianchuan-beast-daily-sync/scripts/export_qianchuan_yesterday.py`. No browser export, login bootstrap, pipeline replay or launchd action was performed.
+
+## [2026-08-13 06:10 CST] [Codex-CTO] [type:fix] Prevent Loop Radar in-flight double generation
+
+- Scope: WS-3494 updates the existing Loop Radar generator `3caf2921...` and verifier `632010ca...`; no autopilot was created or manually triggered.
+- Schedule: verifier moved from 10:35 to 10:50 Asia/Shanghai; generator remains 10:20. Generator time-box is now 25 minutes with a 22-minute early-delivery cutoff instead of the empirically false 10-minute contract.
+- In-flight gate: an absent parent now forces fresh generator-run inspection and bounded polling. A manual recovery is allowed only when all same-day runs are terminal and no same-day manual recovery already exists; unknown trigger results are reconciled, never replayed.
+- Failure semantics: a first empty search or an in-flight run does not count as `LOOP_RADAR_GATE_FAIL`; terminal no-parent is the only failure condition. The verifier must distinguish original schedule delivery from actual manual recovery.
+- Activity semantics: repository-wide `pushed_at` is now labeled `repo_pushed_at`; default-branch commit time is explicitly `default_branch_last_commit_at`. Both remain manual-review context and cannot change generator scoring, order or elimination.
+- Verification: durable readback shows verifier cron `50 10 * * *`, timezone `Asia/Shanghai`, next run `2026-08-13T02:50:00Z`; generator remains `20 10 * * *`, and both highest-priority description overrides read back intact. No run was triggered during deployment.
