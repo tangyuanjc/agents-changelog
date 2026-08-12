@@ -6942,3 +6942,11 @@ JC 17:31 双命题:
 - Immutability: both scheduled capture and the WS-3232 finalization fallback publish through an atomic create-if-absent path; an existing report-day file wins and is never replaced.
 - Verification: 42 focused tests pass, the plist lints, and an isolated live capture returned 25 agents / 43 runtimes with source `captured-live-scheduled`.
 - Production boundary: source and plist were staged byte-identically under `~/.local/libexec/org-metrics/` and `~/Library/LaunchAgents/`, but the job was intentionally not bootstrapped before the CSO-only loop-idle registry row; WS-3390 owns that governance registration.
+
+## [2026-08-13 06:01 CST] [Codex-CTO] [type:fix] Fail closed on Qianchuan material export drift
+
+- Root cause: Qianchuan material URLs did not select a report-specific material type; visible `暂无数据` then produced one-column workbooks that the daily report counted as successful sources. A later successful wrapper attempt could also leave an earlier partial failure in state.
+- Export fix: every material URL now carries its `product-material-type`; material-page `ERR_ABORTED` navigation retries once, and exhausted navigation remains a failed report. Valid no-data workbooks preserve a report-specific schema with at least 20 columns.
+- Report fix: all five material sources require their identity fields, core spend/revenue/ROI fields and at least 20 columns. Contract-invalid or failed sources do not count toward `source_total`; two or more consecutive zero-row days emit an explicit `consecutive_material_zero_rows` warning.
+- Verification: daily report tests passed 12/12; exporter policy 35/35, failure 19/19 and append 2/2 passed; related plan gate 8/8, decision ledger 6/6 and pipeline wiring 7/7 passed. The historical 2026-08-11 one-column workbook now exits 1 with `WorkbookContractError` while the 2026-07-24 23-column workbook passes with 22 rows.
+- Production: the verified daily script is deployed at `/Users/tangyuanjc/data-pipelines/scripts/generate_qianchuan_daily.py`; the exporter is deployed at `/Users/tangyuanjc/.codex/skills/qianchuan-beast-daily-sync/scripts/export_qianchuan_yesterday.py`. No browser export, login bootstrap, pipeline replay or launchd action was performed.
