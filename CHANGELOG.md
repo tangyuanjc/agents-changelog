@@ -6959,3 +6959,13 @@ JC 17:31 双命题:
 - Failure semantics: a first empty search or an in-flight run does not count as `LOOP_RADAR_GATE_FAIL`; terminal no-parent is the only failure condition. The verifier must distinguish original schedule delivery from actual manual recovery.
 - Activity semantics: repository-wide `pushed_at` is now labeled `repo_pushed_at`; default-branch commit time is explicitly `default_branch_last_commit_at`. Both remain manual-review context and cannot change generator scoring, order or elimination.
 - Verification: durable readback shows verifier cron `50 10 * * *`, timezone `Asia/Shanghai`, next run `2026-08-13T02:50:00Z`; generator remains `20 10 * * *`, and both highest-priority description overrides read back intact. No run was triggered during deployment.
+
+## [2026-08-14 06:42 CST] [Codex-CTO] [type:fix] Restore Qianchuan material routing and deduplicate plan exports
+
+- Root cause: direct material URLs opened the redesigned material shell with `data filter = live promotion`; URL query values did not select the product-promotion radio. The exporter also accepted the default video tab before completing the material route, so later tabs could reuse the wrong report surface.
+- Route fix: each material report now executes the complete `material data -> product promotion -> report-specific tab` UI route and verifies report-specific markers before date or download actions.
+- Export contract: downloaded material workbooks normalize current upstream identity headers into the existing Feishu table contract, require report identity plus date/spend/net amount/net ROI and at least 20 columns, and fail closed on product-table or one-column downloads. Explicit page no-data still produces a full contract workbook.
+- Plan fix: exact duplicate rows are removed in the exporter before the xlsx reaches any consumer; conflicting same-ID rows remain visible to existing downstream fail-closed checks.
+- Live verification: 2026-08-12 material video exported 116 rows/21 columns and image 24 rows/34 columns; article, live-room frame and title were explicit page no-data with valid 23/22/22-column empty contracts. The live plan workbook collapsed 54 rows to 27 while preserving spend 4409.84.
+- Tests: exporter policy 44/44, failure 19/19, append 2/2; daily report 12/12, plan gate 8/8, decision ledger 6/6 and pipeline wiring 7/7; Python compile and diff checks passed.
+- Safety: all live exports used isolated temporary output/state copies. No Feishu append, historical backfill, launchd action, production state overwrite or credential content was performed.
