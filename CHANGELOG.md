@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-08-14 09:43 CST] [Codex-CTO] [type:fix] Separate GBrain probe misses from unavailable measurements
+
+- Trigger: WS-3628 showed that three apparent cross-recall misses became rank-1 hits on an immediate same-shape rerun, while the probe recorded failed/empty retrievals as semantic misses and required an unreachable 12/12 result.
+- Measurement contract: empty, invalid, timed-out, or failed primary retrievals now back off and retry the identical query once; persistent failures become `unmeasured`, leave the semantic hit-rate denominator, increment `unmeasured_count`, and keep measurement health visibly degraded.
+- Threshold: 98 archived observations in the 2026-08-07..13 Shanghai window had p10 `0.75`; the default GBrain threshold is now `0.75`, so the known 9/12 baseline can pass while one additional real miss at 8/12 still fails. Hindsight remains `0.6`.
+- Regression coverage: a one-time empty result recovers on the same query, while two empty attempts produce `unmeasured`, a null all-unmeasured rate, and no employee-fact semantic fallback.
+- Index cleanup: a prefix export disproved the ticket's two-page estimate and found 189 active evaluation snapshots hidden by the list command's 100-row cap. All 189 were inventory-backed soft-deleted with zero failures; prefix export now returns zero and the cited centroid page is hidden with a recoverable tombstone.
+- Safety: no production source/config was edited in place; code work is isolated in the WS-3628 worktree. Snapshot deletions are recoverable for 72 hours, and the exact inventory plus before/after evidence are attached to the Multica issue.
+
 ## [2026-08-11 10:18 CST] [Codex-CTO] [type:fix] Separate daily-report observation time and add 维欣 scheduling
 
 - Trigger: WS-3388 found that block ② reported live-finalization daily-report counts under the activity helper's `report_day_end` label, leaked a next-morning comment into the prior day's organization themes, and included 维欣 in the denominator without a matching daily ticket schedule.
