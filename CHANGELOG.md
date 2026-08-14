@@ -6986,3 +6986,10 @@ JC 17:31 双命题:
 - Interactive behavior: explicit `--headed` runs retain the password/manual-login path. The recorded recovery action names JC mobile QR login and the existing `login_tmall.mjs` command.
 - Verification: focused login tests passed 7/7, the full SYCM Node suite passed 38/38, and the Tmall last-run state suite passed 16/16. Syntax, compile and diff checks passed.
 - Live boundary: no production browser run, password attempt, Feishu message, launchd action, state overwrite or schedule change was performed. The next naturally expired scheduled run must provide the real summary and no-slider-notification readback evidence.
+
+## [2026-08-14 11:08 CST] [Codex-CTO] [type:safety] Quarantine the failed WS-2954 Windows admin bootstrap
+
+- Scope: the one-shot `deploy_existing_daily_v17.ps1` candidate for Windows daily Administrators accounts now throws `QUARANTINED_BY_HR38` before any preflight or execution path; it must never be run or distributed.
+- Review evidence: independent Cursor WS-3639 and Opus WS-3636 reviews both returned `VERDICT=FAIL`. The candidate bypassed official v1.7 identity gates, and `internal-sftp -R -d` is not a chroot, so a daily-account key could traverse beyond the scrubbed export into raw `.codex` data.
+- Live boundary: the candidate was never sent to an employee and never executed remotely. No Windows account, group, sshd, authorized_keys, task, collector, Tailscale or system state was changed; Fangfang remained untouched while offline.
+- Current result: Pipi's existing export reached 23,916 rows, central acceptance passed and the latest repeated import returned `imported=0`. Wenya, Huangning, Xiaolong and Xinxin remain uninstalled because all four daily accounts are Administrators while the task also forbids account changes, using or reviving `openclaw-pull`, and issuing a v1.7.1 package.
