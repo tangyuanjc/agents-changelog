@@ -6993,3 +6993,10 @@ JC 17:31 双命题:
 - Review evidence: independent Cursor WS-3639 and Opus WS-3636 reviews both returned `VERDICT=FAIL`. The candidate bypassed official v1.7 identity gates, and `internal-sftp -R -d` is not a chroot, so a daily-account key could traverse beyond the scrubbed export into raw `.codex` data.
 - Live boundary: the candidate was never sent to an employee and never executed remotely. No Windows account, group, sshd, authorized_keys, task, collector, Tailscale or system state was changed; Fangfang remained untouched while offline.
 - Current result: Pipi's existing export reached 23,916 rows, central acceptance passed and the latest repeated import returned `imported=0`. Wenya, Huangning, Xiaolong and Xinxin remain uninstalled because all four daily accounts are Administrators while the task also forbids account changes, using or reviving `openclaw-pull`, and issuing a v1.7.1 package.
+
+## [2026-08-14 19:36 CST] [Codex-CTO] [type:ops] Resume Xinxin Desktop repair when her EasyTier peer returns
+
+- Scope: created the thread heartbeat automation `browser` to retry the existing Xinxin Browser/Chrome/Computer Use repair every five minutes; no target-host configuration changed while the peer was offline.
+- Live boundary: Mac mini mesh and route are present, but `10.20.20.11:22` repeatedly timed out, the Xinxin peer is absent and Runtime `Codex (LAPTOP-PR9FOK1Q)` is offline. The local SSH relay remains in scheduled retry with exit 255.
+- Resume gate: after the host returns, the automation must verify identity and composer safety, install the three current AppX plugins, normally restart Desktop, and require separate fresh real-call evidence before completion.
+- Safety: offline runs are read-only and must never print full EasyTier process arguments. A setup credential was exposed once in local tool output during diagnosis; it is not copied here and requires a separately authorized organization-wide rotation.
