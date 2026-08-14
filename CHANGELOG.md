@@ -6978,3 +6978,11 @@ JC 17:31 双命题:
 - Live verification: 2026-08-12 material video exported 116 rows/21 columns and image 24 rows/34 columns; article, live-room frame and title were explicit page no-data with valid 23/22/22-column empty contracts. The live plan workbook collapsed 54 rows to 27 while preserving spend 4409.84.
 - Tests: exporter policy 44/44, failure 19/19, append 2/2; daily report 12/12, plan gate 8/8, decision ledger 6/6 and pipeline wiring 7/7; Python compile and diff checks passed.
 - Safety: all live exports used isolated temporary output/state copies. No Feishu append, historical backfill, launchd action, production state overwrite or credential content was performed.
+
+## [2026-08-14 11:02 CST] [Codex-CTO] [type:fix] Abort scheduled SYCM runs on expired sessions
+
+- Scope: WS-3640 changes only the Tmall SYCM login-stage gate, its run-summary projection, and the tested `tmall_last_run.json` projection; launchd jobs, schedules, credentials and report-download behavior are unchanged.
+- Fail-closed behavior: a non-interactive run that reaches a password, generic login or slider stage now exits immediately with `blocker=session_expired_needs_qr`; it does not load or submit stored credentials, create a 900-second login wait, or call the slider-group notification path. The existing SMS-code assistance flow remains available.
+- Interactive behavior: explicit `--headed` runs retain the password/manual-login path. The recorded recovery action names JC mobile QR login and the existing `login_tmall.mjs` command.
+- Verification: focused login tests passed 6/6, the full SYCM Node suite passed 37/37, and the Tmall last-run state suite passed 16/16. Syntax, compile and diff checks passed.
+- Live boundary: no production browser run, password attempt, Feishu message, launchd action, state overwrite or schedule change was performed. The next naturally expired scheduled run must provide the real summary and no-slider-notification readback evidence.
