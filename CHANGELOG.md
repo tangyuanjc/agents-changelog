@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-08-15 12:03 CST] [Codex-CTO] [type:fix] Protect and restore D-line Lark routing
+
+- Root cause: WS-3634 task `3dc92127-c2d8-4102-9192-ccf46b7ccbd5` used one live `patch_apply` at Shanghai 10:33:12 to blank the D-line direct recipient and warning-digest recipient while disabling digest send; this was a one-off task mutation, not a deploy/sync script. The config-dir key was already blank before that patch.
+- Guard: the three routing values now live in a dedicated mode-0600 secrets file loaded by `host-watchdog/multica_runtime_offline_alert.py`. Missing, blank or group/world-readable protected config fails closed before collection/delivery.
+- Writer protection: `host-watchdog/multica_runtime_alert_secrets.py` atomically maintains the secrets file, preserves an existing non-empty value when a candidate provides an empty string, refuses a blank first install, and never prints values.
+- Delivery: org-constitution PR #68 merged as `4be9139`; production `~/.org` and the installed watchdog were synced byte-identically. The installer passed 74/74 tests and demonstrated all three blank legacy candidates were preserved.
+- Live proof: warning digest send is enabled again; a bot delivery flushed 23 queued events and wrote a unique `delivery_receipt` to `dline-alert-delivery.jsonl`. Recipient IDs and secrets are intentionally omitted here.
+- Same-batch audit: `com.user.memory-daemon-health` had its Lark recipient blanked; `ai.hermes.aihotboard-monitor` did not lose a field but gained `LARK_CLI=/usr/bin/true`. Those WS-3634 no-op routes were left intact rather than re-opening unrelated machine-alert noise.
+
 ## [2026-08-14 09:43 CST] [Codex-CTO] [type:fix] Separate GBrain probe misses from unavailable measurements
 
 - Trigger: WS-3628 showed that three apparent cross-recall misses became rank-1 hits on an immediate same-shape rerun, while the probe recorded failed/empty retrievals as semantic misses and required an unreachable 12/12 result.
