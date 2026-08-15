@@ -7000,3 +7000,10 @@ JC 17:31 双命题:
 - Live boundary: Mac mini mesh and route are present, but `10.20.20.11:22` repeatedly timed out, the Xinxin peer is absent and Runtime `Codex (LAPTOP-PR9FOK1Q)` is offline. The local SSH relay remains in scheduled retry with exit 255.
 - Resume gate: after the host returns, the automation must verify identity and composer safety, install the three current AppX plugins, normally restart Desktop, and require separate fresh real-call evidence before completion.
 - Safety: offline runs are read-only and must never print full EasyTier process arguments. A setup credential was exposed once in local tool output during diagnosis; it is not copied here and requires a separately authorized organization-wide rotation.
+
+## [2026-08-15 10:01 CST] [Codex-CTO] [type:fix] Restore Compass new-rank and dedupe reconciliation signals
+
+- Scope: WS-3691 updates the installed Douyin Compass product-card skill and the local digest generator; the launchd staging block and `node_copy()` remain unchanged.
+- New-rank fix: the active `channel_product_card_list` response has no native `newly_on_ranking` field, so rows now compare their product IDs with the strict previous-calendar-day snapshot under `state/compass-staged`; missing yesterday remains explicitly unknown.
+- Reconciliation fix: collection now persists and logs `sourceRowCount` plus `dedupeDiscarded`; the digest requires `sourceRowCount - dedupeDiscarded = records = createdCount` and matching log counts before reporting PASS.
+- Verification: a no-write live fetch returned 77 upstream rows, 1 dedupe discard and 76 output records. Node tests passed 23/23 and digest tests passed 6/6; removing either snapshot-set subtraction or dedupe subtraction made its focused regression fail.
