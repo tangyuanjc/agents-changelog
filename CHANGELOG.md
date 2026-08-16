@@ -7016,3 +7016,11 @@ JC 17:31 双命题:
 - New-rank fix: the active `channel_product_card_list` response has no native `newly_on_ranking` field, so rows now compare their product IDs with the strict previous-calendar-day snapshot under `state/compass-staged`; missing yesterday remains explicitly unknown.
 - Reconciliation fix: collection now persists and logs `sourceRowCount` plus `dedupeDiscarded`; the digest requires `sourceRowCount - dedupeDiscarded = records = createdCount` and matching log counts before reporting PASS.
 - Verification: a no-write live fetch returned 77 upstream rows, 1 dedupe discard and 76 output records. Node tests passed 23/23 and digest tests passed 6/6; removing either snapshot-set subtraction or dedupe subtraction made its focused regression fail.
+
+## [2026-08-16 18:42 CST] [Codex-CTO] [type:fix] Make Xinxin Codex relay survive AppX replacement during launch
+
+- Root cause: while the relay launcher was waiting for Codex Desktop, Windows replaced AppX `26.810.4967.0` with `26.810.7004.0`; the launcher kept filtering processes against the old InstallLocation and reported a false failure even though the new root process carried the organization relay argument.
+- Launcher fix: `start_xinxin_codex_with_relay.ps1` now re-resolves the active OpenAI.Codex package and InstallLocation on every launch poll. Provider, authentication, model, Chrome profile and network routing are unchanged.
+- Acceptance fix: `test_xinxin_codex_relay_ownership.ps1` accepts Task Scheduler's equivalent short principal form `YEE` as well as its machine-qualified form, while still rejecting any different account.
+- Live verification: the current AppX is `26.810.7004.0`; the full bundled snapshot is source/destination identical at 842 files and 70,294,251 bytes; Browser, Chrome and Computer Use each have one enabled `26.810.52044` installation. The durable task returned fresh `healthy_existing`, LastTaskResult 0, proxied PID 25636 and zero debug listeners.
+- Draft safety: two ambiguous composer values were preserved only as YEE CurrentUser DPAPI ciphertext on the employee machine; no draft plaintext, credential, cookie or private conversation entered this changelog or another shared layer.
