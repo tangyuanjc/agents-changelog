@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-08-17 20:01 CST] [Codex-CTO] [type:fix] Restore local Agent macOS permissions and stable pet identity
+
+- Trigger: the Screen & System Audio Recording list had collapsed from the 2026-08-13 twelve-subject baseline to KimiCU, UU Remote and WeChat. Focused review of the last 48 hours of Codex/Grok/Kimi/Claude sessions, shell history and unified logs found no `tccutil reset`, TCC database delete/replace, or evidence tying the batch loss to one Agent.
+- ScreenCapture recovery: System Settings now has allow rows for ChatGPT, Claude Desktop, claude CLI, Codex Computer Use, Feishu, KimiCU, Multica, Paseo, Tangyuan Ask Pet, Terminal, ToDesk, UU Remote and WeChat. All 13 exact clients read back `auth_value=2`; no generic `node`, `bash` or `python` subject was added.
+- Tangyuan Ask Pet: both the installed bundle and HotSSD release copy lacked a valid resource seal. A temporary copy was signed with the existing local Apple Development identity, strictly verified, then installed with the old bundle retained at `/Applications/Tangyuan Ask Pet.app.pre-permission-recovery-20260817T042352`. The stale 40-byte Accessibility CDHash grant was replaced by a 176-byte bundle/certificate requirement, and ScreenCapture plus Accessibility both read `auth_value=2`.
+- Multica fork: exact FDA for `/Users/tangyuanjc/.local/libexec/multica-fork/multica` was restored from 0 to 2 without resetting TCC or authorizing an interpreter. Main and trace launchd jobs remain `running + keepalive`; the daemon stayed live with eight agent categories and four workspaces.
+- Capability proof: Terminal produced a real 3840x2160 PNG through `screencapture`; Codex Computer Use and KimiCU returned current screenshots/AX; Claude reported KimiCU MCP connected; Grok 1.0.4 loaded 82 permission rules with KimiCU configured; Tangyuan strict codesign and backend smoke passed.
+- Safety: ChatGPT/Claude/Feishu were not force-quit, ToDesk was neither re-signed nor upgraded, the EdgeOne challenge response was not installed, and no TCC database was directly edited. The current Codex task remains live; normal app restarts can be done later without repeating authorization.
+
 ## [2026-08-15 12:03 CST] [Codex-CTO] [type:fix] Protect and restore D-line Lark routing
 
 - Root cause: WS-3634 task `3dc92127-c2d8-4102-9192-ccf46b7ccbd5` used one live `patch_apply` at Shanghai 10:33:12 to blank the D-line direct recipient and warning-digest recipient while disabling digest send; this was a one-off task mutation, not a deploy/sync script. The config-dir key was already blank before that patch.
