@@ -7034,3 +7034,11 @@ JC 17:31 双命题:
 - Live verification: the current AppX is `26.810.7004.0`; the full bundled snapshot is source/destination identical at 842 files and 70,294,251 bytes; Browser, Chrome and Computer Use each have one enabled `26.810.52044` installation. The durable task returned fresh `healthy_existing`, LastTaskResult 0, proxied PID 25636 and zero debug listeners.
 - Post-use materialization: after real tool calls, Codex intentionally pruned disabled `deep-research`/`sites`, rewrote marketplace metadata and added `.materialization-key`; full-tree equality is therefore a bootstrap-only gate. Durable integrity now hashes every file in the three target plugin trees across AppX source, materialized destination and installed cache (Browser 378/378, Chrome 378/378, Computer Use 6/6).
 - Draft safety: two ambiguous composer values were preserved only as YEE CurrentUser DPAPI ciphertext on the employee machine; no draft plaintext, credential, cookie or private conversation entered this changelog or another shared layer.
+
+## [2026-08-18 05:40 CST] [Codex-CTO] [type:fix] Reject cross-type Qianchuan material templates and empty reconciliation
+
+- Scope: WS-3498 tightens the installed Beast Qianchuan exporter and daily report only; routing, credentials, schedules, Feishu destinations and historical rows are unchanged.
+- Material contract: video, image, article, live-room frame and title now have separate current schemas, required discriminator columns and forbidden cross-type columns. The 2026-08-12 legacy video-shaped empty workbook is rejected for all five report types.
+- Reconciliation contract: `row_reconcile_check` now fails when append summaries have zero participants, omit any expected workbook label or reference a label with no workbook; an empty comparison set can no longer return PASS.
+- Verification: exporter policy 47/47, failure 19/19 and append 2/2 pass; daily report 22/22 and related gate/ledger/wiring 43/43 pass. Real 2026-08-13/15/16 video, image and title workbooks remain accepted, while fresh no-data workbooks pass 5/5.
+- Safety: no browser export, Feishu append, historical backfill, launchd action, production state overwrite or credential access was performed. Historical article/live-room empty workbooks with the old cross-type schema now fail closed until regenerated.
