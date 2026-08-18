@@ -7049,3 +7049,9 @@ JC 17:31 双命题:
 - Added `douyin-creator-screening` for Selected Alliance creator screening and controlled outreach, `koc-creator-screening-rules` for beauty KOC qualification, and `koc-live-publish-auth` for sample rows, publish links, commission and Qianchuan authorization handling.
 - Rationale: these three production skills map directly to the agent's recent creator outreach, sample registration, publish registration and authorization-dedup work. No new skill was invented and no unrelated external installer or browser policy was introduced.
 - Live readback: the assignment count increased from 6 to 9 and all three exact skill names are present. Chrome extension/native-host repair remains separately gated on a visible, empty Codex Desktop composer and the official plugin UI flow.
+
+## [2026-08-18 21:04 CST] [Codex-CTO] [type:config] Adopt the organization four-part working method
+
+- Scope: WS-3889 appends the organization-standard first-principles, adversarial-review, Occam-convergence and pyramid-communication method verbatim to Codex's global `~/.codex/AGENTS.md`.
+- Trigger: starting with the next task, the four stages apply whenever a human asks to use first principles or the task is important.
+- Verification: durable readback confirms the complete distributed text is present; the global rules file now contains 89 lines.
