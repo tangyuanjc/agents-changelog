@@ -7042,3 +7042,10 @@ JC 17:31 双命题:
 - Reconciliation contract: `row_reconcile_check` now fails when append summaries have zero participants, omit any expected workbook label or reference a label with no workbook; an empty comparison set can no longer return PASS.
 - Verification: exporter policy 47/47, failure 19/19 and append 2/2 pass; daily report 22/22 and related gate/ledger/wiring 43/43 pass. Real 2026-08-13/15/16 video, image and title workbooks remain accepted, while fresh no-data workbooks pass 5/5.
 - Safety: no browser export, Feishu append, historical backfill, launchd action, production state overwrite or credential access was performed. Historical article/live-room empty workbooks with the old cross-type schema now fail closed until regenerated.
+
+## [2026-08-18 11:07 CST] [Codex-CTO] [type:config] Align Xinxin's persistent skills with KOC operations
+
+- Scope: updated only Multica agent `33903c19-cd69-4356-b3f4-fea40b38a938` (`欣欣的叶子`) skill assignments; existing assignments, model, permission mode, runtime binding, concurrency and environment were unchanged.
+- Added `douyin-creator-screening` for Selected Alliance creator screening and controlled outreach, `koc-creator-screening-rules` for beauty KOC qualification, and `koc-live-publish-auth` for sample rows, publish links, commission and Qianchuan authorization handling.
+- Rationale: these three production skills map directly to the agent's recent creator outreach, sample registration, publish registration and authorization-dedup work. No new skill was invented and no unrelated external installer or browser policy was introduced.
+- Live readback: the assignment count increased from 6 to 9 and all three exact skill names are present. Chrome extension/native-host repair remains separately gated on a visible, empty Codex Desktop composer and the official plugin UI flow.
