@@ -7063,3 +7063,11 @@ JC 17:31 双命题:
 - Acceptance: launchd round 1 completed with both target peers `ok=true`; round 2 started naturally and again returned Wenya `validated=1788` and Xiaolong `validated=37292`, both `ok=true`. The active plus gzip archive ledger, deduplicated by request ID, ended at Wenya 1788 and Xiaolong 37292, up from the pre-task historical totals of about 1545 and 30062.
 - Accounting correction: active-ledger decreases were retention moves into `data/events-archive`, not external-backfill data loss. Future checks must deduplicate active plus archive; the stable-lock change is retained as a real preventive concurrency fix, not claimed as the cause of that view change.
 - Conditional peers: Huangning `10.20.20.4` and Xinxin `10.20.20.11` were absent from the EasyTier peer table and TCP/22 was unreachable, so neither host nor any colleague was contacted or changed. Fangfang `.5`, WS-2957 and WS-2958 were untouched.
+
+## [2026-08-19 09:16 CST] [Codex-CTO] [type:fix] Repair Loop-1 memory-axis false-red paths
+
+- Scope: WS-3903 repairs the GBrain page-growth classifier, stale FAIL recovery and transient zero-candidate semantic probes; Hindsight, embeddings, vector space and the archived `output/assertions/2026-08-19.json` are unchanged.
+- Page arithmetic: reports and non-reports now partition the same `list_pages updated_after` slug set. The real 2026-08-19 mix reports 43/5 and passes, the 2026-08-18 reports-only window remains a true FAIL, and report-only updates can no longer produce negative non-report growth.
+- Stale recovery: an unresolved FAIL is still carried for the stale day's verdict, but the state is atomically rebaselined so the next legal window can measure and self-heal instead of remaining at the same stale fixed point forever.
+- Semantic retry: a successful pair query with zero eligible candidates retries the identical query once before the existing employee-fact anchor fallback. Samples expose retry usage, recovery and retrieval-attempt count.
+- Verification: the blackboard consumer-assertion suite passed 56/56; the memory-axis health suite passed 31/31. Local blackboard production `main` is commit `7b156f0` (no Git remote configured); org-constitution commit `15a381f` is pushed in PR #74 and awaits review/merge.
