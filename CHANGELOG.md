@@ -7064,6 +7064,14 @@ JC 17:31 双命题:
 - Accounting correction: active-ledger decreases were retention moves into `data/events-archive`, not external-backfill data loss. Future checks must deduplicate active plus archive; the stable-lock change is retained as a real preventive concurrency fix, not claimed as the cause of that view change.
 - Conditional peers: Huangning `10.20.20.4` and Xinxin `10.20.20.11` were absent from the EasyTier peer table and TCP/22 was unreachable, so neither host nor any colleague was contacted or changed. Fangfang `.5`, WS-2957 and WS-2958 were untouched.
 
+## [2026-08-21 17:16 CST] [Codex-CTO] [type:fix] Bound GBrain memory and repair storage-guard CLI drift
+
+- Incident: the 2026-08-20 23:22 PDT event was a WindowServer watchdog graphics-session restart, not a host reboot. Three Jetsam reports recorded `vm-compressor-space-shortage`; GBrain embeddings reached about 8.5–10.2 GiB RSS on the 16 GiB host while Colima, Chrome and agent workloads were resident.
+- GBrain fix: local embeddings changed from MPS/batch 8 to CPU/batch 1 in source and installed launchd configuration. Bun 8/8 and exact-venv Python 5/5 passed; a natural 01:22–01:32 run exited 0 with roughly 1.4 GiB peak RSS. Local blackboard commit is `1c64d0c`; that repository has no remote.
+- Storage-guard fix: the minute guard had resolved the global `multica` v0.4.22 CLI, which removed owner-aware daemon pause/resume, while the live daemon is the v0.4.16 fork. Its launchd PATH now resolves the matching daemon fork before the global CLI; 43 storage-governance tests and both plist lints pass.
+- Live readback: the next guard round changed from `unknown flag: --owner` to `daemon_admission_paused`; commit `7705b52d6` is pushed to `fork/agent/cto/storage-guard-daemon-cli-20260821`. Admission remains correctly paused because internal free space is below the 35 GiB clear watermark.
+- Boundaries: FlClash, Codex auth, Chrome profile data and SQLite were not modified. No forced admission resume, daemon restart or host reboot was performed; the remaining high historical swap/disk recovery requires a separately approved maintenance reboot.
+
 ## [2026-08-19 09:16 CST] [Codex-CTO] [type:fix] Repair Loop-1 memory-axis false-red paths
 
 - Scope: WS-3903 repairs the GBrain page-growth classifier, stale FAIL recovery and transient zero-candidate semantic probes; Hindsight, embeddings, vector space and the archived `output/assertions/2026-08-19.json` are unchanged.
