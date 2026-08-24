@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2026-08-24 09:27 CST] [Codex-CTO] [type:fix] Stop GBrain probe failures from manufacturing semantic red lights
+
+- Trigger: WS-3470 repeatedly reported GBrain semantic degradation even though the cited employee fact was present at rank 1; large `gbrain call query` JSON was intermittently truncated through a pipe, and the health probe silently converted query exceptions into `hit=false`.
+- Probe contract: GBrain JSON commands now write the child stdout fd directly to a temporary file, retry twice, use a fresh timeout for every primary/fallback/diagnostic call, and retry the employee-fact anchor after a primary exception. Persistent failures publish `hit=null`, `probe_error`/`failure_reason`, evaluated/error counts, and stay out of the hit-rate denominator.
+- Consumer contract: any incomplete GBrain probe set surfaces as `CANT_VERIFY` when measured rows otherwise pass, while real evaluated misses keep the semantic-degradation path. Critical Lark notifications are delivered after triage handling through an explicit allowlisted target, so issue deduplication cannot suppress delivery; a missing target fails loudly in the report/CLI.
+- Verification: `.org` memory-axis tests passed 31/31; `blackboard-v3` consumer assertions passed 67/67. The patched `黄宁 × 设计` path hit the same active slug at final rank 1 for 10/10 runs. An isolated full board generated 2026-08-24 09:26 Shanghai was green at 15/15 evaluated, hit rate 1, and zero probe failures.
+- Delivery boundary: org-constitution commit `88a68d2`, PR #80; blackboard-v3 local commit `e679549` on `agent/cto/ws-3470-critical-dm` (that repository has no configured remote). Production checkouts, launchd, and autopilot configuration were not changed pending review/deploy authorization.
+
 ## [2026-08-17 20:01 CST] [Codex-CTO] [type:fix] Restore local Agent macOS permissions and stable pet identity
 
 - Trigger: the Screen & System Audio Recording list had collapsed from the 2026-08-13 twelve-subject baseline to KimiCU, UU Remote and WeChat. Focused review of the last 48 hours of Codex/Grok/Kimi/Claude sessions, shell history and unified logs found no `tccutil reset`, TCC database delete/replace, or evidence tying the batch loss to one Agent.
