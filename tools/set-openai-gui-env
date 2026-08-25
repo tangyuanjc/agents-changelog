@@ -1,0 +1,10 @@
+#!/bin/zsh
+set -euo pipefail
+
+# GUI launchd environment is inherited by unrelated jobs and is printed by a
+# full `launchctl print`. Codex reads its mode-0600 auth config directly; keep
+# only the non-secret localhost endpoint in the launchd domain.
+base_url="${CODEX_OPENAI_BASE_URL:-http://127.0.0.1:6555/v1}"
+
+/bin/launchctl unsetenv OPENAI_API_KEY
+/bin/launchctl setenv OPENAI_BASE_URL "$base_url"

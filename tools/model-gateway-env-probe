@@ -1,0 +1,24 @@
+#!/bin/zsh
+set -euo pipefail
+
+auth_json="${CODEX_AUTH_JSON:-$HOME/.codex/auth.json}"
+expected="$(/usr/bin/python3 - "$auth_json" <<'PY'
+import json
+import pathlib
+import sys
+
+print(json.loads(pathlib.Path(sys.argv[1]).read_text())["OPENAI_API_KEY"])
+PY
+)"
+
+[[ -n "${OPENAI_API_KEY:-}" && "$OPENAI_API_KEY" == "$expected" ]] || {
+  print -u2 -- "scoped_key_match=false"
+  exit 1
+}
+[[ -n "${XAI_API_KEY:-}" && "$XAI_API_KEY" == "$expected" ]] || {
+  print -u2 -- "xai_alias_match=false"
+  exit 1
+}
+
+print -r -- "scoped_key_match=true"
+print -r -- "xai_alias_match=true"

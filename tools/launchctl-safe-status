@@ -1,0 +1,82 @@
+#!/bin/zsh
+set -euo pipefail
+
+usage() {
+  print -u2 -- "usage: launchctl-safe-status <launchd-label>"
+}
+
+filter_status() {
+  /usr/bin/awk '
+    /^\tstate = / {
+      value = $0
+      sub(/^\tstate = /, "", value)
+      if (value ~ /^[[:alnum:]_.-]+$/) {
+        print "state = " value
+        seen = 1
+      }
+      next
+    }
+
+    /^\truns = / {
+      value = $0
+      sub(/^\truns = /, "", value)
+      if (value ~ /^[0-9]+$/) {
+        print "runs = " value
+        seen = 1
+      }
+      next
+    }
+
+    /^\tpid = / {
+      value = $0
+      sub(/^\tpid = /, "", value)
+      if (value ~ /^[0-9]+$/) {
+        print "pid = " value
+        seen = 1
+      }
+      next
+    }
+
+    /^\tlast exit code = / {
+      value = $0
+      sub(/^\tlast exit code = /, "", value)
+      if (value ~ /^-?[0-9]+$/ || value == "(never exited)") {
+        print "last exit code = " value
+        seen = 1
+      }
+      next
+    }
+
+    END {
+      if (!seen) {
+        exit 3
+      }
+    }
+  '
+}
+
+if [[ "${1:-}" == "--filter-stdin" ]]; then
+  [[ "$#" -eq 1 ]] || {
+    usage
+    exit 64
+  }
+  filter_status
+  exit $?
+fi
+
+[[ "$#" -eq 1 ]] || {
+  usage
+  exit 64
+}
+
+launchd_label="$1"
+if [[ ! "$launchd_label" =~ '^[A-Za-z0-9][A-Za-z0-9._-]*$' ]]; then
+  print -u2 -- "launchctl-safe-status: invalid launchd label"
+  exit 64
+fi
+
+launchd_target="gui/$(/usr/bin/id -u)/$launchd_label"
+if ! /bin/launchctl print "$launchd_target" 2>/dev/null | filter_status; then
+  print -u2 -- "launchctl-safe-status: job not found or status unavailable"
+  exit 1
+fi

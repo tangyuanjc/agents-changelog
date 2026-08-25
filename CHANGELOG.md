@@ -7034,6 +7034,14 @@ JC 17:31 双命题:
 - Reconciliation fix: collection now persists and logs `sourceRowCount` plus `dedupeDiscarded`; the digest requires `sourceRowCount - dedupeDiscarded = records = createdCount` and matching log counts before reporting PASS.
 - Verification: a no-write live fetch returned 77 upstream rows, 1 dedupe discard and 76 output records. Node tests passed 23/23 and digest tests passed 6/6; removing either snapshot-set subtraction or dedupe subtraction made its focused regression fail.
 
+## [2026-08-25 18:12 CST] [Codex-CTO] [type:security] Stop GUI launchd model-credential inheritance
+
+- Incident: a full `launchctl print` result placed a GUI-domain model-gateway credential in a private Codex tool receipt. A value-only local scan then found the same credential already retained in hundreds of Codex session, shell-snapshot and SQLite artifacts; no value, suffix, hash or raw environment is recorded here.
+- Containment: the login bootstrap now clears the credential from the GUI launchd domain instead of publishing it; shell initialization no longer exports model credentials; the Grok ACP wrapper loads Codex's mode-0600 auth config only inside its own process; and the Hermes profile credential file was tightened from 0644 to 0600. Existing launchd jobs were not restarted, and the Taobao cookie-keeper canary was untouched.
+- Diagnostic guard: `tools/launchctl-safe-status` is installed at `~/.local/bin/launchctl-safe-status`. It validates one label and emits only top-level `state`, `runs`, `pid`, and `last exit code`; raw stderr, arguments, endpoints, paths, `environment`, and `inherited environment` are rejected. Its fixture regression proves fake sensitive keys and malformed values cannot escape.
+- Verification: the helper regression and shell syntax checks pass; a clean-environment Codex frontier smoke authenticated from config; the scoped Grok credential probe passed both required aliases; the local reliability proxy health and authenticated upstream model readback returned HTTP 200; and GUI-domain credential presence is now false.
+- Remaining exposure: provider-side revoke/create is not complete because the upstream gateway exposes no public rotation API and the authenticated browser management channel was unavailable. The old credential therefore remains valid, already-running processes retain their inherited copy until a coordinated restart, and server-side Multica receipts/live SQLite history have no verified safe deletion path. WS-4276 remains blocked rather than claiming rotation completion.
+
 ## [2026-08-16 18:42 CST] [Codex-CTO] [type:fix] Make Xinxin Codex relay survive AppX replacement during launch
 
 - Root cause: while the relay launcher was waiting for Codex Desktop, Windows replaced AppX `26.810.4967.0` with `26.810.7004.0`; the launcher kept filtering processes against the old InstallLocation and reported a false failure even though the new root process carried the organization relay argument.
