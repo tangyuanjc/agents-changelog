@@ -7102,6 +7102,15 @@ JC 17:31 双命题:
 - Fix: after an identifier-less create result, the executor reads back parent WS-1696 and its children. It accepts a durable `multica-issue:<identifier>` receipt only for one exact-title active child whose parent UUID, creator type and CTO Codex creator ID all match; zero, multiple, terminal, wrong-parent or wrong-creator candidates remain fail-closed.
 - Verification: the executor, review-consumer, existing dead-letter and WS-4098 regression suites pass 90/90; a read-only live smoke uniquely resolved `[ERP Patrol] stale_drafts` to WS-3755. No live tree edit, queue mutation, launchd reload or production deployment was performed.
 
+## [2026-08-26 01:10 CST] [Codex-CTO] [type:fix] Separate Grok wrapper from installer binary and recover Herdr panes
+
+- Root cause: a Grok subagent attempted to create `~/.local/bin/grok` with a file-edit tool while that path was a symlink chain into the active versioned Mach-O binary. The write followed the symlink and truncated the shared 1.0.5 executable to zero bytes at 09:09:32 PDT; Herdr then lost all three Grok detections within 0.33 seconds. This was not an anonymous organization-agent action.
+- Secondary incident: Herdr was upgraded on disk through Homebrew while the 0.8.0 server/client remained live, creating a protocol-20 CLI versus protocol-19 daemon split. The later coordinated restart restored protocol compatibility but, by design, sent SIGHUP to every old pane shell and ended their processes.
+- Fix: `~/.local/bin/grok` is now an independent mode-0755 fail-closed wrapper; `~/.grok/bin/grok` is restored to the installer-managed symlink targeting the verified non-empty binary. The zero-byte artifact is isolated outside `downloads`, wrapper recursion is rejected, and Codex auth is loaded only in the child process after a mode-0600 check.
+- Config hardening: the quoted `model."grok-4.6"` table now parses correctly, the retired privacy key was removed, `grok inspect` has no config warnings, and `~/.grok/config.toml` was tightened from 0644 to 0600 because it contains provider credentials.
+- Live verification: a clean-environment network canary returned `GROK_WRAPPER_CANARY_OK`; the finance and Grok Bot intelligence sessions were normally exited with the documented double `Ctrl+Q`, resumed by their existing session IDs, and both now appear in `herdr agent list` as Grok agents. Herdr server/client remain 0.8.2, protocol 20 and compatible.
+- Durable update boundary: Herdr upgrades must use its coordinated handoff path and must not use an in-place package-manager upgrade while a server is live. Process death is judged from pane exit/PID/log evidence, not from `agent_status=unknown` alone.
+
 ## [2026-08-19 11:28 CST] [Codex-CTO] [type:fix] Add Xinxin to daily corpus pull without archive reimport
 
 - Scope: added Xinxin `10.20.20.11` as the sixth employee corpus peer with a dedicated Ed25519 key, pinned host key and the existing 1800-second LaunchAgent. The target reuses the existing enabled non-admin `CodexSandboxOffline` account; no Windows account was created, changed or deleted.
