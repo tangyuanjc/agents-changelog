@@ -7121,7 +7121,7 @@ JC 17:31 双命题:
 - Guard behavior: runtime checks reject direct symlinks and realpaths under Cellar, `node_modules`, `versions`, `downloads`, site-packages and virtual-environment bins. Shell extraction covers absolute and relative paths, simple variables, command-internal `cd`, redirects, `dd of=`, Python/Node write APIs and deletion APIs.
 - Adversarial fixes: real Codex canary first exposed a bare-relative-path bypass; Kimi then reproduced command-internal `cd` and `os.remove` bypasses. Each was fixed only after a failing regression was added. Kimi and Grok final re-reviews both returned `FINAL PASS`.
 - Live verification: shared and Grok suites return `*_TESTS_OK`; Kimi config doctor is green; Codex official Hooks UI reports PreToolUse 2/2 active; Grok inspect reports zero warnings and an unrestricted pre-tool hook. Codex, Claude, Kimi and Grok all deny the same real symlink canary, and its target SHA remains `97813c2a…cdc03`.
-- Update boundary: the Grok wrapper stays independent `0555 + uchg`; no installer-owned binary is immutable and no second Node/updater is introduced. Herdr remains pinned at 0.8.2/protocol 20; the working `grok-standby` pane was not interrupted.
+- Update boundary: the Grok wrapper stays independent `0555 + uchg`; no installer-owned binary is immutable and no second Node/updater is introduced. Herdr remains pinned at 0.8.2/protocol 20. The `grok-standby` pane was not interrupted; after it naturally became idle, its original session's visible terminal showed `global/protect-install-binaries` executing successfully, so no refresh restart was needed.
 
 ## [2026-08-19 11:28 CST] [Codex-CTO] [type:fix] Add Xinxin to daily corpus pull without archive reimport
 
