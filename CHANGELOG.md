@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-08-26 17:47 CST] [Codex-CTO] [type:infra] Stage 维欣 v1.9 self-collect and close the read-only SFTP boundary
+
+- Target: `DESKTOP-N8VARKF` at EasyTier `10.20.20.6` now has the exact `1.9.0-1a5bde52d7a3-i600` collector and scrub payload, enrolled as employee `维欣`; no Windows account or group was created, changed, or deleted.
+- Collection state: only the `OpenClaw Corpus Self Collect Silent` task exists and it remains Disabled. The exact collector still fails closed before reading source data because this host has `EnableLUA=0`, so Limited tasks inherit an administrator-owned default file owner.
+- Pull boundary: the existing non-administrator pull identity now uses a dedicated source-restricted key, a `C:/Users/8498/.openclaw` jail, `/cpa-capture` start directory, read-only internal SFTP, disabled forwarding and no password authentication. Positive read plus write, traversal, shell and forwarding denial checks passed.
+- Incident correction: the temporary loss of SSH was caused by two leaked metadata-probe processes using roughly 4.8 GB combined, not by a collector rollout scan. Only those exact processes were stopped; available memory recovered and SSH remained stable.
+- Rejected workaround: a process-scoped restricted-token canary produced employee-owned files and denied writes to protected SSH configuration, but independent review blocked a Python bootstrap that still runs from a user-writable runtime before token reduction. It was not deployed, and remote temporary canaries were removed.
+- Remaining gate: production collection, central peer registration, pull/import and ledger acceptance remain blocked pending explicit authorization for `EnableLUA=1` plus reboot. The global central scrub pin was not changed; any future `6a1bd860…` allowance must stay scoped to the 维欣 peer.
+
 ## [2026-08-26 10:58 CST] [Codex-CTO] [type:fix] Preserve ST-1 monthly evidence outside the shared worktree
 
 - Trigger: WS-4306 found that the only accepted Electron/updater monthly audit was an ignored mutable file under `~/.org`; it disappeared during the 2026-08-25 untracked-worktree cleanup window and Git had no recoverable blob by design.
