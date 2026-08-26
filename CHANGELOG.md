@@ -7135,3 +7135,11 @@ JC 17:31 双命题:
 - Downstream: terminal created/dedup receipts are re-read live, incident ticket refs accept only public `WS-*` identifiers, and dead-letter binding always routes through the executor instead of reusing raw consumer rows.
 - Verification: PR #30 exact head `73febdc18fa6d7b47c7e57e74c73360c38cbbbcd` passes the 48/48 scoped receipt and WS-3675 suite, compile, diff check and GitHub security gate. Two independent adversarial reviews closed all reported false-ACK and downstream-bypass blockers.
 - Boundary: PR #30 remains unmerged and undeployed pending CSO exact-head review. No queue mutation, launchd reload, GBrain, Sector Radar or production state change was performed.
+
+## [2026-08-27 05:49 CST] [Codex-CTO] [type:fix] Validate duplicate ERP issue metrics against production contracts
+
+- Correction to the 2026-08-25 WS-4098 entry: PR #30 head `6912a02` no longer requires exact top-level metric equality, which had rejected every live `stale_drafts` row because production also carries `status_counts`.
+- The executor now requires the declared fields as a subset, validates each projected value against a reason-scoped nonnegative count, bounded age-hours or strict boolean contract, and excludes all undeclared fields from Multica comments. Nested values, negative counts, bool-as-int and oversized counts fail closed.
+- Contracts now cover the five DB-backed issue-create reasons plus the static `dead_letter_count`; terminal dedup ACK readback reruns the same schema before reusing an old receipt.
+- Verification: exact-head archive passed the WS-4098, WS-3675 and security-gate suites 82/82; a read-only live queue contract covered all five production shapes, and the real 2026-08-20 stale-draft row returned only `max_age_hours`, `over_4h` and `total`. Three rounds of independent adversarial review ended PASS, and GitHub security-gate passed on exact head `6912a02`.
+- Boundaries: PR #30 remains unmerged and undeployed; no production queue mutation, launchd reload, review-pass registration, GBrain, Sector Radar or production heartbeat action was performed.
