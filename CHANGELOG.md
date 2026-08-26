@@ -7142,3 +7142,12 @@ JC 17:31 双命题:
 - Verification: focused RED/GREEN tests and the current CPA puller/supervisor/storage-gate/sentinel suite passed 219/219. The live sentinel completed exit 0 with no `--dry-run`, its newest result is `ok=true`, and its old traceback log mtime remains 2026-08-12.
 - Production readback: puller and sentinel are both enabled. Recovery run 1402 fetched 443 rows and exited 0; natural 300-second run 1403 executed without kickstart and safely skipped a live shared writer. Breaker state is `consecutive_failures=0`, `last_exit_code=0`, `tripped=false`.
 - Host boundary: no lock file, writer, in-flight Multica workspace, VM, browser, employee pull or self-collect process was removed or stopped. High swap and low Data free space remain a maintenance-window risk, not a completed disk-capacity fix.
+
+## [2026-08-26 23:44 CST] [Codex-CTO] [type:ops] Relocate verified Codex cold data to HotSSD
+
+- Scope: moved only Codex 2026-07 session files and the disposable marketplace staging tree; active August sessions, archived-session indexes, CPA/OpenClaw, Cursor/Chrome/Claude state, Multica workspaces, ERP, GBrain and virtual machines were not moved or stopped.
+- Session migration: 365 JSONL files were copied to the UUID-pinned HotSSD storage-relief tree, verified by content, metadata and xattr manifests, and read back through the original `~/.codex/sessions/2026/07` symlink. March through July now use the same external-volume layout.
+- Rollback: the internal disk retains a mode-0600, `gzip -t`-verified 391MB recovery archive; HotSSD retains a full rollback copy whose manifest matches the source. The migration receipt records paths, hashes and recovery boundaries.
+- Staging relief: the 843-file, 1,519,164KiB marketplace staging tree was moved intact to HotSSD after open-handle and active-plugin checks; the local path was recreated as an empty mode-0755 real directory so future installer runs do not depend on an external-volume symlink.
+- Capacity/readback: static net relief is approximately 1.93GiB after counting the internal recovery archive. Live Data availability reached 9,366,496KiB at 96%; CPA puller and sentinel remain exit 0, Multica remains running, and Codex workflow doctor is ready.
+- Deferred risk: archived sessions, Grok history and `superpowers/worktrees` stay in place until index recovery, dirty-worktree ownership and launchd external-volume canaries are independently proven. High swap remains a maintenance-window problem and is not reported as fixed by file relocation.
