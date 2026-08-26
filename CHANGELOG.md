@@ -7152,3 +7152,12 @@ JC 17:31 双命题:
 - Staging relief: the 843-file, 1,519,164KiB marketplace staging tree was moved intact to HotSSD after open-handle and active-plugin checks; the local path was recreated as an empty mode-0755 real directory so future installer runs do not depend on an external-volume symlink.
 - Capacity/readback: static net relief is approximately 1.93GiB after counting the internal recovery archive. Live Data availability reached 9,366,496KiB at 96%; CPA puller and sentinel remain exit 0, Multica remains running, and Codex workflow doctor is ready.
 - Deferred risk: archived sessions, Grok history and `superpowers/worktrees` stay in place until index recovery, dirty-worktree ownership and launchd external-volume canaries are independently proven. High swap remains a maintenance-window problem and is not reported as fixed by file relocation.
+
+### [小J] 新增 2026-08-27 diary
+- 时间：$(TZ=America/Los_Angeles date +
+### [小J] 新增 2026-08-27 diary
+- 时间：14:31
+- 文件：journal/xiaoj-diary-2026-08-27.md
+- 改动：创建指定日期的最小事实版日记
+- 影响：补齐 DIARY_TICK 落盘
+- 原因：执行 system lane diary 维护
