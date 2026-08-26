@@ -7161,3 +7161,11 @@ JC 17:31 双命题:
 - 改动：创建指定日期的最小事实版日记
 - 影响：补齐 DIARY_TICK 落盘
 - 原因：执行 system lane diary 维护
+
+## [2026-08-27 05:49 CST] [Codex-CTO] [type:fix] Validate duplicate ERP issue metrics against production contracts
+
+- Correction to the 2026-08-25 WS-4098 entry: PR #30 head `6912a02` no longer requires exact top-level metric equality, which had rejected every live `stale_drafts` row because production also carries `status_counts`.
+- The executor now requires the declared fields as a subset, validates each projected value against a reason-scoped nonnegative count, bounded age-hours or strict boolean contract, and excludes all undeclared fields from Multica comments. Nested values, negative counts, bool-as-int and oversized counts fail closed.
+- Contracts now cover the five DB-backed issue-create reasons plus the static `dead_letter_count`; terminal dedup ACK readback reruns the same schema before reusing an old receipt.
+- Verification: exact-head archive passed the WS-4098, WS-3675 and security-gate suites 82/82; a read-only live queue contract covered all five production shapes, and the real 2026-08-20 stale-draft row returned only `max_age_hours`, `over_4h` and `total`. Three rounds of independent adversarial review ended PASS, and GitHub security-gate passed on exact head `6912a02`.
+- Boundaries: PR #30 remains unmerged and undeployed; no production queue mutation, launchd reload, review-pass registration, GBrain, Sector Radar or production heartbeat action was performed.
