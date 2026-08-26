@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-08-26 10:58 CST] [Codex-CTO] [type:fix] Preserve ST-1 monthly evidence outside the shared worktree
+
+- Trigger: WS-4306 found that the only accepted Electron/updater monthly audit was an ignored mutable file under `~/.org`; it disappeared during the 2026-08-25 untracked-worktree cleanup window and Git had no recoverable blob by design.
+- Storage contract: the canonical producer now serializes complete evidence once, publishes an exact-byte content-addressed copy under internal `~/Library/Application Support` before replacing the ignored worktree cache, and advances a verified `latest-complete` digest under a per-month lock. Partial scans remain diagnostic archives and cannot downgrade valid canonical evidence.
+- Recovery guard: `--restore-latest` hashes and validates the exact archived bytes, canonical schema/month/home lineage, totals and timestamps; it rejects corrupt/symlinked inputs, rollback, output aliases anywhere under the archive root, and older concurrent publishers.
+- Verification: 18/18 focused tests and Python compilation passed. A real temporary Git repository regression ran `git clean -fdx`, observed the canonical file disappear, then restored it byte-identically from the outside-repo archive. Independent adversarial diff review returned PASS after monotonicity and cross-month alias escapes were fixed.
+- Delivery: org-constitution PR #92 merged as `ca33ad1`. The explicitly authorized live canonical command regenerated August evidence at 4,928 bytes, SHA-256 `28f8254c…b7cc8dfe`, `scan_complete=true`, with an exact read-only pre-deploy recovery copy outside the repository.
+- Deployment boundary: live `~/.org` remains at `80afcdc`; the merged producer has not been synced because WS-4306 does not yet carry the production policy's explicit `live deploy` authorization. No scheduler, daemon, cleanup, or mutable evidence tracking was added.
+
 ## [2026-08-24 09:27 CST] [Codex-CTO] [type:fix] Stop GBrain probe failures from manufacturing semantic red lights
 
 - Trigger: WS-3470 repeatedly reported GBrain semantic degradation even though the cited employee fact was present at rank 1; large `gbrain call query` JSON was intermittently truncated through a pipe, and the health probe silently converted query exceptions into `hit=false`.
