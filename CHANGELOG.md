@@ -7169,3 +7169,12 @@ JC 17:31 双命题:
 - Contracts now cover the five DB-backed issue-create reasons plus the static `dead_letter_count`; terminal dedup ACK readback reruns the same schema before reusing an old receipt.
 - Verification: exact-head archive passed the WS-4098, WS-3675 and security-gate suites 82/82; a read-only live queue contract covered all five production shapes, and the real 2026-08-20 stale-draft row returned only `max_age_hours`, `over_4h` and `total`. Three rounds of independent adversarial review ended PASS, and GitHub security-gate passed on exact head `6912a02`.
 - Boundaries: PR #30 remains unmerged and undeployed; no production queue mutation, launchd reload, review-pass registration, GBrain, Sector Radar or production heartbeat action was performed.
+
+## [2026-08-27 11:09 CST] [Codex-CTO] [type:ops] Add Weixin to v1.9 Silent self-collect and central pull
+
+- Scope: DESKTOP-N8VARKF (`10.20.20.6`) now runs exact `1.9.0-1a5bde52d7a3-i600` as `OpenClaw Corpus Self Collect Silent`; the official task name remains absent. No Windows account or group was created, changed or deleted.
+- Token safety: after the JC-approved `EnableLUA=1` reboot and Weixin's real console login, the task completed under `Interactive + Limited`. Progress, SQLite, status and events are owned by `DESKTOP-N8VARKF\\8498`; final task readback is `Ready / Enabled / LastResult=0`.
+- SFTP boundary: the dedicated `openclaw-pull` key is jailed at `/cpa-capture` with read-only SFTP. A 7,051-row sanitized snapshot was pulled; writes, raw-path traversal, shell execution and forwarding were denied.
+- Central integration: `peers.json` now contains machine `69a0dbc5-5585-4eaa-8448-772395eb7d3c` with the dedicated key, pinned host fingerprint and a per-peer allowlist for scrub `6a1bd860...`; the central global scrub pin `5030c9ed...` was not changed.
+- Verification: consistent first import returned `validated=7051 / imported=7051 / duplicates=0`; a static rerun returned `validated=7051 / imported=0 / duplicates=7051 / ok=true`. Active plus archive request-ID total is 7,051 with employee label `维欣` and zero invalid rows.
+- Known verifier boundary: the fixed WS-2954 verifier passes identity/session assertions and reports zero new redaction hits, but its hash-equality assertion intentionally remains false because it only accepts the central global pin and does not model the approved per-peer v1.9 scrub allowlist.
