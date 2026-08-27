@@ -7178,3 +7178,12 @@ JC 17:31 双命题:
 - Central integration: `peers.json` now contains machine `69a0dbc5-5585-4eaa-8448-772395eb7d3c` with the dedicated key, pinned host fingerprint and a per-peer allowlist for scrub `6a1bd860...`; the central global scrub pin `5030c9ed...` was not changed.
 - Verification: consistent first import returned `validated=7051 / imported=7051 / duplicates=0`; a static rerun returned `validated=7051 / imported=0 / duplicates=7051 / ok=true`. Active plus archive request-ID total is 7,051 with employee label `维欣` and zero invalid rows.
 - Known verifier boundary: the fixed WS-2954 verifier passes identity/session assertions and reports zero new redaction hits, but its hash-equality assertion intentionally remains false because it only accepts the central global pin and does not model the approved per-peer v1.9 scrub allowlist.
+
+## [2026-08-28 01:54 CST] [Codex-CTO] [type:ops] Restore dsh and maximize local Hermes execution policy
+
+- dsh 0.1.0-rc.6 remains a standalone DeepSeek Harness, not a Herdr agent or Multica runtime. Added `~/.local/libexec/dsh-web-launchd` plus `~/Library/LaunchAgents/com.user.dsh-web.plist` to keep its browser UI bound only to `127.0.0.1:3080`.
+- Production readback: dsh headless returned `DSH_OK`; launchd is running; HTTP returned 200; terminating PID 22717 caused KeepAlive to relaunch PID 24703 and HTTP still returned 200. `~/.dsh/.env` contents were never printed or copied.
+- Hermes default/coo/ogilvy now use `approvals.mode=off`, `cron_mode=approve`, and `hooks_auto_accept=true`, while the Hermes hardline blocklist remains active. Approval/cron/hardline tests passed 308/308 and `hermes acp --check` passed.
+- Direct write/read canaries passed for Codex, Grok, Kimi, Cursor and Hermes. Claude is configured `bypassPermissions`, but its canary was blocked before tool use by the weekly quota reset; this is recorded as a quota boundary, not a permission failure.
+- TCC audit found current Herdr 0.8.2 denied for Accessibility, ScreenCapture and Full Disk Access, plus Hermes' embedded node denied for Full Disk Access. These security-sensitive System Settings changes remain gated on action-time confirmation; no TCC database write/reset or generic interpreter grant was performed.
+- Multica local runtimes are online, but new-task admission remains intentionally paused at storage-guard level 2 (about 12.1 GiB internal free versus 21 GiB clear threshold). The capacity safety gate was not removed to inflate an availability claim.
