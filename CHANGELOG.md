@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [2026-08-28 20:03 CST] [Codex-CTO] [type:agent-ops] Move verified cold Agent data off the saturated startup disk
+
+- Trigger: the Mac mini Data volume fell to about 6.0 GiB free / 97% while the APFS HotSSD still had about 1.2 TiB free. The objective was durable relief without moving live Agent, blackboard, Multica workspace, Colima/Hindsight, browser, or current-session paths.
+- GBrain archive: two unreferenced, unopened `brain.pglite.corrupt-*` snapshots were copied into the existing HotSSD GBrain cold archive. Source-before/source-after/destination SHA, metadata, symlink, xattr-policy and count manifests passed before each exact source directory was removed; 1,486,660,589 logical bytes moved.
+- Multica archive: 23 sealed backup dates from 2026-07-29 through 2026-08-20 moved to `/Volumes/MacMini-HotSSD/cold/multica-backups-20260828/` with no symlinks. Each date has an independent verification ledger; collection readback is 0 remaining sources, 0 missing targets, 0 partials and 23 receipts, totaling 3,537,844,352 logical bytes.
+- Runtime proof: a canary date and the full batch were each followed by a real `com.user.multica-backup` run. The final run advanced health to 2026-08-28T11:56:28Z with exit 0, eight current-hour JSON files, zero consecutive failures and empty stderr. Multica remained running with nine Agent types/four workspaces; GBrain embeddings, Colima and both Hindsight containers remained live.
+- Cache relief: with no active pnpm process and an untouched store, ordinary `pnpm store prune` (no `--force`) removed 101,873 cache files / 1,959 unreferenced packages and reduced the v10 store from 2,311,144 KiB to 0. Project lockfiles and node_modules were not modified.
+- Outcome and boundary: Data readback rose to about 12 GiB free / 94%. No Multica workspace or marketplace cache was hand-deleted; no active GBrain/OpenClaw/Hermes/Grok/Codex/Chrome/Photos path, launchd config, daemon config, swapfile or blackboard truth was changed. HotSSD remains unencrypted and Time Machine-excluded, so the archive has explicit restore receipts but is not represented as a second backup.
+- Council: non-Claude R1/R2/R3 deliberation and the executed verdict are recorded at `~/.org/jc-brain/council-runs/20260828-storage-migration.md`; R3 voted 7/7 GO for both cold migrations, 7/7 against a 24-hour wait, rejected Codex archive symlinks and deferred Multica lifecycle/GC to an owner-native follow-up.
+
 ## [2026-08-24 09:27 CST] [Codex-CTO] [type:fix] Stop GBrain probe failures from manufacturing semantic red lights
 
 - Trigger: WS-3470 repeatedly reported GBrain semantic degradation even though the cited employee fact was present at rank 1; large `gbrain call query` JSON was intermittently truncated through a pipe, and the health probe silently converted query exceptions into `hit=false`.
