@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-08-30 10:06 CST] [Codex-CTO] [type:fix] Revalidate stale PR warnings immediately before delivery
+
+- Trigger: WS-4529 found a `github_stale_clean_pr:*` warning receipt that still named three gbrain PRs about 21 hours after they merged. The detector's current `gh pr list --state open` query had already recovered, but the bounded warning-digest queue delivered an older alert snapshot later.
+- Delivery contract: queued `github_stale_pr:*` and `github_stale_clean_pr:*` rows are now candidates only. Immediately before receipt creation or Lark/file delivery, the watchdog queries GitHub again, drops findings that are no longer active, refreshes `mergeStateStatus`, and emits only current requested codes. Revalidation runs outside the queue lock, so health producers can continue appending.
+- Fail-loud behavior: timeout, rate-limit, GraphQL EOF, malformed queued repository identity, or any other lookup failure is delivered as one `github_stale_pr_check:*` event for that repository. The stale snapshot is never reused as verified state.
+- Defense in depth: candidate parsing now explicitly rejects any returned `state != OPEN`, and the live query requests `state` alongside mergeability data even though GitHub is already asked for `--state open`.
+- Verification: the canonical watchdog suite passed 139/139, including merged/closed exclusion, CLEAN→DIRTY reclassification, terminal snapshot pruning, EOF replacement, and a queue-lock concurrency regression. Org commit `e5a8cd1` was pushed to `origin/main`; the installer reran 139/139 and deployed a byte-identical `~/.bin/multica_runtime_offline_alert.py`.
+- Live proof: the 10:01 Shanghai foreground digest flush wrote 12 events; every stale-PR event in its receipt has `live_revalidated_at=2026-08-30T02:01:03Z` and current detail. A bounded-retry recomputation at 10:03 Shanghai expanded all governed >48h CLEAN candidates and obtained raw `gh pr view` results of `19/19 state=OPEN`, `19/19 mergeStateStatus=CLEAN`, `mergedAt=null`, with one recorded TLS-handshake retry and zero final lookup failures.
+
 ## [2026-08-26 17:47 CST] [Codex-CTO] [type:infra] Stage 维欣 v1.9 self-collect and close the read-only SFTP boundary
 
 - Target: `DESKTOP-N8VARKF` at EasyTier `10.20.20.6` now has the exact `1.9.0-1a5bde52d7a3-i600` collector and scrub payload, enrolled as employee `维欣`; no Windows account or group was created, changed, or deleted.
