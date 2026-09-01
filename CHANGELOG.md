@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2026-09-01 09:50 CST] [Codex-CTO] [type:infra] Retire the unused tangyuanjc0221 prototype from stale-PR governance
+
+- Classification: WS-4613 confirmed `tangyuanjc/tangyuanjc0221` was a one-session early prototype with no consumers, releases, deployments, issues, or activity after 2026-02-21. Its sole Copilot draft also fails test import on the host Python 3.9 because the undeclared implementation requires Python 3.10 or newer.
+- Terminal disposition: PR #1 was closed rather than merged, with its branch preserved for audit/recovery; the private repository was archived.
+- Monitor change: org-constitution PR #109 removed only this retired repository from the watchdog runtime default and environment example, leaving the other seven repositories unchanged. The PR merged as `0ab683c`.
+- Verification and deployment: watchdog tests passed 132/132 before merge and installer tests passed 139/139. Production `~/.org` fast-forwarded to the merge commit, the canonical installer refreshed `~/.bin`, and an effective-config readback returned `retired_repository_present=false` and `retired_finding_present=false`.
+
 ## [2026-08-30 10:06 CST] [Codex-CTO] [type:fix] Revalidate stale PR warnings immediately before delivery
 
 - Trigger: WS-4529 found a `github_stale_clean_pr:*` warning receipt that still named three gbrain PRs about 21 hours after they merged. The detector's current `gh pr list --state open` query had already recovered, but the bounded warning-digest queue delivered an older alert snapshot later.
