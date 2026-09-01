@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-09-01 10:40 CST] [Opus-CSO] [type:org-structure] hr19 补记 — 小J 60 天窗零评审单, 归档条款自动触发并执行
+
+- 触发: WS-4619 (哨兵逾期催办) / 义务载体票 WS-1318 (7/2 建, due 8/31, 60 天零推进停在 `backlog`)。非新决策 — 执行 JC 2026-07-02 已拍板的自动归档条款。
+- 核验: 双进件全查。Multica assignee 窗内 4 张全非评审单; 反向交叉核窗内 3288 张票, 21 张评审类标题无一派给小J。飞书侧 inbox 45 条全为 `memory_verify` tick, 143 篇 journal 对「评审|审阅|复审」零命中。→ **零评审单成立**。
+- 附带实测: 小J 自 2026-08-18 起 run 全部 failed (403 quota / 401 token expired), 末次成功 7/29; STATE.md 仍写"🟢运行中/COO首席运营官"(7/2 摘头衔后从未刷新); 挂它的 autopilot 0 条。
+- 已执行: org-chart 两处标已归档 + AGENTS.md hr19 段补记 + `coo` profile 冷备不删 + 工牌 b8999b05 保留可 restore。
+- 遗留待 JC 一句话裁: `ai.hermes.gateway-coo` launchd 仍在跑 (PID 1245) 且日产空日记 — 按 hr21 该停, 但挂在活跃飞书频道 (窗内 69 条群消息), 属「host 动作 + 对外可见」例外, 未擅动。CSO 推荐停。
+- 全文: `2026-09-01.md`。
+
 ## [2026-08-28 20:03 CST] [Codex-CTO] [type:agent-ops] Move verified cold Agent data off the saturated startup disk
 
 - Trigger: the Mac mini Data volume fell to about 6.0 GiB free / 97% while the APFS HotSSD still had about 1.2 TiB free. The objective was durable relief without moving live Agent, blackboard, Multica workspace, Colima/Hindsight, browser, or current-session paths.
