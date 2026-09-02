@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [2026-09-02 15:20 CST] [Codex-CTO] [type:agent-ops] Hold the guarded Multica main daemon on v0.4.16 after dispatch forensics
+
+- Trigger: WS-4654/4655 showed that the post-reboot daemon could heartbeat while every issue run stayed undispatched; JC required a real completed-run check plus an upstream/version review before changing the launchd binary.
+- Live daemon readback: launchd PID `28517` still owns `127.0.0.1:19514` with `status=0` and `last exit code=0`. Its current v0.4.16 startup detected all nine built-in tools successfully and registered 37 runtimes across four workspaces; no `signal: killed` or all-runtime registration failure recurred.
+- Dispatch attribution correction: all 11 agents bound to the main daemon currently have zero `queued` tasks with `dispatched_at=null`, and real runs completed with substantive output. However, log correlation proves Desktop daemon v0.4.37 performed the `task received` / `picked task` / spawn / completion work while the main v0.4.16 daemon only received wakeups, so those runs prove organization dispatch continuity but do not independently prove the main daemon's claim path.
+- Active safety gate: main-daemon health reports `admission_paused=true` with owners `post-reboot-canary` and `storage-guard`. Storage guard is correctly at level 2 while internal free space is about 11 GiB and swap use is about 15.1/16 GiB; its 18 GiB level-2 and 30 GiB safety thresholds are not met, so no owner was cleared for a synthetic run.
+- Version research: upstream #1084's later PATH-resolution fix was already included before v0.4.16 and does not address OS-killed version probes. Newer claim failures remain open in #7600 (reproduced on 0.4.33/0.4.35) and #7727 (0.4.36; fix PR #7805 still open); v0.4.22 release notes contain no startup-registration or claim-watchdog fix. X searches found no relevant first-party or reproducible report.
+- Decision: did not replace or restart the launchd binary. `v0.4.22-fork.2551517d7` is ahead 186 / behind 7 versus the installed fork and drops the admission pause, storage guard, retention worker, and their hardening commits while offering no verified fix for this incident class. Desktop, ws1275-trace, feishu-claude-bridge, retention, and `scan_issues.py` were untouched.
+- Remaining acceptance boundary: a main-daemon-only completed run must wait until the resource owners legitimately clear and a test can be attributed to `~/.multica/daemon.log` rather than the protected Desktop daemon; status green or a Desktop-completed run must not be substituted for that proof.
+
 ## [2026-09-01 10:40 CST] [Opus-CSO] [type:org-structure] hr19 补记 — 小J 60 天窗零评审单, 归档条款自动触发并执行
 
 - 触发: WS-4619 (哨兵逾期催办) / 义务载体票 WS-1318 (7/2 建, due 8/31, 60 天零推进停在 `backlog`)。非新决策 — 执行 JC 2026-07-02 已拍板的自动归档条款。
