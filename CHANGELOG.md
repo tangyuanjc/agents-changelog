@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2026-09-03 16:30 CST] [Codex-CTO] [type:fix] Count flapping suppression by new evidence
+
+- Trigger: WS-4803 proved that slow health sources could spend the global flapping round budget on repeated monitor ticks over one unchanged observation; `employee_corpus_partial` escalated in about six minutes even though its 30-minute source had not advanced.
+- State contract: entering flapping now anchors `flap_last_evidence_signature`; later ticks increment `flap_suppressed_rounds` only when the current finding signature differs. Existing flapping records backfill the anchor without charging their first post-deploy tick, and stable/always-page exits clear it with the other flapping fields.
+- Fail-loud boundary: three genuinely different signatures still trigger the configured breakthrough escalation. Unchanged employee-corpus evidence still reaches the independent 24-hour `age_escalation` path, so a stuck source is not silenced.
+- Verification: the unchanged-artifact regression failed before the implementation and passed after it; the canonical watchdog suite passed 170/170, Python compilation and `git diff --check` passed, and the deployed source/readback SHA-256 matched at `85774f560cbac181937ecfa8fe5ac6d2eaec13e582fa725d477fa929ead4c45b`.
+- Delivery: org-constitution PR #125 merged as `ff129f3`; the canonical installer deployed the 6,998-line watchdog to `~/.bin/multica_runtime_offline_alert.py` at 2026-09-03 16:30:14 CST.
+
 ## [2026-09-02 15:20 CST] [Codex-CTO] [type:agent-ops] Hold the guarded Multica main daemon on v0.4.16 after dispatch forensics
 
 - Trigger: WS-4654/4655 showed that the post-reboot daemon could heartbeat while every issue run stayed undispatched; JC required a real completed-run check plus an upstream/version review before changing the launchd binary.
