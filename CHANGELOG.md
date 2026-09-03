@@ -7366,3 +7366,11 @@ JC 17:31 双命题:
 - Agent-home inventory: 11 roots total `41,332,044 KiB (39.417 GiB)`. Even the intentionally broad content-cold plus conditional upper bound is only `10,768,164 KiB (10.269 GiB)`; hot/hold is `30,563,880 KiB`, and migration-ready content is zero because no object cleared all writer, permission, integrity, startup, live-smoke and rollback gates.
 - Decision: the upper bound is `29.731 GiB` below the 40 GiB branch threshold, so controlled symlink migration is NO-GO. Memory-heavy Chrome, Kimi, Virtualization and Feishu processes were reported for JC selection only; none was stopped or signaled, and RSS was not presented as uniquely reclaimable memory.
 - Durable evidence: both receipts are under `/Volumes/MacMini-HotSSD/archive/storage-emergency/20260903T125802+0800/receipts/`; the current state and restart checks were written to `~/HANDOFF.md`.
+
+## [2026-09-03 17:58 CST] [Codex-CTO] [type:fix] Add explicit no-review dispatch policy marker
+
+- Root cause: broadcast issues that intentionally require no reply could still enter the `in_review` watch lane and fall back to their creator as reviewer, creating unnecessary agent review runs.
+- Fix: WS-4817 adds the exact `<!-- dispatch-sweeper-review-policy:no-review-required -->` ticket-description marker. Marked issues now fail closed in owner resolution, skip review queries/candidate creation/reminders/escalations, and clear any older local watch; the existing report-only auto-done policy remains unchanged.
+- Regression: three new marked/unmarked control tests cover exact marker matching, initial reminder suppression and existing escalation suppression. `python3 -m unittest -v test_dispatch_sweeper.py` passes 140/140.
+- Real dry-run: targeted scan of real marked issue WS-4817 logged `review_watch_suppressed` and returned `errors=0`, `review_candidates=0`, `would_review_remind=0`, `would_review_escalate=0`.
+- Delivery boundary: implementation commit `b9355b4` is in org-constitution PR #126. The live `~/.org` checkout, launchd service, Loop Radar Verifier configuration and issue terminal state were not modified; deployment remains separately gated.
