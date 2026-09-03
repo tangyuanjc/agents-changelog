@@ -7161,3 +7161,10 @@ JC 17:31 双命题:
 - Closing fix: a report-description validator rejects mixed-case `__[A-Za-z][A-Za-z0-9_]*__` placeholders and requires one labeled closing line with the expected WS identifier and UUID. The generator contract uses recoverable, idempotent two-phase backlog creation and readback before triggering CSO, preventing an incomplete cross-link from becoming visible work.
 - Verification: all 396 Python metric tests pass. A live read-only 2026-08-31 run scan found 26 failed runs, zero unreadable autopilots and two systemic clusters; the resulting gate is `INSTRUMENT_DEGRADED` with the subscription outage and 0.464517 warning-band reasons.
 - Boundary: code and the exact autopilot prompt delta are prepared on the WS-4614 review branch only. The shared `~/.org` main tree and live Generator autopilot were not changed before independent review/merge/deployment approval.
+
+## [2026-09-03 10:26 CST] [Codex-CTO] [type:fix] Accept real Generator closing labels without weakening the contract
+
+- Review follow-up: CSO reproduced that WS-4610 renders its closing label after a sentence on the same line, while the validator required the label to own the line and would therefore stop every daily report before issue creation.
+- Fix: the validator now accepts a closing label only at line start or immediately after a Chinese/ASCII sentence separator (`。`, `；`, `;`). UUID, WS identifier, uniqueness, unresolved-placeholder and trailing-text checks are unchanged; explanatory prose containing a later incidental label remains rejected.
+- Verification: the new real-shape regression was RED before the change and GREEN after it; all 7 closing-contract tests pass. The live WS-4610 description returns `PASS`, `closing_line_count=1`, and no unresolved placeholders. The complete metrics suite passes 396 tests; its unrelated cross-process lock test fails under discovery but passes 21/21 in its own module and 1/1 in isolation.
+- Boundary: this follow-up changes review branches only. No merge, deployment, live Generator autopilot change, production data write, daemon reload, GBrain or Sector Radar action was performed.
