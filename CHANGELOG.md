@@ -28,6 +28,39 @@
 - Cache relief: with no active pnpm process and an untouched store, ordinary `pnpm store prune` (no `--force`) removed 101,873 cache files / 1,959 unreferenced packages and reduced the v10 store from 2,311,144 KiB to 0. Project lockfiles and node_modules were not modified.
 - Outcome and boundary: Data readback rose to about 12 GiB free / 94%. No Multica workspace or marketplace cache was hand-deleted; no active GBrain/OpenClaw/Hermes/Grok/Codex/Chrome/Photos path, launchd config, daemon config, swapfile or blackboard truth was changed. HotSSD remains unencrypted and Time Machine-excluded, so the archive has explicit restore receipts but is not represented as a second backup.
 - Council: non-Claude R1/R2/R3 deliberation and the executed verdict are recorded at `~/.org/jc-brain/council-runs/20260828-storage-migration.md`; R3 voted 7/7 GO for both cold migrations, 7/7 against a 24-hour wait, rejected Codex archive symlinks and deferred Multica lifecycle/GC to an owner-native follow-up.
+## [2026-09-01 09:50 CST] [Codex-CTO] [type:infra] Retire the unused tangyuanjc0221 prototype from stale-PR governance
+
+- Classification: WS-4613 confirmed `tangyuanjc/tangyuanjc0221` was a one-session early prototype with no consumers, releases, deployments, issues, or activity after 2026-02-21. Its sole Copilot draft also fails test import on the host Python 3.9 because the undeclared implementation requires Python 3.10 or newer.
+- Terminal disposition: PR #1 was closed rather than merged, with its branch preserved for audit/recovery; the private repository was archived.
+- Monitor change: org-constitution PR #109 removed only this retired repository from the watchdog runtime default and environment example, leaving the other seven repositories unchanged. The PR merged as `0ab683c`.
+- Verification and deployment: watchdog tests passed 132/132 before merge and installer tests passed 139/139. Production `~/.org` fast-forwarded to the merge commit, the canonical installer refreshed `~/.bin`, and an effective-config readback returned `retired_repository_present=false` and `retired_finding_present=false`.
+
+## [2026-08-30 10:06 CST] [Codex-CTO] [type:fix] Revalidate stale PR warnings immediately before delivery
+
+- Trigger: WS-4529 found a `github_stale_clean_pr:*` warning receipt that still named three gbrain PRs about 21 hours after they merged. The detector's current `gh pr list --state open` query had already recovered, but the bounded warning-digest queue delivered an older alert snapshot later.
+- Delivery contract: queued `github_stale_pr:*` and `github_stale_clean_pr:*` rows are now candidates only. Immediately before receipt creation or Lark/file delivery, the watchdog queries GitHub again, drops findings that are no longer active, refreshes `mergeStateStatus`, and emits only current requested codes. Revalidation runs outside the queue lock, so health producers can continue appending.
+- Fail-loud behavior: timeout, rate-limit, GraphQL EOF, malformed queued repository identity, or any other lookup failure is delivered as one `github_stale_pr_check:*` event for that repository. The stale snapshot is never reused as verified state.
+- Defense in depth: candidate parsing now explicitly rejects any returned `state != OPEN`, and the live query requests `state` alongside mergeability data even though GitHub is already asked for `--state open`.
+- Verification: the canonical watchdog suite passed 139/139, including merged/closed exclusion, CLEAN→DIRTY reclassification, terminal snapshot pruning, EOF replacement, and a queue-lock concurrency regression. Org commit `e5a8cd1` was pushed to `origin/main`; the installer reran 139/139 and deployed a byte-identical `~/.bin/multica_runtime_offline_alert.py`.
+- Live proof: the 10:01 Shanghai foreground digest flush wrote 12 events; every stale-PR event in its receipt has `live_revalidated_at=2026-08-30T02:01:03Z` and current detail. A bounded-retry recomputation at 10:03 Shanghai expanded all governed >48h CLEAN candidates and obtained raw `gh pr view` results of `19/19 state=OPEN`, `19/19 mergeStateStatus=CLEAN`, `mergedAt=null`, with one recorded TLS-handshake retry and zero final lookup failures.
+
+## [2026-08-26 17:47 CST] [Codex-CTO] [type:infra] Stage 维欣 v1.9 self-collect and close the read-only SFTP boundary
+
+- Target: `DESKTOP-N8VARKF` at EasyTier `10.20.20.6` now has the exact `1.9.0-1a5bde52d7a3-i600` collector and scrub payload, enrolled as employee `维欣`; no Windows account or group was created, changed, or deleted.
+- Collection state: only the `OpenClaw Corpus Self Collect Silent` task exists and it remains Disabled. The exact collector still fails closed before reading source data because this host has `EnableLUA=0`, so Limited tasks inherit an administrator-owned default file owner.
+- Pull boundary: the existing non-administrator pull identity now uses a dedicated source-restricted key, a `C:/Users/8498/.openclaw` jail, `/cpa-capture` start directory, read-only internal SFTP, disabled forwarding and no password authentication. Positive read plus write, traversal, shell and forwarding denial checks passed.
+- Incident correction: the temporary loss of SSH was caused by two leaked metadata-probe processes using roughly 4.8 GB combined, not by a collector rollout scan. Only those exact processes were stopped; available memory recovered and SSH remained stable.
+- Rejected workaround: a process-scoped restricted-token canary produced employee-owned files and denied writes to protected SSH configuration, but independent review blocked a Python bootstrap that still runs from a user-writable runtime before token reduction. It was not deployed, and remote temporary canaries were removed.
+- Remaining gate: production collection, central peer registration, pull/import and ledger acceptance remain blocked pending explicit authorization for `EnableLUA=1` plus reboot. The global central scrub pin was not changed; any future `6a1bd860…` allowance must stay scoped to the 维欣 peer.
+
+## [2026-08-26 10:58 CST] [Codex-CTO] [type:fix] Preserve ST-1 monthly evidence outside the shared worktree
+
+- Trigger: WS-4306 found that the only accepted Electron/updater monthly audit was an ignored mutable file under `~/.org`; it disappeared during the 2026-08-25 untracked-worktree cleanup window and Git had no recoverable blob by design.
+- Storage contract: the canonical producer now serializes complete evidence once, publishes an exact-byte content-addressed copy under internal `~/Library/Application Support` before replacing the ignored worktree cache, and advances a verified `latest-complete` digest under a per-month lock. Partial scans remain diagnostic archives and cannot downgrade valid canonical evidence.
+- Recovery guard: `--restore-latest` hashes and validates the exact archived bytes, canonical schema/month/home lineage, totals and timestamps; it rejects corrupt/symlinked inputs, rollback, output aliases anywhere under the archive root, and older concurrent publishers.
+- Verification: 18/18 focused tests and Python compilation passed. A real temporary Git repository regression ran `git clean -fdx`, observed the canonical file disappear, then restored it byte-identically from the outside-repo archive. Independent adversarial diff review returned PASS after monotonicity and cross-month alias escapes were fixed.
+- Delivery: org-constitution PR #92 merged as `ca33ad1`. The explicitly authorized live canonical command regenerated August evidence at 4,928 bytes, SHA-256 `28f8254c…b7cc8dfe`, `scan_complete=true`, with an exact read-only pre-deploy recovery copy outside the repository.
+- Deployment boundary: live `~/.org` remains at `80afcdc`; the merged producer has not been synced because WS-4306 does not yet carry the production policy's explicit `live deploy` authorization. No scheduler, daemon, cleanup, or mutable evidence tracking was added.
 
 ## [2026-08-24 09:27 CST] [Codex-CTO] [type:fix] Stop GBrain probe failures from manufacturing semantic red lights
 
@@ -7063,6 +7096,14 @@ JC 17:31 双命题:
 - Reconciliation fix: collection now persists and logs `sourceRowCount` plus `dedupeDiscarded`; the digest requires `sourceRowCount - dedupeDiscarded = records = createdCount` and matching log counts before reporting PASS.
 - Verification: a no-write live fetch returned 77 upstream rows, 1 dedupe discard and 76 output records. Node tests passed 23/23 and digest tests passed 6/6; removing either snapshot-set subtraction or dedupe subtraction made its focused regression fail.
 
+## [2026-08-25 18:12 CST] [Codex-CTO] [type:security] Stop GUI launchd model-credential inheritance
+
+- Incident: a full `launchctl print` result placed a GUI-domain model-gateway credential in a private Codex tool receipt. A value-only local scan then found the same credential already retained in hundreds of Codex session, shell-snapshot and SQLite artifacts; no value, suffix, hash or raw environment is recorded here.
+- Containment: the login bootstrap now clears the credential from the GUI launchd domain instead of publishing it; shell initialization no longer exports model credentials; the Grok ACP wrapper loads Codex's mode-0600 auth config only inside its own process; and the Hermes profile credential file was tightened from 0644 to 0600. Existing launchd jobs were not restarted, and the Taobao cookie-keeper canary was untouched.
+- Diagnostic guard: `tools/launchctl-safe-status` is installed at `~/.local/bin/launchctl-safe-status`. It validates one label and emits only top-level `state`, `runs`, `pid`, and `last exit code`; raw stderr, arguments, endpoints, paths, `environment`, and `inherited environment` are rejected. Its fixture regression proves fake sensitive keys and malformed values cannot escape.
+- Verification: the helper regression and shell syntax checks pass; a clean-environment Codex frontier smoke authenticated from config; the scoped Grok credential probe passed both required aliases; the local reliability proxy health and authenticated upstream model readback returned HTTP 200; and GUI-domain credential presence is now false.
+- Remaining exposure: provider-side revoke/create is not complete because the upstream gateway exposes no public rotation API and the authenticated browser management channel was unavailable. The old credential therefore remains valid, already-running processes retain their inherited copy until a coordinated restart, and server-side Multica receipts/live SQLite history have no verified safe deletion path. WS-4276 remains blocked rather than claiming rotation completion.
+
 ## [2026-08-16 18:42 CST] [Codex-CTO] [type:fix] Make Xinxin Codex relay survive AppX replacement during launch
 
 - Root cause: while the relay launcher was waiting for Codex Desktop, Windows replaced AppX `26.810.4967.0` with `26.810.7004.0`; the launcher kept filtering processes against the old InstallLocation and reported a false failure even though the new root process carried the organization relay argument.
@@ -7190,6 +7231,13 @@ JC 17:31 双命题:
 - 改动：创建指定日期的最小事实版日记
 - 影响：补齐 DIARY_TICK 落盘
 - 原因：执行 system lane diary 维护
+## [2026-08-26 06:12 CST] [Codex-CTO] [type:fix] Correct WS-4098 false duplicate ACK handling
+
+- Correction: the 05:50 implementation was not sufficient. It could treat a different action marker on old WS-3755 as a fresh created receipt, let terminal ACK rows bypass live verification, and let the dead-letter consumer trust raw receipt shape without executor revalidation.
+- Fix: ERP issue-create action identity now binds reason, title, assignee and normalized content. Created recovery verifies the exact marker, parent, title, active status, assignee and CTO creator; active-duplicate recovery writes an issue-UUID-bound comment with fixed aggregate fields, then stores a comment UUID plus evidence hash under `multica-issue-dedup:WS-*`.
+- Downstream: terminal created/dedup receipts are re-read live, incident ticket refs accept only public `WS-*` identifiers, and dead-letter binding always routes through the executor instead of reusing raw consumer rows.
+- Verification: PR #30 exact head `73febdc18fa6d7b47c7e57e74c73360c38cbbbcd` passes the 48/48 scoped receipt and WS-3675 suite, compile, diff check and GitHub security gate. Two independent adversarial reviews closed all reported false-ACK and downstream-bypass blockers.
+- Boundary: PR #30 remains unmerged and undeployed pending CSO exact-head review. No queue mutation, launchd reload, GBrain, Sector Radar or production state change was performed.
 
 ## [2026-08-27 05:49 CST] [Codex-CTO] [type:fix] Validate duplicate ERP issue metrics against production contracts
 
