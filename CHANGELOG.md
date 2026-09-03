@@ -7247,6 +7247,21 @@ JC 17:31 双命题:
 - Verification: exact-head archive passed the WS-4098, WS-3675 and security-gate suites 82/82; a read-only live queue contract covered all five production shapes, and the real 2026-08-20 stale-draft row returned only `max_age_hours`, `over_4h` and `total`. Three rounds of independent adversarial review ended PASS, and GitHub security-gate passed on exact head `6912a02`.
 - Boundaries: PR #30 remains unmerged and undeployed; no production queue mutation, launchd reload, review-pass registration, GBrain, Sector Radar or production heartbeat action was performed.
 
+## [2026-09-01 10:08 CST] [Codex-CTO] [type:fix] Make daily activity reconciliation fail closed on hidden attribution gaps
+
+- Scope: WS-4614 changes the daily activity helper, token-attribution verification gate, generator handoff contract and their regression fixtures; the 2026-08-31 immutable attribution/runtime snapshots remain byte-for-byte untouched.
+- Shared-key fix: activity rows now consume the attribution layer's resolved employee identity. The real 2026-08-31 replay reports 文雅 as `19（+136 未决共享 key，未计入归因）`, keeps 维欣 at 96 raw, and exposes the 136-request unresolved bucket separately instead of silently assigning it to 文雅.
+- Instrument fix: a read-only helper fully paginates active/recent autopilot runs with the WS-4607 contract (7-day candidate lookback, all failed statuses, exact-reason SHA-256 grouping, sanitized bounded diagnostics, unreadable fail-closed). The strict Final Generator gate validates snapshot timing/coverage and recomputes clusters before it can return VERIFIED; systemic clusters degrade the gate, while `0.2 < relative_to_baseline < 0.7` always produces a visible reason. Existing non-strict hourly callers keep their prior semantics.
+- Closing fix: a report-description validator rejects mixed-case `__[A-Za-z][A-Za-z0-9_]*__` placeholders and requires one labeled closing line with the expected WS identifier and UUID. The generator contract uses recoverable, idempotent two-phase backlog creation and readback before triggering CSO, preventing an incomplete cross-link from becoming visible work.
+- Verification: all 396 Python metric tests pass. A live read-only 2026-08-31 run scan found 26 failed runs, zero unreadable autopilots and two systemic clusters; the resulting gate is `INSTRUMENT_DEGRADED` with the subscription outage and 0.464517 warning-band reasons.
+- Boundary: code and the exact autopilot prompt delta are prepared on the WS-4614 review branch only. The shared `~/.org` main tree and live Generator autopilot were not changed before independent review/merge/deployment approval.
+
+## [2026-09-03 10:26 CST] [Codex-CTO] [type:fix] Accept real Generator closing labels without weakening the contract
+
+- Review follow-up: CSO reproduced that WS-4610 renders its closing label after a sentence on the same line, while the validator required the label to own the line and would therefore stop every daily report before issue creation.
+- Fix: the validator now accepts a closing label only at line start or immediately after a Chinese/ASCII sentence separator (`。`, `；`, `;`). UUID, WS identifier, uniqueness, unresolved-placeholder and trailing-text checks are unchanged; explanatory prose containing a later incidental label remains rejected.
+- Verification: the new real-shape regression was RED before the change and GREEN after it; all 7 closing-contract tests pass. The live WS-4610 description returns `PASS`, `closing_line_count=1`, and no unresolved placeholders. The complete metrics suite passes 397/397 when run from `metrics/` with the repository root on `PYTHONPATH`, preserving both sibling-module and package imports.
+- Boundary: this follow-up changes review branches only. No merge, deployment, live Generator autopilot change, production data write, daemon reload, GBrain or Sector Radar action was performed.
 ## [2026-08-27 11:09 CST] [Codex-CTO] [type:ops] Add Weixin to v1.9 Silent self-collect and central pull
 
 - Scope: DESKTOP-N8VARKF (`10.20.20.6`) now runs exact `1.9.0-1a5bde52d7a3-i600` as `OpenClaw Corpus Self Collect Silent`; the official task name remains absent. No Windows account or group was created, changed or deleted.
