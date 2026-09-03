@@ -1,0 +1,312 @@
+{
+ "meta": {
+  "rule": "hard rule 22 (~/.org/AGENTS.md)",
+  "metering_month": "2026-08",
+  "window_utc": [
+   "2026-07-31T16:00:00Z",
+   "2026-08-31T16:00:00Z"
+  ],
+  "window_local": "2026-08-01 00:00 ~ 2026-08-31 23:59 Asia/Shanghai",
+  "judged_at": "2026-08-31T19:40:47.983546-07:00",
+  "judge": "Opus-CSO (0ee6063e)",
+  "dispatch_issue": "WS-4618",
+  "unit_of_judgment": "员工(人); 一人名下多 agent 合并计数 (2026-08 新增文雅WorkBuddy/Grok 后必要的口径延伸)"
+ },
+ "persons": {
+  "泡泡": {
+   "agents": [
+    "泡泡的大C"
+   ],
+   "total": 69,
+   "real": 1,
+   "no_output": 4,
+   "daily": 31,
+   "org_infra": 33,
+   "real_tickets": [
+    {
+     "id": "WS-3986",
+     "agent": "泡泡的大C",
+     "title": "【一次交齐·泡泡】天猫+京东 6+7月 消耗/退后/货本/扣点",
+     "status": "in_review",
+     "line": "投放/财务对账",
+     "strength": "strong",
+     "evidence": "天猫万相台+京东京准通 6+7月消耗/退后/货本四格终验; 独立SUM与票面0差异; 勘误版 SHA-256 已锁"
+    }
+   ],
+   "no_output_tickets": [
+    {
+     "id": "WS-4247",
+     "agent": "泡泡的大C",
+     "title": "[天猫投放监控日报] 2026-08-25 · 结算 2026-08-24",
+     "status": "blocked",
+     "why": "投放监控日报: 同上, Excel新增0行"
+    },
+    {
+     "id": "WS-4163",
+     "agent": "泡泡的大C",
+     "title": "[天猫投放监控日报] 2026-08-24（结算 2026-08-23）",
+     "status": "blocked",
+     "why": "投放监控日报: 可控浏览器会话不可用, 全部指标读不到"
+    },
+    {
+     "id": "WS-3987",
+     "agent": "泡泡的大C",
+     "title": "【7月盘点·泡泡】天猫万相台+京东 · 6+7月充值/消耗与退后",
+     "status": "cancelled",
+     "why": "7月盘点票 cancelled"
+    },
+    {
+     "id": "WS-2910",
+     "agent": "泡泡的大C",
+     "title": "[天猫投放监控日报] 2026-08-02 结算",
+     "status": "blocked",
+     "why": "投放监控日报: Chrome扩展通信失败, 计划/单元/商品读到0, Excel新增0行"
+    }
+   ],
+   "verdict": "达标"
+  },
+  "芳芳": {
+   "agents": [
+    "芳芳的澄川"
+   ],
+   "total": 70,
+   "real": 2,
+   "no_output": 2,
+   "daily": 31,
+   "org_infra": 35,
+   "real_tickets": [
+    {
+     "id": "WS-4358",
+     "agent": "芳芳的澄川",
+     "title": "[旺店通查询求助] 只导天猫6/7月 · 换桌面客户端勿再刷网页",
+     "status": "in_review",
+     "line": "发货/ERP",
+     "strength": "weak",
+     "evidence": "天猫6月2,071行/7月6,009行订单只读核验, 商家编码空值=0, 货本 11,460.36/34,134.28"
+    },
+    {
+     "id": "WS-3016",
+     "agent": "芳芳的澄川",
+     "title": "确认总库存表上传SLA与缺表提醒（先核实是否周一/周四）",
+     "status": "done",
+     "line": "库存/发货",
+     "strength": "weak",
+     "evidence": "总库存表SLA闭环(周一/周四15:00)+8/6首测真实消费链路实测, autopilot 20879b08 已建"
+    }
+   ],
+   "no_output_tickets": [
+    {
+     "id": "WS-3996",
+     "agent": "芳芳的澄川",
+     "title": "[ERP发货线] 8/20 风险单旺店通明细核对 (今日唯一可能漏发)",
+     "status": "done",
+     "why": "ERP风险单核对: 芳芳被卡(平台侧无收件人/货号/单号), 实际由 CSO 在本机完成 — 不计为芳芳产出"
+    },
+    {
+     "id": "WS-2992",
+     "agent": "芳芳的澄川",
+     "title": "[ERP分诊][B类][2026-08-04] 1 个商品映射异常待人工终判",
+     "status": "blocked",
+     "why": "ERP分诊B类: fail-closed, 无商品标识/映射证据, 待人工终判"
+    }
+   ],
+   "verdict": "达标"
+  },
+  "皮皮": {
+   "agents": [
+    "皮皮的小P"
+   ],
+   "total": 64,
+   "real": 3,
+   "no_output": 1,
+   "daily": 31,
+   "org_infra": 29,
+   "real_tickets": [
+    {
+     "id": "WS-4133",
+     "agent": "皮皮的小P",
+     "title": "先遣素材线·蝉妈妈爆款跟投 1品×3素材×一素材一计划(皮皮)",
+     "status": "in_progress",
+     "line": "内容/素材",
+     "strength": "weak",
+     "evidence": "蝉妈妈爆款跟投 1品×3素材 口播脚本 A/B/C 三版已产出 (in_progress)"
+    },
+    {
+     "id": "WS-3984",
+     "agent": "皮皮的小P",
+     "title": "【一次交齐·皮皮】抖音 6+7月 消耗/退后/货本/扣点",
+     "status": "done",
+     "line": "投放/财务对账",
+     "strength": "strong",
+     "evidence": "抖音挂车账户1844034638449865 6+7月消耗662,447.58锚+退后闸PASS+货本方案B"
+    },
+    {
+     "id": "WS-2761",
+     "agent": "皮皮的小P",
+     "title": "[Result Contract] 皮皮真实消费 7/30 千川 ROI claim",
+     "status": "done",
+     "line": "投放",
+     "strength": "strong",
+     "evidence": "7/30千川真实消费 12,269.08 / 净成交GMV 26,415.80 / ROI 2.15 独立复算一致 + SHA-256"
+    }
+   ],
+   "no_output_tickets": [
+    {
+     "id": "WS-4283",
+     "agent": "皮皮的小P",
+     "title": "【需皮皮本人回答】千川10张表线的两个问题（JC 问过一次，回复不充分）",
+     "status": "blocked",
+     "why": "千川10张表线: 待皮皮本人回答"
+    }
+   ],
+   "verdict": "达标"
+  },
+  "奶思": {
+   "agents": [
+    "奶思的猪猪"
+   ],
+   "total": 71,
+   "real": 1,
+   "no_output": 0,
+   "daily": 31,
+   "org_infra": 39,
+   "real_tickets": [
+    {
+     "id": "WS-3985",
+     "agent": "奶思的猪猪",
+     "title": "【一次交齐·奶思】达播+小红书 6+7月 消耗/退后/货本/扣点",
+     "status": "in_review",
+     "line": "达播/小红书",
+     "strength": "strong",
+     "evidence": "谢婷婷专场条款核+蒲公英6/7月后台流水指定页(0条实证)+方舟结算JSON 411,122.41"
+    }
+   ],
+   "no_output_tickets": [],
+   "verdict": "达标"
+  },
+  "文雅": {
+   "agents": [
+    "文雅的白茶",
+    "文雅的WorkBuddy",
+    "文雅的Grok"
+   ],
+   "total": 54,
+   "real": 1,
+   "no_output": 0,
+   "daily": 31,
+   "org_infra": 22,
+   "real_tickets": [
+    {
+     "id": "WS-2790",
+     "agent": "文雅的白茶",
+     "title": "[hr22 8月真业务] 文雅视觉线: 本周电商成图登记 + 提示词资产库沉淀",
+     "status": "done",
+     "line": "内容/视觉",
+     "strength": "normal",
+     "evidence": "电商视觉提示词库_v1.md 12条/163行/16181B + 3张可核验成图(山海精华2.0)"
+    }
+   ],
+   "no_output_tickets": [],
+   "verdict": "达标"
+  },
+  "黄宁": {
+   "agents": [
+    "黄宁的橙子"
+   ],
+   "total": 44,
+   "real": 1,
+   "no_output": 0,
+   "daily": 20,
+   "org_infra": 23,
+   "real_tickets": [
+    {
+     "id": "WS-2791",
+     "agent": "黄宁的橙子",
+     "title": "[hr22 8月真业务] 黄宁视觉线: 500张参考素材结构化筛选 + 本周视觉产出登记",
+     "status": "done",
+     "line": "内容/视觉",
+     "strength": "normal",
+     "evidence": "500/500张身体乳参考素材结构化筛选, Top40 落盘, 附清单文件"
+    }
+   ],
+   "no_output_tickets": [],
+   "verdict": "达标"
+  },
+  "小龙": {
+   "agents": [
+    "小龙的大龙"
+   ],
+   "total": 63,
+   "real": 1,
+   "no_output": 1,
+   "daily": 31,
+   "org_infra": 30,
+   "real_tickets": [
+    {
+     "id": "WS-2792",
+     "agent": "小龙的大龙",
+     "title": "[hr22 8月真业务] 小龙建联线: 8月首周邀约批次 + 回复登记 + 周产出汇总",
+     "status": "done",
+     "line": "达人建联",
+     "strength": "normal",
+     "evidence": "8/3实跑 Buyin 登录探针200 + 隐藏API发出100个邀约(32+40+2x批)"
+    }
+   ],
+   "no_output_tickets": [
+    {
+     "id": "WS-4241",
+     "agent": "小龙的大龙",
+     "title": "小龙 · 微信业务信息「每日待确认清单」Loop — 默认值已定, 只差 3 个回答",
+     "status": "blocked",
+     "why": "微信待确认清单: 仅完成范围确认, 未首跑, 无业务产出"
+    }
+   ],
+   "verdict": "达标"
+  },
+  "欣欣": {
+   "agents": [
+    "欣欣的叶子"
+   ],
+   "total": 50,
+   "real": 1,
+   "no_output": 0,
+   "daily": 25,
+   "org_infra": 24,
+   "real_tickets": [
+    {
+     "id": "WS-2793",
+     "agent": "欣欣的叶子",
+     "title": "[hr22 8月真业务] 欣欣寄样线: 达人寄样表全量健康核对 (只读)",
+     "status": "blocked",
+     "line": "寄样",
+     "strength": "weak",
+     "evidence": "寄样表全量健康核对111条记录(飞书多维表tblvAPhZpGfg03vG), 报告5993B 已落盘 (blocked但有产出)"
+    }
+   ],
+   "no_output_tickets": [],
+   "verdict": "达标"
+  },
+  "维欣": {
+   "agents": [
+    "维欣的codex"
+   ],
+   "total": 41,
+   "real": 0,
+   "no_output": 0,
+   "daily": 9,
+   "org_infra": 32,
+   "real_tickets": [],
+   "no_output_tickets": [],
+   "verdict": "0票"
+  }
+ },
+ "totals": {
+  "total": 526,
+  "real": 11,
+  "noout": 8,
+  "daily": 240,
+  "orginfra": 267,
+  "pass_count": 8,
+  "person_count": 9
+ }
+}
