@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2026-09-04 15:54 CST] [Codex-CTO] [type:agent-ops] Install and live-test mono-color editorial skill
+
+- Installed `yanliudesign/mono-color-skill` at commit `c8ff70597ddedcd65f21a0b528f6a70c35690b0a` into `~/.claude/skills/mono-color-skill`; no Claude settings or other skill directory was modified.
+- Dependency boundary: the repository declares no third-party runtime dependency. Its Python 3.9 standard-library validators passed 16/16 evaluation cases and the complete design-system catalog validation, so no package or model was installed.
+- Live consumption: used the skill's manifest, composition, typography, spacing and print-process rules to generate a 16:9 cover, chapter divider and ending slide for the “人 × Agent 电商半年路演” sample set.
+- A-skin adaptation: preserved the generated halftone/layout structure and deterministically mapped the final files to the existing deck's warm-paper `#EEE9DF` plus single deep ink `#1A1612`; no caramel accent or additional ink remains.
+- Delivery: three inspected 1672×941 PNGs plus usage/capability notes and a completion receipt are under `~/.org/cso-window/ppt-0904/mono-samples/`. No Lark message was sent.
+
 ## [2026-09-03 16:30 CST] [Codex-CTO] [type:fix] Count flapping suppression by new evidence
 
 - Trigger: WS-4803 proved that slow health sources could spend the global flapping round budget on repeated monitor ticks over one unchanged observation; `employee_corpus_partial` escalated in about six minutes even though its 30-minute source had not advanced.
