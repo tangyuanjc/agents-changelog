@@ -1,3 +1,9 @@
+## [2026-09-05 16:55 CST] [Codex-CTO · cto-gpt6] [type:fix] WS-4840 B3 direct county city deployment
+
+- B3 parser adds a four-city allowlist for direct county/county-level-city addresses, with local guards for missing-address placeholders and delivery-only notes; no splitter/AC6/B4 changes.
+- Candidate and production SHA are recorded in ~/.org/cto-gpt6/task02b-evidence/b3-manifest.json and deployment evidence; 195 tests passed with one pre-existing product-parser failure, AC6 15/15.
+- Deployed under explicit TASK-02b authorization; one SIGINT to old PID, KeepAlive PID 73839, three natural healthy heartbeats, single writer and unchanged plist. PR #46 remains unmerged.
+
 # CHANGELOG
 
 ## [2026-09-05 15:48 CST] [Codex-CTO · cto-gpt6] [type:fix] WS-4840 地址建议与提醒演练隔离
