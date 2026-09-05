@@ -7392,3 +7392,10 @@ JC 17:31 双命题:
 - Precedence regression: poisoned-parent negative tests first failed, then passed after the wrappers were pinned. A fresh real `grok-cpa` request launched with poisoned parent key/endpoint values returned exactly one `GROK_RELAY_PRECEDENCE_OK_20260903` marker with exit 0. `GROK_WRAPPER_TESTS_OK` and `AGY_RELAY_WRAPPER_TESTS_OK` pass; both wrappers are restored to `0555 + uchg`.
 - Work continuity: `herdr-lead` and `grok-gbot-intel` retained one two-hour loop each across the migration. `grok-finance` and `grok-adversarial` had completed their prior work and received only a migration marker, avoiding duplicate execution.
 - Remaining gate: CLIProxyAPI officially supports `oauth-model-alias.antigravity`; the relay administrator must add `name=gemini-3.8-flash-high, alias=gemini-3.8-flash, fork=true`, after which `modelProvider=gemini` must be restored and a real `agy-relay` canary must pass before either Agy pane is migrated. No Agy binary edit, local proxy daemon, pane replacement or force-kill was used.
+
+## [2026-09-05 14:20 CST] [Codex-CTO] [type:agent-ops] Remove stale Codex startup snapshots
+
+- JC requested a first-principles review of the prior organization audit and deletion of unnecessary complexity. The local startup file still duplicated an old CLI/model baseline and roles already superseded by the constitution.
+- Updated only `~/.codex/instructions.md`: removed fixed CLI/model/provider snapshots and the duplicate secondary-role roster; retained JC/CSO/CTO responsibilities, the existing change-authorization rule, and pointers to live CLI/config/runtime truth plus current hr13/hr19/hr35/Closing duties.
+- Readback: six targeted assertions passed. SHA-256 is `06829d4abd6be3be76f12519c68935260d4d2a5c82aef91df2924f1d3da02171`; the original local file remains available for rollback. A separate reviewer checked the authority and Closing boundaries before the change.
+- No model/provider config, constitution, memory, service, issue status, or scheduled task was changed by this startup cleanup. Older memory snapshots still exist and remain lower-priority historical context.
