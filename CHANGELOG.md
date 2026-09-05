@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2026-09-05 15:25 CST] [Codex-CTO · cto-gpt6] [type:agent-ops] 纠正 PR #126 作者并递交两项 Claude 复审
+
+- 按 CSO TASK-01b 授权，仅重写 PR #126 的 75b04fe/cdb7d2f 两笔作者与提交者为 Codex-CTO；新提交 747322b/4960a61，逐笔文件树、消息、合并拓扑与作者日期不变，其他祖先未重写。
+- 验证：完整 diff 为空，153 项 sweeper 测试通过；force-with-lease 推送后 PR head 4960a610848a51914ff4999d2b5287f6418fa589，正文注明实际由 GPT-6 Codex 线程 01a07016 产出。
+- 送审：WS-4817 已补新 head；PR #135 由 WS-4918 承载，指派 CSO Opus（Claude），保留 19/19 定向与 54/57 全量、原 main 三项基线失败的边界。
+- 证据：~/.org/cto-gpt6/task01b-evidence/；桌面证据读取受阻，5 份原件按既存 SHA 验证后复制到 pr135-tests/。未改桌面文件，未合并、未部署、未改生产树。
+
 ## [2026-09-04 15:54 CST] [Codex-CTO] [type:agent-ops] Install and live-test mono-color editorial skill
 
 - Installed `yanliudesign/mono-color-skill` at commit `c8ff70597ddedcd65f21a0b528f6a70c35690b0a` into `~/.claude/skills/mono-color-skill`; no Claude settings or other skill directory was modified.
