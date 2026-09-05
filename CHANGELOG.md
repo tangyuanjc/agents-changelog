@@ -1,3 +1,11 @@
+## [2026-09-05 19:08:17 上海] [Codex-CTO · cto-gpt6] [type:fix] WS-4840 无卡片提醒与回放事务硬化
+
+- TASK-02e授权的两项小修已完成：无卡pending显示姓名确认命令，有卡保持原动作；一次性回放事务在任何UPDATE前拒绝备份集合外跨日期同签名基底活跃草稿。生产DB只读，本轮未再回放、未人工发提醒或推单。
+- 文案RED→GREEN，提醒4通过；回放原6+新增4共10通过，拒绝前SQL trace零DML。AC6 15通过；七模块当前生产基线238通过/3失败、候选240通过/相同3失败，无新增回归；独立上下文工程复核无本轮阻断，正式终验仍归CSO。
+- 预留痕01a0713e-e114-7790-a750-da7955b8d04a后部署0005，旧PID27345单次SIGINT→KeepAlive PID81093/runs6，上海19:06:34启动。单writer/锁一致，三轮自然日志errors/lark_cli_error_count/waybill_errors均0，plist未动；daemon SHA276584576babe984406a1379132621c467fa8d95212f4a3a81b79c303dd24c9d。
+- 生产只读调用真实morning过滤/姓名选择器证明c96762在9/6 09:35纳入，确认小美唯一命中，9/6 18:43才满24h，不含旧错误地址建议。range(3)/WS-4797签名/取消不变。
+- PR#46 head fcc8ff1c56b788fca8c3c9e430794169b7f8570f 已push未合；凭证 ~/.org/cto-gpt6/task02e-evidence/。完成后停派，不创建等待循环；自然09:35消息由CSO终验。
+
 ## [2026-09-05 18:54 CST] [Codex-CTO · cto-gpt6] [type:fix] WS-4840 存量卡单一次性恢复
 
 - TASK-02d明确授权生产DB一次性回放；先备份2条drafts的SQL/JSON并恢复回读一致，再贴dry-run计划，经独立合成6项审查后执行事务内全行CAS修复。
