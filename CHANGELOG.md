@@ -1,3 +1,11 @@
+## [2026-09-05 18:54 CST] [Codex-CTO · cto-gpt6] [type:fix] WS-4840 存量卡单一次性恢复
+
+- TASK-02d明确授权生产DB一次性回放；先备份2条drafts的SQL/JSON并恢复回读一致，再贴dry-run计划，经独立合成6项审查后执行事务内全行CAS修复。
+- 东莞c96762 needs_human→pending_confirmation，ready/trades恢复并清旧卡绑定/续确认有效期，待新的人工确认；义乌634f1a保持reconciled_wdt_shipped，仅reasons清空。其余草稿不变，无消息发送或WDT调用，PID27345不重启，6轮自然日志正常，needs_human现为0。
+- test_b4_ledger.py和test_b4_daemon.py已放生产根，26 collected/26通过，AC6 15通过，7模块240通过/1既有商品解析失败。一次性脚本及6项审查探针入PR，修复delta缺签名错误；测试guard正确区分内存SQLite，仍拒绝生产DB。
+- PR#46 head deb10dab442ba3a9255dce1118122f6948168d4e 已push未合并；N1/N5另建WS-4937/WS-4938（CTO/backlog），来源16:03:27与18:25:58上海CSO复审评论。
+- 凭证 ~/.org/cto-gpt6/task02d-evidence/（备份权限600、apply/live/测试/审查回执）；明早9月6日09:35自然提醒由CSO钟核，不人为触发，不代改done。
+
 ## [2026-09-05 17:55 CST] [Codex-CTO · cto-gpt6] [type:fix] WS-4840 B4 台账回放查重
 
 - 可确认草稿落盘前按收件人、手机号和完整SKU/Decimal数量核已推送/已发货台账；上海成功日判据保留较新日复购，同tid重复拦截，WS-4797签名/range(3)/取消函数未改。
