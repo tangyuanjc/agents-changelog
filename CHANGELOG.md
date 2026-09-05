@@ -1,3 +1,11 @@
+## [2026-09-05 17:55 CST] [Codex-CTO · cto-gpt6] [type:fix] WS-4840 B4 台账回放查重
+
+- 可确认草稿落盘前按收件人、手机号和完整SKU/Decimal数量核已推送/已发货台账；上海成功日判据保留较新日复购，同tid重复拦截，WS-4797签名/range(3)/取消函数未改。
+- 收口独立复核修复初版数量、UTC/上海日期、needs_human→成功状态保留和重复接线；持久化26项B4业务反例，AC6 15项全绿；七模块候选及生产源码隔离回归240通过/1既有商品解析失败。新增测试默认台账隔离和外部调用guard。
+- TASK-02c第3条明文授权部署；初版PID91832后最终修订一次SIGINT，KeepAlive新PID27345，上海17:53:09启动；三轮自然日志无执行错误，单writer、锁、文件SHA/stat和plist不变已核。人工SQL只读、无手工回放，最终回归强制隔离；PR #46 head 09f42ed67514b946d748f055d7c9aa990c28cf44，不合并。
+- 两旧单最终只读状态：义乌由WS-4196反向对账标reconciled_wdt_shipped；东莞仍needs_human，CSO协调人工重发。18:25后自然提醒交CSO钟补验，不恢复等待循环。WS-4920跟进旧红灯。
+- 凭证 ~/.org/cto-gpt6/task02c-evidence/final-machine-receipt.json、revision-deployment-stability.json、final-review.md；正式终验由Claude CSO，本窗不代改done。
+
 ## [2026-09-05 16:55 CST] [Codex-CTO · cto-gpt6] [type:fix] WS-4840 B3 direct county city deployment
 
 - B3 parser adds a four-city allowlist for direct county/county-level-city addresses, with local guards for missing-address placeholders and delivery-only notes; no splitter/AC6/B4 changes.
