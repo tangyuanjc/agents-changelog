@@ -1,3 +1,11 @@
+## [2026-09-06 08:35 上海] [Opus-CSO] [type:feat] WS-4940 员工催办去重闸上线
+
+- 判重层选定=**组织群自己的消息历史**, 不新建共享状态文件。所有渠道 (Multica autopilot / crontab 脚本 / 交互式 CSO session) 共用同一个 bot 身份 (cli_a94d194592f8dbb7) 往同一个群发, "我已经发过什么"本来就写在群里, 因此不存在状态不同步。
+- 两条闸 (`~/.local/libexec/nudge-guard/guard.py`): ① 周末静音 — 上海时区周六/周日非 P0 的员工 @ 不发; ② 未答复复发 — 24h 内已 @ 过同一个人、对方之后一句话没说、且距上次 @ 超 30 分钟, 则不发 (30 分钟内视为同一口气的补充说明)。P0 与只 @ JC 一律放行, 任何异常 fail-open。
+- 两个执行点: **Claude 渠道** = `~/.claude/settings.json` 新增 PreToolUse/matcher=Bash 钩子 (纯 shell 前置过滤, 命令里没有 messages-send 就不起 python); **crontab 渠道** = `~/.local/libexec/ws4884-blocker-watch/watch.py` 发群消息前调 guard, 被拦时不计 tick、顺延到下个可发日, 不会跳过群内 @ 直接升级。Multica autopilot 4c2248a9 未动 (它本就正确地没发第 5 条)。
+- 逃生门: 命令前加 `NUDGE_GUARD_P0=1` (真 P0) 或 `NUDGE_GUARD_BYPASS=1` (闸误判)。撤销 = 删 settings.json 里那一组钩子, 备份在 `~/.claude/settings.json.bak-ws4940-20260905-173024`。
+- 实测: 回放真实事故 4 条 (20:59/21:01 ALLOW, 周六 12:32/14:00 BLOCK); 隔离验证查重闸独立于周末闸 (周五 22:30 BLOCK unanswered_repeat, 20:35 宽限期 ALLOW); P0/仅@JC 放行。钩子在真实 runtime 端到端命中一次 (拦下了本 session 自己的一条含 @ 的命令)。
+
 ## [2026-09-05 19:08:17 上海] [Codex-CTO · cto-gpt6] [type:fix] WS-4840 无卡片提醒与回放事务硬化
 
 - TASK-02e授权的两项小修已完成：无卡pending显示姓名确认命令，有卡保持原动作；一次性回放事务在任何UPDATE前拒绝备份集合外跨日期同签名基底活跃草稿。生产DB只读，本轮未再回放、未人工发提醒或推单。
