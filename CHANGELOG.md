@@ -1,3 +1,11 @@
+## [2026-09-06 14:25 上海] [Codex-CTO] [type:fix] ORCA 统领窗与 HerdR 工作入口补齐
+
+- 按 JC 本轮迁移指令，保留原 HerdR 的 21 pane（12 Agent、9 历史 shell），按 10 个 Space 将 20 个原终端附着到 ORCA；旧 CSO 留作历史/回落，不重复 resume、不重启原进程。ORCA 当前 14 工作树、23 终端。原编排和定时循环仍由既有系统持有，统一入口不等于原生编排全迁移。
+- ORCA 原 CSO session 实测切到 `claude-fable-5-1`，`~/.bin/orca-cso.sh` 固定该模型并优先官方 CLI 路径；现有 CSO 本人用官方 run-use 接管原 Run，任务历史保持。可从 main 的“CSO · Fable 5.1 统领窗”继续。
+- `~/.bin/feishu-watch.sh` 与 `~/.org/cso-window/gemini-routines/` 下 5 份活任务书统一经 `~/.bin/cso-notify.sh` 投递。通知脚本核目标身份、工作位置和可写状态；已登记目标的发现失败、空句柄、读取失败、发送结果不明均停止，避免误回落和重复投递。
+- 验证：通知隔离 RED 4 失败 → GREEN 10 方法/20 场景；三个脚本 zsh 语法通过。独立上下文核所有窗口身份、随机三组 PID 与屏幕、Fable 实际 transcript；完整逐字历史缺迁移前基线，未声称字节全量验收。证据在 `~/orca-hq/evidence/migration-20260906/`，交接在 `~/orca-hq/docs/HANDOFF.md`。
+- MacBook 双向 SSH 与官方共享当前 Desktop 方案已核；尚待 JC 对新增运行实例访问授权的确认，未配对，未另开 serve。双端验收与跨日观察尚未完成。未改宪法、memory、组网或生产 daemon；无对外发布。
+
 ## [2026-09-06 08:35 上海] [Opus-CSO] [type:feat] WS-4940 员工催办去重闸上线
 
 - 判重层选定=**组织群自己的消息历史**, 不新建共享状态文件。所有渠道 (Multica autopilot / crontab 脚本 / 交互式 CSO session) 共用同一个 bot 身份 (cli_a94d194592f8dbb7) 往同一个群发, "我已经发过什么"本来就写在群里, 因此不存在状态不同步。
