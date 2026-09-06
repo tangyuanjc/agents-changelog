@@ -1,3 +1,12 @@
+## [2026-09-06 19:48 上海] [Codex-CTO] [type:fix] MacBook ORCA OpenCode 自动批准与双机设置核验
+
+- JC 要求核对双机 Agent 与 ORCA 设置并补足组织执行能力；手机配对按 JC 确认完成，不重做迁移。真实 Grok 网页 Auto、AGY Gemini 3.8 Flash High 与近30天引擎/官方回源研究已完成；AGY 自身无法选择 Chrome Profile，指定 Google Profile 另行搜索，认证账号未独立核实。
+- 通过 MacBook 现有 Desktop runtime 的本地 Unix socket，仅将 agentDefaultArgs.opencode 从未配置设为 --auto。该参数经本机 OpenCode 1.18.20 help 核实，自动批准未明确 deny 的权限；只影响新 ORCA OpenCode 会话，保留显式 deny，不改模型/provider。其余 runtime 设置逐值读回一致。
+- 官方 background createAgentSession 省略 agentArgs，实际启动进程带 --auto、executionHostId=local；仅精确关闭本轮返回测试 handle，验收前后原7个窗口全部保留。另有 DeepSeek V4 Pro 单轮模型回包成功、工具调用0；未以安装或设置字段冒充完整能力验收。
+- 双机跨客户端隐藏=false、主机过滤=null；Agent状态钩子均true，常用CLI已配免批准参数。公开分享维持已有差异（MacBook开、Mini关），未创建公开链接、未启额外插件或重复调度。
+- Mini 当前锁屏，Orca Computer Use 报辅助功能/录屏未授予，待 JC 解锁后通过原生系统设置授权并验收。Mini ORCA防休眠关闭但UU系统防休眠断言有效；ORCA自身防休眠/Skills入口待解锁后处理，不写成完成。
+- 可复查交付：~/orca-hq/docs/orca-settings-audit-20260906.html、docs/HANDOFF.md、evidence/settings-audit-20260906/；新增只读脱敏脚本 scripts/audit-orca-settings.cjs。未改宪法或 memory、未重启业务 Agent、未生成配对码。本仓仅本地审计提交，日志按组织规则推送。
+
 ## [2026-09-06 17:58 上海] [Codex-CTO] [type:feat] ORCA 双机工作台 DONE 与手机配对面板就绪
 
 - 按 JC 转达的 CSO 完成线，MacBook 原生 Connected、Active Server=Mac mini、双向 shell 与 15 项核验已达成，记 DONE。原 environment、grant、Fable 5.1 CSO、Run 与工作入口保留；不再等待额外联网验收。
