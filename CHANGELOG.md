@@ -1,3 +1,12 @@
+## [2026-09-06 17:58 上海] [Codex-CTO] [type:feat] ORCA 双机工作台 DONE 与手机配对面板就绪
+
+- 按 JC 转达的 CSO 完成线，MacBook 原生 Connected、Active Server=Mac mini、双向 shell 与 15 项核验已达成，记 DONE。原 environment、grant、Fable 5.1 CSO、Run 与工作入口保留；不再等待额外联网验收。
+- 直接 UU 映射在 iPhone 控制 Mini 时触发接管冲突，因此停用 MacBook GUI 登录任务，保留 `.plist.disabled`。最终改为 Mini 现有 UU 16722→MacBook SSH 承载专用反向隧道，MacBook 仍通过原 `127.0.0.1:16768` 访问 Mini 6768；未另起 `orca serve`、未重启业务 Agent。
+- Mini `com.jc.orca-workbench.reverse-tunnel` 由 launchd 持有单一 SSH 进程，30 秒节流、15秒/3次保活、严格主机密钥核对。MacBook 新增单独受限公钥，原 authorized_keys 字节保留并备份；私钥仅在 Mini，本日志不含密钥。TCP 监听实测只在回环；未改共享 sshd，Unix socket 剩余能力和网络黑洞后监听滞留场景明确保留边界。
+- 真实结束自有 SSH 进程后，launchd 自动恢复，2.788 秒后 MacBook 读到原 Mini runtime、原 shell 与原 nonce；MacBook 原生输入的新标记已在 Mini 读回。专用密钥拒绝 shell 命令与未授权 16769 TCP 转发。临时 shell 于 17:48:05 上海、最新保留指令到达前关闭，仅该测试终端被移除，原23终端保持；已告知 JC，不重建。
+- Mini 原生手机入口仅生成一份手机配对，Orca Relay 已就绪，二维码面板留前台给 JC 扫描；cso-notify 已成功投递面板就绪及 Tailscale 地址，不含配对码。未截图、未将配对码写文件/票面/通知，未声称手机已完成扫码。
+- 凭证 `~/orca-hq/evidence/migration-20260906/`；交接 `~/orca-hq/docs/HANDOFF.md`。系统冷重启、UU整体重启、黑洞与跨日观察均为可选后续，不阻塞 DONE。未改宪法或 memory；原通知路由 PR142 保持待评审。
+
 ## [2026-09-06 17:18 上海] [Codex-CTO · cto-gpt6] [type:fix] WS-4935 生产源码纳管与配置外置送审
 
 - 独立分支基于55399b39纳管23个生产/测试Python文件，5个一次性探针/私有WDT扫描逐名ignore；复制前像23/23匹配生产快照。
@@ -12,7 +21,7 @@
 - ORCA 原 CSO session 实测切到 `claude-fable-5-1`，`~/.bin/orca-cso.sh` 固定该模型并优先官方 CLI 路径；现有 CSO 本人用官方 run-use 接管原 Run，任务历史保持。可从 main 的“CSO · Fable 5.1 统领窗”继续。
 - `~/.bin/feishu-watch.sh` 与 `~/.org/cso-window/gemini-routines/` 下 5 份活任务书统一经 `~/.bin/cso-notify.sh` 投递。通知脚本核目标身份、工作位置和可写状态；已登记目标的发现失败、空句柄、读取失败、发送结果不明均停止，避免误回落和重复投递。
 - 验证：通知隔离 RED 4 失败 → GREEN 10 方法/20 场景；三个脚本 zsh 语法通过。独立上下文核所有窗口身份、随机三组 PID 与屏幕、Fable 实际 transcript；完整逐字历史缺迁移前基线，未声称字节全量验收。证据在 `~/orca-hq/evidence/migration-20260906/`，交接在 `~/orca-hq/docs/HANDOFF.md`。
-- MacBook 双向 SSH 与官方共享当前 Desktop 方案已核；尚待 JC 对新增运行实例访问授权的确认，未配对，未另开 serve。双端验收与跨日观察尚未完成。未改宪法、memory、组网或生产 daemon；无对外发布。
+- 本条为 14:25 历史节点；JC 后续已明确授权直接配对，MacBook 已连接原 mini Desktop runtime，Active Server 与可见性偏好持久读回完成，原生输入及原会话读回通过。当前使用 UU 后台回环映射；完整双机收尾以本日后续条目和 `~/orca-hq/docs/HANDOFF.md` 为准。未另开 serve，未改宪法或 memory。
 
 ## [2026-09-06 08:35 上海] [Opus-CSO] [type:feat] WS-4940 员工催办去重闸上线
 
