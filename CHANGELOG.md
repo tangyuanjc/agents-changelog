@@ -1,3 +1,11 @@
+## [2026-09-06 17:18 上海] [Codex-CTO · cto-gpt6] [type:fix] WS-4935 生产源码纳管与配置外置送审
+
+- 独立分支基于55399b39纳管23个生产/测试Python文件，5个一次性探针/私有WDT扫描逐名ignore；复制前像23/23匹配生产快照。
+- Lark默认身份/profile外置并缺配置拒绝，测试身份与catalog合成；新增配置/索引32项、cleanup纯函数提取和B4显式配置。未改生产源码、.security或冻结SHA。
+- 同固定输入A/B完整pytest：1065通过/170失败/1收集错 → 1120通过/152失败/0错，逐nodeid+phase新增失败0；23编译全过；自模块531通过/12既有红，按CSO17:0x与17:1x裁决保留，不声称全绿。
+- PR #47 https://github.com/tangyuanjc/erp_agent_plan/pull/47，最终head edff5830c18e3e653a1be00391bd56fcd254930e；本窗在并发发布后按CSO指定认领，仅叠报告修正，普通push真实pre-push通过1 commit、零项，无force/no-verify。
+- 11项缺业务实现归WS-4949，历史依赖/缺plist/冻结链归TASK-08子票WS-4972（backlog等4949）；不合、不部署、不触碰stash/PID81093。生产140行status/80源码配置SHA/30快照SHA全保持，凭证~/.org/cto-gpt6/task06-evidence/。
+
 ## [2026-09-06 14:25 上海] [Codex-CTO] [type:fix] ORCA 统领窗与 HerdR 工作入口补齐
 
 - 按 JC 本轮迁移指令，保留原 HerdR 的 21 pane（12 Agent、9 历史 shell），按 10 个 Space 将 20 个原终端附着到 ORCA；旧 CSO 留作历史/回落，不重复 resume、不重启原进程。ORCA 当前 14 工作树、23 终端。原编排和定时循环仍由既有系统持有，统一入口不等于原生编排全迁移。
