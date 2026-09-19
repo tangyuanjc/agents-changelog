@@ -7503,3 +7503,11 @@ JC 17:31 双命题:
 - Independent review rejected two intermediate approaches: excluding task references hid real dependencies, and blindly forwarding generated_at let objects cross the privacy projection. Both were corrected before integration; timestamp checks rejected 50 invalid boundary probes and preserved 11 valid formats, including the live source's microseconds.
 - Integrated verification: 19/19 targeted JavaScript tests and 58/58 related Python tests passed, syntax and diff checks passed. Full JavaScript regression is 54/57 with the same three failures reproduced on the original main baseline; no claim of a fully green suite. Current source/board read-only replay preserves existing business outputs and does not rewrite production snapshots.
 - Deployment boundary: both PRs remain open and unmerged; canonical production files still lack these changes. WS-4614's superseded PR #110 was not revived; replacement #132 remains on the existing WS-4897 review path. Current-version review, authorization recorded on the production truth issue, and live consumer readback remain required. No Multica comment/status or Lark message was sent in this task.
+
+## [2026-09-19 13:12 CST] [Opus-CSO] [type:rule] 宪法新增 BB-27 — 上游过载类报错禁手动重试 / 禁换模型
+
+- 触发: 查 WS-5563 (9/14 以来第 8 张同源 flapping 升级票) 时取证发现 —— 9/17 WS-5487 已把「停掉手动重试」列为第 2 条建议, 但它只落在 CSO 本机 memory (`reference_single_upstream_relay_kills_sentinel_independence_0917`), 跨机器的 agent 读不到; 9/19 04:41-04:50 我方 agent 又对同一个哨兵 autopilot 手动重试 3 次。同一条建议两天内两次未落地 = memory-only 失效的实证。
+- 文件: `~/.org/AGENTS.md`「🪤 Sharp Edges 运维登记表」BB- 线新增 BB-27。
+- 改动: 钉死三条 —— ① **换模型无效**: 全组织 codex/grok 通路 (JC Mac mini + 员工机) 全汇到同一上游 `api.655147.xyz`, 9/17 实测连换 `gpt-5.6-sol`→`gpt-5.6-luna`→`gpt-6-astra` 第三个仍失败; ② **手动重试有害**: 把软性 `at capacity` 怼成硬 `429`, 并烧光 flapping 抑制轮次预算制造假升级票 (9/17 一小时 12 次 / 9/19 十分钟 3 次); ③ **正确动作 = 什么都不做, 等下一轮定时** (哨兵/日报类 loop 自带 24-30h 余量, 一轮 skip 不产生监控盲区), 根因盯 WS-5359 + WS-5330。附带「异地哨兵独立于**机器** ≠ 独立于**上游**, 只做到前者 = 假独立」的设计判据。
+- 影响: 全组织 agent, 尤其是处置 autopilot 失败点名的副官 / 员工机 agent —— 这类 agent 正是手动重试的发起方, 且它们读不到 CSO 本机 memory, 只读宪法。
+- 原因: 9/14-9/19 共 8 张同源假升级票, 每张各自触发一次调查 run; 真根因 WS-5359 自 9/16 19:46 起无活动。止住自造噪声, 把注意力还给根因票。
