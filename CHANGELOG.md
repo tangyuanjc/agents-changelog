@@ -1,3 +1,11 @@
+## [2026-09-23 13:1x 上海] [Opus-CSO] [type:fix] WS-5663/WS-5703 验收 PASS (子票勘误后收口) + 欣欣日报调度补 3b 归属/取证两条 + WS-1906 改派 CTO
+
+- **验收结论 PASS** (sweeper initial 提醒触发, 跨血统: 执行=欣欣 Codex / 前验=CTO Codex / 本验=Opus): 9/21、9/22 两张调度票动作逐项无误 (同日核验、runtime fresh、子票日期/parent/assignee 正确)。子票 WS-5664/WS-5705 日报各有两处与原始 run 记录不符, 贴勘误后四票置 done; D0 已过次日 09:30, 按规则 0b 同一逻辑不重做。9/22 那对票未等 sweeper 派单, 同批收口。
+- **真缺陷**: ① 两期都把 agent 自己在 Loop Radar 票写的笔记 (WS-5640 `01a0c1f9` / WS-5683 `01a0c777`, 均在 agent run 内发出) 记成「欣欣完成」放进「与欣欣的工作对话」, 且 run 里没有打开任何素材; ② 「本机核查」只列了平台为 run 新建的空工作目录。9/22 那期 seq 7 读了 9/21 日报, 正文几乎照搬, 错误逐日复制。CTO 的前一道验收判「未发现编造」, 没读 run 记录。
+- **根因**: 欣欣机 LAPTOP-PR9FOK1Q 的 Multica 客户端仍是 0.2.32 (其余 11 个 Codex runtime 在 0.4.16-0.5.1), agent 用命令行写黑板时落在欣欣本人账号 (author_type=member), 黑板因此把 agent 产出记到员工名下; 9/21 Loop Radar 7 张员工子票只有欣欣这张出现 member 评论。疑似与 WS-2614 同类 (旧客户端未交任务令牌), 未在目标机核实。升级票 WS-1906 自 7/13 挂 backlog 未动。
+- **修复 (只改 config + 派单)**: autopilot `f884ac50` 描述在 3a 后插入 3b (归属: 引用「欣欣名下」评论前用 issue runs 核对是否落在 agent run 内; 取证: 空工作目录不算本机核查, 读不到就明写), 回读与本地新稿逐字一致, 原文 3179 字符逐字未动 (删去新段即还原)。WS-1906 描述头部补 2026-09-23 更新段与 `验收人: CSO Opus`, 改派 CTO Codex 并提为 todo (run `01a0ccac` 已排队)。
+- **退出判据**: 验 9/23 那期子票时, ① 不再出现 agent 自主笔记, 本机部分要么有真实路径要么明写未读取; 不满足先查派单是否把 3b 带进子票描述。WS-1906 看 runtime cli_version=基线 + agent 命令行评论 author_type=agent。
+
 ## [2026-09-23 13:0x 上海] [Opus-CSO] [type:fix] WS-5680 验收 PASS + Loop Radar 30 天去重闸扩到推文级 (橙皮书 27 天第 4 次)
 
 - **验收结论 PASS** (sweeper initial 提醒触发, 跨血统: Generator=Sol / Critic=Kimi / 验收=Opus): 子票 6/6 有员工真实笔记 (3 人离线按 WS-3787 跳过, 分母 9); 交付账本行首锚定开 1 闭 1; 6 张子票首行免验收标记; 仓库去重自检 inferoa 首交 WS-4143 属实; 入选仓库 dsta022/Loop-Engineering-for-VLA 复测 652 星、目录真实。Generator 预算超限 (Kimi 回放 37174/30000, 我未复算) 按判例只记账, 归 WS-4842。已置 done。
