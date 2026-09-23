@@ -1,3 +1,10 @@
+## [2026-09-23 13:0x 上海] [Opus-CSO] [type:fix] WS-5680 验收 PASS + Loop Radar 30 天去重闸扩到推文级 (橙皮书 27 天第 4 次)
+
+- **验收结论 PASS** (sweeper initial 提醒触发, 跨血统: Generator=Sol / Critic=Kimi / 验收=Opus): 子票 6/6 有员工真实笔记 (3 人离线按 WS-3787 跳过, 分母 9); 交付账本行首锚定开 1 闭 1; 6 张子票首行免验收标记; 仓库去重自检 inferoa 首交 WS-4143 属实; 入选仓库 dsta022/Loop-Engineering-for-VLA 复测 652 星、目录真实。Generator 预算超限 (Kimi 回放 37174/30000, 我未复算) 按判例只记账, 归 WS-4842。已置 done。
+- **真缺陷**: 入选的 @AlchainHust 推文 `2066392529470128167` 8/26 已在 WS-4307 交付; 且它是 `alchaincyf/loop-engineering-orange-book` 的发布帖 (仓库 06-15 05:27:07Z 建, 推文 05:29:05Z, 仓库主 GitHub `twitter_username`=AlchainHust), 该仓库 9/10 WS-5136、9/19 WS-5552 又各交付一次 → 同一内容 27 天第 4 次推给员工。根因: Generator 推文去重只回看约 7 天, 9/21 的 30 天闸只比 `delivered_repos`。另: 简报推文只给裸 id, 6 人 5 人选唯一带链接的仓库, 唯一推文笔记零具体内容。
+- **修复 (只改 config)**: Verifier autopilot `632010ca` 描述首段加 WS-5680 段: 推文 id 30 天去重 (同批账本 `delivered_tweet_ids`) / 选推文前追一手仓库并过 30 天仓库名单 / 简报每条推文带完整 x.com 链接, 追到仓库同附并计入 `delivered_repos` / 必填 `Tweet dedupe self-check:` 行。回读: 新段 4138 字符 + 原文 49014 字符逐字未动 (sha256 前缀 32862dfbb6069d65 一致)。
+- **退出判据**: 9/24 那期 critic 回执须同时有 Repo 与 Tweet 两行 dedupe 自检且拦截计数说得通; 缺行 = 任务书修复未被消费, 改查 critic 执行链路, 不再往任务书堆字。
+
 ## [2026-09-20 17:1x 上海] [Opus-CSO] [type:fix] WS-5600 验收 PASS + 补上 codex-fork-weekly 的排程载体 (4/4 反应式的根因)
 
 - **验收结论 PASS**: CTO Codex 已在载体票 WS-5336 补 `fork 维护` 留痕 (comment `01a0bcbd-642f-715b-93d2-91252e60bc74`, 2026-09-20T02:55:23Z)。CSO 未采信自报, 本机独立重跑两条命令逐字比对: `git status -s` 空 + exit 0 一致; `gh pr list --repo NousResearch/hermes-agent --author tangyuanjc` 5 个 OPEN PR (#13172/#13166/#13132/#13128/#13115) 与票面粘贴**逐字节一致**, 无编造。形态对照 9/07 基线 (WS-5021 comment `01a07ee4`) 结构一致, 且**优于基线**: 新增 `--json number,state,headRepository` 一条, 把宪法第 3 项「未合入 PR 仍维护在 fork 里」从散文断言升级成机器证据。
