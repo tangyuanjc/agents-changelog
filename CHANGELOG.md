@@ -1,3 +1,11 @@
+## [2026-09-25 16:5x 上海] [Opus-CSO] [type:fix] WS-5740 验收 PASS（勘误）+ 7 张日报 autopilot 补「空沙箱不算本机核查」一条 + WS-5782 取消
+
+- **验收结论 PASS**（sweeper group 提醒触发；Sol 9/24 initial 那轮因上游 high demand 失败。跨血统：执行=小龙的 Codex（mydell）/ 本验=Opus）：逐条读 run `01a0cd9c-ad53` 的 75 条原始记录，没用 mini 本机文件。巡检快照数字、14:01/15:01 故障与 16:01 恢复、三条飞书告警 message_id、17:39 reconnecting、WS-5699 16:29 model not supported 全部属实；当天该 agent 仅 1 轮 run，无漏票（`agent tasks` 核）。验收评论 `01a0d7c2` 发前过 sweeper 解析器 `True False True`（打回对照 `False True False`），贴勘误后置 done；D0 已过次日 09:30，不重做。
+- **真缺陷**：① seq 14 自己列出 4 个 9/23 有写入的 rollout 长线程文件（8/21、8/25、8/26、9/18 开线），日报却写「未找到 9/23 会话目录，无法还原」；② 拿 run 空沙箱（AGENTS.md + .multica）写「工作区未发现今天代码文件变更」，而 seq 45/47 列出 `wechat-koc-review-server.py`（16:51）和 3 个 koc 脚本（15:57）当天改过；③ `pending.before-web-*.bak` 显示 15:38–16:30 KOC 审核网页至少 11 次操作（登记 7 / 手工录入 1 / 驳回 3），日报只写「仅作为文件动作证据」；④ lark-codex-bridge 10:19、Codex 桌面端 17:12–17:25 写入簇未报。
+- **修复（只改 config）**：7 张日报 autopilot（小龙 `7ef32a48` / 维欣 `2ee73925` / 奶思 `d64e07bd` / 皮皮 `6b4f0a97` / 芳芳 `b4dae9d8` / 泡泡 `7023ec57` / 文雅 `938b045e`）各补 1 条：run 工作目录是空沙箱，不算本机核查；自己扫出的当天写入要么写进对应段，要么标「有痕迹、未能归因」，不能略过（带「WS-5740 补」，删去即还原）。6 张接在「取证口径」段末，皮皮接在 3b ③ 后作 ④。写前重读防并发：维欣、奶思 16:46 刚被 WS-5741 run 加了「收尾通知闸」段，首轮写入按设计跳过，改插在取证口径段末，未碰新段。7 张回读逐字一致；新旧描述过 `has_cso_review_intent` / `explicit_reviewer_text` / `review_not_required` 均为 False / None / False，验收路由不变；status 与 trigger 未碰，赶在今晚 17:30 起那几期之前落地。
+- **顺带**：小龙 9/24 日报 WS-5782 唯一一轮 run 因上游 high demand 失败，停在 todo 不自愈；D0 已过次日 09:30，置 cancelled 并写明原因（9/24 缺期）。
+- **退出判据**：下一期成功产出的小龙日报里，②④ 挂出 KOC 审核 / 代码改动的真实路径与时间，或明写「有痕迹、未能归因」；再拿空沙箱下「没有」结论 = 任务书未被消费，改查 agent 侧，不再加字。
+
 ## [2026-09-25 16:5x 上海] [Opus-CSO] [type:fix] WS-5741 验收 PASS（附说明，不重做）+ 奶思/维欣日报 autopilot 补收尾通知闸（hr35⑥）
 
 - **验收结论 PASS**（sweeper group 提醒触发；initial 那轮派给奶思的猪猪，因上游 high demand 失败。跨血统：执行=艾伦 gpt-5.6-sol / 本验=Opus）：HTML 附件（9606 字节，sha256 `a521d868…`）逐条对父票 WS-5737 最终评论，WS 编号、WS-5697 线程 ID、grok 看门狗路径、私域够不到、蒲公英发送 0 都在；漏了④第二条（运行时文件 `.multica/daemon_task_context.json`、`AGENTS.md` 不算业务成果，附件里 0 命中）。通知按住没发（notify_pending）是对的：父票今天验收推翻 3 处结论，若 in_review 就发，奶思手里就是被推翻的版本。父票验收已判过期不补发，本票以勘误为准，HTML 只留档，置 done。
