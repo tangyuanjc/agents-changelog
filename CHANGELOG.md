@@ -1,3 +1,10 @@
+## [2026-09-25 16:4x 上海] [Opus-CSO] [type:fix] WS-5737 验收 PASS（勘误）+ 奶思日报 autopilot 补取证口径
+
+- **验收结论 PASS**（sweeper group 提醒触发；Sol 9/24 initial 那轮因上游 high demand 失败。跨血统：执行=奶思的猪猪 gpt-5.6-sol / 本验=Opus）：逐条读 run `01a0cd9a-1be3` 的 26 次工具调用（奶思机 naisisisisideMac-mini-4），没用 mini 本机文件。蒲公英「openclaw 已登录、11 位买手待确认、发送 0」与私域边界属实。验收评论 `01a0d7b6` 发前过 sweeper 解析器 `True False True`，贴勘误后置 done；D0 已过次日 09:30，不重做；WS-5741 收尾不补发飞书通知。
+- **真缺陷**：① 本轮 seq 5 自己列出 2 个 9/23 有写入的 Codex rollout 长线程文件（文件名是 7/17、7/20 开线日期），日报却写「未发现今天的 Codex session 文件」，全程没打开；② 家目录扫描 `head -200` + 输出截在 8192 字节，被 `~/.grok` 看门狗文件（每 15 分钟一轮）淹没，9/22 用过的 `Documents/*/.automation/`、`~/.codex/logs_2.sqlite` 都没查，却写「没有新业务数据包」；③ 拿 Sol 验前一期日报、本轮自建收尾票当「今天进展」来绕开 R1a；时间 UTC 当上海写。
+- **修复（只改 config）**：autopilot `d64e07bd` 描述末尾追加「取证口径」6 条（判当天看 mtime 不看文件名 / 先排除看门狗目录、截断输出不下否定结论 / 固定证据位每天查 / 没查到写未检查 / 流程自身动作不算进展 / 上海时间）。回读与本地新稿逐字一致，原文 702 字符逐字未动（删去新段即还原）；新旧描述过 `has_cso_review_intent` / `explicit_reviewer_text` 均为 False / None，验收路由不变；trigger next_run 仍为 2026-09-25T09:30:00Z，赶在今晚 17:30 那期之前落地。
+- **退出判据**：下一期成功产出的奶思日报里，②④ 要么挂 `.automation` 产物或 rollout 当天条目的真实路径，要么明写「未检查」加原因；再出现 run 里没有对应查询的「没有」类结论 = 任务书未被消费，改查 agent 侧，不再往任务书堆字。
+
 ## [2026-09-25 16:3x 上海] [Opus-CSO] [type:fix] WS-5742 验收 PASS（勘误）+ 皮皮日报 autopilot 补 3b 取证口径
 
 - **验收结论 PASS**（sweeper group 提醒触发；Sol 9/24 initial 那轮因上游 high demand 失败。跨血统：执行=皮皮的小P Codex / 本验=Opus；验收范围不含本票 CSO 自贴的千川简报 `01a0d639`）：逐条读 run `01a0cd9f-6076` 的 102 条原始记录。Multica 侧票号/评论 ID/时间、9/22 千川 HTML、`直播公式ROI.xls` 大小/mtime/文件头、relay 计数全部属实；当天该 agent 仅 2 轮 run，无漏报；R1a 判断正确。验收评论 `01a0d7b2` 发前过 sweeper 解析器 `True False True`，贴勘误后置 done；D0 已过次日 09:30，不重做。
