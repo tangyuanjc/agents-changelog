@@ -1,3 +1,11 @@
+## [2026-09-25 16:5x 上海] [Opus-CSO] [type:fix] WS-5741 验收 PASS（附说明，不重做）+ 奶思/维欣日报 autopilot 补收尾通知闸（hr35⑥）
+
+- **验收结论 PASS**（sweeper group 提醒触发；initial 那轮派给奶思的猪猪，因上游 high demand 失败。跨血统：执行=艾伦 gpt-5.6-sol / 本验=Opus）：HTML 附件（9606 字节，sha256 `a521d868…`）逐条对父票 WS-5737 最终评论，WS 编号、WS-5697 线程 ID、grok 看门狗路径、私域够不到、蒲公英发送 0 都在；漏了④第二条（运行时文件 `.multica/daemon_task_context.json`、`AGENTS.md` 不算业务成果，附件里 0 命中）。通知按住没发（notify_pending）是对的：父票今天验收推翻 3 处结论，若 in_review 就发，奶思手里就是被推翻的版本。父票验收已判过期不补发，本票以勘误为准，HTML 只留档，置 done。
+- **待发凭证收件人 ID 口径错**：记的 `ou_33467b17…` 是 CSO 播报 app（`cli_a94d…`）口径；艾伦 bot 发要用 `~/.lark-cli/allen-bot/member-mapping.json:41` 的 `ou_4299b58b…`（9/22 WS-5706 实发用的就是它）。没发出去，无实害。
+- **真缺陷（模板级）**：奶思的猪猪、维欣的codex 的 agent 指令都有「Closing Agent Phase 0 SOP」，日报交 in_review 前自建艾伦收尾子票；奶思那份把 in_review 也算可发门槛。9/22 WS-5706 在验收前发给了奶思；9/23 WS-5732 在验收前试发维欣（跨租户 99992361 被拒才没发出）；9/23 WS-5741 艾伦按住，结果父票验收推翻 3 处。与宪法 hr35⑥「生成者禁自建 HTML化+飞书通知子票、推送排在复核结论之后」冲突。9/21 那张 WS-5666 退回时没点名艾伦，卡 in_progress 2 天。
+- **修复（只改 config）**：`d64e07bd`（奶思）、`2ee73925`（维欣）描述末尾各加「📮 收尾通知闸」3 条：不建艾伦收尾子票、不直发飞书，要不要同步由验收方在结论后决定、内容以验收结论（含勘误）为准。借用两份 agent 指令里现成的跳过条件「明确要求不 HTML/不通知」，agent 指令本身没动。回读与新稿逐字一致、原文前缀未动；新旧描述过 `has_cso_review_intent` / `explicit_reviewer_text` 均为 False / None，验收路由不变；status、trigger 未碰（next_run 09:30Z / 09:54Z，赶在今晚 17:30 / 17:54 那期之前）。WS-5666 按同一裁决置 cancelled，不补发。
+- **退出判据**：今晚两期日报票下不再出现艾伦收尾子票。一次性 wakeup `01a0d7c0`（挂在 WS-5741，18:40 上海）回来核；再出现 = agent 指令的 SOP 压过了任务书，改 agent 指令（只加一句日报票豁免），不再往任务书堆字。
+
 ## [2026-09-25 16:4x 上海] [Opus-CSO] [type:fix] WS-5737 验收 PASS（勘误）+ 奶思日报 autopilot 补取证口径
 
 - **验收结论 PASS**（sweeper group 提醒触发；Sol 9/24 initial 那轮因上游 high demand 失败。跨血统：执行=奶思的猪猪 gpt-5.6-sol / 本验=Opus）：逐条读 run `01a0cd9a-1be3` 的 26 次工具调用（奶思机 naisisisisideMac-mini-4），没用 mini 本机文件。蒲公英「openclaw 已登录、11 位买手待确认、发送 0」与私域边界属实。验收评论 `01a0d7b6` 发前过 sweeper 解析器 `True False True`，贴勘误后置 done；D0 已过次日 09:30，不重做；WS-5741 收尾不补发飞书通知。
