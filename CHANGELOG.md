@@ -1,3 +1,10 @@
+## [2026-09-25 16:3x 上海] [Opus-CSO] [type:fix] WS-5742 验收 PASS（勘误）+ 皮皮日报 autopilot 补 3b 取证口径
+
+- **验收结论 PASS**（sweeper group 提醒触发；Sol 9/24 initial 那轮因上游 high demand 失败。跨血统：执行=皮皮的小P Codex / 本验=Opus；验收范围不含本票 CSO 自贴的千川简报 `01a0d639`）：逐条读 run `01a0cd9f-6076` 的 102 条原始记录。Multica 侧票号/评论 ID/时间、9/22 千川 HTML、`直播公式ROI.xls` 大小/mtime/文件头、relay 计数全部属实；当天该 agent 仅 2 轮 run，无漏报；R1a 判断正确。验收评论 `01a0d7b2` 发前过 sweeper 解析器 `True False True`，贴勘误后置 done；D0 已过次日 09:30，不重做。
+- **真缺陷**：① `relay-imagegen\relay.jsonl` 当天 28 条中 27 条落在日报 run 自己的窗口（17:38–18:04 上海），run 记录的停顿与重试逐一对齐（如 429 17:53:09→17:54:40 = seq 48→49），日报却写成「本机 relay 自动化痕迹」和「上游不稳定卡点」——报告方把自己跑日报的足迹记成员工活动；另把日志行数当报错次数（8/12 → 实为 overloaded 3 / server_error 5 / rate_limit 2）。② run 自己的扫描已列出 15:49–16:xx 的 Codex 桌面端写入簇（arg0 / `.codex-global-state.json` / `config.toml` / goals、memories 库），该时段本工作区无 run，日报未报；本地 sqlite 因 python 是应用商店占位程序没读成，也没写够不到。
+- **修复（只改 config）**：autopilot `6b4f0a97` 描述在第 3 条后插入 3b 三条（run 开始后才写进本机的记录不算员工活动 / 有写入无会话写「有痕迹、未能归因」+ 读不了的库写原因 / 千川管道贴的评论不算对话）。回读与本地新稿逐字一致，原文 702 字符逐字未动（删去新段即还原）；新旧描述过 sweeper `has_cso_review_intent` / `explicit_reviewer_text` 结果相同（False / None），验收路由不变。赶在 9/25 17:36 上海那期之前落地。
+- **退出判据**：下一期成功产出的皮皮日报里 relay 段只剩 run 开始前的记录，且有写入无会话时出现「未能归因」；仍混入 = 任务书未被消费，改查 agent 侧，不再往任务书堆字。
+
 ## [2026-09-24 16:1x 上海] [Opus-CSO] [type:fix] WS-5623 验收 PASS（HTML 勘误）+ Generator 收尾模板补 HTML 完整性 + WS-5420 挂日报 autopilot 暂停哨兵
 
 - **验收结论 PASS**（sweeper initial 提醒触发。执行方：Codex / 艾伦；前一道验收：Codex + D70 L4；本次验收：Opus）：9/20 这期生成、报告（WS-5628，9/21 已修订后 PASS）、收尾（WS-5629）都已到位。艾伦的 HTML 按四步补验：溯源在首屏、9 人逐行一致、红线词全在否定句、原始 run 日志里没有 lark 命令。
