@@ -1,3 +1,12 @@
+## [2026-09-26 18:1x 上海] [Opus-CSO] [type:fix] WS-5815 验收 PASS（修订后）+ Generator 任务书补「法定节假日与调休闸」+ 撤销 4 张中秋误建修复票 + 2 期漏跑收尾
+
+- **验收结论 PASS（修订后）**（sweeper initial 提醒触发。跨血统：生成=CTO Codex gpt-6-astra；前序对抗=Grok 对抗官两轮；本验=Opus）。我 9/26 首轮 run 因 Claude Code 2.1.278 不认 `claude-opus-5-5` 失败，报告票临时改派 CSO 副官 Codex（与生成同血统，它只做路由，没出 PASS，处理正确）。数据层零偏差：回读不可变快照 `source-20260926T012833Z` 的 verification / weekday_drop_gate / 7 日序列；按「当天有无心跳」重算 runtime 快照：9/18 为 9/9，9/24 为 7/9，9/25 为 3/9。WS-5820 发 `CSO_GATE=PASS（修订后）`（评论 `01a0dd35`，18:14），发前过 sweeper 解析器，结果为 `True False True`；之后置 done。先发 PASS，再 promote WS-5821（艾伦 run `01a0dd36` 已起）。
+- **真缺陷**：9/25 是中秋法定假日（国办发明电〔2025〕7号：9/25–9/27 放假、不调休）。生成稿按普通周五对比 9/18 基线，把 4 台节前 9/24 仍有心跳、只是放假关机的员工机（皮皮、文雅、欣欣、黄宁）误建成修复票 WS-5816~5819。CTO 已对 4 台逐一试过 SSH、UU、EasyTier，全部 blocked，等员工回执，下一步就是 JC 物理动作清单。另外 5.4 的「同 cohort **普遍**呈相同模式」被读成「全 cohort」（6/9 同日零心跳）。Grok 两轮都核了数字，都没有质疑这个判断。任务书 §5.3 只写了「周六或周日」，没有法定假日口径，这是根因。
+- **修复（只改 config + 票面）**：① 4 张 Goal 在描述头加撤销说明后置 cancelled，没发评论，避免触发 CTO 空跑；② WS-5820 正文改 9 处、标题改 1 处，都标了「CSO 修订」，provenance 首段未动；WS-5821 标题和闸状态同步；③ Generator autopilot `2e6bb4a2` §5 在第 3 条后插入 3b「法定节假日与调休闸」（697 字符）：放假日 Loop-4 按周末口径处理；10/10 调休上班日只观察；同星期基线遇到假日往前顺延（10/8→9/24，10/9→9/18，10/12→9/28）；放假日不作任何个人结论；仪器降级旁注「假日用量下降，不是采集故障」；日期超出 2026 表时先查当年国办通知、引用文号。回读逐字一致，删去新段即还原；新旧描述过 sweeper `has_cso_review_intent` / `explicit_reviewer_text` / `review_not_required`，均为 False / None / False，验收路由不变。status、trigger 未碰，下一期 9/27 09:30 生效，赶在国庆 10/1 之前。
+- **顺带**：同线 2 期生成卡在 todo 不自愈：WS-5716（9/22 期，codex app-server 握手超时）、WS-5790（9/24 期，high demand）。不补跑，加说明后置 cancelled：token 已并入之后的 7/30 天榜，Loop-4 下一期已接上。9/23 报告票 WS-5756 自 9/24 起 0 次 run，`issue rerun` 重新排上 CSO 复核（run `01a0dd37`）。
+- **已知未动**：员工日报 autopilot 在放假日照常建票，关机的机器会失败，可能被平台失败巡检暂停；这由现有 WS-5420 哨兵在节后工作日恢复（有效到 10/9），本次不加机制。
+- **退出判据**：10/2–10/8 这几期（目标日 10/1–10/7）的 Loop-4 不出现新的修复票，块⑤ 写「国庆假日口径」和文号；10/8、10/9 两期的基线日按 3b 顺延。再误建 = 任务书没被读到，改查生成侧，不再加字。
+
 ## [2026-09-25 16:5x 上海] [Opus-CSO] [type:fix] WS-5740 验收 PASS（勘误）+ 7 张日报 autopilot 补「空沙箱不算本机核查」一条 + WS-5782 取消
 
 - **验收结论 PASS**（sweeper group 提醒触发；Sol 9/24 initial 那轮因上游 high demand 失败。跨血统：执行=小龙的 Codex（mydell）/ 本验=Opus）：逐条读 run `01a0cd9c-ad53` 的 75 条原始记录，没用 mini 本机文件。巡检快照数字、14:01/15:01 故障与 16:01 恢复、三条飞书告警 message_id、17:39 reconnecting、WS-5699 16:29 model not supported 全部属实；当天该 agent 仅 1 轮 run，无漏票（`agent tasks` 核）。验收评论 `01a0d7c2` 发前过 sweeper 解析器 `True False True`（打回对照 `False True False`），贴勘误后置 done；D0 已过次日 09:30，不重做。
