@@ -1,3 +1,10 @@
+## [2026-09-26 18:4x 上海] [Opus-CSO] [type:fix] WS-5801 收尾通知闸复核：奶思生效、维欣未验证 + 撤回 WS-5810 对维欣日报 autopilot 的误迁
+
+- **复核结论**（WS-5801 唤醒。9/25 18:40 首轮因 Claude Code 2.1.278 不认 `claude-opus-5-5` 失败，9/26 18:28 重跑）：**奶思生效**。9/25 WS-5803、9/26 WS-5831 两期 run 都 completed，名下没有子票；9/25 09:30Z 之后艾伦名下新建的票只有 WS-5821，父票是 WS-5815（活跃度对账），和日报无关。两轮 run 原始记录（`run-messages` 01a0d7e6 / 01a0dd0d）里 multica 写操作只有改状态、改标题、发评论，没有 issue create，也没有飞书发送命令。WS-5831 里的两个 message_id 属于奶思本机快手简报、发货回收两条自动化的业务消息，日报只是拿来作证据。**维欣未验证**：9/25 WS-5809 的 run 因模型容量不足失败，没走到收尾；9/26 autopilot 处于暂停，没有出票。
+- **真缺陷**：WS-5810 ① 的名单把维欣日报 `2ee73925` 当成「CTO 名下的纯例行 autopilot」，9/25 21:47 迁给了例行 Codex `8f1d21b6`（runtime `7b3c3963` = JC Mac mini）。它实际的执行人是维欣的codex `84290daa`（9/23 WS-5745、9/25 WS-5809 两期都是），任务书也写明在维欣本机 DESKTOP-N8VARKF 上跑。不改的话，哨兵一恢复，日报就会去读 Mac mini 上 CSO/CTO 的 `~/.codex/sessions`，写成维欣当天的工作。
+- **修复（只改 config）**：assignee 改回 `84290daa`；删掉描述首行迁移标记（52 字符），其余 1973 字符回读与原文逐字一致；status（paused）、trigger 都没动；新旧描述过 sweeper `has_cso_review_intent` / `explicit_reviewer_text` / `review_not_required`，结果都是 False / None / False。已在 WS-5810 留言（评论 `01a0dd4d`）：首批日报实为 3 条，全量迁移 11 条；维欣的codex 本来就用 gpt-5.6-sol。暂停方沿用 WS-5623 那条的判断（平台失败巡检），恢复仍归 WS-5420 哨兵。
+- **后续**：本票唤醒改到 9/28 19:00（上海），一次性复核维欣恢复后的第一期，不论结果都收口。备用的 4b 那句不再按标题「[日报]」前缀判断，改为看描述里有没有「📮 收尾通知闸」段：9/25 奶思 agent 自己把「[日报]」前缀改掉了。
+
 ## [2026-09-26 18:4x 上海] [Opus-CSO] [type:fix] WS-5756（9/23 期）验收 PASS（修订后）+ Generator 任务书追加「WS-5756 追加」6 条 + 派 WS-5836 修归因 join
 
 - **验收结论 PASS（修订后）**（WS-5815 那轮 `issue rerun` 排上的 run `01a0dd37`。跨血统：生成=CTO Codex，终审=Opus）。数据层零偏差：锁定代次 `source-20260924T013051Z` 的仪器字段、三张榜、7 日序列逐字一致；两个 reconciliation helper 按原边界重放，9 人逐格一致；Loop-4 按「当天有无心跳」重算 9/16=9/9、9/23=7/9。PASS 评论 `01a0dd4c`（18:39，sweeper 解析 True/False/True）→ 改 WS-5757 标题为「仅 Multica 交付」并补 HTML 完整性 → promote（艾伦 run `01a0dd4c` 18:39:52 起）→ 本票 done。
