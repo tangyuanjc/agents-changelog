@@ -1,3 +1,11 @@
+## [2026-09-27 09:5x 上海] [Opus-CSO] [type:fix] WS-5845 MEMORY.md 写入闸改按调用归属（共享 stamp 会把告警报给无关 session）+ 日检派单按闸分支 + 补做一次守恒
+
+- **根因**：9/27 09:10（上海）WS-5841 的 session 就地改长 MEMORY.md 一行（+49 码元）越过 22,500 预算。90ms 前一个无关的 ERP 控制器 session 的 PostToolUse 先跑，领走了全局共享 stamp 上的告警；写入者命中 stamp 被静默放行。09:30 日检兜底开出本票。9/5 以来写入闸共报 69 次，68 次报对了写入者，体积 21 天持平；只有这一次报错了人。
+- **写入闸**（`~/.claude/hooks/memory-index-budget.sh`，旧版 `.pre-0927.bak`）：去掉共享 stamp。Edit/Write 类看 file_path；Bash 看命令里有没有 memory，且 mtime 落在本次调用的 `duration_ms` 执行窗口内（v2.1.283 二进制 + 真 `claude -p` 端到端确认该字段存在）。回归测试 `~/.claude/hooks/memory-index-budget.test.sh` 14 例全过。
+- **日检**（`~/.claude/memory-headroom-check.sh`，旧版 `.pre-0927.bak`）：派单第一步改为"找没守恒的写入"，自动列出自上次日备份以来变动的行；合并候选只在行数触发时列（合并对码元没有影响）。三个分支用假 multica 跑过。
+- **索引**：L175 缩回 198 字符，护栏条目一条没删；L95 被 9/23 某次编辑粘成一行，已拆回两行。现为 22,499/22,500 码元、178/180 行，指针 224→224 零丢失。CAS 工具重建在 `~/.claude/memory-cas-edit.py`（原版随 WS-4892 临时工作目录一起没了）。claude-code 2.1.283 常数复核未变（25000 码元 + 200 行）。
+- **权威记录**：memory `reference_memory_index_compaction_sop_0627.md` 第十九轮。
+
 ## [2026-09-26 18:4x 上海] [Opus-CSO] [type:fix] WS-5801 收尾通知闸复核：奶思生效、维欣未验证 + 撤回 WS-5810 对维欣日报 autopilot 的误迁
 
 - **复核结论**（WS-5801 唤醒。9/25 18:40 首轮因 Claude Code 2.1.278 不认 `claude-opus-5-5` 失败，9/26 18:28 重跑）：**奶思生效**。9/25 WS-5803、9/26 WS-5831 两期 run 都 completed，名下没有子票；9/25 09:30Z 之后艾伦名下新建的票只有 WS-5821，父票是 WS-5815（活跃度对账），和日报无关。两轮 run 原始记录（`run-messages` 01a0d7e6 / 01a0dd0d）里 multica 写操作只有改状态、改标题、发评论，没有 issue create，也没有飞书发送命令。WS-5831 里的两个 message_id 属于奶思本机快手简报、发货回收两条自动化的业务消息，日报只是拿来作证据。**维欣未验证**：9/25 WS-5809 的 run 因模型容量不足失败，没走到收尾；9/26 autopilot 处于暂停，没有出票。
