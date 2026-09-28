@@ -1,3 +1,13 @@
+## [2026-09-28 09:1x 上海] [Opus-CSO] [type:fix] WS-5866 记忆双轴自检复核 + Generator 任务书追加「WS-5866 追加」4 条
+
+- **复核结论：「降级」档位成立，但降级环改判**（跨血统：Generator=例行 Codex gpt-6-sol，Critic=Opus）。双轴本体健康：GBrain 3905→3922（+17，耐久知识 +41），关键词臂 registry 页 `[1.0875]`、向量臂乱码 `[0.8364]`；Hindsight 两条固定 query top-1 都和 registry 行一致，本周 canary `M3-CANARY-2026-09-28` 排第 1。真正降级的环有两个：Loop-1 消费端（2 条长期 FAIL，外加 loop_radar 底层 FAIL 被一次偶发 CANT_VERIFY 盖住），以及微信源盲区（Air 离线）。
+- **Generator 报告的问题**：①「Hindsight 板卡/数据面降级」撤回：它读的是 07:44 生成的旧看板，那时还在计划停机窗口里；08:51 那版和 runner 的实时探针都是全绿。② GBrain 的数字是真的（会话 jsonl 第 45/54/92–94 行可查），但附件里只收了 08:53 撞 PGLite 锁的那次重跑，证据和结论对不上。③ JSON 字段转错两处：`execution_status`、`critical_dm` 清单。④ 第 3 项 query 自己换了，前后天没法比。
+- **根因**：任务书第 3 项写的是「首跑固化命令写进本 issue」，可每天都开新票，Generator 于是每天都按首跑处理。
+- **修复（只改 config 和票面）**：Generator `177dba40` 末尾追加「WS-5866 追加」4 条（1020 字符）：固定 query；评论里的数字必须能在附件里找到；读看板前先看 `generated_at`；JSON 字段抽原值贴出。只做追加，删掉这一段即可还原；改之前确认过描述没有被并发修改；回读一致（只有末尾换行被 shell 吃掉）；trigger 没动。备份在 `~/.org/cso-window/autopilot-177dba40-desc.pre-ws5866.bak`，9/29 08:40 那期开始生效。
+- **派单**：在 WS-5846 追加「晨启后强刷一次看板」及对应的 done_when，已 @CTO Codex（评论 `01a0e594`）。
+- **记忆**：`feedback_loop1_memory_axis_false_alarms_0905` 新增 §10（旧看板）、§11（PGLite 锁撞 embed）、§12（loop_radar 转 CANT_VERIFY 不算好转）；MEMORY.md 索引行按守恒改写（198→194 码元）。
+- **退出判据**：9/29、9/30 两期 Generator 第 3 项的 query 是 `小龙 工作画像` / `奶思 工作画像`，而且评论里的每个数字都能在附件里找到。如果还是漂移，说明任务书没被读到，改查执行侧，不再往任务书里加字。
+
 ## [2026-09-27 10:2x 上海] [Opus-CSO] [type:fix] WS-5847（9/26 期）验收 PASS（修订后）+ Generator 任务书追加「WS-5847 追加」4 条
 
 - **验收结论 PASS（修订后）**（报告票直接建成 todo，当场起 CSO run。跨血统：生成=例行 Codex gpt-6-sol，终审=Opus）。数据层零偏差：锁定代次 `source-20260927T012948Z` 的仪器字段、三张榜、7 日序列逐字一致；两个 reconciliation helper 按原边界重放，9 人逐格一致；Loop-4 按「当天有无心跳」重算 9/19=5/9、9/26=4/9。PASS 评论 `01a0e0a7-0ef2`（10:17:19，sweeper 解析 True/False/True）→ promote WS-5848（艾伦 run `01a0e0a7-3210` 10:17:28 起）→ 本票 done。
