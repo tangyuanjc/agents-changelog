@@ -1,3 +1,25 @@
+## [2026-09-30 09:2x 上海] [Opus-CSO] [type:fix] WS-5971 记忆双轴自检复核 + Hindsight 固定命令修正 + GBrain 语义缓存降级派 WS-5974
+
+- **复核结论：降级，不是「死」**（跨血统：Generator=例行 Codex gpt-6-sol，Critic=Opus）。
+  - Hindsight 环是计划停用：Fable 9/29 18:5x 定了「colima 停到 64G 机或 JC 拍」，重启后仍是 disabled。载体 WS-5900 / WS-5972。
+  - GBrain 读写都正常：9/30 07:30 定时入库 success（WS-5903 已关），pages 3948→3982（+34）；向量臂用乱码查询返回 `[0.8249]`；关键词臂用空格写法 `segment registry` 查，top-1 `[1.1006]`。
+  - Loop-1 共 16 条：FAIL 2，CANT_VERIFY 3，WARN 2。两条 FAIL：`skill_telemetry_events` 是 WS-4766 老问题；`loop_radar_delivery_state` 由 CANT_VERIFY 转成真实 FAIL，归因于 runner `4b8cb05→c5a6e8a` 的 ENOBUFS 修复（修好后才读到真实状态）。
+- **Generator 报告的问题**：
+  1. 档位写成「死」，应为「降级（计划停用）」，和 9/29 的改判相同；
+  2. 第 3 项评论写「两条都报错」，附件里只有 1 条：WS-5841 固化的命令在第一条失败时整段退出，第二条没跑，9/29、9/30 两天都这样；
+  3. gbrain 附件里没有命令行；
+  4. 版本凭证没有和前一天比对。
+- **新查出的问题**：gbrain 的语义查询缓存（相似度 ≥0.92 就算命中，TTL 1 小时，命中后两臂都不跑）会把一次瞬时降级的结果存下来。
+  - `ENOBUFS --limit 3` 连续 4 次查不到目标页；绕开缓存后，目标页排第 1，`[2.0000]`。
+  - 连字符写法的探针 `segment-registry`：9/30 起重新计算也命不中。
+  - 已派 WS-5974（CTO，P2），等 WS-5970 结束后开工；接力说明留在 WS-5970。
+- **修复（只改票面和记忆，不改 config）**：Generator 任务书的追加被平台拒了——定时触发的 run 没有人类发起者，不能改 autopilot（exit 3）。
+  - 改为把修正版命令贴在 Generator 每天都会读的 WS-5841 线程（`01a0efdd`）。新命令逐条 try/catch，9/30 09:13 实测两条都跑到了。
+  - 追加文本存在 `~/.org/cso-window/autopilot-177dba40-addendum-ws5971.md`，等有人类发起的 CSO 窗再 apply。没有借用 owner PAT。
+- **派单接力**：WS-5905（ENOBUFS 修复的打回返工）9/29 打回时没 @ CTO，空转了 23 小时。它排在 WS-5846 之后，接力说明留在 WS-5846。
+- **记忆**：`feedback_loop1_memory_axis_false_alarms_0905` 的 §8 补了 9/30 更正（语义缓存、连字符探针），另新增 §15。MEMORY.md 索引行改写后总量不变（22498→22498 码元）。
+- **退出判据**：10/1 那期 Generator 第 3 项的附件里要出现两行 `QUERY=`，且档位写「降级（Hindsight 计划停用）」。如果仍只有一行，说明 WS-5841 线程没被读到，改走 §15 的 apply 路径。
+
 ## [2026-09-29 20:25 上海] [CTO Codex] [type:fix] WS-5967 三线动作卡发送末段
 
 - 按 WS-5967 明确授权，只改现有 L3 任务书、千川 STATE/T10 与原 T27 任务末段：三字段动作卡≤3条，contact 核人，固定本机 `cli_a94d194592f8dbb7` bot 发送并查本人 read_users，同源去重、23003x 才群 @。涉钱只转原建议，执行人决定；JC 在票面看结果。
