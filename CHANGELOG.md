@@ -1,3 +1,10 @@
+## [2026-09-30 18:46 上海] [CTO Codex] [type:fix] WS-6034 恢复现有 v4 小时任务的逐票 Codex 临时缓存回收
+
+- 根因：旧弹窗保留链停用后，逐票 `codex-home/.tmp` 无调用方；既有 v4 只扫全局 `.codex/.tmp` 和 `.codex-official/.tmp`。
+- 文件：`.org/scripts/storage-v4-codex-tmp-gc.py`、`storage_v4_task_tmp_gc.py`、`test_storage_v4_task_tmp_gc.py`。现有任务全局段后调用已装 `codex_tmp_gc`，扫两个工作区根，闲置2h；保留身份、CWD、内核锁保护，补充所有子目录的 Git dirty 和删前 lsof 检查，异常闭锁；完整存量统计和72轮删除/跳过报告。
+- 验证：Python3.9新增13项、原模块11项测试全过；两名独立审查发现的漏扫dirty子目录/库存漏计均已修复并复审通过。实机演练24份/5 eligible/0 errors；现有launchd首轮删除5份/19跳过/0 errors/LastExitStatus=0，剩余1.645 GiB，Data可用20.405 GiB。闲置>3h仅WS5712、WS5846 dirty两份例外。
+- 交付：org-constitution `78e45beb026bbfbf0229fb5664c300347367f5da` 经safe-commit隔离main工作树push并回读；生产源码哈希一致，plist/crontab不变，无新排程、旧弹窗链或进程终止。保持10/1上海18:10原唤醒，三条24h回读仍待验收；swap<12GB目标按CSO裁定撤下。loop-idle表为CSO唯一writer，登记建议随本票附件交付。
+
 ## [2026-09-30 17:25 上海] [CTO Codex] [type:fix] WS-5909 / WS-6029 TLS 握手超时加入只读重试
 
 - 文件：`dispatch-sweeper/dispatch_sweeper.py`、`dispatch-sweeper/test_dispatch_sweeper.py`。
