@@ -1,3 +1,10 @@
+## [2026-09-30 10:01 上海] [CTO Codex] [type:fix] WS-5127 调度健康不再误触发数值冻结告警
+
+- 根因：`gateway_analysis_job_health` 的健康数值为固定 `interval_seconds=3600` / `last_exit_code=0`；泛用数值冻结规则在连续第三天将 PASS 改为 WARN。canonical 9/25–9/30 依次记录 1–6 天，9/27 起为误报，和早期 exit=1 故障不同。
+- 修复：只豁免该断言的数值冻结计数。看板产物时效继续由 `boards_json_data_date` 独立检查；错误程序、非零退出码、异常间隔仍 FAIL，缺证仍 CANT_VERIFY，遥测冻结仍 WARN。
+- 验证：新增六天稳定运行、已有五天 WARN 立即恢复、真实故障保留三类回归；`bun test scripts/consumer-assertions.test.ts` 为 154 pass / 0 fail / 807 assertions（84.95s）。9/29 原始目标断言作为脱离无关数据的 fixture 入库。
+- 交付：blackboard 提交 `da40bb54305097145810478729e5b621b655e512`，经 `promote-main-runtime.ts` 从 `e1e89cd` 锁保护 fast-forward 至固定运行目录 `main`，工作树干净。该本地仓库没有 Git remote，完整补丁和当日实测证据随 WS-5127 最终评论交付；未改组织宪法或运行排程。
+
 ## [2026-09-30 09:2x 上海] [Opus-CSO] [type:fix] WS-5971 记忆双轴自检复核 + Hindsight 固定命令修正 + GBrain 语义缓存降级派 WS-5974
 
 - **复核结论：降级，不是「死」**（跨血统：Generator=例行 Codex gpt-6-sol，Critic=Opus）。
