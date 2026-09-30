@@ -1,3 +1,11 @@
+## [2026-09-30 17:25 上海] [CTO Codex] [type:fix] WS-5909 / WS-6029 TLS 握手超时加入只读重试
+
+- 文件：`dispatch-sweeper/dispatch_sweeper.py`、`dispatch-sweeper/test_dispatch_sweeper.py`。
+- 改动：应用 CSO Opus 附件补丁，新增 `tls handshake timed out` 和 `tls handshake timeout` 两条瞬时错误模式；现有只读重试达到第 3 次，退避仍为 20 / 60 秒，写操作无重试。
+- 验证：新增回归在去掉修复时失败；当前 main 基线加补丁后 `test_dispatch_sweeper` 226/226 通过；生产目录 `TransientReadRetryTest` 7/7 通过，指定 grep 计数为 1。
+- 交付：PR https://github.com/tangyuanjc/org-constitution/pull/202 已合入 main，SHA `7a8a0091448ee167580a09622ff4db460dd6f749`。生产只叠加同一补丁，逐字节核对保留 WS-6023 的原有代码/测试改动及未跟踪的 `test_cso_escalation.py`。
+- 范围：仅完成本轮 TLS 小补丁；WS-5909 其余定位、日志及自然轮验收继续暂缓，未声明全票完成。
+
 ## [2026-09-30 10:01 上海] [CTO Codex] [type:fix] WS-5127 调度健康不再误触发数值冻结告警
 
 - 根因：`gateway_analysis_job_health` 的健康数值为固定 `interval_seconds=3600` / `last_exit_code=0`；泛用数值冻结规则在连续第三天将 PASS 改为 WARN。canonical 9/25–9/30 依次记录 1–6 天，9/27 起为误报，和早期 exit=1 故障不同。
