@@ -1,0 +1,736 @@
+{
+ "meta": {
+  "rule": "hard rule 22 (~/.org/AGENTS.md)",
+  "metering_month": "2026-09",
+  "window_utc": [
+   "2026-08-31T16:00:00Z",
+   "2026-09-30T16:00:00Z"
+  ],
+  "window_local": "2026-09-01 00:00 ~ 2026-09-30 23:59 Asia/Shanghai",
+  "classified_at": "2026-10-02 03:4x Asia/Shanghai",
+  "classifier": "Claude 子 agent (只统计+逐票核实, 不做降档裁定)",
+  "input": "orca-hq/evidence/cso-takeover-1001/hr22-2026-09-export/tickets-raw.json (WS-6058, 320 张)",
+  "template": "~/agents-changelog/hr22-2026-08-judgment.md §1/§2/§3/§7 + hr22-2026-07-judgment.md 口径1-4",
+  "unit_of_judgment": "员工(人); 一人名下多 agent 合并计数",
+  "verification": "321 张(含 WS-6026)全部 multica issue get + multica issue comment list --output json 拉取; 真业务/业务线无产出两桶逐票读评论正文裁定",
+  "hr22_transfusion_definition": "标题含 [hr22 或描述写明为 hr22 达标派单; 320 张标题+描述+评论全文扫描, 仅 WS-4621(警告票)描述含 hr22"
+ },
+ "persons": {
+  "泡泡": {
+   "agents": [
+    "泡泡的大C"
+   ],
+   "total": 41,
+   "real": 5,
+   "real_transfusion": 0,
+   "real_natural": 5,
+   "no_output": 8,
+   "daily": 17,
+   "org_infra": 11,
+   "real_tickets": [
+    {
+     "id": "WS-4795",
+     "agent": "泡泡的大C",
+     "title": "[天猫万相台正式投放线监控日报] 2026-09-03",
+     "status": "done",
+     "line": "投放(业务线监控日报)",
+     "strength": "weak",
+     "evidence": "万相台正式线结算日9/2: 主账号1783050011, 计划10/10、全店商品32/32; 花费807.51 / 总成交2,788.78元/24笔 / 实际ROI 3.45; 监控表《天猫投放监控_2026-07.xlsx》投放日表新增42行",
+     "hr22_transfusion": "否 (业务线autopilot, 承WS-2042/JC 7/17拍板; 描述无hr22)"
+    },
+    {
+     "id": "WS-4860",
+     "agent": "泡泡的大C",
+     "title": "[7月盘点·补数] 泡泡: 6/7 月 淘宝C店/拼多多/快手·小店·有赞/京东·品销宝 分月渠道数 (禁估算)",
+     "status": "todo",
+     "line": "财务对账(分月渠道数)",
+     "strength": "normal",
+     "evidence": "JC 9/4 分月分渠道费用表: 淘宝收入264,133.61/142,964.90、扣点10,554.08/5,712.70、万相台45,480.75/35,324.34; 9/7补拼多多交易收入21,448.15/20,290.59、推广5,031.33/5,286.99、品销宝6月2,053.81; 附14张后台截图; 京东/快手/微信小店/有赞写\"本月无线/缺\"未填0",
+     "hr22_transfusion": "否 (JC 9/4 盘点指令, 经JC账号f5fd9e24派; 描述无hr22)",
+     "boundary": "状态todo (CSO 9/4、9/7要求补缺项后未改状态); 口径4字面\"todo不计\"与已贴两轮实质产出冲突; 若按字面不计, 泡泡仍≥3张"
+    },
+    {
+     "id": "WS-5068",
+     "agent": "泡泡的大C",
+     "title": "天猫正式线投放监控日报｜2026-09-07结算",
+     "status": "cancelled",
+     "line": "投放(业务线监控日报)",
+     "strength": "weak",
+     "evidence": "结算日9/7: 33/33计划; 花费1,250.24 / 总成交4,982.80元/41笔 / ROI 3.99; 日表613→681行(+68); 附件xlsx+证据zip; 验收官Sol 9/9 独立复核PASS",
+     "hr22_transfusion": "否 (同上)",
+     "boundary": "状态cancelled: 9/16 WS-902排水控制器按系列supersede关闭, 评论明写\"未改写业务结论\"; 若按状态字面不计, 泡泡仍有其他票"
+    },
+    {
+     "id": "WS-5108",
+     "agent": "泡泡的大C",
+     "title": "天猫正式线投放监控日报｜2026-09-08结算日",
+     "status": "done",
+     "line": "投放(业务线监控日报)",
+     "strength": "weak",
+     "evidence": "结算日9/8: 33/33计划; 花费961.40 / 总成交2,462.10元/22笔; 日表681→749行(+68); 验收官Sol 9/10 PASS(SHA256前后链对齐), CSO 9/19 置done",
+     "hr22_transfusion": "否 (同上)"
+    },
+    {
+     "id": "WS-5143",
+     "agent": "泡泡的大C",
+     "title": "天猫正式投放监控日报｜2026-09-09 结算数据",
+     "status": "blocked",
+     "line": "投放(业务线监控日报)",
+     "strength": "weak",
+     "evidence": "结算日9/9: 33/33计划; 花费978.16 / 总成交4,038.24元/32笔 / ROI 4.13; 日表新增68行(750-817); 因全店商品34 vs 32件覆盖差额自置blocked, 附xlsx+zip+截图",
+     "hr22_transfusion": "否 (同上)",
+     "boundary": "blocked但已贴实质产出 → 按口径4计弱形态"
+    }
+   ],
+   "no_output_tickets": [
+    {
+     "id": "WS-4856",
+     "agent": "泡泡的大C",
+     "title": "[天猫投放监控日报] 2026-09-04 万相台正式线",
+     "status": "todo",
+     "why": "投放监控日报: 本机浏览器连接不可用, 计划/单元/商品0读, Excel新增0行 (todo)"
+    },
+    {
+     "id": "WS-5024",
+     "agent": "泡泡的大C",
+     "title": "[天猫投放监控日报] 2026-09-07 正式线只读监控",
+     "status": "blocked",
+     "why": "投放监控日报: 无可用受控浏览器会话, 全部指标读不到, Excel新增0"
+    },
+    {
+     "id": "WS-5172",
+     "agent": "泡泡的大C",
+     "title": "[天猫投放监控日报] 2026-09-10（后台数据源不可读）",
+     "status": "blocked",
+     "why": "投放监控日报: 后台登录态不可访问, 覆盖0, Excel新增0"
+    },
+    {
+     "id": "WS-5337",
+     "agent": "泡泡的大C",
+     "title": "[天猫投放监控日报] 2026-09-13｜正式线数据源不可读",
+     "status": "blocked",
+     "why": "投放监控日报: 无后台读取通道, 覆盖0/N, Excel新增0"
+    },
+    {
+     "id": "WS-5381",
+     "agent": "泡泡的大C",
+     "title": "[天猫投放监控日报] 2026-09-15",
+     "status": "todo",
+     "why": "投放监控日报: todo, 无任何评论/产出"
+    },
+    {
+     "id": "WS-5694",
+     "agent": "泡泡的大C",
+     "title": "[天猫投放监控日报] 2026-09-22",
+     "status": "todo",
+     "why": "投放监控日报: todo, 无任何评论/产出"
+    },
+    {
+     "id": "WS-5735",
+     "agent": "泡泡的大C",
+     "title": "[天猫投放监控日报] 2026-09-23",
+     "status": "todo",
+     "why": "投放监控日报: todo, 无任何评论/产出"
+    },
+    {
+     "id": "WS-5774",
+     "agent": "泡泡的大C",
+     "title": "[天猫投放监控日报] 2026-09-24",
+     "status": "todo",
+     "why": "投放监控日报: todo, 无任何评论/产出"
+    }
+   ],
+   "daily_ids": [
+    "WS-4646",
+    "WS-4725",
+    "WS-4810",
+    "WS-4874",
+    "WS-4927",
+    "WS-4980",
+    "WS-5030",
+    "WS-5078",
+    "WS-5116",
+    "WS-5150",
+    "WS-5180",
+    "WS-5241",
+    "WS-5296",
+    "WS-5348",
+    "WS-5499",
+    "WS-5889",
+    "WS-5958"
+   ],
+   "org_infra_ids": [
+    "WS-4627",
+    "WS-4773",
+    "WS-5002",
+    "WS-5216",
+    "WS-5401",
+    "WS-5643",
+    "WS-5896",
+    "WS-5926",
+    "WS-5966",
+    "WS-5985",
+    "WS-6005"
+   ],
+   "verdict": "未裁定 (本文件只统计; 降档裁定留判定人)"
+  },
+  "芳芳": {
+   "agents": [
+    "芳芳的澄川"
+   ],
+   "total": 37,
+   "real": 0,
+   "real_transfusion": 0,
+   "real_natural": 0,
+   "no_output": 3,
+   "daily": 22,
+   "org_infra": 12,
+   "real_tickets": [],
+   "no_output_tickets": [
+    {
+     "id": "WS-4863",
+     "agent": "芳芳的澄川",
+     "title": "[7月盘点·补数] 芳芳: 6/7 月线下分销 销售/退款/物流/其他 分月 (禁估算)",
+     "status": "todo",
+     "why": "7月盘点·线下分销分月: agent 9/7 回\"sandbox 无可访问数据\", 6/7月四项全部\"本月无可访问数据\", 无数字无文件 (todo)"
+    },
+    {
+     "id": "WS-5389",
+     "agent": "芳芳的澄川",
+     "title": "[ERP分诊][B类][2026-09-15] 8 张常规人工确认待芳芳收口",
+     "status": "blocked",
+     "why": "ERP分诊B类9/15: 分诊正文由CTO Codex(3e1b5bae)在描述中写好, 芳芳agent评论仅复述; 8张待人工, CSO 9/19 置blocked"
+    },
+    {
+     "id": "WS-5452",
+     "agent": "芳芳的澄川",
+     "title": "[ERP分诊][B类][2026-09-16] 18 张常规人工确认待芳芳收口",
+     "status": "blocked",
+     "why": "ERP分诊B类9/16: 芳芳agent运行环境无SQLite快照, 多轮回\"无法独立读取/不虚报已消费\"; CTO 9/17 打回; 9/30仍3-4张待人工"
+    }
+   ],
+   "daily_ids": [
+    "WS-4649",
+    "WS-4728",
+    "WS-4815",
+    "WS-4877",
+    "WS-4929",
+    "WS-4983",
+    "WS-5034",
+    "WS-5082",
+    "WS-5119",
+    "WS-5153",
+    "WS-5183",
+    "WS-5244",
+    "WS-5299",
+    "WS-5350",
+    "WS-5388",
+    "WS-5501",
+    "WS-5583",
+    "WS-5617",
+    "WS-5665",
+    "WS-5704",
+    "WS-5744",
+    "WS-5785"
+   ],
+   "org_infra_ids": [
+    "WS-4630",
+    "WS-4775",
+    "WS-4850",
+    "WS-5004",
+    "WS-5013",
+    "WS-5022",
+    "WS-5106",
+    "WS-5210",
+    "WS-5218",
+    "WS-5403",
+    "WS-5557",
+    "WS-5981"
+   ],
+   "verdict": "未裁定 (本文件只统计; 降档裁定留判定人)"
+  },
+  "皮皮": {
+   "agents": [
+    "皮皮的小P - Multica"
+   ],
+   "total": 40,
+   "real": 0,
+   "real_transfusion": 0,
+   "real_natural": 0,
+   "no_output": 1,
+   "daily": 28,
+   "org_infra": 11,
+   "real_tickets": [],
+   "no_output_tickets": [
+    {
+     "id": "WS-4861",
+     "agent": "皮皮的小P - Multica",
+     "title": "[7月盘点·补证] 皮皮: 7 月千川动作级资金流水 (挂车 vs 谢场) 或写死口述回勾",
+     "status": "done",
+     "why": "7月盘点·补证: agent 9/4 16:20 只回一行\"后台无动作级资金类型, 7月挂车251,325.17维持口述回勾\"(票面兜底条款), 无截图/导出/新取数; CSO验收PASS置done但无可核验新产出 → 边界, 见§5"
+    }
+   ],
+   "daily_ids": [
+    "WS-4645",
+    "WS-4723",
+    "WS-4809",
+    "WS-4871",
+    "WS-4926",
+    "WS-4978",
+    "WS-5029",
+    "WS-5077",
+    "WS-5115",
+    "WS-5149",
+    "WS-5179",
+    "WS-5240",
+    "WS-5294",
+    "WS-5347",
+    "WS-5386",
+    "WS-5449",
+    "WS-5498",
+    "WS-5538",
+    "WS-5580",
+    "WS-5612",
+    "WS-5661",
+    "WS-5701",
+    "WS-5742",
+    "WS-5783",
+    "WS-5807",
+    "WS-5888",
+    "WS-5957",
+    "WS-6038"
+   ],
+   "org_infra_ids": [
+    "WS-4625",
+    "WS-4771",
+    "WS-5000",
+    "WS-5214",
+    "WS-5404",
+    "WS-5554",
+    "WS-5641",
+    "WS-5925",
+    "WS-5984",
+    "WS-6003",
+    "WS-6015"
+   ],
+   "verdict": "未裁定 (本文件只统计; 降档裁定留判定人)"
+  },
+  "奶思": {
+   "agents": [
+    "奶思的猪猪"
+   ],
+   "total": 45,
+   "real": 1,
+   "real_transfusion": 0,
+   "real_natural": 1,
+   "no_output": 0,
+   "daily": 28,
+   "org_infra": 16,
+   "real_tickets": [
+    {
+     "id": "WS-4862",
+     "agent": "奶思的猪猪",
+     "title": "[7月盘点·补数] 奶思: 6/7 月其他达播付款/谢婷婷结算/小红书付款渠道对账 (禁估算)",
+     "status": "done",
+     "line": "达播/财务对账",
+     "strength": "strong",
+     "evidence": "6/7月分月费用表v1.2: 小红书46,726(导航仪对公补佣)、大禹21,675.83、王小明6月15,557.83; 谢婷婷3万前置款农行回单2026-08-14 15:10:03核验; 7,428条订单导出独立复算→严格结算3,009条/507,140.22元; 12个附件+closing HTML(SHA-256 1ec472d4…); CSO 9/4 19:1x 验收PASS置done",
+     "hr22_transfusion": "否 (JC 9/4 盘点指令; 描述无hr22)"
+    }
+   ],
+   "no_output_tickets": [],
+   "daily_ids": [
+    "WS-4642",
+    "WS-4720",
+    "WS-4805",
+    "WS-4951",
+    "WS-4974",
+    "WS-5026",
+    "WS-5072",
+    "WS-5112",
+    "WS-5145",
+    "WS-5175",
+    "WS-5236",
+    "WS-5290",
+    "WS-5343",
+    "WS-5383",
+    "WS-5445",
+    "WS-5494",
+    "WS-5575",
+    "WS-5608",
+    "WS-5657",
+    "WS-5697",
+    "WS-5737",
+    "WS-5779",
+    "WS-5803",
+    "WS-5831",
+    "WS-5860",
+    "WS-5884",
+    "WS-5953",
+    "WS-6031"
+   ],
+   "org_infra_ids": [
+    "WS-4626",
+    "WS-4682",
+    "WS-4685",
+    "WS-4759",
+    "WS-4772",
+    "WS-4837",
+    "WS-4964",
+    "WS-5001",
+    "WS-5215",
+    "WS-5366",
+    "WS-5399",
+    "WS-5555",
+    "WS-5642",
+    "WS-5685",
+    "WS-5987",
+    "WS-6004"
+   ],
+   "verdict": "未裁定 (本文件只统计; 降档裁定留判定人)"
+  },
+  "文雅": {
+   "agents": [
+    "文雅的白茶",
+    "文雅的WorkBuddy",
+    "文雅的Grok"
+   ],
+   "total": 29,
+   "real": 0,
+   "real_transfusion": 0,
+   "real_natural": 0,
+   "no_output": 0,
+   "daily": 18,
+   "org_infra": 11,
+   "real_tickets": [],
+   "no_output_tickets": [],
+   "daily_ids": [
+    "WS-4650",
+    "WS-4729",
+    "WS-4816",
+    "WS-4878",
+    "WS-4930",
+    "WS-4984",
+    "WS-5035",
+    "WS-5083",
+    "WS-5120",
+    "WS-5155",
+    "WS-5184",
+    "WS-5245",
+    "WS-5351",
+    "WS-5502",
+    "WS-5541",
+    "WS-5892",
+    "WS-5961",
+    "WS-6042"
+   ],
+   "org_infra_ids": [
+    "WS-4623",
+    "WS-4769",
+    "WS-4998",
+    "WS-5162",
+    "WS-5212",
+    "WS-5639",
+    "WS-5682",
+    "WS-5923",
+    "WS-5979",
+    "WS-6001",
+    "WS-6013"
+   ],
+   "verdict": "未裁定 (本文件只统计; 降档裁定留判定人)"
+  },
+  "黄宁": {
+   "agents": [
+    "黄宁的橙子"
+   ],
+   "total": 20,
+   "real": 0,
+   "real_transfusion": 0,
+   "real_natural": 0,
+   "no_output": 0,
+   "daily": 14,
+   "org_infra": 6,
+   "real_tickets": [],
+   "no_output_tickets": [],
+   "daily_ids": [
+    "WS-4707",
+    "WS-4794",
+    "WS-4855",
+    "WS-5017",
+    "WS-5064",
+    "WS-5102",
+    "WS-5140",
+    "WS-5170",
+    "WS-5478",
+    "WS-5532",
+    "WS-5691",
+    "WS-5730",
+    "WS-5879",
+    "WS-6022"
+   ],
+   "org_infra_ids": [
+    "WS-4628",
+    "WS-4774",
+    "WS-5686",
+    "WS-5980",
+    "WS-6006",
+    "WS-6011"
+   ],
+   "verdict": "未裁定 (本文件只统计; 降档裁定留判定人)"
+  },
+  "小龙": {
+   "agents": [
+    "小龙的大龙"
+   ],
+   "total": 40,
+   "real": 0,
+   "real_transfusion": 0,
+   "real_natural": 0,
+   "no_output": 0,
+   "daily": 30,
+   "org_infra": 10,
+   "real_tickets": [],
+   "no_output_tickets": [],
+   "daily_ids": [
+    "WS-4644",
+    "WS-4722",
+    "WS-4807",
+    "WS-4870",
+    "WS-4925",
+    "WS-4977",
+    "WS-5028",
+    "WS-5074",
+    "WS-5114",
+    "WS-5148",
+    "WS-5178",
+    "WS-5239",
+    "WS-5293",
+    "WS-5346",
+    "WS-5385",
+    "WS-5448",
+    "WS-5497",
+    "WS-5551",
+    "WS-5578",
+    "WS-5610",
+    "WS-5660",
+    "WS-5699",
+    "WS-5740",
+    "WS-5782",
+    "WS-5806",
+    "WS-5834",
+    "WS-5862",
+    "WS-5887",
+    "WS-5956",
+    "WS-6035"
+   ],
+   "org_infra_ids": [
+    "WS-4622",
+    "WS-4768",
+    "WS-4997",
+    "WS-5211",
+    "WS-5553",
+    "WS-5638",
+    "WS-5684",
+    "WS-5922",
+    "WS-5988",
+    "WS-6000"
+   ],
+   "verdict": "未裁定 (本文件只统计; 降档裁定留判定人)"
+  },
+  "欣欣": {
+   "agents": [
+    "欣欣的叶子"
+   ],
+   "total": 27,
+   "real": 0,
+   "real_transfusion": 0,
+   "real_natural": 0,
+   "no_output": 0,
+   "daily": 17,
+   "org_infra": 10,
+   "real_tickets": [],
+   "no_output_tickets": [],
+   "daily_ids": [
+    "WS-4661",
+    "WS-4727",
+    "WS-4813",
+    "WS-4876",
+    "WS-5033",
+    "WS-5081",
+    "WS-5156",
+    "WS-5188",
+    "WS-5380",
+    "WS-5540",
+    "WS-5619",
+    "WS-5664",
+    "WS-5705",
+    "WS-5746",
+    "WS-5891",
+    "WS-5960",
+    "WS-6040"
+   ],
+   "org_infra_ids": [
+    "WS-4624",
+    "WS-4770",
+    "WS-4999",
+    "WS-5213",
+    "WS-5402",
+    "WS-5640",
+    "WS-5683",
+    "WS-5924",
+    "WS-5989",
+    "WS-6002"
+   ],
+   "verdict": "未裁定 (本文件只统计; 降档裁定留判定人)"
+  },
+  "维欣": {
+   "agents": [
+    "维欣的codex"
+   ],
+   "total": 41,
+   "real": 1,
+   "real_transfusion": 0,
+   "real_natural": 1,
+   "no_output": 0,
+   "daily": 25,
+   "org_infra": 15,
+   "real_tickets": [
+    {
+     "id": "WS-5061",
+     "agent": "维欣的codex",
+     "title": "[分销履约] 2026年9月跨越速运预付运费与客户运费回收对账",
+     "status": "done",
+     "line": "发货/物流履约·财务对账",
+     "strength": "normal",
+     "evidence": "跨越速运8-9月10票1,640.33元逐票对账; 余额链5.04+1,000−928.33+3,000−712=2,364.71; 客户承担应收310.00(未到账, 10/8回查); 已开票532.10/待开票712.00; 附件 interim HTML(agent上传, 5,396B) + final HTML(8,909B); CSO 9/30 15:00 跨血统验收PASS",
+     "hr22_transfusion": "否 (建票人member 8d15ccb8, 9/8建; 标题/描述无hr22)",
+     "boundary": "终版收口评论与终版HTML由 member 8d15ccb8(显示名1060326709, CSO认定为维欣本人)于9/28发布, agent 84290daa 9/8交阶段HTML并于9/28确认; 8月WS-3996\"由CSO代做不计\"先例针对的是CSO代做, 本票为员工本人+其agent, 判定人知悉"
+    }
+   ],
+   "no_output_tickets": [],
+   "daily_ids": [
+    "WS-4651",
+    "WS-4731",
+    "WS-4818",
+    "WS-4880",
+    "WS-4931",
+    "WS-4985",
+    "WS-5036",
+    "WS-5084",
+    "WS-5121",
+    "WS-5157",
+    "WS-5185",
+    "WS-5247",
+    "WS-5301",
+    "WS-5504",
+    "WS-5584",
+    "WS-5618",
+    "WS-5667",
+    "WS-5707",
+    "WS-5731",
+    "WS-5745",
+    "WS-5786",
+    "WS-5809",
+    "WS-5893",
+    "WS-5962",
+    "WS-6043"
+   ],
+   "org_infra_ids": [
+    "WS-4621",
+    "WS-4629",
+    "WS-4851",
+    "WS-5003",
+    "WS-5098",
+    "WS-5217",
+    "WS-5248",
+    "WS-5253",
+    "WS-5556",
+    "WS-5644",
+    "WS-5688",
+    "WS-5927",
+    "WS-5983",
+    "WS-6007",
+    "WS-6014"
+   ],
+   "verdict": "未裁定 (本文件只统计; 降档裁定留判定人)"
+  }
+ },
+ "totals": {
+  "total": 320,
+  "real": 7,
+  "real_transfusion": 0,
+  "noout": 12,
+  "daily": 199,
+  "orginfra": 102,
+  "persons_with_real": 3,
+  "person_count": 9,
+  "real_strict_status_literal": 5,
+  "real_strict_note": "若按口径4状态字面剔除 WS-4860(todo) 与 WS-5068(cancelled), 真业务=5; 人数分布不变(泡泡仍3张)",
+  "vs_2026_08": {
+   "total": [
+    526,
+    320
+   ],
+   "real": [
+    11,
+    7
+   ],
+   "real_ratio": [
+    "2.1%",
+    "2.2%"
+   ],
+   "daily_ratio": [
+    "45.6%",
+    "62.2%"
+   ],
+   "orginfra_ratio": [
+    "50.8%",
+    "31.9%"
+   ],
+   "persons_with_real": [
+    8,
+    3
+   ]
+  }
+ },
+ "roster_diff": {
+  "WS-6026": {
+   "agent": "CTO 安装执行·奶思 Hermes·WS-6024 (49980d94)",
+   "merged_into": null,
+   "bucket_if_merged": "组织/基建",
+   "why": "建票人 CTO Codex(3e1b5bae), WS-6024 衍生 A2A 远程安装执行票; 内容=在奶思机装 skill + 追加 AGENTS 一行; 承办 agent 评论自述\"本次仅技术交付\"; 工牌非奶思名下业务 agent(奶思业务 agent=奶思的猪猪 658293f2). 不并入; 即使并入, 奶思总票 45→46, 真业务数不变"
+  }
+ },
+ "out_of_window_business_traces": [
+  {
+   "id": "WS-1143",
+   "person": "欣欣",
+   "created": "2026-06-29",
+   "note": "9/8 member e787ee89(欣欣) 贴 Automation 10 生产运行: 达人入库5人、邀约发送5/5成功、飞书回读5/5; 票创建于6月且执行者为人类账号, 按 created_at 口径不计入9月"
+  },
+  {
+   "id": "WS-4019",
+   "person": "小龙",
+   "created": "2026-08-21",
+   "note": "无 assignee; 9月 member b6442dc6(小龙) 107条评论, KOC筛选回执(累计候选746/终审50/严格新增16); 不在 agent 名下且8月建, 不计"
+  },
+  {
+   "id": "WS-4331",
+   "person": "小龙",
+   "created": "2026-08-26",
+   "note": "无 assignee; 9月 member b6442dc6 59条评论(寄样记录补资料/监听修复); 不计"
+  },
+  {
+   "id": "WS-4133",
+   "person": "皮皮",
+   "created": "2026-08-23",
+   "note": "8月已计真业务; 9月小P 12条评论多为转达/台账, 9/11 提到两千川计划9/10消耗0.01元; 8月建, 不计入9月"
+  },
+  {
+   "id": "WS-2319",
+   "person": "芳芳",
+   "created": "2026-07-23",
+   "note": "9月芳芳agent 17条评论均为 REMINDER_RESULT failed / 熔断(飞书身份不可用), 无业务产出"
+  }
+ ]
+}
