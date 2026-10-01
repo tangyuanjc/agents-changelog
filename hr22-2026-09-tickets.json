@@ -732,5 +732,81 @@
    "created": "2026-07-23",
    "note": "9月芳芳agent 17条评论均为 REMINDER_RESULT failed / 熔断(飞书身份不可用), 无业务产出"
   }
- ]
+ ],
+ "review_amendment_20261002": {
+  "by": "Opus-CSO · Multica 执行窗 (agent 0ee6063e, WS-6051 assignee 复核)",
+  "at": "2026-10-02 04:1x Asia/Shanghai",
+  "finding": "口径1 (创建于当月 + assignee 为员工 agent) 漏计员工 agent 落在口径外票上的 9 月真业务产出; 6 人警告中皮皮/小龙/欣欣不该记 (口径漏看, 非逐票分类错)",
+  "rule_added_koujing_5": "计入范围 = 当月窗内员工 agent 在任何票上的可核验业务产出, 不论建票月与 assignee, 按评论时间定月份; 员工 agent 身份发的直接计, 员工本人账号发的须票面写明出自本机 agent 自动化 (自动化名/脚本/定时任务/证据文件), 纯人工不计; 口径2-4 与 8 月 §7 输血条款不变; 只放宽不收紧, 直接用于 9 月",
+  "scan": {
+   "sep_active_issues": 1810,
+   "out_of_scope_candidates": 1490,
+   "employee_comment_hits": 53,
+   "evidence_dir": "~/orca-hq/evidence/hr22-0930/review-1002/ (scan_oow.py, scan_creator.py, oow_hits.json, oow_summary.txt, creator_scan.txt)"
+  },
+  "upgraded_to_pass": {
+   "皮皮": [
+    {
+     "id": "WS-5019",
+     "created": "2026-09-07",
+     "assignee": "JC (member)",
+     "author": "皮皮的小P (agent 2c182e9c)",
+     "line": "投放/财务对账",
+     "evidence": "2026-09-07T08:21:25Z 8 月千川回收第一版: 973 条计划×日记录, 31/31 天, 重复键 0, 整体消耗 334,403.53, 净成交 709,517.55, 原始 JSON 附件 1,695,940 B + SHA-256; 2026-09-09T12:29:33Z 只读缺口清单"
+    }
+   ],
+   "小龙": [
+    {
+     "id": "WS-4019",
+     "created": "2026-08-21",
+     "assignee": null,
+     "author": "小龙本人账号 b6442dc6 (本机 Codex 自动化, gpt-6-astra)",
+     "line": "带货/达人 KOC 筛选",
+     "evidence": "2026-09-07T09:20:33Z 轮次收口: 严格新增 20/20 写入筛选表, 回读 20/20; 2026-09-11T14:28:17Z 下一轮累计候选 746 / 十视频终审 50 / 严格新增 16"
+    },
+    {
+     "id": "WS-3865",
+     "created": "2026-08-18",
+     "assignee": null,
+     "author": "小龙本人账号 b6442dc6 (本机脚本 + Windows 定时任务)",
+     "line": "带货/达人邀约",
+     "evidence": "2026-09-18T09:06:36Z 40 人邀约成功 39; 2026-09-18T09:22:06Z 40 人成功 38; 台账 koc_invite_batches.jsonl 新增 2 条; 09:30/13:30 每日任务已注册"
+    }
+   ],
+   "欣欣": [
+    {
+     "id": "WS-1143",
+     "created": "2026-06-29",
+     "assignee": "欣欣的叶子 (agent 33903c19)",
+     "author": "欣欣本人账号 e787ee89 (Codex Automation 10)",
+     "line": "带货/达人邀约",
+     "evidence": "2026-09-08T08:57:16Z 生产运行: 飞书达人库读 210 条去重后新增 5, 邀约 5/5 平台回执发送成功, 状态回写 5/5; 2026-09-08T09:01:44Z 欣欣的叶子复核记邀约发送 5/5"
+    }
+   ]
+  },
+  "confirmed_zero": {
+   "芳芳": "口径外仅 WS-2319 提醒熔断 + WS-5177/5238/5537 ERP 分诊转达, 无新数据",
+   "文雅": "口径外仅 WS-4598 8/31 日报一条",
+   "黄宁": "口径外仅 WS-5376/5651 runtime 异常票"
+  },
+  "final": {
+   "pass": 6,
+   "pass_persons": [
+    "泡泡",
+    "奶思",
+    "维欣",
+    "皮皮",
+    "小龙",
+    "欣欣"
+   ],
+   "warning_1_of_2": [
+    "芳芳",
+    "文雅",
+    "黄宁"
+   ],
+   "downgrade": 0,
+   "downgrade_checkpoint": "2026-10-31 (10 月判定)",
+   "supersedes": "persons.皮皮/小龙/欣欣 的 0 票警告; totals.persons_with_real 3 → 6"
+  }
+ }
 }
