@@ -7773,3 +7773,20 @@ JC 17:31 双命题:
 - 没做: 不立新 hr 编号; 不建细则文件; 不建「翻译 agent」; 讲解视频只做一条样片交 JC 判, 不入规则; 消息数量与去重仍归 hr25 与分诊窗。
 - 试行与退出: 承载票 WS-6133 (backlog, 10/26 到期)。指标 = JC 追问次数 (基线 9/16–9/30) + 抽样首句与裸代号 + 凭证有无被删。有效 → 能力分发到员工机; 无效 → 撤 ④a 与常驻行, 改走发送入口机械检查, 不再加字。
 - 证据: `~/orca-hq/evidence/karpathy-output-1002/` (推文原文与配图 / 草案 v0 / 实验输入输出 / 三刀原文) · 判定页 `~/orca-hq/deliverables/jc-1002/01_Karpathy输出方式判定_1002.html`。
+
+## [2026-10-03 02:40 CST] [Opus-CSO] [type:rule] hr39 ④a 补讲解视频 (JC 判「有用, 优先用」) + CSO 主力模型改 Opus 5.5 + 主线排产试行 v1.6
+
+- 触发: JC 10/3 凌晨看完判定页和 67 秒讲解视频样片, 回「视频有用, 后续我们的 Agent 以及组织 Agent 都可以优先用这样的方式」; 同一条消息里定了「后续 CSO 主力模型用 Opus 5.5」, 并让 CSO 看 imryven 10/1 帖 (Opus 5.5 主力 + `/advisor fable`) 和它引用的长文《Graph Engineering》, 判 ORCA 端多 agent 协作要不要调。
+- 文件与改动:
+  - `~/.org/AGENTS.md` hr39 ④a: 「讲解视频不入规则」改为「要人理解一件事的交付优先配一条 60–90 秒讲解视频, 做法 = explainer-video skill; 旁白脚本由作者自己写; 要人马上拍板的一句话消息不做视频」。
+  - 常驻合同在「给人看的话」那一行行尾加同一句: `~/AGENTS.md` · `~/orca-hq/AGENTS.md` · 7 个在用工作树的 `AGENTS.md` · `~/.codex/instructions.md` 与 official 副本 · `~/.claude/CLAUDE.md`。
+  - 新 skill `explainer-video` (两份相同: `~/.claude/skills/explainer-video/SKILL.md`、`~/.agents/skills/explainer-video/SKILL.md`, 各 244 行; 模板 `~/.agents/skills/explainer-video/template/`)。工具链 HyperFrames + edge-tts + ffmpeg, 冒烟测试 `~/orca-hq/evidence/video-skill-smoke-1003/` 一次跑通。
+  - `~/.bin/orca-cso.sh`: 默认模型 claude-fable-5-1 → claude-opus-5-5; 新增 `CSO_ADVISOR` 开关, 默认 off。备份 `.bak-20261003`。`~/.claude/opus-cso-boot.md` 模型分档段同步。
+  - `~/.org/cso-window/review-0904/四个月落地主线.md` 加勘误 v1.6 (排产试行到 10/31)。
+  - `DISPATCH.md` 第 14 行从 2 万字压回当前指针; 修三处失效指针。
+- 判断与依据:
+  - **顾问不默认接**: 核 Anthropic 官方「Optimizing for cost and intelligence」原文 — Opus 5.5 (high) 配 Fable 5.1 顾问 90.1%, 只比 Opus 5.5 单跑高 1.7 分 (原文: 在误差边缘), 花费约 2.1 倍; 另一基准上 300 题只请教 1 次, 得分低 7 分。顾问同血统、读同一段对话, 不算独立验收。CSO 先按帖子设成默认开, 核原文后改回默认关。
+  - **ORCA 协作不重构, 只改排产**: CSO 初判「调三处」被 Sol 跨血统审查打回 (「只调三处没有提高业务闭环的证据」), 采纳 Sol 的建议 — 三条主线每条同一时间只推一个闭环, 开工前要有接手人 / 授权范围 / 证明做成的数字, 闭环口径冻结。「等人回话前先只读查真实系统」写成 CSO 工作习惯, 只读、不代替审批。
+  - WS-2082 (验收官 Sol 与 CTO Codex 同运行环境) 定 10/20, 加拒收样例条件。
+- 影响: 本机所有 agent 的讲解型交付; CSO 统领窗的默认模型; CSO 10 月的派单节奏。员工机暂不动 (随 WS-6133 在 10/26 一并判)。
+- 证据: `~/orca-hq/evidence/advisor-graph-1003/` (帖子、长文、官方文档副本、调研、Sol 审查原文、判断草稿) · `~/orca-hq/deliverables/jc-1003/01_目标对齐与协作判定_1003.html`。
