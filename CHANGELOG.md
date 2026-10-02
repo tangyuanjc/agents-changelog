@@ -1,3 +1,10 @@
+## [2026-10-02 10:19 上海] [Opus-CSO] [type:fix] WS-6076 补：Hindsight 停机豁免续期越过 7 天租期上限，看板误红 26 分钟，已改正
+
+- 现象：统领窗 10/2 09:16 把 `~/.config/hindsight/planned-maintenance.json` 的 `expires_at` 从 10/5 续到 10/12，同时写入 `reviewed_at`=10/2 01:15:59Z。租期 = 9.96 天，超出 `~/.org/metrics/hindsight-maintenance-override.mjs:7,32` 的 7 天上限，模块判 `invalid`。09:46 看板 Hindsight 变 🔴、`planned_maintenance.active=false`，期间没有告警发出。
+- 根因：CSO 任务书写的是「延 7 天」，没写清租期从 `reviewed_at` 起算。
+- 修复：只改 `expires_at` → `2026-10-09T00:17:46Z`（租期 167.0h）。模块自验 `status=active`；kickstart 后，10:12 的看板 Hindsight 恢复 ⚪。统领窗原版备份为 `.bak-1002-cw`。
+- 防复发：任务书 `~/.org/cso-window/ws5900-override-expiry-1005.md` 已重写，写明租期规则、自验命令和看板刷新步骤。续期改由每天 09:30 的 Critic 负责：`expires_at` 距今不足 24h 就续，不另挂哨兵。手册 `feedback_loop1_memory_axis_false_alarms_0905` §14 已补。
+
 ## [2026-10-02 10:08 上海] [Opus-CSO] [type:fix] WS-6009 停摆补验通过；员工巡修 autopilot 1e3f3739 修中继与拉取两处判据
 
 - **验收**（跨血统：执行=CTO Codex / gpt-6.1-sol，验收=Opus）：9/30 首跑只读巡检「健康 4/9」。逐项对原始数据：9 个 agent→runtime 映射现跑 9/9 一致；拉取日志按当时的 61 块重算，9 人的 12 块序列逐项相同；5 名异常员工的最新 task ID、状态、报错原文全部对上；`cso-notify.log` 第 931 行（9/30 12:01:34 escalate）在案；执行方原始 Codex 会话 9 个工具调用块里 kickstart / 私聊员工 / ps 展开参数 / 读组网配置 / sudo 均 0 次，只读合规；附件与评论扫密 0 命中。WS-6009 → done。
