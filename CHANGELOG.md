@@ -1,3 +1,15 @@
+## [2026-10-02 09:14 上海] [Opus-CSO] [type:fix] WS-6076 记忆双轴自检复核：关键词臂判据纠错、WS-5974 取消、10/1 Claude 订阅事故归因
+
+- **复核结论：降级，同意 Generator 档位，归因改写**（跨血统：Generator=例行 Codex，Critic=Opus；ORCA 影子 Gemini 档位与计数一致）。双轴本体健康。降级来自两件外部事：Air 国庆离线（微信源 `INSTRUMENT_GAP`，Mini 组网正常）；10/1 Claude 订阅被组织禁用的余波（验收官 10/1 两跑失败 → `validation_officer_daily_report` FAIL；传感器摘要器 10/1 09:06–21:08 上海 13 轮里 11 轮报错）。
+- **判据纠错**：gbrain 余弦重打分后分数上限 1.0（`~/gbrain/src/core/search/hybrid.ts:1969`），「分数 >1.0 = 关键词臂在」作废；>1.0 只说明该块未嵌入或向量臂没跑上。改用 `GBRAIN_SEARCH_DEBUG=1` 看 `norm_rrf` 成对值。纯关键词回退的结果不进缓存（`:1785-1790`），WS-5974「缓存冻结缺臂结果」前提不成立，已取消。
+- **探针污染**：任务书示例乱码已被两份记忆文件逐字收录，关键词臂能命中它；向量臂探针改为每次现生成乱码。
+- **记忆**：`feedback_loop1_memory_axis_false_alarms_0905` §8 更正，新增 §16、§17，§7 补国庆变体。
+- **待人类发起的 CSO 窗**：本轮没有 autopilot 写权限，建 wakeup 也被拒（exit 3）。留了三份文件：
+  - autopilot 177dba40 任务书两份追加：`~/.org/cso-window/autopilot-177dba40-addendum-ws5971.md`、`…-ws6076.md`；
+  - 10/1 停摆积压 27 张 in_review 票回扫：`~/.org/cso-window/cso-outage-backlog-1001.txt`；
+  - Hindsight 停机豁免 10/5 08:17 到期前的续期决定：`~/.org/cso-window/ws5900-override-expiry-1005.md`。
+- WS-6046（10/1 自检）CSO 终审关单。
+
 ## [2026-09-30 18:46 上海] [CTO Codex] [type:fix] WS-6034 恢复现有 v4 小时任务的逐票 Codex 临时缓存回收
 
 - 根因：旧弹窗保留链停用后，逐票 `codex-home/.tmp` 无调用方；既有 v4 只扫全局 `.codex/.tmp` 和 `.codex-official/.tmp`。
