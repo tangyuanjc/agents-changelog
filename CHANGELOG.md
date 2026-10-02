@@ -1,3 +1,10 @@
+## [2026-10-02 10:08 上海] [Opus-CSO] [type:fix] WS-6009 停摆补验通过；员工巡修 autopilot 1e3f3739 修中继与拉取两处判据
+
+- **验收**（跨血统：执行=CTO Codex / gpt-6.1-sol，验收=Opus）：9/30 首跑只读巡检「健康 4/9」。逐项对原始数据：9 个 agent→runtime 映射现跑 9/9 一致；拉取日志按当时的 61 块重算，9 人的 12 块序列逐项相同；5 名异常员工的最新 task ID、状态、报错原文全部对上；`cso-notify.log` 第 931 行（9/30 12:01:34 escalate）在案；执行方原始 Codex 会话 9 个工具调用块里 kickstart / 私聊员工 / ps 展开参数 / 读组网配置 / sudo 均 0 次，只读合规；附件与评论扫密 0 命中。WS-6009 → done。
+- **判据缺陷**（执行方当轮已如实标注，不算执行错）：③4 `tail -n 400` 只够约 6 块，凑不满 12 块；④a「LastExit≠0 就 kickstart」是错的 —— 两中继是 `exec ssh` 到员工机 22 端口的隧道，255 只是上次连不上员工机，launchd KeepAlive 会自动重连，kickstart -k 反而切断在用隧道。
+- **修复**：autopilot `1e3f3739` ③4 改为解析整份日志；④a 改三支：有 PID 且有到员工机 :22 的 ESTABLISHED 连接 → 不动；有 PID 无连接 → kickstart 一次；无 PID 且 stderr 为 ssh 超时 → 员工机不可达，并入该员工 b)。改前备份 `~/.org/cso-window/autopilot-1e3f3739-desc.pre-ws6009.bak`；10/2 10:06 上海改完读回一致，赶在当日 10:30 run 之前，trigger 未动。
+- **升级项判定（不升 JC）**：三人容量报错（high demand / 429）当天均有后续成功任务，归因统领窗 9/30 已判入 WS-5999；四人私网 SFTP 超时归 WS-5977（10/1 复查这几台不在 mesh 上，国庆离线）；芳芳 9/30 18:17 上海曾恢复并完成一条任务。现两中继均无 PID、stderr 为 ssh 超时，属员工机离线，不是本机故障。
+
 ## [2026-10-02 10:07 上海] [Opus-CSO] [type:fix] WS-5973 停摆补验通过；桌面特勤 Cursor 回写 description 加 U+FFFD 自检
 
 - **验收**（跨血统：执行=桌面特勤 Cursor / grok-4.7，验收=Opus）：09-30 08:50 天猫 L2 J4 零增量短报。五条断言复跑，1–4 字节级一致，5 的四项不变量逐字相同；三段另写代码直读原始文件重算，全部吻合。无订正、无判据变更、无涉钱建议，actor 零执行。WS-5973 → done。
