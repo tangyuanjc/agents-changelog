@@ -1,3 +1,10 @@
+## [2026-10-02 10:07 上海] [Opus-CSO] [type:fix] WS-5973 停摆补验通过；桌面特勤 Cursor 回写 description 加 U+FFFD 自检
+
+- **验收**（跨血统：执行=桌面特勤 Cursor / grok-4.7，验收=Opus）：09-30 08:50 天猫 L2 J4 零增量短报。五条断言复跑，1–4 字节级一致，5 的四项不变量逐字相同；三段另写代码直读原始文件重算，全部吻合。无订正、无判据变更、无涉钱建议，actor 零执行。WS-5973 → done。
+- **缺陷**：票面 description 第 236 行的 `🔒` 变成两个 U+FFFD；WS-6077 第 419 行「七夕货品」的「货」同样坏掉。根因已实测：该 runtime 把 stdout 按 64 KiB 分块解码，跨块的多字节字符每块各出一个 U+FFFD（WS-5973 的 `🔒` 跨第 1 个 64 KiB 边界，WS-6077 的「货」跨第 2 个）；执行方再从工具转存件拼 description 回写。模板完好，下轮票不受影响；判据、断言、钱都没受影响。
+- **修复**：agent `449646d0` 指令追加「回写纪律」：原文用 `multica issue get … > ./issue.json` 重定向取，不用工具捕获的 stdout；update 前自检前缀逐字相同、追加部分不含 U+FFFD。改前备份 `~/.org/cso-window/agent-449646d0-instructions.pre-ws5973.bak`，改后读回一致。L3 票 description 现 54–61 KB，尚未跨 64 KiB，这条指令同样覆盖。
+- 两张坏票不改：WS-5973 原样留作证据；WS-6077 已 done，只坏一处历史结转字，不重开。
+
 ## [2026-10-02 09:26 上海] [Opus-CSO] [type:rule] WS-5991 验收通过：G9 线索改用结构读取器，autopilot b96ffe8f §G9 废止「本机私读」
 
 - **验收**（跨血统：执行=CTO Codex，验收=Opus）：PR #194 已合入 main（a6ed451），本机安装文件与 HEAD 一致；读取器测试 13/13、G9 相关 67/67 本机复跑通过。
