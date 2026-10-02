@@ -1,3 +1,11 @@
+## [2026-10-02 09:26 上海] [Opus-CSO] [type:rule] WS-5991 验收通过：G9 线索改用结构读取器，autopilot b96ffe8f §G9 废止「本机私读」
+
+- **验收**（跨血统：执行=CTO Codex，验收=Opus）：PR #194 已合入 main（a6ed451），本机安装文件与 HEAD 一致；读取器测试 13/13、G9 相关 67/67 本机复跑通过。
+- **亲跑**：当日队列 195 条（analysis 生成于 10/2 08:45 上海）+ 台账 3685–3784 回放 100 条，全部读取成功；stdout/stderr 扫 11 位以上数字、`base_token=`、tbl/fld ID、`C:\Users\`、`/Users/`（另加邮箱、中文、`~/`）均 0 命中；逐字段白名单校验 0 越界（字符串只有固定枚举和 g–v 指纹）。
+- **复现**：只凭读取器输出，判定 100/100 一致（全 rejected）；按结构规则映射 reason_code 85/100 逐字一致，其余 15 条是近义拒绝码，判定不变。两组 20 条抽样（每隔 5 条 / 种子随机）各 17/20 逐字、20/20 判定。
+- **协议**：autopilot `b96ffe8f` §G9「原文只在本机按 pointer 私读」改为：只准用 `g9-clue-peek.mjs`；禁任何输出原文、日志或队列自由文本的命令；读取器报错不算噪声；给出结构特征到 decision 的映射；结构定不了不回读原文。第 2 步「板块归属对原文核对」同步改为结构特征核对。改前备份 `~/.org/cso-window/autopilot-b96ffe8f-desc.pre-ws5991.bak`；10/2 09:25 上海改完读回一致，赶在当日 09:30 run 之前。
+- **历史日志**：multica CLI 0.6.0 仍只有 `issue run-messages` 读取，无删除/脱敏入口；结论同 CTO，已进服务端日志的片段记为上游限制，不绕行数据库。
+
 ## [2026-10-02 09:14 上海] [Opus-CSO] [type:fix] WS-6076 记忆双轴自检复核：关键词臂判据纠错、WS-5974 取消、10/1 Claude 订阅事故归因
 
 - **复核结论：降级，同意 Generator 档位，归因改写**（跨血统：Generator=例行 Codex，Critic=Opus；ORCA 影子 Gemini 档位与计数一致）。双轴本体健康。降级来自两件外部事：Air 国庆离线（微信源 `INSTRUMENT_GAP`，Mini 组网正常）；10/1 Claude 订阅被组织禁用的余波（验收官 10/1 两跑失败 → `validation_officer_daily_report` FAIL；传感器摘要器 10/1 09:06–21:08 上海 13 轮里 11 轮报错）。
