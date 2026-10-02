@@ -7774,7 +7774,7 @@ JC 17:31 双命题:
 - 试行与退出: 承载票 WS-6133 (backlog, 10/26 到期)。指标 = JC 追问次数 (基线 9/16–9/30) + 抽样首句与裸代号 + 凭证有无被删。有效 → 能力分发到员工机; 无效 → 撤 ④a 与常驻行, 改走发送入口机械检查, 不再加字。
 - 证据: `~/orca-hq/evidence/karpathy-output-1002/` (推文原文与配图 / 草案 v0 / 实验输入输出 / 三刀原文) · 判定页 `~/orca-hq/deliverables/jc-1002/01_Karpathy输出方式判定_1002.html`。
 
-## [2026-10-03 02:40 CST] [Opus-CSO] [type:rule] hr39 ④a 补讲解视频 (JC 判「有用, 优先用」) + CSO 主力模型改 Opus 5.5 + 主线排产试行 v1.6
+## [2026-10-03 00:30 CST] [Opus-CSO] [type:rule] hr39 ④a 补讲解视频 (JC 判「有用, 优先用」) + CSO 主力模型改 Opus 5.5 + 主线排产试行 v1.6
 
 - 触发: JC 10/3 凌晨看完判定页和 67 秒讲解视频样片, 回「视频有用, 后续我们的 Agent 以及组织 Agent 都可以优先用这样的方式」; 同一条消息里定了「后续 CSO 主力模型用 Opus 5.5」, 并让 CSO 看 imryven 10/1 帖 (Opus 5.5 主力 + `/advisor fable`) 和它引用的长文《Graph Engineering》, 判 ORCA 端多 agent 协作要不要调。
 - 文件与改动:
