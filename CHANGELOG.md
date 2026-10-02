@@ -1,3 +1,11 @@
+## [2026-10-02 10:4x 上海] [Opus-CSO] [type:fix] WS-5881 二轮补验放行（停摆后补验）+ 7 张 blocked cancel + WS-4395 关单 / WS-4544 提升 + 判据表 C 行补对象
+
+- **验收结论：通过**（跨血统复审：生成方是例行 Codex gpt-6-sol，审查方是 Opus）。v2 返修 250 KB，sha256 `bc109df8…` 和桌面同名文件一致；上轮 7 项返修全部补齐。更正 1 处：奶思有真业务票 WS-4862（7 月盘点），同系列的 4860、4861 被计入了，它却漏了。4 处质量问题记为跨周生效：「等工程」占 89% 被当成兜底；13 张已过日期的单日票判法不一致；launchd 清单漏了 com.jc.*；candidates 段重复渲染 6 次。上次补验因为 10/1 Claude 订阅停摆没跑成（cso-outage-backlog-1001）。
+- **blocked**：9/29 是 352 张，今天是 291 张。来自 WS-4281 五批清理（139 张 cancel、3 张 done、49 张降为 backlog），加上 CSO 批准的 7 张 cancel（逐张回读；不在除外名单；本机自动化代码没有引用这些票号）。
+- **ERP 看门狗连红约 26 天的根因**：WS-4395 要求 3 在 9/05 已随 PR #39（`8f25f125`）合并，但 8/30 打回时没 @ 执行者，票一直挂着，WS-4544 也就没人按条件提升。处理：生产函数已核对、测试 9/9 通过，WS-4395 已关单；WS-4544 已提升为 todo 并 @CTO Codex（重复排进来的 direct run 已取消）。
+- **C-6 定稿**：ERP 四条、pulse、grok-deep-intel 改为「留」。grok-deep-intel 的「8/07 到期默认降为每周」被 JC 8/10 要求日更的决定取代。
+- **判据表**：`~/.org/docs/plantree/plans/blackboard-arch/loop-idle-criteria.md` 的 12 条 C 行都补上了具体路径、票号和锚点（Sonnet 子代理只读调研，CSO 复核采纳）；只读校验脚本和逐行依据放在同目录 `loop-idle-c-rows/`（`run_all.sh`）。口径改动：C-3 改数 keeper-cancel 张数；C-7 没有草稿记 NO_DRAFTS，不打回；C-16 供给为空记 SUPPLY_EMPTY，不降频；C-17 改锚 sector-radar 周摘要链，真实消费归 publish-radar 行判；publish-radar 第③项改成按 manifest 白名单比对；grok-deep-intel 删掉到期降频条款。按新判据 10/02 实跑全部未触发。**~/.org 的改动还没提交**：工作树落后 origin 13 个提交，另有约 400 处他人未提交的改动，safe-commit 的 rebase 跑不了，等下次 ~/.org 同步时一并提交；原文备份在 `~/.org/cso-window/loop-idle-criteria.pre-ws5881-20261002.bak`。另外新建了 WS-6084，并挂了 10/31 10:00（上海）的定时唤醒，用来收尾 WS-4281 降级票的复验窗。
+
 ## [2026-10-02 10:19 上海] [Opus-CSO] [type:fix] WS-6076 补：Hindsight 停机豁免续期越过 7 天租期上限，看板误红 26 分钟，已改正
 
 - 现象：统领窗 10/2 09:16 把 `~/.config/hindsight/planned-maintenance.json` 的 `expires_at` 从 10/5 续到 10/12，同时写入 `reviewed_at`=10/2 01:15:59Z。租期 = 9.96 天，超出 `~/.org/metrics/hindsight-maintenance-override.mjs:7,32` 的 7 天上限，模块判 `invalid`。09:46 看板 Hindsight 变 🔴、`planned_maintenance.active=false`，期间没有告警发出。
