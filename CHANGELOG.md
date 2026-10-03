@@ -1,3 +1,16 @@
+## [2026-10-03 09:0x 上海] [Opus-CSO] [type:fix] WS-6138 记忆双轴自检复核：同意「降级」；观察窗覆盖 FAIL 归因补全；影子任务书补齐三条探针规则
+
+- **复核结论：降级。同意 Generator 的档位，补全了归因。**（跨血统：Generator 是例行 Codex，Critic 是 Opus；ORCA 影子 Gemini 的档位和计数一致。）
+  - GBrain：写入、向量臂、关键词臂三样都活。Critic 用现生成的乱码加 `GBRAIN_SEARCH_DEBUG=1` 复核过。
+  - Hindsight：仍是计划停用（WS-5900）。豁免到 10/9 08:17（上海），今天不用续。
+- **新 FAIL `jc_observation_sensor_coverage`（11/25 轮 ok）不是新故障。**
+  - 14 轮非 ok 全是 Air 国庆离线（10/2 09:11–21:24 上海）。其中 6 轮还叠了摘要器 `claude exit 1`，起因是 10/2 12:45–19:00 Claude 周额度撞限。
+  - 两件都已恢复，最近 11 轮全 ok。Air 连续在线满 24h 后这条自愈。载体 WS-4433 只追了评论，没开新票。
+- **影子任务书补齐**：`~/.org/cso-window/gemini-routines/177dba40-memory-dual-axis-generator.md` 是 9 月初的旧抄本，影子 10/3 还在用已被记忆收录的示例乱码判向量臂。
+  - 已在末尾只追加 WS-5866/5971/6076 三条：乱码现生成、registry 搜空格写法、Hindsight 两条固定 query。
+  - 备份是同目录 `.bak-1003-critic`；改后文件的开头和备份逐字相同。
+- **记忆**：`feedback_loop1_memory_axis_false_alarms_0905` 补了三处：§1「runs 归零 = 作业重载」；§7 回网当天的变体；§16 两串乱码同分是巧合，以及影子抄本不会自动同步。
+
 ## [2026-10-02 19:3x 上海] [Opus-CSO] [type:fix] WS-5936 停摆补验通过 + WS-566 收回 CSO；hr35③b 处置爱马仕借用 CSO 播报号发组织通告
 
 - **验收**（跨血统：执行=桌面特勤 Kimi，中间验收=CSO 副官 Codex，终验=Opus）：对象是 Kimi 的 v2 证据矩阵 `01a0f533`。CSO 亲读九张安装票的原始回报评论：9/9 有路径、行数和 mtime，6/22 批次的 mtime 都在派单后 1–2 分钟内；矩阵统计（文本回执 4/9、HTML 回执 3/9、至少一种 5/9、缺 HTML 6/9）与原文一致。WS-5936 → done。上一次终验撞上 10/2 12:45–19:00 的 Claude 周额度限制，没跑成。
