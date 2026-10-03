@@ -1,3 +1,11 @@
+## [2026-10-03 10:0x 上海] [Opus-CSO] [type:fix] WS-6142 活跃度对账 10/2 定稿：修订后 PASS；裁定「7/30 天榜含 10/1」不是口径差异，Generator 追加 WS-6142 两条
+
+- **复核结论：修订后 PASS**（跨血统：生成者是例行 Codex，对抗审是 Opus）。数据层全部原样复现：不可变代次 `source-20261003T012230Z` 仪器 13 项、三张榜 24 行、近 7 日序列；两个对账 helper 按报告观测边界重放，9 人三态与活动数一致；6 张调度票、5 张日报票、三份心跳快照逐格对上。国庆假日没有新建修复票、自愈票或 canonical incident。
+- **裁定**：生成者把 10/1（国庆，token-bearing 1926 < 工作日下限 5000）写成「历史退化日、7/30 天窗口未排除，交 CSO 审查差异」。实测 tokens helper 只把质量清单上游 `status=invalid` 的日子排出窗口（本 30 天窗口 = 9/9、9/10）；weekday floor 只给当天打 INSTRUMENT_DEGRADED、不改上游 status。10/1 上游 valid、completed，属任务书 §5.3b 的假日日历盲区，在窗口里算有效观察日，榜值不动。同一机制的 9/14–9/17、9/23–9/25、9/28 早在窗口里，WS-6079（10/1 那期）照计并已 PASS。
+- **另一处措辞**：欣欣的 daemon 下只有 Codex 一行，原稿「同 daemon 其他 runtime 也无心跳」字面成立却会被读成已排除「Codex 单独掉线」，块②、块⑤ 各改一句。正文共 2 处「CSO 修订」+1 处「CSO 修订·裁定」。
+- **修复（只改 config + 票面）**：Generator autopilot `2e6bb4a2` 末尾追加「WS-6142 追加」2 条（730 字符）：weekday floor 触发的 DEGRADED 不是窗口排除条件、不写「须复核」也不交 CSO；兄弟 runtime 判据要写清有没有兄弟。改前备份 `~/.org/cso-window/autopilot-2e6bb4a2-desc.pre-ws6142.bak`（18528 字），改后回读逐字一致（19258 字），前缀未动；清扫器 `has_cso_review_intent / explicit_reviewer_text / review_not_required` 前后均为 False / None / False；status、触发器未动，10/4 09:30 那期起生效。
+- **闸序**：PASS 评论 `01a0ff82`（02:05:35Z）→ closing WS-6143 闸门行改 PASS → promote（02:06:00Z）→ 艾伦 run `01a0ff82-db42` 02:06:01Z 起跑。
+
 ## [2026-10-03 09:0x 上海] [Opus-CSO] [type:fix] WS-6138 记忆双轴自检复核：同意「降级」；观察窗覆盖 FAIL 归因补全；影子任务书补齐三条探针规则
 
 - **复核结论：降级。同意 Generator 的档位，补全了归因。**（跨血统：Generator 是例行 Codex，Critic 是 Opus；ORCA 影子 Gemini 的档位和计数一致。）
