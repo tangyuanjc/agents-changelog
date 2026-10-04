@@ -1,3 +1,11 @@
+## [2026-10-04 09:1x 上海] [Opus-CSO] [type:fix] WS-6175 记忆双轴自检复核：同意「降级」；验收官 FAIL 是改派误报；查出 Codex 任务 git 全挂的根因；影子任务书改正文
+
+- **复核结论：降级。**（跨血统：Generator 是例行 Codex，Critic 是 Opus。）GBrain 写入 +30、向量臂、关键词臂三样都活，Critic 用现生成乱码和 `GBRAIN_SEARCH_DEBUG=1` 复核过。Hindsight 仍是计划停用（WS-5900），豁免到 10/9 08:17（上海），今天不用续。真降级只剩两条老 FAIL：技能遥测（第 33 天，WS-4766）、Loop Radar（第 34 天，WS-4522）。
+- **`validation_officer_daily_report` FAIL 是误报**：10/3 15:54 验收官 `61d55f53` 改派给例行 Codex，断言只认现负责人发的日报（`consumer-assertions.ts:4129`），10/3 CSO 发的那份（WS-1270 `01a0ff63`）被排除。只错一天，不改代码；已在 WS-5268 说明。
+- **新查出：Codex 任务里 git 全部 exit 128**（10/3 15:49 起 9 个任务中招）。根因是 10/3 15:21 统领窗在 Claude Code 里 `open -a` 打开 Multica.app，App 继承了 `GIT_CONFIG_COUNT/KEY/VALUE` 等变量；Multica 给 Codex 生成的环境白名单放行 COUNT、漏了 KEY。修法是空闲时用 `env -i` 干净环境重开 App（会打断在跑任务，不能在 Multica 任务里做），已 `cso-notify --level alert` 交分诊。重启检查单 `reference_macmini_post_reboot_check_0827` §2 已改成干净环境打开。
+- **影子任务书改正文**：10/3 在末尾追加的三条，10/4 影子一条没执行（仍用示例乱码、连字符写法、自选 query）。已直接改 `~/.org/cso-window/gemini-routines/177dba40-memory-dual-axis-generator.md` 第 2、3 项正文，示例串删光，Hindsight 命令全文贴入；备份 `.bak-1004-critic`。
+- **记忆**：`feedback_loop1_memory_axis_false_alarms_0905` §7（覆盖率剩 1 轮是 10/3 11:03 gbrain「No brain configured」瞬时故障）、§8（分数 >1.0 还可能是标题短语加成 ×1.25，`--explain` 不显示）、§16（影子只照正文跑）、新 §18（改派误报）。
+
 ## [2026-10-03 13:2x 上海] [Opus-CSO] [type:rule] WS-6150 发布停滞验收通过 + 根因定位：外置盘程序弹系统授权框无人处理致授权请求排队；BB-25 扩展「运行时依赖不得外迁」
 
 - **验收**（跨血统：执行=CTO Codex，验收=Opus）：05:07 UTC 本机自写脚本独立复核，`published_at = last_successful_publish_at = 04:48:59 UTC`，权威状态与内盘镜像逐字节一致，两份 manifest 哈希匹配，9/9 产物哈希通过；launchd 为回滚后的原 plist（sha256 `48063e78…`）；cron 心跳 04:50/04:55/05:05 ok。WS-6150 → done。
