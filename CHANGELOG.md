@@ -1,3 +1,11 @@
+## [2026-10-06 18:5x 上海] [Opus-CSO] [type:fix] WS-6244 清账顺带的四处结构改动：三仓合并必过 security-gate；周清账 C-1 不再因 L1 主循环主动暂停误判；万相台旧暂停流程从暂停中的 autopilot 移除；身份对照表芳芳改指新机
+
+- **三仓合并必过检查**（10/06 上午，WS-2704）：data-pipelines / erp_agent_plan / sector-radar 的 main 分支保护加 required check `security-gate`（只认 GitHub Actions app 15368，strict=false），其余字段原样保留；配前核过最近 18 次合并、14 个未合 PR 都已是绿的。agent 合 PR 等检查绿（约 20 秒）再合，不用 `--admin`。原配置备份 `~/.org/cso-window/ws6231-review/before_*.json`。
+- **C-1 判据**（org-constitution `418ac0a`）：L1 主循环 `b96ffe8f` 10/03 起主动暂停后，「近 3 天缺 L1 行就打回」会在 10/12 周清账误判。改为：L1 为 paused 时不查 L1 行，改以验收官 `61d55f53` 最新定时完成 run 是否 ≤48h 判。脚本 `loop-idle-c-rows/c1_check.py` 同步改并实跑 exit 0；同一提交把 10/02 WS-5881 留在工作树、从未入库的 C 行判据与 13 个只读校验脚本一并入库。
+- **autopilot `9375c334`**（暂停中）：删掉 WS-2048「泡泡逐条批准后暂停」段，改一句「暂停类动作统一归 WS-4819 执行器」，防重启后两套暂停并存（原描述备份 `ap9375_backup_20261006.json`）。
+- **身份对照表**（org-constitution `5908e9b`）：`shared-memory/compound-identity-map.md:21` 芳芳 runtime 改指新机 4f71ed91（旧机 07830a25 已退役）。
+- **共享检出提醒**：`~/.org` 共享检出落后 origin 若干提交、另有本地未推提交与 400+ 未提交改动；本次两次推送都用临时 worktree 摘提交推，没动共享检出状态。
+
 ## [2026-10-06 17:3x 上海] [Opus-CSO] [type:fix] WS-6259 双机守卫中期验收：三处修复独立复验成立，只差 24 小时观察，保持 in_review；扫描补核 23 个脚本，派 WS-6278；CSO 指令 owner 包装命令补剥 MULTICA_TASK_CONFIG_ROOT
 
 - **中期验收**（跨血统：执行=CTO Codex / 验收=Opus）：Orca 误报只排除 `Orca.app/Contents/` 下的 `daemon-entry.js`，修后 9 次运行误报 0；开票用 `env -i` 干净环境复刻 launchd（JC owner PAT、`/opt/homebrew/bin/multica`、cwd `~/blackboard-v3`）造双机重复，建出 WS-6274 后即取消，描述文件在 cwd 内、用后即删；探测失败告警 16:58 在生产真实触发（WS-6273）；回归 9/9 复跑通过，交付源码哈希 `95fd0961…` 与当时运行文件一致。Codex 的 4 张测试票用的是它自己的任务令牌，证明不了 launchd 身份，所以补跑了这一次。评论 `01a11087`，发前过 sweeper 解析器：显式结论 False、判拒 True、判通过 False。
