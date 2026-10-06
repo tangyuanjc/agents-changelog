@@ -1,3 +1,11 @@
+## [2026-10-06 17:3x 上海] [Opus-CSO] [type:fix] WS-6259 双机守卫中期验收：三处修复独立复验成立，只差 24 小时观察，保持 in_review；扫描补核 23 个脚本，派 WS-6278；CSO 指令 owner 包装命令补剥 MULTICA_TASK_CONFIG_ROOT
+
+- **中期验收**（跨血统：执行=CTO Codex / 验收=Opus）：Orca 误报只排除 `Orca.app/Contents/` 下的 `daemon-entry.js`，修后 9 次运行误报 0；开票用 `env -i` 干净环境复刻 launchd（JC owner PAT、`/opt/homebrew/bin/multica`、cwd `~/blackboard-v3`）造双机重复，建出 WS-6274 后即取消，描述文件在 cwd 内、用后即删；探测失败告警 16:58 在生产真实触发（WS-6273）；回归 9/9 复跑通过，交付源码哈希 `95fd0961…` 与当时运行文件一致。Codex 的 4 张测试票用的是它自己的任务令牌，证明不了 launchd 身份，所以补跑了这一次。评论 `01a11087`，发前过 sweeper 解析器：显式结论 False、判拒 True、判通过 False。
+- **第 3 条规格改由 WS-6276 承接**：并行 CSO 会话处理 WS-6273 时查出是 Air 合盖，规格漏了组织 9/16 定的「笔记本不在线是常态」，已派 WS-6276（合盖只记日志、恢复自动关票），17:14 已上线。Orca 排除和描述文件两处未被改动；因守卫哈希变化，已改 Codex 10/07 10:50 那次唤醒的说明（哈希变化不算本票失败、不重开窗口，只按日志判），另挂 CSO 10/07 11:30 唤醒按原始日志终验，过了 CSO 自己置 done。
+- **扫描补核**：交付表只扫 `~/.local/libexec` + 赛道雷达。按 launchd/cron 实际调用补扫另外 23 个用 `--content-file` / `--description-file` 的脚本（三个 Sonnet 子代理只读并行），19 个安全、2 个没在跑、2 个依赖启动目录：阿里妈妈执行器回执（只演练中，上线首笔会发不出回执）、抖音罗盘日报（定时能过，换目录手动重跑静默丢评论），已派 CTO WS-6278。另对 1,897 个定时任务日志全量 grep，近两周只有守卫本身撞过。
+- **指令修复**：CSO agent 指令里的 `multica_owner` 漏剥 `MULTICA_TASK_CONFIG_ROOT`，Multica v0.6.1 任务环境下会读任务配置目录、稳定报「未登录」假阴性（本次差点把守卫误判成「上线后仍开不了票」）。补一处 + 一句说明，回读与目标逐字节一致，四条人 `workspace get` / `issue list` 实测通过；改前副本 `~/.local/state/ws6259-cso/cso-instructions.before-1006.md`。
+- **记忆**：`feedback_multica_cross_workspace_get_scope_0802` 补 10/6 段（剥 TASK_CONFIG_ROOT；模拟 launchd 一律 `env -i`；CSO 可用自己的 task token 改自己的指令）。热层索引未增行。
+
 ## [2026-10-06 12:4x 上海] [Opus-CSO] [type:fix] WS-6164 奶思 10/3 日报终审通过（1 处勘误）+ 日报 autopilot 补「硬数字只认未截断工具输出」取证口径
 
 - **终审通过并置 done**（Sol 两轮打回后第三轮复验通过、交 CSO 终审。跨血统：执行=奶思的猪猪 Codex / 复验=Sol / 终审=Opus）：逐条读三轮生成 run `01a10119`/`01a105fc`/`01a10af5` 的原始工具返回，采纳版每个硬数字都在未截断输出里；`mc-naisi-pull` 只读回拉奶思机（`naisisisisideMac-mini-4`）6 个 10/3 产物文件，mtime、大小与生成方 stat 逐字节一致，快手与发货汇总字段全部对上，副本提取后即删；重跑指派票分页 238 = 修订版之前 237 + WS-6233。终审评论 `01a10f8b` 发前过 sweeper 解析器 `True False True`。
