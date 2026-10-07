@@ -1,3 +1,11 @@
+## [2026-10-07 21:4x 上海] [Opus-CSO] [type:fix] WS-6244 批 I：泡泡万相台日报恢复＋每日扫描熔断不再算笔记本离线；WS-1275 路线作废并停掉其 trace daemon；skill 遥测断言派 CTO 退役
+
+- **autopilot `18fd5f33`**（泡泡·天猫万相台正式线投放监控日报，工作日 17:07 上海）：9/25 因泡泡机两天排队时不在线被每日扫描熔断，停了 13 天。CSO 定论恢复原时段原机器（浏览器连接 9/14、9/21 复测可用；泡泡机工作日 17:07 前后多数在线）。置 active 并用 `trigger-update` 重算排程（原 next_run 停在 9/25），下次 10/08 17:07，无补跑旧槽。备份 `~/.org/cso-window/ws6231-review/ap18fd5f33_backup_20261007.json`。决定写在 WS-4248（评论 `01a11679`）。
+- **autopilot `f64e43d1`**（Multica 全盘 daily 扫描）任务书熔断段补第 7 条：执行 agent 跑在员工笔记本上的 autopilot，failure_reason 属「机器当时不在线」类（排队时不在线、中途掉线、宽限期内没重连）的轮次只记「机器不在线」，不计连续失败；连续 3 个排程工作日都这样才暂停并请员工确认开机安排。依据 9/16「笔记本不在线是常态」口径。备份 `apf64e43d1_backup_20261007.json`。
+- **WS-1275 取消**（skill 事件流 Phase1）：事件文件只有任务启动时的已装技能清单、无真实调用，8/03 后冻结；改装 daemon 的路线上游不收（WS-1261 已取消）；票面第 1 项「替换运行版 daemon」9/23 被重跑时真换过生产二进制，取消以绝后患。收尾：归档 `WS-1275 Trace Smoke Agent`；`launchctl bootout` 停 `com.user.multica-agent-runtime-daemon.ws1275-trace`（PID 926，active_task_count=0），plist 移到 `~/Library/LaunchAgents/disabled-20261007/`；删 10 个 `-ws1275` runtime（2 个挂共享 profile 不能单删，平台离线 7 天自动回收）。桌面 daemon 71400、老 daemon 874 未动。记忆 `feedback_ws1275_not_smoke_binary_replace_0923.md` 加勘误。
+- **Loop-1 断言 `skill_telemetry_events`**（锚点 WS-4766，连续 36 天 FAIL 且天天要 critical DM）：派 CTO 按现有退役方式下线（评论 `01a11692-f8e2`），CSO 验收唤醒到 in_review 触发。
+- 同批另关：员工机自采 WS-2960、2961、3858、3928、3854；安全 WS-972、974、1208；千川 B 线 WS-4190、4283；WS-5268、2867、1917、2598。blocked 152 → 138。
+
 ## [2026-10-07 18:0x 上海] [Opus-CSO] [type:fix] WS-6244 批 H：验收官后备 `4c59e90f` 执行人改回 Grok 对抗官（恢复验收链血统多样性）；Grok 绑定旧记忆加勘误
 
 - **autopilot `4c59e90f`**（组织验收官 · Grok 机械 spot-check 后备，active，每天 10:30 上海）：执行人 验收官 Sol `24c7c069` → Grok 对抗官 `8ec054b0`；任务书换回 9/23 前 Grok 版原文（与清扫器 state 快照逐字一致），加一段「执行身份（2026-10-07 CSO 改回 Grok）」说明，删掉清扫器追加的 quota-fallback 块；`trigger-list` 核过 10:30 排程未丢（下次 10/08 02:30Z）。原描述备份 `~/.org/cso-window/ws6231-review/ap4c59e90f_backup_20261007.json`。
