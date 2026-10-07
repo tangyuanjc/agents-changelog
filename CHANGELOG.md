@@ -1,3 +1,10 @@
+## [2026-10-07 18:0x 上海] [Opus-CSO] [type:fix] WS-6244 批 H：验收官后备 `4c59e90f` 执行人改回 Grok 对抗官（恢复验收链血统多样性）；Grok 绑定旧记忆加勘误
+
+- **autopilot `4c59e90f`**（组织验收官 · Grok 机械 spot-check 后备，active，每天 10:30 上海）：执行人 验收官 Sol `24c7c069` → Grok 对抗官 `8ec054b0`；任务书换回 9/23 前 Grok 版原文（与清扫器 state 快照逐字一致），加一段「执行身份（2026-10-07 CSO 改回 Grok）」说明，删掉清扫器追加的 quota-fallback 块；`trigger-list` 核过 10:30 排程未丢（下次 10/08 02:30Z）。原描述备份 `~/.org/cso-window/ws6231-review/ap4c59e90f_backup_20261007.json`。
+- **为什么**：10/03 主验收 `61d55f53` 改由例行 Codex 跑后，主验收、重试控制器 `b68dc4a3`、Sol 后备同在 runtime `7b3c3963`、同用 GPT，上游一断三层同死，后备失去意义（9/25 后备已因 GPT 容量不足挂过一次）。Grok 10/04 起 16 个任务全部完成；9/23 移走它的余额问题已不存在；兑现 9/25 CSO 在 WS-4607 的「Grok 能用后手工迁回」（评论 `01a0d6bd`）。清扫器对没有重置时间的 402 永不放行恢复（10 月 74 次 `quota_fallback_restore_deferred`），所以手工迁；清扫器 state 未碰，WS-5726 已补记。
+- **验收点**：10/08 10:30 那轮是 `source=schedule`、`completed` 且出现在 Grok 自己的运行记录里 → WS-5630 关票；失败则由 CSO 判退回 Sol 还是另修。活物登记表第 29 行同步（备份 `living-registry.md.bak-1007`），WS-6025 补记。
+- **记忆勘误**：`reference_grok_multica_runtime_auth_paths_0924.md` 的「Grok 一律绑 d10809b4、不要注入 XAI_API_KEY」已作废——10/3 JC 令本机 Grok 全走中转，对抗官现绑 c770a05c ＋ 2 个中转变量且稳定；冷层索引行同步加勘误。
+
 ## [2026-10-07 10:0x 上海] [Opus-CSO] [type:fix] 撤回上条 WS-6242 对 autopilot `b4dae9d8` 的补行，对齐同日 WS-6243 改判
 
 - 上条（`6265542`）给芳芳日报调度 autopilot 取证口径补了「判会话目录无写入前先看 `logs_2.sqlite` 写入时间」。同日并行的文雅日报验收（WS-6243，评论 `01a11419`）已改判不补：Windows 上被占用文件的列表时间会滞后，桌面版 Codex 开着时 logs_2.sqlite 同样滞后，补进去只多一个看着硬的假阴性。已恢复原描述（2880 字，与备份逐字一致，status active）。
