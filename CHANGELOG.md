@@ -1,3 +1,9 @@
+## [2026-10-08 09:1x 上海] [Opus-CSO] [type:fix] 小J（COO profile）旧飞书网关按 hr19 归档条款停用；10/08「需要你」合并消息只剩主盘一条
+
+- **停 `ai.hermes.gateway-coo`**（小J 旧飞书网关，WS-4619）：宪法 hr19「60 天窗零评审单则自动归档」9/01 已核实执行（WS-1318 done），停网关是归档的一部分，CSO 判不需 JC 另批；`~/.hermes/profiles/coo/sessions/` 9 月起无新会话，`agent.log` 只有网关重启。10/08 09:04:45 `launchctl bootout`，plist 移到 `~/Library/LaunchAgents/disabled-20261008/`（可放回恢复），原进程 PID 905 退出、残留 0；coo 的资料与会话未删。已点名验收官 Sol 按 hr21 停用验收复验。
+- **10/08 合并消息**（WS-6244）：JC 本人身份发进他自己的会话，message_id `om_x100b635a9b5004a0c4a8df659a41bfe`，只有主盘清理授权一条（7 项约 4.5GiB，截止 10/08 20:00）。其余候选核实后都不需要 JC：天猫老客收割 10/04 已否、权益通道等天猫线重启；抖店联盟推广权限 9/08 已开（WS-4675 done）；中转备用上游不再问 JC，WS-5509 改派副官 Codex 做零成本的「降级阶梯末档加非 GPT 档」；ChatCut 可选项不进「需要你」通道。与 WS-4903 并行会话经跨会话消息协调，只发一条。
+- 发送方式提醒：`lark-cli im +messages-send` 现只支持 bot，JC user 通道要用 `lark-cli api POST /open-apis/im/v1/messages --params '{"receive_id_type":"open_id"}' --data … --as user`（记忆 `feedback_jc_message_protocol_hr25_0705.md` 已记）。
+
 ## [2026-10-07 21:4x 上海] [Opus-CSO] [type:fix] WS-6244 批 I：泡泡万相台日报恢复＋每日扫描熔断不再算笔记本离线；WS-1275 路线作废并停掉其 trace daemon；skill 遥测断言派 CTO 退役
 
 - **autopilot `18fd5f33`**（泡泡·天猫万相台正式线投放监控日报，工作日 17:07 上海）：9/25 因泡泡机两天排队时不在线被每日扫描熔断，停了 13 天。CSO 定论恢复原时段原机器（浏览器连接 9/14、9/21 复测可用；泡泡机工作日 17:07 前后多数在线）。置 active 并用 `trigger-update` 重算排程（原 next_run 停在 9/25），下次 10/08 17:07，无补跑旧槽。备份 `~/.org/cso-window/ws6231-review/ap18fd5f33_backup_20261007.json`。决定写在 WS-4248（评论 `01a11679`）。
