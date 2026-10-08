@@ -1,3 +1,10 @@
+## [2026-10-08 15:3x 上海] [Opus-CSO] [type:fix] 双机守卫两票验收通过（WS-6276、WS-6259）；守卫日志移出会被重启清空的 /tmp；手动关票漏洞派 WS-6356
+
+- **WS-6276 通过、done**（随行 MacBook 合盖不开 P1、恢复后自动关票）：本机重跑 33 项单测全过，5 种情况都有用例；WS-6273 由守卫 10/07 02:18 自动关闭、重复数 0。48 小时窗口（10/06 17:15–10/08 17:15）按 MacBook 电源日志有三段合盖，前两段守卫 6 次全是 `probe_failed_remote_absent`，第三段 30 分钟夹在两次探测之间无样本；窗口内新开的探测失败票只有 WS-6315、WS-6352，都在 MacBook 醒着时，都由守卫自己关。提交 d3f2a3a、f3f3541、1ae5ebf（只含三个指定文件）。剩约 2 小时不再等，停用 Codex 17:20 复查 wakeup `01a11081`。
+- **WS-6259 终验通过、done**：24 小时观察期 26 次报告、最大间隔 60 分 25 秒、开票失败 0（2 次平台拒重复按 10/07 口径剔除）、Orca 误报 0；修复后平台无真实 P0。补上 10/07 11:30 被权限拦住的那次终验。
+- **守卫日志改到 `~/Library/Logs/blackboard-v3/layer05-status-audit.{out,err,warn}.log`**：Mini 10/08 12:41 重启清空 `/tmp`，48 小时窗口重启前的原始日志全丢，验收只能用旧会话记录里的日志原文、MacBook 的 sshd 记录和电源日志拼回。只改 `~/Library/LaunchAgents/com.user.layer05-status-audit.plist`（StandardOut/ErrorPath + `WARN_LOG` 环境变量），备份 `~/.bin/com.user.layer05-status-audit.plist.bak-20261008-ws6276`；bootout/bootstrap 后 15:21:14 launchd 真跑一轮：重复数 0、退出码 0、写入新位置。记忆 `reference_ssh_macmini_macbook_0608.md`、`reference_macmini_post_reboot_check_0827.md` 已补。
+- **派 WS-6356 给 CTO**（P3）：探测失败票被人手动关掉而 SSH 仍不通时，守卫只看状态文件 `closed_at`，会一直记 `probe_failed_open_issue_exists` 跳过、不再开票，直到探测恢复。规格「不调平台」是 CSO 写的；改为有未关记录时先查平台状态。尚未真发生。
+
 ## [2026-10-08 09:1x 上海] [Opus-CSO] [type:fix] 小J（COO profile）旧飞书网关按 hr19 归档条款停用；10/08「需要你」合并消息只剩主盘一条
 
 - **停 `ai.hermes.gateway-coo`**（小J 旧飞书网关，WS-4619）：宪法 hr19「60 天窗零评审单则自动归档」9/01 已核实执行（WS-1318 done），停网关是归档的一部分，CSO 判不需 JC 另批；`~/.hermes/profiles/coo/sessions/` 9 月起无新会话，`agent.log` 只有网关重启。10/08 09:04:45 `launchctl bootout`，plist 移到 `~/Library/LaunchAgents/disabled-20261008/`（可放回恢复），原进程 PID 905 退出、残留 0；coo 的资料与会话未删。已点名验收官 Sol 按 hr21 停用验收复验。
