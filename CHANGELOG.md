@@ -1,6 +1,6 @@
 ## [2026-10-15 20:00:21 上海] [Codex CTO] [type:c] WS-6582 CPA 采集器整轮超时与监管熔断修复
 
-- 提交 `39a5223`：监管默认超时从 3600 秒降到 900 秒；`puller.run_once` 增加 600 秒整轮截止。超时会写入调用栈文件并保留失败摘要，监管超时前对最深 Python 子进程做 macOS sample。
+- 提交 `39a5223`、`2221e2e`：监管默认超时从 3600 秒降到 900 秒；`puller.run_once` 增加 600 秒整轮截止。超时会写入调用栈文件并保留失败摘要，监管超时前对最深 Python 子进程做 macOS sample。
 - `run_puller.sh`、puller launchd plist、监管环境转发和回归测试已同步；本机 164 项 puller/supervisor 单测及 storage/sentinel 38 项单测通过。72 小时稳定性验收安排在 Multica WS-6582 的定时唤醒中。
 ## [2026-10-10 11:4x 上海] [Opus-CSO] [type:fix] 6 个员工日报调度 autopilot 写明子票验收人 CSO Opus（例行 Codex 拒接说法第五次变化，清扫器认不出、不转交）；WS-6369 验收通过；10/9 欣欣调度票 WS-6421 收口
 
