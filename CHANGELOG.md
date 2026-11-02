@@ -1,3 +1,7 @@
+## [2026-11-03 04:1x 上海] [Opus-CSO] [type:a] 宪法改称：「Opus CSO 播报」→「CSO 组织大脑」（仅名称，无新条款，baseline 不升版）
+
+- JC 11/3 08:xx（实际 11/3 凌晨上海）同意改名；飞书应用 1.0.12 已发布（app_id cli_a94d194592f8dbb7、bot open_id 不变，副官核真 `~/orca-hq/evidence/cso-rename-1103/DEPUTY-ACCEPT.md`）。宪法两处显示名改：hr25 JC 侧判读契约行、hr35③b 冒用加重行；定位（档案流非收件箱、冒用加重）不变。
+
 ## [2026-11-01 15:0x 上海] [Opus-CSO] [type:c] 宪法 v3.45 · 新增 hr45 组织 OS 定版 v1.1；hr22 补丁③；WS-6998 事故回滚
 
 - **hr45**（JC 11/1 08:4x 令定版、14:3x 令「用第一性原理确保方向不偏」）：成败只认三个外部数（JC 组织性输入/周·配对判、次日已判定业务动作/周、同事完整圈/周），命令写死 `~/orca-hq/evidence/selfdrive-1101/COUNT-CMDS.md` 第 7–9 条，基线 116（仅 3.3 天）/1/3 圈 2 人；规则「已落」分注入与执行两级，落地路径代码闸 > 服务端常驻指令 > 合同；派单改生产三条；验收后备不依赖被替代血统；11/8 前冻结新增。原件 FIRST-PRINCIPLES-LOCK.md、FABLE-CONVERGENCE.md。
